@@ -1,0 +1,14 @@
+# unconventional js
+jest.config.js
+rollup.config.js
+
+# compiled output
+/dist/
+/docs/
+
+# dependencies
+/node_modules/
+
+# misc
+/coverage/
+!.*

@@ -1,0 +1,34 @@
+---
+root: true
+
+parser: "@typescript-eslint/parser"
+
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+
+  project:
+  - "./tsconfig.json"
+
+plugins:
+  - "@typescript-eslint"
+  - prettier
+  - jest
+
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - standard
+
+  - prettier/@typescript-eslint
+  - prettier/standard
+  - plugin:jest/recommended
+  - plugin:jest/style
+
+  # This one should come last
+  - plugin:prettier/recommended
+
+rules:
+  prettier/prettier: error

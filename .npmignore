@@ -1,0 +1,16 @@
+/coverage
+/docs
+/test
+/tools
+
+# misc
+/.editorconfig
+/.env*
+/.eslintignore
+/.eslintrc.js
+/.git/
+/.gitignore
+/yarn.lock
+/rollup.config.js
+/jest.config.js
+.gitkeep
