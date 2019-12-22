@@ -64,6 +64,13 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "dependencies": {
+    "@babylonjs/core": "^4.1.0-beta.4",
+    "@babylonjs/inspector": "^4.1.0-beta.4",
+    "@babylonjs/loaders": "^4.1.0-beta.4",
+    "@babylonjs/materials": "^4.1.0-beta.4",
+    "ecsy": "^0.1.4"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",

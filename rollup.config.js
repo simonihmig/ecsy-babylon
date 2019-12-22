@@ -10,33 +10,24 @@ export default [
     input: `src/index.ts`,
     output: { file: pkg.browser, name: 'ecsyBabylon', format: 'umd', sourcemap: true },
     watch: {
-      include: 'src/**'
+      include: 'src/**',
     },
     plugins: [
       typescript(),
       // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
       commonjs(),
       resolve(),
-      sourceMaps()
-    ]
+      sourceMaps(),
+    ],
   },
   {
     input: `src/index.ts`,
-    output: [
-      { file: pkg.main, format: 'cjs', sourcemap: true },
-    ],
+    output: [{ file: pkg.main, format: 'cjs', sourcemap: true }],
     // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
-    external: [
-      // 'lodash-es/keyBy',
-      // 'lodash-es/mapValues',
-    ],
+    external: ['@babylonjs/core', '@babylonjs/inspector', '@babylonjs/loaders', '@babylonjs/materials', 'ecsy'],
     watch: {
-      include: 'src/**'
+      include: 'src/**',
     },
-    plugins: [
-      typescript(),
-      sourceMaps()
-    ]
-  }
-]
-;
+    plugins: [typescript(), sourceMaps()],
+  },
+];

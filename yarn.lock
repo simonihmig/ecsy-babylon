@@ -137,6 +137,60 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@babylonjs/core@4.1.0-beta.18", "@babylonjs/core@^4.1.0-beta.4":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-4.1.0-beta.18.tgz#8d4cde4e8c791f1ff979d3a95834fcb78980970b"
+  integrity sha512-P4k/9aMmiMPU8YG+zJy0PZRog0cOqSplApHa8KtqdexILdQECM09jpFmv4ql2SCKXF643TD4+Iqv56TXzqfuDw==
+  dependencies:
+    tslib "^1.10.0"
+
+"@babylonjs/gui@4.1.0-beta.18":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/gui/-/gui-4.1.0-beta.18.tgz#43142a5b32c49e1453aa61a7cbe359b3c8f4af56"
+  integrity sha512-onsQLXTp9jipvlBcy34U9U1Du6fM2IGcBzFt0aU27rpsKSNauLcveKP8oteHluNRqBWRHranoLDeipnEy0rGbQ==
+  dependencies:
+    "@babylonjs/core" "4.1.0-beta.18"
+    tslib "^1.10.0"
+
+"@babylonjs/inspector@^4.1.0-beta.4":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/inspector/-/inspector-4.1.0-beta.18.tgz#a42b0ce0baae40f5b0d67752dbe98b988199561e"
+  integrity sha512-1/bNWlqjZZ5uTwByuXhtRRwnA2WKXb6F1YFRJHIJ0ZtdW94y+UNzY43pBVQVD1A/7fY2G9P9tbdP0OF4M/JdLA==
+  dependencies:
+    "@babylonjs/core" "4.1.0-beta.18"
+    "@babylonjs/gui" "4.1.0-beta.18"
+    "@babylonjs/loaders" "4.1.0-beta.18"
+    "@babylonjs/materials" "4.1.0-beta.18"
+    "@babylonjs/serializers" "4.1.0-beta.18"
+    babylonjs-gltf2interface "4.1.0-beta.18"
+    tslib "^1.10.0"
+
+"@babylonjs/loaders@4.1.0-beta.18", "@babylonjs/loaders@^4.1.0-beta.4":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/loaders/-/loaders-4.1.0-beta.18.tgz#09cd54ad6440570e8b024b515b1f739c471c8f58"
+  integrity sha512-Dsh4pxVFoqIeg1A5hWN281QSPotWMroqSMS3Zrm7KejKvdcT9J4NqFneYyMSMZyBBIMCdoYAdsF2w1gfkWW9ww==
+  dependencies:
+    "@babylonjs/core" "4.1.0-beta.18"
+    babylonjs-gltf2interface "4.1.0-beta.18"
+    tslib "^1.10.0"
+
+"@babylonjs/materials@4.1.0-beta.18", "@babylonjs/materials@^4.1.0-beta.4":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-4.1.0-beta.18.tgz#7a3e01eff726041a59e13f84fb89099bd629cec9"
+  integrity sha512-iC3qvwLfMkKDO8ALRiw1xqTjaXoaDPGuKvN6SIZQYTgnBTGLt+Zl6wZ6Org76QwUdqyOwgnyJasg+m56SgmY9g==
+  dependencies:
+    "@babylonjs/core" "4.1.0-beta.18"
+    tslib "^1.10.0"
+
+"@babylonjs/serializers@4.1.0-beta.18":
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@babylonjs/serializers/-/serializers-4.1.0-beta.18.tgz#1a36debb01d59b67fc7ff6cfec318eb215bc0548"
+  integrity sha512-U12cY43vIZf5ULvPt6A6pDp8meYdabHjSAsPExulRLy6cxhbZcWLJrXBif6ugKOz8y1Ow8GiPO0NtPVbfl8YBg==
+  dependencies:
+    "@babylonjs/core" "4.1.0-beta.18"
+    babylonjs-gltf2interface "4.1.0-beta.18"
+    tslib "^1.10.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -1217,6 +1271,11 @@ babel-runtime@6.26.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
+
+babylonjs-gltf2interface@4.1.0-beta.18:
+  version "4.1.0-beta.18"
+  resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-4.1.0-beta.18.tgz#afc333500bc60066d364769f17b1bddb540754b0"
+  integrity sha512-DIsZ0/NhmQ9XI7mPcvqfwCdhZn6l6yiJWvHMmsTFLHaIaVUhDiUomjxAF4yPIYeX2PbtmxkJpv4TJY7QnXF9MA==
 
 backbone@^1.4.0:
   version "1.4.0"
@@ -2311,6 +2370,11 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
+
+ecsy@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.1.4.tgz#ad8ded85fbeb26e1b6d1ca934437cd2510434fb0"
+  integrity sha512-LCxqhNNcz0lwBP9mmCbKzMSeOoLL720cPKY06BWaS+cX+mLQEKij487x+eYKWNZKrhRtPepM7YMEj8yUHtAiZw==
 
 editor@~1.0.0:
   version "1.0.0"
@@ -7938,7 +8002,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==

@@ -32,3 +32,4 @@ extends:
 
 rules:
   prettier/prettier: error
+  '@typescript-eslint/ban-ts-ignore': warn
