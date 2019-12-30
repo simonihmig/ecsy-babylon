@@ -1,6 +1,7 @@
 # unconventional js
 jest.config.js
 rollup.config.js
+babel.config.js
 
 # compiled output
 /dist/
