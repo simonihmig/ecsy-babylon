@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Boxes Demo</title>
+
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    main, canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .controls {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+    }
+
+    .info {
+      position: fixed;
+      top: 1em;
+      left: 1em;
+    }
+  </style>
+
+</head>
+<body>
+
+<main>
+
+  <canvas></canvas>
+
+  <div class="controls">
+    <label>
+      Amount
+      <select>
+        <option>20</option>
+        <option>100</option>
+        <option>200</option>
+        <option>500</option>
+        <option>1000</option>
+        <option>2000</option>
+        <option>10000</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="info">
+    <p><a href="https://github.com/kaliber5/ecsy-babylon">github.com/kaliber5/ecsy-babylon/demos/boxes</a>
+    </p>
+    FPS <span id="fps"></span>
+  </div>
+</main>
+
+<script src="./build/app.js"></script>
+
+</body>
+</html>

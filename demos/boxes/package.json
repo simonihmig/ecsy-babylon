@@ -1,0 +1,12 @@
+{
+  "name": "boxes",
+  "version": "0.0.0",
+  "description": "Boxes demo",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js -w"
+  },
+  "author": "",
+  "license": "MIT"
+}

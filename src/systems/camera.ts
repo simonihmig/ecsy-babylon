@@ -4,7 +4,7 @@ import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core';
 import guidFor from '../utils/guid';
 import SystemWithCore, { queries } from '../SystemWithCore';
 
-export default class PrimitiveSystem extends SystemWithCore {
+export default class CameraSystem extends SystemWithCore {
   execute() {
     super.execute();
 

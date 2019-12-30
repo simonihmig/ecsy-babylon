@@ -13,3 +13,4 @@ babel.config.js
 # misc
 /coverage/
 !.*
+build
