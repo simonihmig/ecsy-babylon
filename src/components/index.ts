@@ -17,7 +17,7 @@ import Position from './position';
 import Rotation from './rotation';
 import Scale from './scale';
 import Action from './action';
-import Entity from './entity';
+import Parent from './parent';
 
 export {
   BabylonCore,
@@ -39,7 +39,7 @@ export {
   Rotation,
   Scale,
   Action,
-  Entity,
+  Parent,
 };
 
 export default [

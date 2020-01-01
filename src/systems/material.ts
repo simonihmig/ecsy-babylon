@@ -1,12 +1,5 @@
 import { ComponentConstructor, Entity } from 'ecsy';
-import {
-  Mesh,
-  PBRMaterial,
-  Material,
-  ShadowOnlyMaterial,
-  BackgroundMaterial,
-  Entity as EntityComponent,
-} from '../components';
+import { Mesh, PBRMaterial, Material, ShadowOnlyMaterial, BackgroundMaterial } from '../components';
 import {
   Mesh as BabylonMesh,
   Material as BabylonMaterial,
@@ -129,13 +122,6 @@ export default class MaterialSystem extends SystemWithCore {
 
 MaterialSystem.queries = {
   ...queries,
-  entity: {
-    components: [EntityComponent],
-    listen: {
-      added: true,
-      removed: true,
-    },
-  },
   Material: {
     components: [Mesh, Material],
     listen: {
