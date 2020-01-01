@@ -118,40 +118,40 @@ export default class MaterialSystem extends SystemWithCore {
 
     entity.removeComponent(Material);
   }
-}
 
-MaterialSystem.queries = {
-  ...queries,
-  Material: {
-    components: [Mesh, Material],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+  static queries = {
+    ...queries,
+    Material: {
+      components: [Mesh, Material],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-  BackgroundMaterial: {
-    components: [Mesh, BackgroundMaterial],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    BackgroundMaterial: {
+      components: [Mesh, BackgroundMaterial],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-  PBRMaterial: {
-    components: [Mesh, PBRMaterial],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    PBRMaterial: {
+      components: [Mesh, PBRMaterial],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-  ShadowOnlyMaterial: {
-    components: [Mesh, ShadowOnlyMaterial],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    ShadowOnlyMaterial: {
+      components: [Mesh, ShadowOnlyMaterial],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

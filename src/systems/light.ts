@@ -42,28 +42,28 @@ export default class LightSystem extends System {
     const component = entity.getRemovedComponent(Component);
     component.light.dispose();
   }
-}
 
-LightSystem.queries = {
-  hemisphericLight: {
-    components: [HemisphericLight],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    hemisphericLight: {
+      components: [HemisphericLight],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  directionalLight: {
-    components: [DirectionalLight],
-    listen: {
-      added: true,
-      removed: true,
+    directionalLight: {
+      components: [DirectionalLight],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  pointLight: {
-    components: [PointLight],
-    listen: {
-      added: true,
-      removed: true,
+    pointLight: {
+      components: [PointLight],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

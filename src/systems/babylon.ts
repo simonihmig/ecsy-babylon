@@ -49,14 +49,14 @@ export default class BabylonSystem extends System {
     core.scene.dispose();
     core.engine.dispose();
   }
-}
 
-BabylonSystem.queries = {
-  core: {
-    components: [BabylonCore],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    core: {
+      components: [BabylonCore],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

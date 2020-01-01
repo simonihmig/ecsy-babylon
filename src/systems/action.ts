@@ -79,16 +79,16 @@ export default class ActionSystem extends SystemWithCore {
     const meshComponent = entity.getComponent(Mesh);
     return (meshComponent && meshComponent.value && meshComponent.value.actionManager) || null;
   }
-}
 
-ActionSystem.queries = {
-  ...queries,
-  action: {
-    components: [Action, Mesh],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+  static queries = {
+    ...queries,
+    action: {
+      components: [Action, Mesh],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

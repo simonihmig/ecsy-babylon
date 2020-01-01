@@ -83,22 +83,22 @@ export default class ShadowSystem extends SystemWithCore {
       component.value = undefined;
     }
   }
-}
 
-ShadowSystem.queries = {
-  ...queries,
-  shadowGenerator: {
-    components: [ShadowGenerator],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    ...queries,
+    shadowGenerator: {
+      components: [ShadowGenerator],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  mesh: {
-    components: [Mesh],
-    listen: {
-      added: true,
-      removed: true,
+    mesh: {
+      components: [Mesh],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}
