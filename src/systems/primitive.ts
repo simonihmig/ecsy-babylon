@@ -33,28 +33,28 @@ export default class PrimitiveSystem extends System {
   remove(entity: Entity) {
     entity.removeComponent(Mesh);
   }
-}
 
-PrimitiveSystem.queries = {
-  planes: {
-    components: [Plane],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    planes: {
+      components: [Plane],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  boxes: {
-    components: [Box],
-    listen: {
-      added: true,
-      removed: true,
+    boxes: {
+      components: [Box],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  spheres: {
-    components: [Sphere],
-    listen: {
-      added: true,
-      removed: true,
+    spheres: {
+      components: [Sphere],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

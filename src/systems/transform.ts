@@ -135,45 +135,45 @@ export default class TransformSystem extends System {
     const tn = this.getTransformNode(entity, true);
     Object.assign(tn.scaling, { x: 1, y: 1, z: 1 });
   }
-}
 
-TransformSystem.queries = {
-  parent: {
-    components: [Parent],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    entity: {
+      components: [Parent],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  transformNode: {
-    components: [TransformNode],
-    listen: {
-      added: true,
-      removed: true,
+    transformNode: {
+      components: [TransformNode],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-  position: {
-    components: [TransformNode, Position],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    position: {
+      components: [TransformNode, Position],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-  rotation: {
-    components: [TransformNode, Rotation],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    rotation: {
+      components: [TransformNode, Rotation],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-  scale: {
-    components: [TransformNode, Scale],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+    scale: {
+      components: [TransformNode, Scale],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

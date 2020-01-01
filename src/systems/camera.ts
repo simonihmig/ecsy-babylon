@@ -64,16 +64,16 @@ export default class PrimitiveSystem extends SystemWithCore {
       cameraComponent.value.dispose();
     }
   }
-}
 
-PrimitiveSystem.queries = {
-  ...queries,
-  arcRotateCamera: {
-    components: [ArcRotateCamera],
-    listen: {
-      added: true,
-      changed: true,
-      removed: true,
+  static queries = {
+    ...queries,
+    arcRotateCamera: {
+      components: [ArcRotateCamera],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}

@@ -53,15 +53,15 @@ export default class MeshSystem extends SystemWithCore {
     meshComponent.value.dispose();
     meshComponent.value = null;
   }
-}
 
-MeshSystem.queries = {
-  ...queries,
-  meshes: {
-    components: [Mesh],
-    listen: {
-      added: true,
-      removed: true,
+  static queries = {
+    ...queries,
+    meshes: {
+      components: [Mesh],
+      listen: {
+        added: true,
+        removed: true,
+      },
     },
-  },
-};
+  };
+}
