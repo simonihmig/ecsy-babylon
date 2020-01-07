@@ -1,12 +1,12 @@
 import { Entity, System } from 'ecsy';
-import { Position, Rotation, Scale, TransformNode, Entity as EntityComponent } from '../components';
+import { Position, Rotation, Scale, TransformNode, Parent } from '../components';
 import { TransformNode as BabylonTransformNode, Vector3 } from '@babylonjs/core';
 import guidFor from '../utils/guid';
 import assert from '../utils/assert';
 
 export default class TransformSystem extends System {
   execute() {
-    this.queries.entity.added.forEach((e: Entity) => this.setup(e));
+    this.queries.parent.added.forEach((e: Entity) => this.setup(e));
     this.queries.transformNode.added.forEach((e: Entity) => this.setupTransformNode(e));
 
     this.queries.position.added.forEach((e: Entity) => this.position(e));
@@ -20,7 +20,7 @@ export default class TransformSystem extends System {
     this.queries.scale.removed.forEach((e: Entity) => this.removeScale(e));
 
     // entity might remove TransformNode, so it needs to run before
-    this.queries.entity.removed.forEach((e: Entity) => this.remove(e));
+    this.queries.parent.removed.forEach((e: Entity) => this.remove(e));
     this.queries.transformNode.removed.forEach((e: Entity) => this.removeTransformNode(e));
   }
 
@@ -55,9 +55,9 @@ export default class TransformSystem extends System {
   }
 
   setupTransformNode(entity: Entity) {
-    const entityComponent = entity.getComponent(EntityComponent);
+    const entityComponent = entity.getComponent(Parent);
     const transformNodeComponent = entity.getComponent(TransformNode);
-    const parentEntity = entityComponent.parent;
+    const parentEntity = entityComponent.value;
 
     if (transformNodeComponent.value) {
       if (transformNodeComponent.clone) {
@@ -138,8 +138,8 @@ export default class TransformSystem extends System {
 }
 
 TransformSystem.queries = {
-  entity: {
-    components: [EntityComponent],
+  parent: {
+    components: [Parent],
     listen: {
       added: true,
       removed: true,
