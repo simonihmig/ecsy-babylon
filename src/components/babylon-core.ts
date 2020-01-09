@@ -8,6 +8,8 @@ export interface BabylonCoreComponent extends Component {
   engine: Engine;
   scene: Scene;
   shadowGenerators: Set<ShadowGenerator>;
+  beforeRender?: (delta: number, time: number) => void;
+  afterRender?: (delta: number, time: number) => void;
 }
 
 export default createComponentClass<BabylonCoreComponent>(
@@ -18,6 +20,8 @@ export default createComponentClass<BabylonCoreComponent>(
     engine: { default: null },
     scene: { default: null },
     shadowGenerators: { default: new Set() },
+    beforeRender: { default: undefined },
+    afterRender: { default: undefined },
   },
   'BabylonCore'
 );

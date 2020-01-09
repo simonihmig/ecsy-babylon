@@ -31,11 +31,21 @@ export default class BabylonSystem extends System {
         throw new Error('Engine and/or Scene not found');
       }
 
-      core.world.execute(core.engine.getDeltaTime(), window.performance.now() - startTime);
+      const delta = core.engine.getDeltaTime();
+      const time = window.performance.now() - startTime;
+
+      if (core.beforeRender) {
+        core.beforeRender(delta, time);
+      }
+      core.world.execute(delta, time);
 
       // only render if there is an active camera
       if (core.scene.activeCamera) {
         core.scene.render();
+      }
+
+      if (core.afterRender) {
+        core.afterRender(delta, time);
       }
     });
   }
