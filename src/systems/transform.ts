@@ -137,7 +137,7 @@ export default class TransformSystem extends System {
   }
 
   static queries = {
-    entity: {
+    parent: {
       components: [Parent],
       listen: {
         added: true,
