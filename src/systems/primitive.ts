@@ -1,9 +1,12 @@
 import { ComponentConstructor, Entity, System } from 'ecsy';
 import { Plane, Box, Mesh, Sphere } from '../components';
-import { PlaneBuilder, BoxBuilder, Mesh as BabylonMesh, SphereBuilder } from '@babylonjs/core';
+import { PlaneBuilder, BoxBuilder, Mesh as BabylonMesh, SphereBuilder, Scene } from '@babylonjs/core';
+import { PlaneComponent } from '../components/plane';
+import { BoxComponent } from '../components/box';
+import { SphereComponent } from '../components/sphere';
 
 export default class PrimitiveSystem extends System {
-  execute() {
+  execute(): void {
     this.queries.planes.added.forEach((e: Entity) => this.setup(e, Plane, PlaneBuilder.CreatePlane)); // eslint-disable-line @typescript-eslint/unbound-method
     this.queries.boxes.added.forEach((e: Entity) => this.setup(e, Box, BoxBuilder.CreateBox)); // eslint-disable-line @typescript-eslint/unbound-method
     this.queries.spheres.added.forEach((e: Entity) => this.setup(e, Sphere, SphereBuilder.CreateSphere)); // eslint-disable-line @typescript-eslint/unbound-method
@@ -15,11 +18,11 @@ export default class PrimitiveSystem extends System {
 
   setup(
     entity: Entity,
-    Component: ComponentConstructor<any>,
-    createPrimitive: (name: string, options: any, scene?: any) => BabylonMesh
-  ) {
+    Component: ComponentConstructor<PlaneComponent | BoxComponent | SphereComponent>,
+    createPrimitive: (name: string, options: {}, scene?: Scene | null) => BabylonMesh
+  ): void {
     const component = entity.getComponent(Component);
-    const mesh = createPrimitive(component.name || 'primitive', component);
+    const mesh = createPrimitive(component.name ?? 'Primitive', component);
 
     // remove mesh from its default scene
     const scene = mesh.getScene();
@@ -30,7 +33,7 @@ export default class PrimitiveSystem extends System {
     entity.addComponent(Mesh, { value: mesh, dispose: true });
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
     entity.removeComponent(Mesh);
   }
 

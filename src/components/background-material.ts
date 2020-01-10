@@ -2,7 +2,8 @@ import { Component, createComponentClass } from 'ecsy';
 import { Color3, Constants, Texture } from '@babylonjs/core';
 import Types from '../types';
 
-export interface PBRMaterialComponent extends Component {
+export interface BackgroundMaterialComponent extends Component {
+  name: string;
   diffuseTexture: Texture | null;
   alpha: number | null;
   alphaMode: number | null;
@@ -12,7 +13,7 @@ export interface PBRMaterialComponent extends Component {
   enableNoise: boolean;
 }
 
-export default createComponentClass<PBRMaterialComponent>(
+export default createComponentClass<BackgroundMaterialComponent>(
   {
     diffuseTexture: { default: null },
     alpha: { default: 0.9 },

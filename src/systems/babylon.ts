@@ -3,14 +3,14 @@ import { BabylonCore } from '../components';
 import { Engine, FreeCamera, Scene, Vector3 } from '@babylonjs/core';
 
 export default class BabylonSystem extends System {
-  listener?: any;
+  listener?: EventListener;
 
-  execute() {
+  execute(): void {
     this.queries.core.added.forEach((e: Entity) => this.setup(e));
     this.queries.core.removed.forEach((e: Entity) => this.remove(e));
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
     const core = entity.getMutableComponent(BabylonCore);
 
     core.engine = core.engine || new Engine(core.canvas, true, {}, false);
@@ -50,8 +50,10 @@ export default class BabylonSystem extends System {
     });
   }
 
-  remove(entity: Entity) {
-    window.removeEventListener('resize', this.listener);
+  remove(entity: Entity): void {
+    if (this.listener) {
+      window.removeEventListener('resize', this.listener);
+    }
 
     const core = entity.getRemovedComponent(BabylonCore);
 

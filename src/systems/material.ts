@@ -5,16 +5,19 @@ import {
   Material as BabylonMaterial,
   PBRMaterial as BabylonPBRMaterial,
   BackgroundMaterial as BabylonBackgroundMaterial,
+  Scene,
 } from '@babylonjs/core';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials';
 import assert from '../utils/assert';
-import guidFor from '../utils/guid';
 import SystemWithCore, { queries } from '../SystemWithCore';
+import { PBRMaterialComponent } from '../components/pbr-material';
+import { ShadowOnlyMaterialComponent } from '../components/shadow-only-material';
+import { BackgroundMaterialComponent } from '../components/background-material';
 
-type Constructor<T> = { new (...args: any[]): T };
+type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
 
 export default class MaterialSystem extends SystemWithCore {
-  execute() {
+  execute(): void {
     super.execute();
 
     this.queries.ShadowOnlyMaterial.added.forEach((e: Entity) =>
@@ -55,13 +58,12 @@ export default class MaterialSystem extends SystemWithCore {
       ? entity.getComponent(Mesh) || entity.getRemovedComponent(Mesh)
       : entity.getComponent(Mesh);
 
-    assert('No valid ECSY Mesh component found on this Entity.', !!(meshComponent && meshComponent.value));
+    assert('No valid ECSY Mesh component found on this Entity.', meshComponent && meshComponent.value);
 
-    // @ts-ignore
     return meshComponent.value;
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
     const mesh = this.getMesh(entity);
     const materialComponent = entity.getComponent(Material);
 
@@ -75,7 +77,7 @@ export default class MaterialSystem extends SystemWithCore {
     }
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
     // remove mesh from material if there still is one
     if (this.hasMesh(entity, true)) {
       const mesh = this.getMesh(entity, true);
@@ -93,23 +95,31 @@ export default class MaterialSystem extends SystemWithCore {
     }
   }
 
-  setupMaterial(entity: Entity, Component: ComponentConstructor<any>, MaterialClass: Constructor<BabylonMaterial>) {
-    const materialComponent = entity.getComponent(Component);
+  setupMaterial(
+    entity: Entity,
+    Component: ComponentConstructor<PBRMaterialComponent | ShadowOnlyMaterialComponent | BackgroundMaterialComponent>,
+    MaterialClass: MaterialConstructor<BabylonMaterial>
+  ): void {
+    assert('MaterialSystem needs BabylonCoreComponent', this.core);
 
-    const material = new MaterialClass(`${guidFor(entity)}__${MaterialClass.name}`, this.core.scene);
+    const materialComponent = entity.getComponent(Component);
+    const material = new MaterialClass(materialComponent.name, this.core.scene);
     Object.assign(material, materialComponent);
 
     entity.addComponent(Material, { value: material });
   }
 
-  updateMaterial(entity: Entity, Component: ComponentConstructor<any>) {
+  updateMaterial(
+    entity: Entity,
+    Component: ComponentConstructor<PBRMaterialComponent | ShadowOnlyMaterialComponent | BackgroundMaterialComponent>
+  ): void {
     const mesh = this.getMesh(entity);
     const materialComponent = entity.getComponent(Component);
 
     Object.assign(mesh.material, materialComponent);
   }
 
-  removeMaterial(entity: Entity) {
+  removeMaterial(entity: Entity): void {
     const component = entity.getComponent(Material);
 
     if (component.value) {

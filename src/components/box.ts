@@ -3,6 +3,7 @@ import { Mesh } from '@babylonjs/core';
 import Types from '../types';
 
 export interface BoxComponent extends Component {
+  name: string;
   size: number;
   width?: number;
   height?: number;

@@ -2,6 +2,7 @@ import { Component } from 'ecsy';
 import { Light } from '@babylonjs/core';
 
 export interface LightComponent extends Component {
+  name: string;
   intensity: number;
   light?: Light;
 }

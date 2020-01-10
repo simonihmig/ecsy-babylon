@@ -4,7 +4,7 @@ import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
 
 export default class MeshSystem extends SystemWithCore {
-  execute() {
+  execute(): void {
     super.execute();
 
     this.queries.meshes.added.forEach((e: Entity) => this.setup(e));
@@ -13,9 +13,10 @@ export default class MeshSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
     const meshComponent = entity.getComponent(Mesh);
 
+    assert('MeshSystem needs BabylonCoreComponent', this.core);
     assert('Failed to add Mesh Component. No valid Mesh found.', !!meshComponent?.value);
 
     // We're using an instance here because we cannot reliably undo the internal transformations that happen when
@@ -25,18 +26,20 @@ export default class MeshSystem extends SystemWithCore {
     meshComponent.value = meshComponent.value.clone(`${meshComponent.value.name}__clone`, null);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
-    meshComponent.value!.parent = transformNodeComponent.value;
-    meshComponent.value!.computeWorldMatrix(true);
+    meshComponent.value.parent = transformNodeComponent.value;
+    meshComponent.value.computeWorldMatrix(true);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, dispose, instance, ...restArgs } = meshComponent;
 
     Object.assign(value, restArgs);
-    this.core.scene.addMesh(meshComponent.value!);
+    this.core.scene.addMesh(meshComponent.value);
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
     const meshComponent = entity.getRemovedComponent(Mesh);
 
+    assert('MeshSystem needs BabylonCoreComponent', this.core);
     assert(
       'No removed Mesh Component found. Make sure this system is registered at the correct time.',
       !!meshComponent?.value
