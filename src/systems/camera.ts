@@ -5,7 +5,7 @@ import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
 import { ArcRotateComponent } from '../components/arc-rotate-camera';
 
-export default class PrimitiveSystem extends SystemWithCore {
+export default class CameraSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
