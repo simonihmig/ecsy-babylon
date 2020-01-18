@@ -3,9 +3,11 @@ import { ShadowGenerator, DirectionalLight, PointLight, Mesh } from '../componen
 import { InstancedMesh, ShadowGenerator as _ShadowGenerator } from '@babylonjs/core';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
+import { PointLightComponent } from '../components/point-light';
+import { DirectionalLightComponent } from '../components/directional-light';
 
 export default class ShadowSystem extends SystemWithCore {
-  execute() {
+  execute(): void {
     super.execute();
 
     this.queries.shadowGenerator.added.forEach((e: Entity) => this.setup(e));
@@ -18,19 +20,24 @@ export default class ShadowSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  getLightComponent(entity: Entity) {
+  getLightComponent(entity: Entity): DirectionalLightComponent | PointLightComponent {
     const component = entity.getMutableComponent(DirectionalLight) || entity.getComponent(PointLight);
 
-    assert('No Light was found on this entity.', component?.light);
+    assert('No light component was found on this entity.', component);
 
     return component;
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
+    assert('ShadowSystem needs BabylonCoreComponent', this.core);
+
     const lightComponent = this.getLightComponent(entity);
-    const light = lightComponent.light!;
+    assert('No light instance was found on this light component.', lightComponent.light);
+
+    const light = lightComponent.light;
 
     const component = entity.getMutableComponent(ShadowGenerator);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, ...options } = component;
 
     const shadowGenerator = new _ShadowGenerator(options.size, light);
@@ -52,18 +59,21 @@ export default class ShadowSystem extends SystemWithCore {
     this.core.shadowGenerators.add(shadowGenerator);
   }
 
-  addMesh(entity: Entity) {
+  addMesh(entity: Entity): void {
+    assert('ShadowSystem needs BabylonCoreComponent', this.core);
+
     const meshComponent = entity.getComponent(Mesh);
 
     if (meshComponent?.value) {
-      meshComponent.value.receiveShadows = true;
-      this.core.shadowGenerators.forEach((sg) => sg.addShadowCaster(meshComponent.value!, false));
+      const mesh = meshComponent.value;
+      mesh.receiveShadows = true;
+      this.core.shadowGenerators.forEach((sg) => sg.addShadowCaster(mesh, false));
     }
   }
 
   // TODO: currently this method does nothing, it runs when a Mesh is removed
   //  but a removed Mesh is always disposed right now.
-  removeMesh(entity: Entity) {
+  removeMesh(entity: Entity): void {
     const meshComponent = entity.getRemovedComponent(Mesh);
 
     // we only need to remove the shadowCaster if the Mesh still exists
@@ -74,7 +84,9 @@ export default class ShadowSystem extends SystemWithCore {
     }
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
+    assert('ShadowSystem needs BabylonCoreComponent', this.core);
+
     const component = entity.getRemovedComponent(ShadowGenerator);
 
     if (component.value) {

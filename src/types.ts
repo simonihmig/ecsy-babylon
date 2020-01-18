@@ -17,12 +17,10 @@ export default {
     create: (defaultValue: number | undefined): number | undefined => {
       return defaultValue;
     },
-    reset: <T extends Component, K extends keyof T>(src: T, key: K, defaultValue: number | undefined) => {
-      // @ts-ignore
+    reset: <K extends keyof Component>(src: Component, key: K, defaultValue: number | undefined) => {
       src[key] = defaultValue;
     },
-    clear: <T extends Component, K extends keyof T>(src: T, key: K) => {
-      // @ts-ignore
+    clear: <K extends keyof Component>(src: Component, key: K) => {
       src[key] = undefined;
     },
   }),

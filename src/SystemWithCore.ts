@@ -2,9 +2,9 @@ import { System } from 'ecsy';
 import BabylonCore, { BabylonCoreComponent } from './components/babylon-core';
 
 export default class SystemWithCore extends System {
-  core!: BabylonCoreComponent;
+  core?: BabylonCoreComponent;
 
-  execute() {
+  execute(): void {
     if (this.queries.core.added.length) {
       if (this.queries.core.added.length > 1) {
         throw new Error('More than 1 core has been added.');
@@ -15,10 +15,9 @@ export default class SystemWithCore extends System {
   }
 
   // this needs to run after the other queries have run in the systems that extend from this
-  afterExecute() {
+  afterExecute(): void {
     if (this.queries.core.removed.length) {
-      // @ts-ignore
-      this.core = null;
+      this.core = undefined;
     }
   }
 }

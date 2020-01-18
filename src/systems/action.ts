@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { Entity } from 'ecsy';
 import { Action, Mesh } from '../components';
 import { AbstractActionManager, ActionManager, ExecuteCodeAction } from '@babylonjs/core';
 import SystemWithCore, { queries } from '../SystemWithCore';
+import assert from '../utils/assert';
 
 const TRIGGER = {
   pick: ActionManager.OnPickTrigger,
@@ -23,7 +26,7 @@ const TRIGGER = {
 };
 
 export default class ActionSystem extends SystemWithCore {
-  execute() {
+  execute(): void {
     super.execute();
 
     this.queries.action.added.forEach((e: Entity) => this.setup(e));
@@ -33,7 +36,8 @@ export default class ActionSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
+    assert('ActionSystem needs BabylonCoreComponent', this.core);
     const actionComponent = entity.getMutableComponent(Action);
 
     let actionManager = this.getActionManager(entity);
@@ -67,7 +71,7 @@ export default class ActionSystem extends SystemWithCore {
     });
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
     const meshComponent = entity.getComponent(Mesh);
     if (meshComponent?.value?.actionManager) {
       meshComponent.value.actionManager.dispose();

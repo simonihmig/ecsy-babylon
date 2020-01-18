@@ -1,8 +1,8 @@
 import { Component, createComponentClass } from 'ecsy';
-import { InstancedMesh, AbstractMesh } from '@babylonjs/core';
+import { InstancedMesh, Mesh } from '@babylonjs/core';
 
 export interface MeshComponent extends Component {
-  value: AbstractMesh | null;
+  value: Mesh | null;
   instance: InstancedMesh | null;
   dispose: boolean;
 }

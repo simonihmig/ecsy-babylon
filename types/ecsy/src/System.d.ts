@@ -57,7 +57,7 @@ declare module 'ecsy' {
   }
 
   export interface SystemConstructor<T extends System> {
-    new (...args: any): T;
+    new (...args: unknown): T;
   }
 
   export interface NotComponent {
