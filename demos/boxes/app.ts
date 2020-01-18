@@ -22,12 +22,13 @@ if (canvas === null || select === null || fpsEl === null) {
 }
 
 const boxOptions: BoxComponent = {
+  name: 'Box',
   size: 2,
 };
 const boxes: Entity[] = [];
 const frames = Array(30).fill(0);
 
-function random() {
+function random(): number {
   return Math.random() * 360;
 }
 
