@@ -1,11 +1,12 @@
 import { ComponentConstructor, Entity } from 'ecsy';
 import { ArcRotateCamera, TransformNode } from '../components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core';
-import guidFor from '../utils/guid';
 import SystemWithCore, { queries } from '../SystemWithCore';
+import assert from '../utils/assert';
+import { ArcRotateComponent } from '../components/arc-rotate-camera';
 
-export default class PrimitiveSystem extends SystemWithCore {
-  execute() {
+export default class CameraSystem extends SystemWithCore {
+  execute(): void {
     super.execute();
 
     this.queries.arcRotateCamera.added.forEach((e: Entity) => this.setupArcRotateCamera(e));
@@ -15,18 +16,15 @@ export default class PrimitiveSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  setupArcRotateCamera(entity: Entity) {
+  setupArcRotateCamera(entity: Entity): void {
+    assert('PrimitiveSystem needs BabylonCoreComponent', this.core);
+
     const { scene, canvas } = this.core;
-
     const cameraComponent = entity.getComponent(ArcRotateCamera);
-
     const { value, ...args } = cameraComponent;
-
     const { alpha, beta, radius, target } = args;
-
     const instance =
-      value ||
-      new BabylonArcRotateCamera(`${guidFor(entity)}__ArcRotateCamera`, alpha, beta, radius, target, scene, false);
+      value || new BabylonArcRotateCamera(cameraComponent.name, alpha, beta, radius, target, scene, false);
 
     Object.assign(instance, args);
     cameraComponent.value = instance;
@@ -38,7 +36,7 @@ export default class PrimitiveSystem extends SystemWithCore {
     instance.parent = transformNodeComponent.value;
   }
 
-  update(entity: Entity, component: ComponentConstructor<any>) {
+  update(entity: Entity, component: ComponentConstructor<ArcRotateComponent>): void {
     const cameraComponent = entity.getComponent(component);
 
     const { value, ...args } = cameraComponent;
@@ -46,9 +44,10 @@ export default class PrimitiveSystem extends SystemWithCore {
     Object.assign(value, args);
   }
 
-  remove(entity: Entity, component: ComponentConstructor<any>) {
-    const { scene, canvas, defaultCamera } = this.core;
+  remove(entity: Entity, component: ComponentConstructor<ArcRotateComponent>): void {
+    assert('CameraSystem needs BabylonCoreComponent', this.core);
 
+    const { scene, canvas, defaultCamera } = this.core;
     const cameraComponent = entity.getRemovedComponent(component);
 
     // TODO: We might need something smarter here in the future, what if there's multiple camera entities?

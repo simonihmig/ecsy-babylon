@@ -3,6 +3,7 @@ import { Mesh } from '@babylonjs/core';
 import Types from '../types';
 
 export interface BoxComponent extends Component {
+  name: string;
   size: number;
   width?: number;
   height?: number;
@@ -10,8 +11,8 @@ export interface BoxComponent extends Component {
   // TODO
   // faceColors: Color4[];
   // faceUV: Vector4[];
-  updatable: boolean;
-  sideOrientation: number;
+  updatable?: boolean;
+  sideOrientation?: number;
 }
 
 export default createComponentClass<BoxComponent>(

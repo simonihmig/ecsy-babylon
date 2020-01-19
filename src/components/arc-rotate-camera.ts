@@ -3,6 +3,7 @@ import { ArcRotateCamera, Vector3 } from '@babylonjs/core';
 import Types from '../types';
 
 export interface ArcRotateComponent extends Component {
+  name: string;
   value: ArcRotateCamera | null;
   alpha: number;
   beta: number;

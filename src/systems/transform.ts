@@ -5,7 +5,7 @@ import guidFor from '../utils/guid';
 import assert from '../utils/assert';
 
 export default class TransformSystem extends System {
-  execute() {
+  execute(): void {
     this.queries.parent.added.forEach((e: Entity) => this.setup(e));
     this.queries.transformNode.added.forEach((e: Entity) => this.setupTransformNode(e));
 
@@ -24,7 +24,7 @@ export default class TransformSystem extends System {
     this.queries.transformNode.removed.forEach((e: Entity) => this.removeTransformNode(e));
   }
 
-  setup(entity: Entity) {
+  setup(entity: Entity): void {
     if (entity.hasComponent(TransformNode)) {
       return;
     }
@@ -34,7 +34,7 @@ export default class TransformSystem extends System {
     entity.addComponent(TransformNode, { value: transformNode });
   }
 
-  remove(entity: Entity) {
+  remove(entity: Entity): void {
     entity.removeComponent(TransformNode);
   }
 
@@ -47,42 +47,35 @@ export default class TransformSystem extends System {
 
     assert(
       'No valid ECSY TransformNode component found on this Entity.',
-      !!(transformNodeComponent && transformNodeComponent.value)
+      transformNodeComponent && transformNodeComponent.value
     );
 
-    // @ts-ignore
     return transformNodeComponent.value;
   }
 
-  setupTransformNode(entity: Entity) {
+  setupTransformNode(entity: Entity): void {
     const entityComponent = entity.getComponent(Parent);
     const transformNodeComponent = entity.getComponent(TransformNode);
     const parentEntity = entityComponent.value;
 
-    if (transformNodeComponent.value) {
+    const node = transformNodeComponent.value;
+    if (node) {
       if (transformNodeComponent.clone) {
-        transformNodeComponent.value = transformNodeComponent.value.clone(
-          `${guidFor(entity)}__TransformNode__cloned`,
-          null,
-          true
-        );
+        transformNodeComponent.value = node.clone(`${guidFor(entity)}__TransformNode__cloned`, null, true);
       }
 
       if (parentEntity) {
         const parentTransformNodeComponent = parentEntity.getComponent(TransformNode);
 
-        assert(
-          'The parent <Entity/> does not have a valid TransformNode ECSY component',
-          !!(parentTransformNodeComponent && parentTransformNodeComponent.value)
-        );
+        assert('The parent Entity does not have a valid TransformNode component', parentTransformNodeComponent?.value);
 
-        transformNodeComponent.value!.parent = parentTransformNodeComponent.value;
-        transformNodeComponent.value!.computeWorldMatrix(true);
+        node.parent = parentTransformNodeComponent.value;
+        node.computeWorldMatrix(true);
       }
     }
   }
 
-  removeTransformNode(entity: Entity) {
+  removeTransformNode(entity: Entity): void {
     // the TransformNode component might already be removed if the Entity was removed
     const transformNodeComponent = entity.getRemovedComponent(TransformNode);
 
@@ -96,18 +89,18 @@ export default class TransformSystem extends System {
     transformNodeComponent.value = null;
   }
 
-  position(entity: Entity) {
+  position(entity: Entity): void {
     const tn = this.getTransformNode(entity);
     const positionComponent = entity.getComponent(Position);
     tn.position = positionComponent.value;
   }
 
-  removePosition(entity: Entity) {
+  removePosition(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
     tn.position = new Vector3(0, 0, 0);
   }
 
-  rotation(entity: Entity) {
+  rotation(entity: Entity): void {
     const tn = this.getTransformNode(entity);
     const rotationComponent = entity.getComponent(Rotation);
 
@@ -120,18 +113,18 @@ export default class TransformSystem extends System {
     Object.assign(tn.rotation, { x, y, z });
   }
 
-  removeRotation(entity: Entity) {
+  removeRotation(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
     Object.assign(tn.rotation, { x: 0, y: 0, z: 0 });
   }
 
-  scale(entity: Entity) {
+  scale(entity: Entity): void {
     const tn = this.getTransformNode(entity);
     const scaleComponent = entity.getComponent(Scale);
     tn.scaling = scaleComponent.value;
   }
 
-  removeScale(entity: Entity) {
+  removeScale(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
     Object.assign(tn.scaling, { x: 1, y: 1, z: 1 });
   }

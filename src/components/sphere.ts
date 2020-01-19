@@ -3,6 +3,7 @@ import { Mesh } from '@babylonjs/core';
 import Types from '../types';
 
 export interface SphereComponent extends Component {
+  name: string;
   segments: number;
   diameter: number;
   diameterX?: number;
