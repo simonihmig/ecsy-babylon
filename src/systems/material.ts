@@ -120,7 +120,7 @@ export default class MaterialSystem extends SystemWithCore {
   }
 
   removeMaterial(entity: Entity): void {
-    const component = entity.getComponent(Material);
+    const component = entity.getComponent(Material) || entity.getRemovedComponent(Material);
 
     if (component.value) {
       component.value.dispose();
