@@ -65,9 +65,9 @@
     }
   },
   "dependencies": {
-    "@babylonjs/core": "^4.1.0-beta.20",
+    "@babylonjs/core": "^4.1.0-beta.22",
     "@babylonjs/inspector": "^4.1.0-beta.22",
-    "@babylonjs/loaders": "^4.1.0-beta.20",
+    "@babylonjs/loaders": "^4.1.0-beta.22",
     "@babylonjs/materials": "^4.1.0-beta.22",
     "ecsy": "^0.2.1"
   },
