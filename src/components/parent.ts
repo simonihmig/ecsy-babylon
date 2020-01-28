@@ -1,10 +1,10 @@
 import { Component, createComponentClass, Entity } from 'ecsy';
 
-interface EntityComponent extends Component {
+export interface ParentComponent extends Component {
   value: Entity | null;
 }
 
-export default createComponentClass<EntityComponent>(
+export default createComponentClass<ParentComponent>(
   {
     value: { default: null },
   },
