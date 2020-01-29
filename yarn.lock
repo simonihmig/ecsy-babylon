@@ -729,51 +729,12 @@
   dependencies:
     tslib "^1.10.0"
 
-"@babylonjs/gui@4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/gui/-/gui-4.1.0-beta.22.tgz#236ca5090671b64808daf859594d2c34d74d527c"
-  integrity sha512-7wDUOnZg0CZG8YAYJaU3TcztyPXSmMqZSQs6Fr7MnSbq1RrHK7IfG6mgZT0Uw8Tr/ecxJ5ONqh5ztFt4pvV9zw==
-  dependencies:
-    "@babylonjs/core" "4.1.0-beta.22"
-    tslib "^1.10.0"
-
-"@babylonjs/inspector@^4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/inspector/-/inspector-4.1.0-beta.22.tgz#26e102b182a19c13faffcaed0913de2c24e42ad2"
-  integrity sha512-1gnlNVnPAFWNU9uIcVbQYDurO+GBVm0jovU721T/DV7p7x4C4ngLA8etL2dv273DKQDgxXIdOPdCTshw+8G1Ag==
-  dependencies:
-    "@babylonjs/core" "4.1.0-beta.22"
-    "@babylonjs/gui" "4.1.0-beta.22"
-    "@babylonjs/loaders" "4.1.0-beta.22"
-    "@babylonjs/materials" "4.1.0-beta.22"
-    "@babylonjs/serializers" "4.1.0-beta.22"
-    babylonjs-gltf2interface "4.1.0-beta.22"
-    tslib "^1.10.0"
-
-"@babylonjs/loaders@4.1.0-beta.22", "@babylonjs/loaders@^4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/loaders/-/loaders-4.1.0-beta.22.tgz#451007a85db0002c6a5ded7cd71f47e906e6d6ab"
-  integrity sha512-JVhCkI44Z2XLcuMRsvi1xBJ6BRKd2o6UtbcGqRdZbMwtHNk+/U64z9LCCBb/DzVdKPLR+RvVLm5rIruSWz7Khw==
-  dependencies:
-    "@babylonjs/core" "4.1.0-beta.22"
-    babylonjs-gltf2interface "4.1.0-beta.22"
-    tslib "^1.10.0"
-
-"@babylonjs/materials@4.1.0-beta.22", "@babylonjs/materials@^4.1.0-beta.22":
+"@babylonjs/materials@^4.1.0-beta.22":
   version "4.1.0-beta.22"
   resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-4.1.0-beta.22.tgz#58d025017bc4164c942dbf13a8e381cb06237843"
   integrity sha512-OB9Kc+YR476t5/sNOLXg7uTDs0HzOEp8vawiK3b8sbI6x53V535DmPuQVnIOhj8PJ400asS36xyPZA5kBpwycQ==
   dependencies:
     "@babylonjs/core" "4.1.0-beta.22"
-    tslib "^1.10.0"
-
-"@babylonjs/serializers@4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/serializers/-/serializers-4.1.0-beta.22.tgz#3ac3a9f78894bc1e8b7370bd6bcaef5739aad78b"
-  integrity sha512-IZlZLO9Lm0UP2Q5J4U6ZlrZGF0nmElM6YpZ7IPnKcYQZuSf60XIVOu1Bz2ApI3i/qsXCedYVFzwEY6sX0OUGZg==
-  dependencies:
-    "@babylonjs/core" "4.1.0-beta.22"
-    babylonjs-gltf2interface "4.1.0-beta.22"
     tslib "^1.10.0"
 
 "@cnakazawa/watch@^1.0.3":
@@ -1974,11 +1935,6 @@ babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
-
-babylonjs-gltf2interface@4.1.0-beta.22:
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-4.1.0-beta.22.tgz#c5f485f19f6e2280a48da6094afc15124ad78aaf"
-  integrity sha512-6aEuIsj5TeMMsy+ipw3PaTAjS49Nx+o/8KXx1cnj1ZdkUxGP9mpMerQ+2uz/YLgBRWCRCw4FI7+NafcLQu5FRg==
 
 backbone@^1.4.0:
   version "1.4.0"
