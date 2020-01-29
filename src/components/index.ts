@@ -5,6 +5,7 @@ import Plane from './plane';
 import Box from './box';
 import Sphere from './sphere';
 import Material from './material';
+import StandardMaterial from './standard-material';
 import PBRMaterial from './pbr-material';
 import BackgroundMaterial from './background-material';
 import ShadowOnlyMaterial from './shadow-only-material';
@@ -27,6 +28,7 @@ export {
   Box,
   Sphere,
   Material,
+  StandardMaterial,
   PBRMaterial,
   BackgroundMaterial,
   ShadowOnlyMaterial,
@@ -50,6 +52,7 @@ export default [
   Box,
   Sphere,
   Material,
+  StandardMaterial,
   PBRMaterial,
   BackgroundMaterial,
   ShadowOnlyMaterial,
