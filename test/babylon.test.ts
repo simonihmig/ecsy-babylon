@@ -1,45 +1,27 @@
-import { World } from 'ecsy';
-import { BabylonSystem } from '../src/systems';
 import { BabylonCore } from '../src/components';
-import { NullEngine } from '@babylonjs/core';
 import { waitForRAF } from './helpers/wait';
+import setupWorld from './helpers/setup-world';
 
 describe('babylon system', function() {
   it('sets up babylon scene', function() {
-    const canvas = document.createElement('canvas');
-    const world = new World();
-    world.registerSystem(BabylonSystem);
-
-    const entity = world.createEntity();
-
-    entity.addComponent(BabylonCore, {
-      world,
-      canvas,
-      engine: new NullEngine(),
-    });
+    const { world, rootEntity } = setupWorld();
 
     world.execute(0, 0);
-    const babylonComponent = entity.getComponent(BabylonCore);
+    const babylonComponent = rootEntity.getComponent(BabylonCore);
 
     expect(babylonComponent.engine).toBeDefined();
     expect(babylonComponent.scene).toBeDefined();
   });
 
   it('calls render beforeRender and afterRender', async function() {
-    const canvas = document.createElement('canvas');
-    const world = new World();
-    world.registerSystem(BabylonSystem);
-
-    const entity = world.createEntity();
     const beforeRender = jest.fn();
     const afterRender = jest.fn();
 
-    entity.addComponent(BabylonCore, {
-      world,
-      canvas,
-      engine: new NullEngine(),
-      beforeRender,
-      afterRender,
+    const { world } = setupWorld({
+      rootEntityValues: {
+        beforeRender,
+        afterRender,
+      },
     });
 
     world.execute(0, 0);
