@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "",
   "keywords": [],
-  "browser": "dist/index.umd.js",
   "main": "dist/index.cjs.js",
   "module": "dist/src/index.js",
   "typings": "dist/types/index.d.ts",
