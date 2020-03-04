@@ -722,19 +722,19 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@babylonjs/core@4.1.0-beta.22", "@babylonjs/core@^4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-4.1.0-beta.22.tgz#5498fcb72ad3ee5f7d186d19524f27860229f2a1"
-  integrity sha512-QRuunJLvrvu2mAk+XjQ0tApL3+tcdWth7ev7uaQ3roUG6SKRGgjdUbLxuPhKMzaOEW4HoRTD2ewk5hEAA1yWvQ==
+"@babylonjs/core@4.1.0", "@babylonjs/core@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-4.1.0.tgz#63e390862debf81f8cf248496187029c42ea5eda"
+  integrity sha512-4pEKPEu14qRdqH5qatfmns/iHFHmujDI22SXkHIlJhTT0WgJH4I8IN1fPw9sU6jSCH2ul76Lpbi2zREvfrEDQA==
   dependencies:
     tslib "^1.10.0"
 
-"@babylonjs/materials@^4.1.0-beta.22":
-  version "4.1.0-beta.22"
-  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-4.1.0-beta.22.tgz#58d025017bc4164c942dbf13a8e381cb06237843"
-  integrity sha512-OB9Kc+YR476t5/sNOLXg7uTDs0HzOEp8vawiK3b8sbI6x53V535DmPuQVnIOhj8PJ400asS36xyPZA5kBpwycQ==
+"@babylonjs/materials@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-4.1.0.tgz#238cc04fd1d70ad703e5e12a06db6df83d70a0ed"
+  integrity sha512-KIu3a3h9GfXIbYLhqTlB1vBMI4Wv17+FuGYZ7hxaW7QExQBYog4GaZF9I/TJEwyhXHhtV6L57LNTxh37YU3ciw==
   dependencies:
-    "@babylonjs/core" "4.1.0-beta.22"
+    "@babylonjs/core" "4.1.0"
     tslib "^1.10.0"
 
 "@cnakazawa/watch@^1.0.3":
