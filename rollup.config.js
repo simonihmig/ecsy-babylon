@@ -13,7 +13,8 @@ export default [
       include: 'src/**',
     },
     plugins: [
-      typescript(),
+      // @todo remove `noEmitOnError` when the typescript plugin has been fixed in v4, see https://github.com/rollup/plugins/pull/217
+      typescript({ tsconfig: 'tsconfig.build.json', noEmitOnError: false }),
       // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
       commonjs(),
       resolve(),
@@ -28,6 +29,7 @@ export default [
     watch: {
       include: 'src/**',
     },
-    plugins: [typescript(), sourceMaps()],
+    // @todo remove `noEmitOnError` when the typescript plugin has been fixed in v4, see https://github.com/rollup/plugins/pull/217
+    plugins: [typescript({ tsconfig: 'tsconfig.build.json', noEmitOnError: false }), sourceMaps()],
   },
 ];
