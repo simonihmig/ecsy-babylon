@@ -8,7 +8,7 @@ const pkg = require('./package.json');
 export default [
   {
     input: `src/index.ts`,
-    output: { file: pkg.browser, name: 'ecsyBabylon', format: 'umd', sourcemap: true },
+    output: { file: 'dist/index.umd.js', name: 'ecsyBabylon', format: 'umd', sourcemap: true },
     watch: {
       include: 'src/**',
     },
