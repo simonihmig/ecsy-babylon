@@ -11,7 +11,6 @@ import {
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials';
 import assert from '../utils/assert';
 import SystemWithCore, { queries } from '../SystemWithCore';
-import { PBRMaterialComponent } from '../components/pbr-material';
 import { StandardMaterialComponent } from '../components/standard-material';
 import { ShadowOnlyMaterialComponent } from '../components/shadow-only-material';
 import { BackgroundMaterialComponent } from '../components/background-material';
@@ -106,15 +105,16 @@ export default class MaterialSystem extends SystemWithCore {
   setupMaterial(
     entity: Entity,
     Component: ComponentConstructor<
-      PBRMaterialComponent | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
+      PBRMaterial | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
     >,
     MaterialClass: MaterialConstructor<BabylonMaterial>
   ): void {
     assert('MaterialSystem needs BabylonCoreComponent', this.core);
 
-    const materialComponent = entity.getComponent(Component);
-    const material = new MaterialClass(materialComponent.name, this.core.scene);
-    Object.assign(material, materialComponent);
+    const { name, ...props } = entity.getComponent(Component);
+
+    const material = new MaterialClass(name, this.core.scene);
+    Object.assign(material, props);
 
     entity.addComponent(Material, { value: material });
   }
@@ -122,7 +122,7 @@ export default class MaterialSystem extends SystemWithCore {
   updateMaterial(
     entity: Entity,
     Component: ComponentConstructor<
-      PBRMaterialComponent | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
+      PBRMaterial | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
     >
   ): void {
     const mesh = this.getMesh(entity);
