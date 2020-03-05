@@ -17,7 +17,7 @@ export default class CameraSystem extends SystemWithCore {
   }
 
   setupArcRotateCamera(entity: Entity): void {
-    assert('PrimitiveSystem needs BabylonCoreComponent', this.core);
+    assert('CameraSystem needs BabylonCoreComponent', this.core);
 
     const { scene, canvas } = this.core;
     const cameraComponent = entity.getComponent(ArcRotateCamera);
