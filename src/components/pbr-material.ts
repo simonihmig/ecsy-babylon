@@ -13,6 +13,7 @@ export interface PBRMaterialComponent extends Component {
 
 export default createComponentClass<PBRMaterialComponent>(
   {
+    name: { default: 'PbrMaterial' },
     ambientColor: { default: new Color3(0, 0, 0), type: Types.Color3 },
     albedoColor: { default: new Color3(1, 1, 1), type: Types.Color3 },
     emissiveColor: { default: new Color3(0, 0, 0), type: Types.Color3 },
