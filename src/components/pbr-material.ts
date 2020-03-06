@@ -30,7 +30,7 @@ export default class PbrMaterial extends Component {
   albedoColor = new Color3(1, 1, 1);
   reflectivityColor = new Color3(1, 1, 1);
   reflectionColor = new Color3(1, 1, 1);
-  emissiveColor = new Color3(1, 1, 1);
+  emissiveColor = new Color3(0, 0, 0);
   microSurface = 1.0;
   useLightmapAsShadowmap = false;
   useAlphaFromAlbedoTexture = false;
