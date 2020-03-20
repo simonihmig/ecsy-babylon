@@ -1,11 +1,7 @@
 import { Component } from 'ecsy';
 import { BaseTexture, Color3, PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core';
 
-const DEFAULT_NAME = 'PbrMaterial';
-
 export default class PbrMaterial extends Component {
-  name = DEFAULT_NAME;
-
   directIntensity = 1;
   emissiveIntensity = 1;
   environmentIntensity = 1;
@@ -65,7 +61,6 @@ export default class PbrMaterial extends Component {
   unlit = false;
 
   reset(): void {
-    this.name = DEFAULT_NAME;
     this.directIntensity = 1;
     this.emissiveIntensity = 1;
     this.environmentIntensity = 1;
@@ -125,3 +120,5 @@ export default class PbrMaterial extends Component {
     this.unlit = false;
   }
 }
+
+Object.defineProperty(PbrMaterial, 'name', { value: 'PbrMaterial' });
