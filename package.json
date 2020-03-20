@@ -68,7 +68,7 @@
   "dependencies": {
     "@babylonjs/core": "^4.1.0",
     "@babylonjs/materials": "^4.1.0",
-    "ecsy": "^0.2.1"
+    "ecsy": "^0.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

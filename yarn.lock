@@ -3235,10 +3235,10 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-ecsy@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.2.1.tgz#2f57795091bbe815d3dcf3f3d5dfc92c29cce21d"
-  integrity sha512-GJgRWd/amuhZBb04iUEEUGTM+kX6H8/NDEpddXBFiY0mBsuyvMk30KYIc4IX4zVAtJXuvL8Ab5bcI8zHffKSQg==
+ecsy@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.2.3.tgz#82bc7c0c2235a2afe62317048eea9c91c96858ee"
+  integrity sha512-OAQap3oGQhONBD6IaM0VWXLk8IwEkPu5zUWrW8oSNMfh3jzN4qzZJlDv24QlLgWnK6cYl3hUCn6yOdxRv2Ua3w==
 
 editor@~1.0.0:
   version "1.0.0"
