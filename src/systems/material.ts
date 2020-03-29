@@ -21,31 +21,31 @@ export default class MaterialSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
-    this.queries.StandardMaterial.added.forEach((e: Entity) =>
+    this.queries.StandardMaterial.added?.forEach((e: Entity) =>
       this.setupMaterial(e, StandardMaterial, BabylonStandardMaterial)
     );
-    this.queries.StandardMaterial.changed.forEach((e: Entity) => this.updateMaterial(e, StandardMaterial));
-    this.queries.StandardMaterial.removed.forEach((e: Entity) => this.removeMaterial(e));
+    this.queries.StandardMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, StandardMaterial));
+    this.queries.StandardMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
-    this.queries.ShadowOnlyMaterial.added.forEach((e: Entity) =>
+    this.queries.ShadowOnlyMaterial.added?.forEach((e: Entity) =>
       this.setupMaterial(e, ShadowOnlyMaterial, BabylonShadowOnlyMaterial)
     );
-    this.queries.ShadowOnlyMaterial.changed.forEach((e: Entity) => this.updateMaterial(e, ShadowOnlyMaterial));
-    this.queries.ShadowOnlyMaterial.removed.forEach((e: Entity) => this.removeMaterial(e));
+    this.queries.ShadowOnlyMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, ShadowOnlyMaterial));
+    this.queries.ShadowOnlyMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
-    this.queries.BackgroundMaterial.added.forEach((e: Entity) =>
+    this.queries.BackgroundMaterial.added?.forEach((e: Entity) =>
       this.setupMaterial(e, BackgroundMaterial, BabylonBackgroundMaterial)
     );
-    this.queries.BackgroundMaterial.changed.forEach((e: Entity) => this.updateMaterial(e, BackgroundMaterial));
-    this.queries.BackgroundMaterial.removed.forEach((e: Entity) => this.removeMaterial(e));
+    this.queries.BackgroundMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, BackgroundMaterial));
+    this.queries.BackgroundMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
-    this.queries.PBRMaterial.added.forEach((e: Entity) => this.setupMaterial(e, PBRMaterial, BabylonPBRMaterial));
-    this.queries.PBRMaterial.changed.forEach((e: Entity) => this.updateMaterial(e, PBRMaterial));
-    this.queries.PBRMaterial.removed.forEach((e: Entity) => this.removeMaterial(e));
+    this.queries.PBRMaterial.added?.forEach((e: Entity) => this.setupMaterial(e, PBRMaterial, BabylonPBRMaterial));
+    this.queries.PBRMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, PBRMaterial));
+    this.queries.PBRMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
-    this.queries.Material.removed.forEach((e: Entity) => this.remove(e));
-    this.queries.Material.added.forEach((e: Entity) => this.setup(e));
-    this.queries.Material.changed.forEach((e: Entity) => this.setup(e));
+    this.queries.Material.removed?.forEach((e: Entity) => this.remove(e));
+    this.queries.Material.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.Material.changed?.forEach((e: Entity) => this.setup(e));
 
     super.afterExecute();
   }

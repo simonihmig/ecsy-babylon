@@ -6,22 +6,22 @@ import assert from '../utils/assert';
 
 export default class TransformSystem extends System {
   execute(): void {
-    this.queries.parent.added.forEach((e: Entity) => this.setup(e));
-    this.queries.transformNode.added.forEach((e: Entity) => this.setupTransformNode(e));
+    this.queries.parent.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.transformNode.added?.forEach((e: Entity) => this.setupTransformNode(e));
 
-    this.queries.position.added.forEach((e: Entity) => this.position(e));
-    this.queries.position.changed.forEach((e: Entity) => this.position(e));
-    this.queries.position.removed.forEach((e: Entity) => this.removePosition(e));
-    this.queries.rotation.added.forEach((e: Entity) => this.rotation(e));
-    this.queries.rotation.changed.forEach((e: Entity) => this.rotation(e));
-    this.queries.rotation.removed.forEach((e: Entity) => this.removeRotation(e));
-    this.queries.scale.added.forEach((e: Entity) => this.scale(e));
-    this.queries.scale.changed.forEach((e: Entity) => this.scale(e));
-    this.queries.scale.removed.forEach((e: Entity) => this.removeScale(e));
+    this.queries.position.added?.forEach((e: Entity) => this.position(e));
+    this.queries.position.changed?.forEach((e: Entity) => this.position(e));
+    this.queries.position.removed?.forEach((e: Entity) => this.removePosition(e));
+    this.queries.rotation.added?.forEach((e: Entity) => this.rotation(e));
+    this.queries.rotation.changed?.forEach((e: Entity) => this.rotation(e));
+    this.queries.rotation.removed?.forEach((e: Entity) => this.removeRotation(e));
+    this.queries.scale.added?.forEach((e: Entity) => this.scale(e));
+    this.queries.scale.changed?.forEach((e: Entity) => this.scale(e));
+    this.queries.scale.removed?.forEach((e: Entity) => this.removeScale(e));
 
     // entity might remove TransformNode, so it needs to run before
-    this.queries.parent.removed.forEach((e: Entity) => this.remove(e));
-    this.queries.transformNode.removed.forEach((e: Entity) => this.removeTransformNode(e));
+    this.queries.parent.removed?.forEach((e: Entity) => this.remove(e));
+    this.queries.transformNode.removed?.forEach((e: Entity) => this.removeTransformNode(e));
   }
 
   setup(entity: Entity): void {

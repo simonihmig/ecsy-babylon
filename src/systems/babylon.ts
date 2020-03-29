@@ -6,8 +6,8 @@ export default class BabylonSystem extends System {
   listener?: EventListener;
 
   execute(): void {
-    this.queries.core.added.forEach((e: Entity) => this.setup(e));
-    this.queries.core.removed.forEach((e: Entity) => this.remove(e));
+    this.queries.core.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.core.removed?.forEach((e: Entity) => this.remove(e));
   }
 
   setup(entity: Entity): void {
