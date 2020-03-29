@@ -2,7 +2,6 @@ import { Entity, System, SystemConstructor, World } from 'ecsy';
 import systems from '../../src/systems';
 import { BabylonCore } from '../../src/components';
 import { NullEngine } from '@babylonjs/core';
-import { BabylonCoreComponent } from '../../src/components/babylon-core';
 
 export interface SetupWorld {
   world: World;
@@ -11,7 +10,7 @@ export interface SetupWorld {
 
 export interface SetupWorldOptions {
   systems?: SystemConstructor<System>[];
-  rootEntityValues?: Partial<BabylonCoreComponent>;
+  rootEntityValues?: Partial<BabylonCore>;
 }
 
 export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld {

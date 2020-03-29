@@ -1,8 +1,8 @@
 import { Component } from 'ecsy';
-import { ArcRotateCamera, Vector3 } from '@babylonjs/core';
+import { ArcRotateCamera as BabylonArcRotateCamera, Vector3 } from '@babylonjs/core';
 
-export default class Action extends Component {
-  value: ArcRotateCamera | null = null;
+export default class ArcRotateCamera extends Component {
+  value: BabylonArcRotateCamera | null = null;
   alpha = 0;
   beta = 0;
   radius = 10;
@@ -31,4 +31,4 @@ export default class Action extends Component {
   }
 }
 
-Object.defineProperty(Action, 'name', { value: 'ArcRotateCamera' });
+Object.defineProperty(ArcRotateCamera, 'name', { value: 'ArcRotateCamera' });
