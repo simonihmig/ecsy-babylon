@@ -12,12 +12,10 @@
     ],
     "strict": true,
     "sourceMap": true,
-    "declaration": true,
+    "declaration": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist/src",
     "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"

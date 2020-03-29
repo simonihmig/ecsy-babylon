@@ -28,3 +28,18 @@ jobs:
         run: yarn lint
       - name: Test
         run: yarn test
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Build
+        run: yarn build
