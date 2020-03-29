@@ -1,9 +1,9 @@
-import { Component, createComponentClass } from 'ecsy';
+import { Component } from 'ecsy';
 import { ActionEvent, IAction } from '@babylonjs/core';
 
 type ActionCallback = (evt: ActionEvent) => void;
 
-export interface ActionComponent extends Component {
+export default class Action extends Component {
   pick?: ActionCallback;
   doublePick?: ActionCallback;
   centerPick?: ActionCallback;
@@ -23,28 +23,26 @@ export interface ActionComponent extends Component {
 
   _actions: {
     [key: string]: IAction;
-  };
+  } = {};
+
+  reset() {
+    this.pick = undefined;
+    this.doublePick = undefined;
+    this.centerPick = undefined;
+    this.everyFrame = undefined;
+    this.intersectionEnter = undefined;
+    this.intersectionExit = undefined;
+    this.keyDown = undefined;
+    this.keyUp = undefined;
+    this.leftPick = undefined;
+    this.longPress = undefined;
+    this.pickDown = undefined;
+    this.pickOut = undefined;
+    this.pickUp = undefined;
+    this.pointerOut = undefined;
+    this.pointerOver = undefined;
+    this.rightPick = undefined;
+  }
 }
 
-export default createComponentClass<ActionComponent>(
-  {
-    pick: { default: null },
-    doublePick: { default: null },
-    centerPick: { default: null },
-    everyFrame: { default: null },
-    intersectionEnter: { default: null },
-    intersectionExit: { default: null },
-    keyDown: { default: null },
-    keyUp: { default: null },
-    leftPick: { default: null },
-    longPress: { default: null },
-    pickDown: { default: null },
-    pickOut: { default: null },
-    pickUp: { default: null },
-    pointerOut: { default: null },
-    pointerOver: { default: null },
-    rightPick: { default: null },
-    _actions: { default: {} },
-  },
-  'Action'
-);
+Object.defineProperty(Action, 'name', { value: 'Action' });

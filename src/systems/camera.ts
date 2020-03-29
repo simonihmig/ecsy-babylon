@@ -3,7 +3,6 @@ import { ArcRotateCamera, TransformNode } from '../components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
-import { ArcRotateComponent } from '../components/arc-rotate-camera';
 
 export default class CameraSystem extends SystemWithCore {
   execute(): void {
@@ -24,7 +23,7 @@ export default class CameraSystem extends SystemWithCore {
     const { value, ...args } = cameraComponent;
     const { alpha, beta, radius, target } = args;
     const instance =
-      value || new BabylonArcRotateCamera(cameraComponent.name, alpha, beta, radius, target, scene, false);
+      value || new BabylonArcRotateCamera(ArcRotateCamera.name, alpha, beta, radius, target, scene, false);
 
     Object.assign(instance, args);
     cameraComponent.value = instance;
@@ -36,7 +35,7 @@ export default class CameraSystem extends SystemWithCore {
     instance.parent = transformNodeComponent.value;
   }
 
-  update(entity: Entity, component: ComponentConstructor<ArcRotateComponent>): void {
+  update(entity: Entity, component: ComponentConstructor<ArcRotateCamera>): void {
     const cameraComponent = entity.getComponent(component);
 
     const { value, ...args } = cameraComponent;
@@ -44,7 +43,7 @@ export default class CameraSystem extends SystemWithCore {
     Object.assign(value, args);
   }
 
-  remove(entity: Entity, component: ComponentConstructor<ArcRotateComponent>): void {
+  remove(entity: Entity, component: ComponentConstructor<ArcRotateCamera>): void {
     assert('CameraSystem needs BabylonCoreComponent', this.core);
 
     const { scene, canvas, defaultCamera } = this.core;

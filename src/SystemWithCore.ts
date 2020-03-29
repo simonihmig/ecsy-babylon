@@ -1,8 +1,8 @@
 import { System } from 'ecsy';
-import BabylonCore, { BabylonCoreComponent } from './components/babylon-core';
+import { BabylonCore } from './components';
 
 export default class SystemWithCore extends System {
-  core?: BabylonCoreComponent;
+  core?: BabylonCore;
 
   execute(): void {
     if (this.queries.core.added?.length) {
