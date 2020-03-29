@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  pull_request:
+  schedule:
+    - cron:  '0 8 * * 1' # Mondays at 8am
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test
