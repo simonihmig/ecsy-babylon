@@ -9,9 +9,9 @@ export default class CameraSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
-    this.queries.arcRotateCamera.added.forEach((e: Entity) => this.setupArcRotateCamera(e));
-    this.queries.arcRotateCamera.changed.forEach((e: Entity) => this.update(e, ArcRotateCamera));
-    this.queries.arcRotateCamera.removed.forEach((e: Entity) => this.remove(e, ArcRotateCamera));
+    this.queries.arcRotateCamera.added?.forEach((e: Entity) => this.setupArcRotateCamera(e));
+    this.queries.arcRotateCamera.changed?.forEach((e: Entity) => this.update(e, ArcRotateCamera));
+    this.queries.arcRotateCamera.removed?.forEach((e: Entity) => this.remove(e, ArcRotateCamera));
 
     super.afterExecute();
   }

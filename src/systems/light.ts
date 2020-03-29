@@ -12,13 +12,13 @@ import { PointLightComponent } from '../components/point-light';
 
 export default class LightSystem extends System {
   execute(): void {
-    this.queries.hemisphericLight.added.forEach((e: Entity) => this.setupHemisphericLight(e, HemisphericLight));
-    this.queries.directionalLight.added.forEach((e: Entity) => this.setupDirectionalLight(e, DirectionalLight));
-    this.queries.pointLight.added.forEach((e: Entity) => this.setupPointLight(e, PointLight));
+    this.queries.hemisphericLight.added?.forEach((e: Entity) => this.setupHemisphericLight(e, HemisphericLight));
+    this.queries.directionalLight.added?.forEach((e: Entity) => this.setupDirectionalLight(e, DirectionalLight));
+    this.queries.pointLight.added?.forEach((e: Entity) => this.setupPointLight(e, PointLight));
 
-    this.queries.hemisphericLight.removed.forEach((e: Entity) => this.remove(e, HemisphericLight));
-    this.queries.directionalLight.removed.forEach((e: Entity) => this.remove(e, DirectionalLight));
-    this.queries.pointLight.removed.forEach((e: Entity) => this.remove(e, PointLight));
+    this.queries.hemisphericLight.removed?.forEach((e: Entity) => this.remove(e, HemisphericLight));
+    this.queries.directionalLight.removed?.forEach((e: Entity) => this.remove(e, DirectionalLight));
+    this.queries.pointLight.removed?.forEach((e: Entity) => this.remove(e, PointLight));
   }
 
   setupHemisphericLight(entity: Entity, Component: ComponentConstructor<HemisphericLightComponent>): void {

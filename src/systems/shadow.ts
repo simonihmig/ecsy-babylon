@@ -10,12 +10,12 @@ export default class ShadowSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
-    this.queries.shadowGenerator.added.forEach((e: Entity) => this.setup(e));
+    this.queries.shadowGenerator.added?.forEach((e: Entity) => this.setup(e));
 
-    this.queries.mesh.added.forEach((e: Entity) => this.addMesh(e));
-    this.queries.mesh.removed.forEach((e: Entity) => this.removeMesh(e));
+    this.queries.mesh.added?.forEach((e: Entity) => this.addMesh(e));
+    this.queries.mesh.removed?.forEach((e: Entity) => this.removeMesh(e));
 
-    this.queries.shadowGenerator.removed.forEach((e: Entity) => this.remove(e));
+    this.queries.shadowGenerator.removed?.forEach((e: Entity) => this.remove(e));
 
     super.afterExecute();
   }

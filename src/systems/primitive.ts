@@ -7,13 +7,13 @@ import { SphereComponent } from '../components/sphere';
 
 export default class PrimitiveSystem extends System {
   execute(): void {
-    this.queries.planes.added.forEach((e: Entity) => this.setup(e, Plane, PlaneBuilder.CreatePlane)); // eslint-disable-line @typescript-eslint/unbound-method
-    this.queries.boxes.added.forEach((e: Entity) => this.setup(e, Box, BoxBuilder.CreateBox)); // eslint-disable-line @typescript-eslint/unbound-method
-    this.queries.spheres.added.forEach((e: Entity) => this.setup(e, Sphere, SphereBuilder.CreateSphere)); // eslint-disable-line @typescript-eslint/unbound-method
+    this.queries.planes.added?.forEach((e: Entity) => this.setup(e, Plane, PlaneBuilder.CreatePlane)); // eslint-disable-line @typescript-eslint/unbound-method
+    this.queries.boxes.added?.forEach((e: Entity) => this.setup(e, Box, BoxBuilder.CreateBox)); // eslint-disable-line @typescript-eslint/unbound-method
+    this.queries.spheres.added?.forEach((e: Entity) => this.setup(e, Sphere, SphereBuilder.CreateSphere)); // eslint-disable-line @typescript-eslint/unbound-method
 
-    this.queries.planes.removed.forEach((e: Entity) => this.remove(e));
-    this.queries.boxes.removed.forEach((e: Entity) => this.remove(e));
-    this.queries.spheres.removed.forEach((e: Entity) => this.remove(e));
+    this.queries.planes.removed?.forEach((e: Entity) => this.remove(e));
+    this.queries.boxes.removed?.forEach((e: Entity) => this.remove(e));
+    this.queries.spheres.removed?.forEach((e: Entity) => this.remove(e));
   }
 
   setup(
