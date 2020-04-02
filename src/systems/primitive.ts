@@ -1,6 +1,10 @@
 import { ComponentConstructor, Entity, System } from 'ecsy';
 import { Plane, Box, Mesh, Sphere } from '../components';
-import { PlaneBuilder, BoxBuilder, Mesh as BabylonMesh, SphereBuilder, Scene } from '@babylonjs/core';
+import { PlaneBuilder } from '@babylonjs/core/Meshes/Builders/planeBuilder';
+import { BoxBuilder } from '@babylonjs/core/Meshes/Builders/boxBuilder';
+import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
+import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
+import { Scene } from '@babylonjs/core/scene';
 import { PlaneComponent } from '../components/plane';
 import { BoxComponent } from '../components/box';
 import { SphereComponent } from '../components/sphere';

@@ -1,5 +1,5 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Mesh } from '@babylonjs/core';
+import { Mesh } from '@babylonjs/core/Meshes/mesh';
 import Types from '../types';
 
 export interface SphereComponent extends Component {

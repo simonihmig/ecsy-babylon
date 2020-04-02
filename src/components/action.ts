@@ -1,5 +1,6 @@
 import { Component } from 'ecsy';
-import { ActionEvent, IAction } from '@babylonjs/core';
+import { ActionEvent } from '@babylonjs/core/Actions/actionEvent';
+import { IAction } from '@babylonjs/core/Actions/action';
 
 type ActionCallback = (evt: ActionEvent) => void;
 

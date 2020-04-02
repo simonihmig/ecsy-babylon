@@ -1,11 +1,9 @@
 import { ComponentConstructor, Entity, System } from 'ecsy';
 import { DirectionalLight, HemisphericLight, PointLight, TransformNode } from '../components';
-import {
-  HemisphericLight as _HemisphericLight,
-  DirectionalLight as _DirectionalLight,
-  PointLight as _PointLight,
-  Scene,
-} from '@babylonjs/core';
+import { HemisphericLight as _HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
+import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
+import { Scene } from '@babylonjs/core/scene';
 import { HemisphericLightComponent } from '../components/hemispheric-light';
 import { DirectionalLightComponent } from '../components/directional-light';
 import { PointLightComponent } from '../components/point-light';

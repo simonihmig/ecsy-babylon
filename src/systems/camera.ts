@@ -1,6 +1,6 @@
 import { ComponentConstructor, Entity } from 'ecsy';
 import { ArcRotateCamera, TransformNode } from '../components';
-import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core';
+import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
 

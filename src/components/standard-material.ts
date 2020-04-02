@@ -1,5 +1,5 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Color3 } from '@babylonjs/core';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
 import Types from '../types';
 
 export interface StandardMaterialComponent extends Component {

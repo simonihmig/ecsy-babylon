@@ -1,5 +1,6 @@
 import { Component } from 'ecsy';
-import { ArcRotateCamera as BabylonArcRotateCamera, Vector3 } from '@babylonjs/core';
+import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
 export default class ArcRotateCamera extends Component {
   value: BabylonArcRotateCamera | null = null;

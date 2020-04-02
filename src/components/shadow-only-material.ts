@@ -1,5 +1,5 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Light } from '@babylonjs/core';
+import { Light } from '@babylonjs/core/Lights/light';
 
 export interface ShadowOnlyMaterialComponent extends Component {
   name: string;

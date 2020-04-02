@@ -1,6 +1,8 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Color3, Constants, Texture } from '@babylonjs/core';
 import Types from '../types';
+import { Texture } from '@babylonjs/core/Materials/Textures/texture';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
+import { Constants } from '@babylonjs/core/Engines/constants';
 
 export interface BackgroundMaterialComponent extends Component {
   name: string;

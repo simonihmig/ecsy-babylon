@@ -2,9 +2,11 @@
 
 import { Entity } from 'ecsy';
 import { Action, Mesh } from '../components';
-import { AbstractActionManager, ActionManager, ExecuteCodeAction } from '@babylonjs/core';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
+import { ActionManager } from '@babylonjs/core/Actions/actionManager';
+import { ExecuteCodeAction } from '@babylonjs/core/Actions/directActions';
+import { AbstractActionManager } from '@babylonjs/core/Actions/abstractActionManager';
 
 const TRIGGER = {
   pick: ActionManager.OnPickTrigger,

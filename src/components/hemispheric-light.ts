@@ -1,6 +1,7 @@
 import { LightComponent, schema } from './-private/light-component';
 import { createComponentClass } from 'ecsy';
-import { HemisphericLight, Vector3 } from '@babylonjs/core';
+import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import Types from '../types';
 
 export interface HemisphericLightComponent extends LightComponent {

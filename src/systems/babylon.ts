@@ -1,6 +1,9 @@
 import { Entity, System } from 'ecsy';
 import { BabylonCore } from '../components';
-import { Engine, FreeCamera, Scene, Vector3 } from '@babylonjs/core';
+import { Scene } from '@babylonjs/core/scene';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { Engine } from '@babylonjs/core/Engines/engine';
+import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 
 export default class BabylonSystem extends System {
   listener?: EventListener;

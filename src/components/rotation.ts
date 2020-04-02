@@ -1,5 +1,5 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Vector3 } from '@babylonjs/core';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import Types from '../types';
 
 export interface RotationComponent extends Component {

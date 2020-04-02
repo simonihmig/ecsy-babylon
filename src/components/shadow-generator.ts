@@ -1,5 +1,5 @@
 import { createComponentClass, Component } from 'ecsy';
-import { ShadowGenerator } from '@babylonjs/core';
+import { ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
 export interface ShadowGeneratorComponent extends Component {
   size: number;
