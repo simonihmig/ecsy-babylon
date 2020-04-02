@@ -1,7 +1,7 @@
 import { Entity, System, SystemConstructor, World } from 'ecsy';
 import systems from '../../src/systems';
 import { BabylonCore } from '../../src/components';
-import { NullEngine } from '@babylonjs/core';
+import { NullEngine } from '@babylonjs/core/Engines/nullEngine';
 
 export interface SetupWorld {
   world: World;

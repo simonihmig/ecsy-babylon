@@ -1,5 +1,6 @@
 import { BabylonCore, Box, Parent, PBRMaterial } from '../src/components';
-import { Color3, PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
+import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import setupWorld from './helpers/setup-world';
 
 describe('material system', function() {

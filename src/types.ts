@@ -1,5 +1,6 @@
 import { createType } from 'ecsy';
-import { Vector2, Vector3, Vector4, Color3, Color4 } from '@babylonjs/core';
+import { Vector2, Vector3, Vector4 } from '@babylonjs/core/Maths/math.vector';
+import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Component = { [key: string]: any };

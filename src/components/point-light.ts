@@ -1,7 +1,8 @@
 import { LightComponent, schema } from './-private/light-component';
 import { createComponentClass } from 'ecsy';
-import { PointLight, Vector3 } from '@babylonjs/core';
 import Types from '../types';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { PointLight } from '@babylonjs/core/Lights/pointLight';
 
 export interface PointLightComponent extends LightComponent {
   position: Vector3;

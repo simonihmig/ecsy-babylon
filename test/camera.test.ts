@@ -1,5 +1,6 @@
 import { ArcRotateCamera, BabylonCore, Parent } from '../src/components';
-import { ArcRotateCamera as BabylonArcRotateCamera, Camera } from '@babylonjs/core';
+import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
+import { Camera } from '@babylonjs/core/Cameras/camera';
 import setupWorld from './helpers/setup-world';
 
 describe('camera system', function() {

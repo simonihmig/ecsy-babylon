@@ -1,13 +1,11 @@
 import { ComponentConstructor, Entity } from 'ecsy';
 import { Mesh, PBRMaterial, Material, ShadowOnlyMaterial, BackgroundMaterial, StandardMaterial } from '../components';
-import {
-  Mesh as BabylonMesh,
-  Material as BabylonMaterial,
-  PBRMaterial as BabylonPBRMaterial,
-  BackgroundMaterial as BabylonBackgroundMaterial,
-  StandardMaterial as BabylonStandardMaterial,
-  Scene,
-} from '@babylonjs/core';
+import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material';
+import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
+import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core/Materials/Background/backgroundMaterial';
+import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
+import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
+import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials';
 import assert from '../utils/assert';
 import SystemWithCore, { queries } from '../SystemWithCore';

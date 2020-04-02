@@ -1,5 +1,5 @@
 import { Component } from 'ecsy';
-import { Light } from '@babylonjs/core';
+import { Light } from '@babylonjs/core/Lights/light';
 
 export interface LightComponent extends Component {
   name: string;

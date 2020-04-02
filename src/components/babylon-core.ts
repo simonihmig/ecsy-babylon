@@ -1,5 +1,8 @@
-import { Camera, Engine, Scene, ShadowGenerator } from '@babylonjs/core';
+import { Scene } from '@babylonjs/core/scene';
+import { Engine } from '@babylonjs/core/Engines/engine';
 import { Component, World } from 'ecsy';
+import { Camera } from '@babylonjs/core/Cameras/camera';
+import { ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
 export default class BabylonCore extends Component {
   world!: World;

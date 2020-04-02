@@ -1,5 +1,7 @@
 import { Component } from 'ecsy';
-import { BaseTexture, Color3, PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core';
+import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
+import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
 
 export default class PbrMaterial extends Component {
   directIntensity = 1;

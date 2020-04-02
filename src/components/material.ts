@@ -1,5 +1,5 @@
 import { Component, createComponentClass } from 'ecsy';
-import { Material } from '@babylonjs/core';
+import { Material } from '@babylonjs/core/Materials/material';
 
 export interface MaterialComponent extends Component {
   name: string;

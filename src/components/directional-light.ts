@@ -1,6 +1,7 @@
 import { LightComponent, schema } from './-private/light-component';
 import { createComponentClass } from 'ecsy';
-import { DirectionalLight, Vector3 } from '@babylonjs/core';
+import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import Types from '../types';
 
 export interface DirectionalLightComponent extends LightComponent {

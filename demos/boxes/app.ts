@@ -9,10 +9,11 @@ import {
   Material,
   DirectionalLight,
 } from '../../src/components';
-import { Color4, Vector3 } from '@babylonjs/core';
 import { BoxComponent } from '../../src/components/box';
 import systems from '../../src/systems';
 import { NormalMaterial } from '@babylonjs/materials';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { Color4 } from '@babylonjs/core/Maths/math.color';
 
 const canvas = document.querySelector('canvas');
 const select = document.querySelector('select');
