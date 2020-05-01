@@ -3,8 +3,8 @@ import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Camer
 import { Camera } from '@babylonjs/core/Cameras/camera';
 import setupWorld from './helpers/setup-world';
 
-describe('camera system', function() {
-  it('works with default camera', function() {
+describe('camera system', function () {
+  it('works with default camera', function () {
     const { world, rootEntity } = setupWorld();
 
     world.execute(0, 0);
@@ -15,7 +15,7 @@ describe('camera system', function() {
     expect(scene.cameras).toHaveLength(1);
   });
 
-  it('can add arc-rotate camera', function() {
+  it('can add arc-rotate camera', function () {
     const { world, rootEntity } = setupWorld();
 
     const cameraEntity = world.createEntity();
@@ -40,7 +40,7 @@ describe('camera system', function() {
     expect(camera.upperRadiusLimit).toBeNull();
   });
 
-  it('can add arc-rotate camera with custom arguments', function() {
+  it('can add arc-rotate camera with custom arguments', function () {
     const { world, rootEntity } = setupWorld();
 
     const cameraEntity = world.createEntity();
@@ -74,7 +74,7 @@ describe('camera system', function() {
     expect(camera.upperRadiusLimit).toEqual(15);
   });
 
-  it('can update arc-rotate camera', function() {
+  it('can update arc-rotate camera', function () {
     const { world, rootEntity } = setupWorld();
 
     const cameraEntity = world.createEntity();
@@ -114,7 +114,7 @@ describe('camera system', function() {
     expect(camera.upperRadiusLimit).toEqual(15);
   });
 
-  it('can remove arc-rotate camera', function() {
+  it('can remove arc-rotate camera', function () {
     const { world, rootEntity } = setupWorld();
 
     const cameraEntity = world.createEntity();
@@ -135,7 +135,7 @@ describe('camera system', function() {
     expect(scene.cameras).toHaveLength(1);
   });
 
-  it('throws without parent component', function() {
+  it('throws without parent component', function () {
     const { world } = setupWorld();
 
     const cameraEntity = world.createEntity();

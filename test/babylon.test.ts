@@ -2,8 +2,8 @@ import { BabylonCore } from '../src/components';
 import { waitForRAF } from './helpers/wait';
 import setupWorld from './helpers/setup-world';
 
-describe('babylon system', function() {
-  it('sets up babylon scene', function() {
+describe('babylon system', function () {
+  it('sets up babylon scene', function () {
     const { world, rootEntity } = setupWorld();
 
     world.execute(0, 0);
@@ -13,7 +13,7 @@ describe('babylon system', function() {
     expect(babylonComponent.scene).toBeDefined();
   });
 
-  it('calls render beforeRender and afterRender', async function() {
+  it('calls render beforeRender and afterRender', async function () {
     const beforeRender = jest.fn();
     const afterRender = jest.fn();
 

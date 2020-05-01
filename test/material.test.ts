@@ -3,15 +3,12 @@ import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import setupWorld from './helpers/setup-world';
 
-describe('material system', function() {
-  it('can add PBR material', function() {
+describe('material system', function () {
+  it('can add PBR material', function () {
     const { world, rootEntity } = setupWorld();
 
     const entity = world.createEntity();
-    entity
-      .addComponent(Parent)
-      .addComponent(Box)
-      .addComponent(PBRMaterial, { name: 'test' });
+    entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
 
     world.execute(0, 0);
 
@@ -22,7 +19,7 @@ describe('material system', function() {
     expect(material.albedoColor.equalsFloats(1, 1, 1)).toBeTrue();
   });
 
-  it('can add PBR material with custom values', function() {
+  it('can add PBR material with custom values', function () {
     const { world, rootEntity } = setupWorld();
 
     const entity = world.createEntity();
@@ -51,14 +48,11 @@ describe('material system', function() {
     expect(material.metallic).toEqual(0.1);
   });
 
-  it('can update PBR material', function() {
+  it('can update PBR material', function () {
     const { world, rootEntity } = setupWorld();
 
     const entity = world.createEntity();
-    entity
-      .addComponent(Parent)
-      .addComponent(Box)
-      .addComponent(PBRMaterial, { name: 'test' });
+    entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
 
     world.execute(0, 0);
 
@@ -84,14 +78,11 @@ describe('material system', function() {
     expect(material.metallic).toEqual(0.1);
   });
 
-  it('can remove PBR material', function() {
+  it('can remove PBR material', function () {
     const { world, rootEntity } = setupWorld();
 
     const entity = world.createEntity();
-    entity
-      .addComponent(Parent)
-      .addComponent(Box)
-      .addComponent(PBRMaterial, { name: 'test' });
+    entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
 
     world.execute(0, 0);
 

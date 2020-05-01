@@ -60,10 +60,7 @@ entity.addComponent(BabylonCore, {
   afterRender,
 });
 
-world
-  .createEntity()
-  .addComponent(Parent)
-  .addComponent(ArcRotateCamera);
+world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
 
 world
   .createEntity()
