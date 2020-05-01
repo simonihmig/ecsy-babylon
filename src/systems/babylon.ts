@@ -22,7 +22,7 @@ export default class BabylonSystem extends System {
     core.defaultCamera = new FreeCamera('defaultCamera', new Vector3(0, 0, -10), core.scene);
     core.defaultCamera.attachControl(core.canvas, false);
 
-    this.listener = function(this: { engine: Engine }): void {
+    this.listener = function (this: { engine: Engine }): void {
       this.engine.resize();
     }.bind({ engine: core.engine });
 

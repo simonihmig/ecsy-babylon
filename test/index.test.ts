@@ -1,11 +1,11 @@
 import { components, systems } from '../src';
 
-describe('Index', function() {
-  it('exports all systems', function() {
+describe('Index', function () {
+  it('exports all systems', function () {
     expect(systems).toBeArray();
   });
 
-  it('exports all components', function() {
+  it('exports all components', function () {
     expect(components).toBeArray();
   });
 });
