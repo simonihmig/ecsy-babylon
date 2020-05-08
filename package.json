@@ -1,6 +1,6 @@
 {
   "name": "ecsy-babylon",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "keywords": [],
   "main": "dist/index.cjs.js",
