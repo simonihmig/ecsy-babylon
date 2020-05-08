@@ -44,3 +44,5 @@ rules:
     - error
     - name: "@babylonjs/core"
       message: "Don't import from @babylonjs/core, use a direct import instead! See https://doc.babylonjs.com/features/es6_support#tree-shaking"
+    - name: "@babylonjs/materials"
+      message: "Don't import from @babylonjs/materials, use a direct import instead! See https://doc.babylonjs.com/features/es6_support#tree-shaking"

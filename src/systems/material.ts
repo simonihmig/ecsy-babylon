@@ -6,7 +6,7 @@ import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core
 import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { Scene } from '@babylonjs/core/scene';
-import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials';
+import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../utils/assert';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import { StandardMaterialComponent } from '../components/standard-material';
