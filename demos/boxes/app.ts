@@ -11,7 +11,7 @@ import {
 } from '../../src/components';
 import { BoxComponent } from '../../src/components/box';
 import systems from '../../src/systems';
-import { NormalMaterial } from '@babylonjs/materials';
+import { NormalMaterial } from '@babylonjs/materials/normal/normalMaterial';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color4 } from '@babylonjs/core/Maths/math.color';
 
