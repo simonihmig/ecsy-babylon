@@ -28,13 +28,7 @@ export default class PrimitiveSystem extends System {
     const component = entity.getComponent(Component);
     const mesh = createPrimitive(component.name ?? 'Primitive', component);
 
-    // remove mesh from its default scene
-    const scene = mesh.getScene();
-    if (scene) {
-      scene.removeMesh(mesh);
-    }
-
-    entity.addComponent(Mesh, { value: mesh, dispose: true });
+    entity.addComponent(Mesh, { value: mesh });
   }
 
   remove(entity: Entity): void {

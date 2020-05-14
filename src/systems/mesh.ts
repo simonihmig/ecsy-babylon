@@ -2,6 +2,14 @@ import { Entity } from 'ecsy';
 import { Mesh, TransformNode, Material } from '../components';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
+import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
+
+function detachFromScene(mesh: AbstractMesh): void {
+  const scene = mesh.getScene();
+  if (scene) {
+    scene.removeMesh(mesh);
+  }
+}
 
 export default class MeshSystem extends SystemWithCore {
   execute(): void {
@@ -23,14 +31,19 @@ export default class MeshSystem extends SystemWithCore {
     // parenting/un-parenting a mesh. An instance of a mesh has the identical geometry and properties of the original
     // but with its own position, rotation, scaling meaning the original won't be touched.
     // TODO: remove cloning?
-    meshComponent.value = meshComponent.value.clone(`${meshComponent.value.name}__clone`, null);
+    detachFromScene(meshComponent.value);
+    const mesh = meshComponent.value.clone(`${meshComponent.value.name}__clone`, null, true);
 
-    const transformNodeComponent = entity.getComponent(TransformNode);
-    meshComponent.value.parent = transformNodeComponent.value;
-    meshComponent.value.computeWorldMatrix(true);
+    if (mesh) {
+      const transformNodeComponent = entity.getComponent(TransformNode);
+      meshComponent.value.parent = transformNodeComponent.value;
+      meshComponent.value.computeWorldMatrix(true);
+      detachFromScene(mesh);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { value, dispose, instance, ...restArgs } = meshComponent;
+      meshComponent.value = mesh;
+    }
+
+    const { value, ...restArgs } = meshComponent;
 
     Object.assign(value, restArgs);
     this.core.scene.addMesh(meshComponent.value);
