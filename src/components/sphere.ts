@@ -1,31 +1,28 @@
-import { Component, createComponentClass } from 'ecsy';
+import { Component } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
-import Types from '../types';
 
-export interface SphereComponent extends Component {
-  name: string;
-  segments: number;
-  diameter: number;
+export default class SphereComponent extends Component {
+  segments = 32;
+  diameter = 1;
   diameterX?: number;
   diameterY?: number;
   diameterZ?: number;
-  arc: number;
-  slice: number;
-  updatable: boolean;
-  sideOrientation: number;
+  arc = 1;
+  slice = 1;
+  updatable = false;
+  sideOrientation: number = Mesh.DEFAULTSIDE;
+
+  reset(): void {
+    this.segments = 32;
+    this.diameter = 1;
+    this.diameterX = undefined;
+    this.diameterY = undefined;
+    this.diameterZ = undefined;
+    this.arc = 1;
+    this.slice = 1;
+    this.updatable = false;
+    this.sideOrientation = Mesh.DEFAULTSIDE;
+  }
 }
 
-export default createComponentClass<SphereComponent>(
-  {
-    segments: { default: 32 },
-    diameter: { default: 1 },
-    diameterX: { type: Types.OptionalNumber },
-    diameterY: { type: Types.OptionalNumber },
-    diameterZ: { type: Types.OptionalNumber },
-    arc: { default: 1 },
-    slice: { default: 1 },
-    updatable: { default: false },
-    sideOrientation: { default: Mesh.DEFAULTSIDE },
-  },
-  'Sphere'
-);
+Object.defineProperty(SphereComponent, 'name', { value: 'Sphere' });

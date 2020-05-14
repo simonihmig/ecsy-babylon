@@ -5,9 +5,6 @@ import { BoxBuilder } from '@babylonjs/core/Meshes/Builders/boxBuilder';
 import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { Scene } from '@babylonjs/core/scene';
-import { PlaneComponent } from '../components/plane';
-import { BoxComponent } from '../components/box';
-import { SphereComponent } from '../components/sphere';
 
 export default class PrimitiveSystem extends System {
   execute(): void {
@@ -22,11 +19,11 @@ export default class PrimitiveSystem extends System {
 
   setup(
     entity: Entity,
-    Component: ComponentConstructor<PlaneComponent | BoxComponent | SphereComponent>,
+    Component: ComponentConstructor<Plane | Box | Sphere>,
     createPrimitive: (name: string, options: {}, scene?: Scene | null) => BabylonMesh
   ): void {
     const component = entity.getComponent(Component);
-    const mesh = createPrimitive(component.name ?? 'Primitive', component);
+    const mesh = createPrimitive(Component.name ?? 'Primitive', component);
 
     entity.addComponent(Mesh, { value: mesh });
   }

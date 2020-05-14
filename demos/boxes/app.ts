@@ -9,7 +9,6 @@ import {
   Material,
   DirectionalLight,
 } from '../../src/components';
-import { BoxComponent } from '../../src/components/box';
 import systems from '../../src/systems';
 import { NormalMaterial } from '@babylonjs/materials/normal/normalMaterial';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -22,8 +21,7 @@ if (canvas === null || select === null || fpsEl === null) {
   throw new Error('Required DOM elements not found');
 }
 
-const boxOptions: BoxComponent = {
-  name: 'Box',
+const boxOptions = {
   size: 2,
 };
 const boxes: Entity[] = [];
