@@ -12,6 +12,10 @@ export default class PrimitiveSystem extends System {
     this.queries.boxes.added?.forEach((e: Entity) => this.setup(e, Box, BoxBuilder.CreateBox)); // eslint-disable-line @typescript-eslint/unbound-method
     this.queries.spheres.added?.forEach((e: Entity) => this.setup(e, Sphere, SphereBuilder.CreateSphere)); // eslint-disable-line @typescript-eslint/unbound-method
 
+    this.queries.planes.changed?.forEach((e: Entity) => this.update(e, Plane, PlaneBuilder.CreatePlane)); // eslint-disable-line @typescript-eslint/unbound-method
+    this.queries.boxes.changed?.forEach((e: Entity) => this.update(e, Box, BoxBuilder.CreateBox)); // eslint-disable-line @typescript-eslint/unbound-method
+    this.queries.spheres.changed?.forEach((e: Entity) => this.update(e, Sphere, SphereBuilder.CreateSphere)); // eslint-disable-line @typescript-eslint/unbound-method
+
     this.queries.planes.removed?.forEach((e: Entity) => this.remove(e));
     this.queries.boxes.removed?.forEach((e: Entity) => this.remove(e));
     this.queries.spheres.removed?.forEach((e: Entity) => this.remove(e));
@@ -28,6 +32,18 @@ export default class PrimitiveSystem extends System {
     entity.addComponent(Mesh, { value: mesh });
   }
 
+  update(
+    entity: Entity,
+    Component: ComponentConstructor<Plane | Box | Sphere>,
+    createPrimitive: (name: string, options: {}, scene?: Scene | null) => BabylonMesh
+  ): void {
+    const component = entity.getComponent(Component);
+    const mesh = createPrimitive(Component.name ?? 'Primitive', component);
+
+    const meshComponent = entity.getMutableComponent(Mesh);
+    meshComponent.value = mesh;
+  }
+
   remove(entity: Entity): void {
     entity.removeComponent(Mesh);
   }
@@ -37,6 +53,7 @@ export default class PrimitiveSystem extends System {
       components: [Plane],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
@@ -44,6 +61,7 @@ export default class PrimitiveSystem extends System {
       components: [Box],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
@@ -51,6 +69,7 @@ export default class PrimitiveSystem extends System {
       components: [Sphere],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
