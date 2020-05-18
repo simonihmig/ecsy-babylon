@@ -16,6 +16,7 @@ export default class MeshSystem extends SystemWithCore {
     super.execute();
 
     this.queries.meshes.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.meshes.changed?.forEach((e: Entity) => this.update(e));
     this.queries.meshes.removed?.forEach((e: Entity) => this.remove(e));
 
     super.afterExecute();
@@ -27,9 +28,8 @@ export default class MeshSystem extends SystemWithCore {
     assert('MeshSystem needs BabylonCoreComponent', this.core);
     assert('Failed to add Mesh Component. No valid Mesh found.', !!meshComponent?.value);
 
-    // We're using an instance here because we cannot reliably undo the internal transformations that happen when
-    // parenting/un-parenting a mesh. An instance of a mesh has the identical geometry and properties of the original
-    // but with its own position, rotation, scaling meaning the original won't be touched.
+    // We're using a clone here because we cannot reliably undo the internal transformations that happen when
+    // parenting/un-parenting a mesh.
     // TODO: remove cloning?
     detachFromScene(meshComponent.value);
     const mesh = meshComponent.value.clone(`${meshComponent.value.name}__clone`, null, true);
@@ -43,10 +43,23 @@ export default class MeshSystem extends SystemWithCore {
       meshComponent.value = mesh;
     }
 
-    const { value, ...restArgs } = meshComponent;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { value, _prevValue, ...restArgs } = meshComponent;
 
     Object.assign(value, restArgs);
     this.core.scene.addMesh(meshComponent.value);
+
+    meshComponent._prevValue = meshComponent.value;
+  }
+
+  update(entity: Entity): void {
+    const meshComponent = entity.getComponent(Mesh);
+
+    if (meshComponent._prevValue && meshComponent.value !== meshComponent._prevValue) {
+      this.removeMesh(meshComponent._prevValue);
+    }
+
+    this.setup(entity);
   }
 
   remove(entity: Entity): void {
@@ -63,11 +76,15 @@ export default class MeshSystem extends SystemWithCore {
       meshComponent.value.material = null;
     }
 
-    this.core.scene.removeMesh(meshComponent.value);
+    this.removeMesh(meshComponent.value);
+    meshComponent.value = null;
+  }
+
+  private removeMesh(mesh: AbstractMesh): void {
+    this.core?.scene.removeMesh(mesh, false);
 
     // we work with a clone so we must always dispose
-    meshComponent.value.dispose();
-    meshComponent.value = null;
+    mesh.dispose(true, false);
   }
 
   static queries = {
@@ -76,6 +93,7 @@ export default class MeshSystem extends SystemWithCore {
       components: [Mesh],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
