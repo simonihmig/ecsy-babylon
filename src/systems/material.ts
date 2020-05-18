@@ -4,7 +4,6 @@ import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material'
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core/Materials/Background/backgroundMaterial';
 import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
-import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../utils/assert';
@@ -12,6 +11,7 @@ import SystemWithCore, { queries } from '../SystemWithCore';
 import { StandardMaterialComponent } from '../components/standard-material';
 import { ShadowOnlyMaterialComponent } from '../components/shadow-only-material';
 import { BackgroundMaterialComponent } from '../components/background-material';
+import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
 
@@ -56,7 +56,7 @@ export default class MaterialSystem extends SystemWithCore {
     return !!component?.value;
   }
 
-  getMesh(entity: Entity, removed = false): BabylonMesh {
+  getMesh(entity: Entity, removed = false): AbstractMesh {
     // Optionally allow getting the TransformNode as a removed component.
     // Useful in the case where the entire Entity is being removed.
     const meshComponent = removed

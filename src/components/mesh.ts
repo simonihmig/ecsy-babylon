@@ -1,18 +1,14 @@
-import { Component, createComponentClass } from 'ecsy';
-import { Mesh } from '@babylonjs/core/Meshes/mesh';
-import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
+import { Component } from 'ecsy';
+import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
-export interface MeshComponent extends Component {
-  value: Mesh | null;
-  instance: InstancedMesh | null;
-  dispose: boolean;
+export default class MeshComponent extends Component {
+  value: AbstractMesh | null = null;
+  _prevValue: AbstractMesh | null = null;
+
+  reset(): void {
+    this.value = null;
+    this._prevValue = null;
+  }
 }
 
-export default createComponentClass<MeshComponent>(
-  {
-    value: { default: null },
-    instance: { default: null },
-    dispose: { default: false },
-  },
-  'Mesh'
-);
+Object.defineProperty(MeshComponent, 'name', { value: 'Mesh' });
