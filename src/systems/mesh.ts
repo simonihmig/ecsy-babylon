@@ -54,12 +54,16 @@ export default class MeshSystem extends SystemWithCore {
 
   update(entity: Entity): void {
     const meshComponent = entity.getComponent(Mesh);
+    const previousMesh = meshComponent._prevValue;
 
-    if (meshComponent._prevValue && meshComponent.value !== meshComponent._prevValue) {
-      this.removeMesh(meshComponent._prevValue);
+    if (previousMesh && meshComponent.value !== previousMesh) {
+      this.removeMesh(previousMesh);
     }
 
     this.setup(entity);
+    if (previousMesh && meshComponent.value) {
+      meshComponent.value.material = previousMesh.material;
+    }
   }
 
   remove(entity: Entity): void {

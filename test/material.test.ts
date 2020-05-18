@@ -41,6 +41,7 @@ describe('material system', function () {
     const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
 
     expect(material).toBeInstanceOf(BabylonPBRMaterial);
+    expect(scene.meshes[0].material).toEqual(material);
     expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
     expect(material.ambientColor.equalsFloats(0, 1, 0)).toBeTrue();
     expect(material.emissiveColor.equalsFloats(0, 0, 1)).toBeTrue();
@@ -71,11 +72,36 @@ describe('material system', function () {
     const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
 
     expect(material).toBeInstanceOf(BabylonPBRMaterial);
+    expect(scene.meshes[0].material).toEqual(material);
     expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
     expect(material.ambientColor.equalsFloats(0, 1, 0)).toBeTrue();
     expect(material.emissiveColor.equalsFloats(0, 0, 1)).toBeTrue();
     expect(material.roughness).toEqual(0.5);
     expect(material.metallic).toEqual(0.1);
+  });
+
+  it('can apply PBR material to updated mesh', function () {
+    const { world, rootEntity } = setupWorld();
+
+    const entity = world.createEntity();
+    entity
+      .addComponent(Parent)
+      .addComponent(Box)
+      .addComponent(PBRMaterial, { name: 'test', albedoColor: new Color3(1, 0, 0) });
+
+    world.execute(0, 0);
+
+    const { scene } = rootEntity.getComponent(BabylonCore);
+    const component = entity.getMutableComponent(Box);
+    component.size = 2;
+
+    world.execute(0, 0);
+
+    const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
+
+    expect(material).toBeInstanceOf(BabylonPBRMaterial);
+    expect(scene.meshes[0].material).toEqual(material);
+    expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
   });
 
   it('can remove PBR material', function () {

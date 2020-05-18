@@ -147,7 +147,7 @@ export default class MaterialSystem extends SystemWithCore {
       components: [Mesh, Material],
       listen: {
         added: true,
-        changed: true,
+        changed: [Material],
         removed: true,
       },
     },
@@ -155,7 +155,7 @@ export default class MaterialSystem extends SystemWithCore {
       components: [Mesh, StandardMaterial],
       listen: {
         added: true,
-        changed: true,
+        changed: [StandardMaterial],
         removed: true,
       },
     },
@@ -163,7 +163,7 @@ export default class MaterialSystem extends SystemWithCore {
       components: [Mesh, BackgroundMaterial],
       listen: {
         added: true,
-        changed: true,
+        changed: [BackgroundMaterial],
         removed: true,
       },
     },
@@ -171,7 +171,7 @@ export default class MaterialSystem extends SystemWithCore {
       components: [Mesh, PBRMaterial],
       listen: {
         added: true,
-        changed: true,
+        changed: [PBRMaterial],
         removed: true,
       },
     },
@@ -179,7 +179,7 @@ export default class MaterialSystem extends SystemWithCore {
       components: [Mesh, ShadowOnlyMaterial],
       listen: {
         added: true,
-        changed: true,
+        changed: [ShadowOnlyMaterial],
         removed: true,
       },
     },
