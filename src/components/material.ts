@@ -4,7 +4,7 @@ import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material'
 export default class Material extends Component {
   value: BabylonMaterial | null = null;
 
-  reset() {
+  reset(): void {
     this.value = null;
   }
 }

@@ -8,7 +8,7 @@ export default class StandardMaterial extends Component {
   disableLighting = false;
   alpha = 1;
 
-  reset() {
+  reset(): void {
     this.ambientColor.set(0, 0, 0);
     this.diffuseColor.set(1, 1, 1);
     this.emissiveColor.set(0, 0, 0);

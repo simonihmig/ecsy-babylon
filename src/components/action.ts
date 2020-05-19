@@ -26,7 +26,7 @@ export default class Action extends Component {
     [key: string]: IAction;
   } = {};
 
-  reset() {
+  reset(): void {
     this.pick = undefined;
     this.doublePick = undefined;
     this.centerPick = undefined;

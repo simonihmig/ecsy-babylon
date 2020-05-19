@@ -1,22 +1,28 @@
-import { createComponentClass, Component } from 'ecsy';
-import { ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
+import { Component } from 'ecsy';
+import { ShadowGenerator as BabylonShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
-export interface ShadowGeneratorComponent extends Component {
-  size: number;
-  forceBackFacesOnly: boolean;
-  useBlurCloseExponentialShadowMap: boolean;
-  useKernelBlur: boolean;
-  blurKernel: number;
-  bias: number;
-  normalBias: number;
-  frustrumEdgeFallof: number;
-  value?: ShadowGenerator;
+export default class ShadowGenerator extends Component {
+  size = 512;
+  forceBackFacesOnly?: boolean;
+  useBlurCloseExponentialShadowMap?: boolean;
+  useKernelBlur?: boolean;
+  blurKernel?: number;
+  bias?: number;
+  normalBias?: number;
+  frustrumEdgeFallof?: number;
+  value?: BabylonShadowGenerator;
+
+  reset(): void {
+    this.size = 512;
+    this.forceBackFacesOnly = undefined;
+    this.useBlurCloseExponentialShadowMap = undefined;
+    this.useKernelBlur = undefined;
+    this.blurKernel = undefined;
+    this.bias = undefined;
+    this.normalBias = undefined;
+    this.frustrumEdgeFallof = undefined;
+    this.value = undefined;
+  }
 }
 
-export default createComponentClass<ShadowGeneratorComponent>(
-  {
-    size: { default: 512 },
-    value: { default: null },
-  },
-  'ShadowGenerator'
-);
+Object.defineProperty(ShadowGenerator, 'name', { value: 'ShadowGenerator' });

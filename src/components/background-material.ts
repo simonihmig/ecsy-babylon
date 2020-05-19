@@ -13,7 +13,7 @@ export default class BackgroundMaterial extends Component {
   useRGBColor = false;
   enableNoise = false;
 
-  reset() {
+  reset(): void {
     this.diffuseTexture = null;
     this.reflectionTexture = null;
     this.alpha = 1;
