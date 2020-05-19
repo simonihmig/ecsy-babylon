@@ -4,6 +4,7 @@ import {
   BabylonCore,
   Box,
   DirectionalLight,
+  Lines,
   Parent,
   Position,
   Rotation,
@@ -77,6 +78,14 @@ world
     roughness: 0.3,
   })
   .addComponent(Position, { value: new Vector3(2, 0, 0) });
+
+world
+  .createEntity()
+  .addComponent(Parent)
+  .addComponent(Lines, {
+    points: [new Vector3(-2, 0, 0), new Vector3(2, 0, 0)],
+    color: Color3.Black(),
+  });
 
 world.execute(0, 0);
 

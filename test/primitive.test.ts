@@ -1,6 +1,9 @@
-import { BabylonCore, Box, Parent, Plane, Sphere } from '../src/components';
+import { BabylonCore, Box, Lines, Parent, Plane, Sphere } from '../src/components';
 import setupWorld from './helpers/setup-world';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { LinesMesh } from '@babylonjs/core/Meshes/linesMesh';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
 
 describe('primitive system', function () {
   describe('box', function () {
@@ -200,6 +203,102 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1, 2)).toBeTrue();
+    });
+  });
+
+  describe('lines', function () {
+    it('can create a line', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Lines, { name: 'test', points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+
+      expect(scene.meshes).toHaveLength(1);
+
+      const mesh = scene.meshes[0];
+      expect(mesh).toBeInstanceOf(LinesMesh);
+      expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, 0)).toBeTrue();
+      expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0)).toBeTrue();
+    });
+
+    it('can apply color and alpha', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Lines, {
+        name: 'test',
+        points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)],
+        color: new Color3(1, 0, 0),
+        alpha: 0.5,
+      });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+
+      expect(scene.meshes).toHaveLength(1);
+
+      const mesh = scene.meshes[0] as LinesMesh;
+      expect(mesh).toBeInstanceOf(LinesMesh);
+      expect(mesh.color.equalsFloats(1, 0, 0)).toBeTrue();
+      expect(mesh.alpha).toEqual(0.5);
+    });
+
+    it('can update a line', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Lines, {
+        name: 'test',
+        points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)],
+        color: new Color3(1, 0, 0),
+        alpha: 1,
+      });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+      const component = entity.getMutableComponent(Lines);
+      Object.assign(component, {
+        points: [new Vector3(-2, -1.5, 0), new Vector3(2, 1.5, 0)],
+        color: new Color3(0, 1, 0),
+        alpha: 0.5,
+      });
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+
+      const mesh = scene.meshes[0] as LinesMesh;
+      expect(mesh).toBeInstanceOf(LinesMesh);
+      expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1.5, 0)).toBeTrue();
+      expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1.5, 0)).toBeTrue();
+      expect(mesh.color.equalsFloats(0, 1, 0)).toBeTrue();
+      expect(mesh.alpha).toEqual(0.5);
+    });
+
+    it('can remove a line', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Lines, { name: 'test', points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+      entity.remove();
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(0);
     });
   });
 });
