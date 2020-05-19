@@ -1,29 +1,28 @@
-import { Component, createComponentClass } from 'ecsy';
-import Types from '../types';
+import { Component } from 'ecsy';
 import { Texture } from '@babylonjs/core/Materials/Textures/texture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Constants } from '@babylonjs/core/Engines/constants';
 
-export interface BackgroundMaterialComponent extends Component {
-  name: string;
-  diffuseTexture: Texture | null;
-  alpha: number | null;
-  alphaMode: number | null;
-  shadowLevel: number | null;
-  primaryColor: Color3 | null;
-  useRGBColor: boolean;
-  enableNoise: boolean;
+export default class BackgroundMaterial extends Component {
+  diffuseTexture: Texture | null = null;
+  reflectionTexture: Texture | null = null;
+  alpha = 1;
+  alphaMode: number = Constants.ALPHA_PREMULTIPLIED_PORTERDUFF;
+  shadowLevel = 0;
+  primaryColor: Color3 = Color3.White();
+  useRGBColor = false;
+  enableNoise = false;
+
+  reset() {
+    this.diffuseTexture = null;
+    this.reflectionTexture = null;
+    this.alpha = 1;
+    this.alphaMode = Constants.ALPHA_PREMULTIPLIED_PORTERDUFF;
+    this.shadowLevel = 0;
+    this.primaryColor.set(1, 1, 1);
+    this.useRGBColor = false;
+    this.enableNoise = false;
+  }
 }
 
-export default createComponentClass<BackgroundMaterialComponent>(
-  {
-    diffuseTexture: { default: null },
-    alpha: { default: 1.0 },
-    alphaMode: { default: Constants.ALPHA_PREMULTIPLIED_PORTERDUFF },
-    shadowLevel: { default: 0.5 },
-    primaryColor: { default: new Color3(0, 0, 0), type: Types.Color3 },
-    useRGBColor: { default: false },
-    enableNoise: { default: true },
-  },
-  'BackgroundMaterial'
-);
+Object.defineProperty(BackgroundMaterial, 'name', { value: 'BackgroundMaterial' });

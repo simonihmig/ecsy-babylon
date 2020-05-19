@@ -1,14 +1,12 @@
-import { Component, createComponentClass } from 'ecsy';
+import { Component } from 'ecsy';
 import { Light } from '@babylonjs/core/Lights/light';
 
-export interface ShadowOnlyMaterialComponent extends Component {
-  name: string;
-  activeLight?: Light;
+export default class ShadowOnlyMaterial extends Component {
+  activeLight: Light | null = null;
+
+  reset() {
+    this.activeLight = null;
+  }
 }
 
-export default createComponentClass<ShadowOnlyMaterialComponent>(
-  {
-    activeLight: { default: null },
-  },
-  'ShadowOnlyMaterial'
-);
+Object.defineProperty(ShadowOnlyMaterial, 'name', { value: 'ShadowOnlyMaterial' });
