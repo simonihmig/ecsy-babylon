@@ -24,6 +24,32 @@ describe('mesh system', function () {
     expect(mesh.name).toMatch(/test/);
   });
 
+  it('integrates with transformNodes properly', function () {
+    const { world, rootEntity } = setupWorld();
+
+    // wait for scene to be created before creating meshes
+    world.execute(0, 0);
+
+    const entity = world.createEntity();
+    entity.addComponent(Parent).addComponent(Mesh, { name: 'test', value: BoxBuilder.CreateBox('test', { size: 1 }) });
+
+    world.execute(0, 0);
+
+    const { scene } = rootEntity.getComponent(BabylonCore);
+
+    expect(scene.meshes).toHaveLength(1);
+    expect(scene.transformNodes).toHaveLength(1);
+    expect(scene.rootNodes).toHaveLength(2); // TN + default camera
+
+    const mesh = scene.meshes[0];
+    const tn = scene.transformNodes[0];
+
+    expect(scene.rootNodes).toIncludeAllMembers([tn]);
+    expect(tn.getChildren()).toHaveLength(1);
+    expect(tn.getChildren()[0]).toEqual(mesh);
+    expect(mesh.parent).toEqual(tn);
+  });
+
   it('can update mesh', function () {
     const { world, rootEntity } = setupWorld();
 

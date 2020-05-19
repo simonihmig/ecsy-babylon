@@ -36,9 +36,9 @@ export default class MeshSystem extends SystemWithCore {
 
     if (mesh) {
       const transformNodeComponent = entity.getComponent(TransformNode);
-      meshComponent.value.parent = transformNodeComponent.value;
-      meshComponent.value.computeWorldMatrix(true);
-      detachFromScene(mesh);
+      mesh.parent = transformNodeComponent.value;
+      mesh.computeWorldMatrix(true); // @todo still needed?
+      // detachFromScene(mesh);
 
       meshComponent.value = mesh;
     }
@@ -47,7 +47,7 @@ export default class MeshSystem extends SystemWithCore {
     const { value, _prevValue, ...restArgs } = meshComponent;
 
     Object.assign(value, restArgs);
-    this.core.scene.addMesh(meshComponent.value);
+    // this.core.scene.addMesh(meshComponent.value);
 
     meshComponent._prevValue = meshComponent.value;
   }

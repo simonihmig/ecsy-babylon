@@ -55,9 +55,9 @@ export default class TransformSystem extends System {
   }
 
   setupTransformNode(entity: Entity): void {
-    const entityComponent = entity.getComponent(Parent);
+    const parentComponent = entity.getComponent(Parent);
     const transformNodeComponent = entity.getComponent(TransformNode);
-    const parentEntity = entityComponent.value;
+    const parentEntity = parentComponent.value;
 
     const node = transformNodeComponent.value;
     if (node) {
