@@ -1,18 +1,16 @@
-import { LightComponent, schema } from './-private/light-component';
-import { createComponentClass } from 'ecsy';
-import Types from '../types';
+import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import { PointLight } from '@babylonjs/core/Lights/pointLight';
+import { PointLight as BabylonPointLight } from '@babylonjs/core/Lights/pointLight';
 
-export interface PointLightComponent extends LightComponent {
-  position: Vector3;
-  light?: PointLight;
+export default class PointLight extends Component {
+  position: Vector3 = new Vector3(0, 1, 0);
+  intensity = 1;
+  light?: BabylonPointLight;
+
+  reset(): void {
+    this.position.set(0, 1, 0);
+    this.intensity = 1;
+  }
 }
 
-export default createComponentClass<PointLightComponent>(
-  {
-    ...schema,
-    position: { default: new Vector3(0, 1, 0), type: Types.Vector3 },
-  },
-  'PointLight'
-);
+Object.defineProperty(PointLight, 'name', { value: 'PointLight' });
