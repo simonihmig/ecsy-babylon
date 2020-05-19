@@ -2,8 +2,6 @@ import { Entity } from 'ecsy';
 import { ShadowGenerator, DirectionalLight, PointLight, Mesh } from '../components';
 import SystemWithCore, { queries } from '../SystemWithCore';
 import assert from '../utils/assert';
-import { PointLightComponent } from '../components/point-light';
-import { DirectionalLightComponent } from '../components/directional-light';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
@@ -21,7 +19,7 @@ export default class ShadowSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  getLightComponent(entity: Entity): DirectionalLightComponent | PointLightComponent {
+  getLightComponent(entity: Entity): DirectionalLight | PointLight {
     const component = entity.getMutableComponent(DirectionalLight) || entity.getComponent(PointLight);
 
     assert('No light component was found on this entity.', component);

@@ -1,18 +1,16 @@
-import { LightComponent, schema } from './-private/light-component';
-import { createComponentClass } from 'ecsy';
-import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import Types from '../types';
+import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 
-export interface DirectionalLightComponent extends LightComponent {
-  direction: Vector3;
-  light?: DirectionalLight;
+export default class DirectionalLight extends Component {
+  direction: Vector3 = new Vector3(0, -1, 0);
+  intensity = 1;
+  light?: BabylonDirectionalLight;
+
+  reset(): void {
+    this.direction.set(0, -1, 0);
+    this.intensity = 1;
+  }
 }
 
-export default createComponentClass<DirectionalLightComponent>(
-  {
-    ...schema,
-    direction: { default: new Vector3(0, -1, 0), type: Types.Vector3 },
-  },
-  'DirectionalLight'
-);
+Object.defineProperty(DirectionalLight, 'name', { value: 'DirectionalLight' });

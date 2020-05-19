@@ -1,18 +1,16 @@
-import { LightComponent, schema } from './-private/light-component';
-import { createComponentClass } from 'ecsy';
-import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
+import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import Types from '../types';
+import { HemisphericLight as BabylonHemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 
-export interface HemisphericLightComponent extends LightComponent {
-  direction: Vector3;
-  light?: HemisphericLight;
+export default class HemisphericLight extends Component {
+  direction: Vector3 = new Vector3(0, -1, 0);
+  intensity = 1;
+  light?: BabylonHemisphericLight;
+
+  reset(): void {
+    this.direction.set(0, -1, 0);
+    this.intensity = 1;
+  }
 }
 
-export default createComponentClass<HemisphericLightComponent>(
-  {
-    ...schema,
-    direction: { default: new Vector3(0, 1, 0), type: Types.Vector3 },
-  },
-  'HemisphericLight'
-);
+Object.defineProperty(HemisphericLight, 'name', { value: 'HemisphericLight' });

@@ -4,9 +4,6 @@ import { HemisphericLight as _HemisphericLight } from '@babylonjs/core/Lights/he
 import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
 import { Scene } from '@babylonjs/core/scene';
-import { HemisphericLightComponent } from '../components/hemispheric-light';
-import { DirectionalLightComponent } from '../components/directional-light';
-import { PointLightComponent } from '../components/point-light';
 
 export default class LightSystem extends System {
   execute(): void {
@@ -19,13 +16,13 @@ export default class LightSystem extends System {
     this.queries.pointLight.removed?.forEach((e: Entity) => this.remove(e, PointLight));
   }
 
-  setupHemisphericLight(entity: Entity, Component: ComponentConstructor<HemisphericLightComponent>): void {
+  setupHemisphericLight(entity: Entity, Component: ComponentConstructor<HemisphericLight>): void {
     const component = entity.getMutableComponent(Component);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, direction, ...options } = component;
 
     component.light = new _HemisphericLight(
-      component.name ?? 'Hemispheric Light',
+      HemisphericLight.name,
       direction,
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
@@ -36,13 +33,13 @@ export default class LightSystem extends System {
     component.light.parent = transformNodeComponent.value;
   }
 
-  setupPointLight(entity: Entity, Component: ComponentConstructor<PointLightComponent>): void {
+  setupPointLight(entity: Entity, Component: ComponentConstructor<PointLight>): void {
     const component = entity.getMutableComponent(Component);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, position, ...options } = component;
 
     component.light = new _PointLight(
-      component.name ?? 'Hemispheric Light',
+      PointLight.name,
       position,
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
@@ -53,13 +50,13 @@ export default class LightSystem extends System {
     component.light.parent = transformNodeComponent.value;
   }
 
-  setupDirectionalLight(entity: Entity, Component: ComponentConstructor<DirectionalLightComponent>): void {
+  setupDirectionalLight(entity: Entity, Component: ComponentConstructor<DirectionalLight>): void {
     const component = entity.getMutableComponent(Component);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, direction, ...options } = component;
 
     component.light = new _DirectionalLight(
-      component.name,
+      DirectionalLight.name,
       direction,
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
@@ -70,10 +67,7 @@ export default class LightSystem extends System {
     component.light.parent = transformNodeComponent.value;
   }
 
-  remove(
-    entity: Entity,
-    Component: ComponentConstructor<HemisphericLightComponent | PointLightComponent | DirectionalLightComponent>
-  ): void {
+  remove(entity: Entity, Component: ComponentConstructor<HemisphericLight | PointLight | DirectionalLight>): void {
     const component = entity.getRemovedComponent(Component);
     if (component.light) {
       component.light.dispose();
