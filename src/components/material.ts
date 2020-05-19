@@ -1,16 +1,12 @@
-import { Component, createComponentClass } from 'ecsy';
-import { Material } from '@babylonjs/core/Materials/material';
+import { Component } from 'ecsy';
+import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material';
 
-export interface MaterialComponent extends Component {
-  name: string;
-  value: Material | null;
-  sideOrientation?: number;
-  useObjectSpaceNormalMap?: boolean;
+export default class Material extends Component {
+  value: BabylonMaterial | null = null;
+
+  reset() {
+    this.value = null;
+  }
 }
 
-export default createComponentClass<MaterialComponent>(
-  {
-    value: { default: null },
-  },
-  'Material'
-);
+Object.defineProperty(Material, 'name', { value: 'Material' });

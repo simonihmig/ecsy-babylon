@@ -8,9 +8,6 @@ import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../utils/assert';
 import SystemWithCore, { queries } from '../SystemWithCore';
-import { StandardMaterialComponent } from '../components/standard-material';
-import { ShadowOnlyMaterialComponent } from '../components/shadow-only-material';
-import { BackgroundMaterialComponent } from '../components/background-material';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
@@ -102,9 +99,7 @@ export default class MaterialSystem extends SystemWithCore {
 
   setupMaterial(
     entity: Entity,
-    Component: ComponentConstructor<
-      PBRMaterial | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
-    >,
+    Component: ComponentConstructor<PBRMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>,
     MaterialClass: MaterialConstructor<BabylonMaterial>
   ): void {
     assert('MaterialSystem needs BabylonCoreComponent', this.core);
@@ -121,9 +116,7 @@ export default class MaterialSystem extends SystemWithCore {
 
   updateMaterial(
     entity: Entity,
-    Component: ComponentConstructor<
-      PBRMaterial | ShadowOnlyMaterialComponent | BackgroundMaterialComponent | StandardMaterialComponent
-    >
+    Component: ComponentConstructor<PBRMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>
   ): void {
     const mesh = this.getMesh(entity);
     const materialComponent = entity.getComponent(Component);
