@@ -1,15 +1,14 @@
-import { Component, createComponentClass } from 'ecsy';
-import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
+import { Component } from 'ecsy';
+import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 
-export interface TransformNodeComponent extends Component {
-  value: TransformNode | null;
-  clone?: boolean;
+export default class TransformNode extends Component {
+  value: BabylonTransformNode | null = null;
+  clone = false;
+
+  reset(): void {
+    this.value = null;
+    this.clone = false;
+  }
 }
 
-export default createComponentClass<TransformNodeComponent>(
-  {
-    value: { default: null },
-    clone: { default: false },
-  },
-  'TransformNode'
-);
+Object.defineProperty(TransformNode, 'name', { value: 'TransformNode' });

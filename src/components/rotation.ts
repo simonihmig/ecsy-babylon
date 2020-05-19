@@ -1,14 +1,12 @@
-import { Component, createComponentClass } from 'ecsy';
+import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import Types from '../types';
 
-export interface RotationComponent extends Component {
-  value: Vector3;
+export default class Rotation extends Component {
+  value: Vector3 = new Vector3(0, 0, 0);
+
+  reset(): void {
+    this.value.set(0, 0, 0);
+  }
 }
 
-export default createComponentClass<RotationComponent>(
-  {
-    value: { default: new Vector3(0, 0, 0), type: Types.Vector3 },
-  },
-  'Rotation'
-);
+Object.defineProperty(Rotation, 'name', { value: 'Rotation' });
