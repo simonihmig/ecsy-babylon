@@ -11,6 +11,10 @@ export default class LightSystem extends System {
     this.queries.directionalLight.added?.forEach((e: Entity) => this.setupDirectionalLight(e, DirectionalLight));
     this.queries.pointLight.added?.forEach((e: Entity) => this.setupPointLight(e, PointLight));
 
+    this.queries.hemisphericLight.changed?.forEach((e: Entity) => this.update(e, HemisphericLight));
+    this.queries.directionalLight.changed?.forEach((e: Entity) => this.update(e, DirectionalLight));
+    this.queries.pointLight.changed?.forEach((e: Entity) => this.update(e, PointLight));
+
     this.queries.hemisphericLight.removed?.forEach((e: Entity) => this.remove(e, HemisphericLight));
     this.queries.directionalLight.removed?.forEach((e: Entity) => this.remove(e, DirectionalLight));
     this.queries.pointLight.removed?.forEach((e: Entity) => this.remove(e, PointLight));
@@ -67,6 +71,15 @@ export default class LightSystem extends System {
     component.light.parent = transformNodeComponent.value;
   }
 
+  update(entity: Entity, Component: ComponentConstructor<HemisphericLight | PointLight | DirectionalLight>): void {
+    const component = entity.getComponent(Component);
+    const { light, ...rest } = component;
+
+    if (light) {
+      Object.assign(light, rest);
+    }
+  }
+
   remove(entity: Entity, Component: ComponentConstructor<HemisphericLight | PointLight | DirectionalLight>): void {
     const component = entity.getRemovedComponent(Component);
     if (component.light) {
@@ -79,6 +92,7 @@ export default class LightSystem extends System {
       components: [HemisphericLight],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
@@ -86,6 +100,7 @@ export default class LightSystem extends System {
       components: [DirectionalLight],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
@@ -93,6 +108,7 @@ export default class LightSystem extends System {
       components: [PointLight],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },

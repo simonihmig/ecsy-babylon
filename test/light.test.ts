@@ -41,7 +41,7 @@ describe('light system', function () {
       expect(light.intensity).toEqual(2);
     });
 
-    it.skip('can update point-light', function () {
+    it('can update point-light', function () {
       const { world, rootEntity } = setupWorld();
 
       const lightEntity = world.createEntity();
@@ -117,7 +117,7 @@ describe('light system', function () {
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
-    it.skip('can update directional-light', function () {
+    it('can update directional-light', function () {
       const { world, rootEntity } = setupWorld();
 
       const lightEntity = world.createEntity();
@@ -195,7 +195,7 @@ describe('light system', function () {
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
-    it.skip('can update hemispheric-light', function () {
+    it('can update hemispheric-light', function () {
       const { world, rootEntity } = setupWorld();
 
       const lightEntity = world.createEntity();
