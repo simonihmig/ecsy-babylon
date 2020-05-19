@@ -10,6 +10,7 @@ export default class DirectionalLight extends Component {
   reset(): void {
     this.direction.set(0, -1, 0);
     this.intensity = 1;
+    this.light = undefined;
   }
 }
 

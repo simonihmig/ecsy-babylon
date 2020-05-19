@@ -17,7 +17,7 @@ export default class ArcRotateCamera extends Component {
   upperBetaLimit: number | null = null;
   upperRadiusLimit: number | null = null;
 
-  reset() {
+  reset(): void {
     this.value = null;
     this.alpha = 0;
     this.beta = 0;

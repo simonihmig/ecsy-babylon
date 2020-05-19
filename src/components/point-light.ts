@@ -10,6 +10,7 @@ export default class PointLight extends Component {
   reset(): void {
     this.position.set(0, 1, 0);
     this.intensity = 1;
+    this.light = undefined;
   }
 }
 

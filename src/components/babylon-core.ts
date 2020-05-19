@@ -13,6 +13,10 @@ export default class BabylonCore extends Component {
   shadowGenerators: Set<ShadowGenerator> = new Set();
   beforeRender?: (delta: number, time: number) => void;
   afterRender?: (delta: number, time: number) => void;
+
+  reset(): void {
+    // this is not really supposed to be re-used.
+  }
 }
 
 Object.defineProperty(BabylonCore, 'name', { value: 'BabylonCore' });
