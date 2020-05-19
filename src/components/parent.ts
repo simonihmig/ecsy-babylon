@@ -1,12 +1,11 @@
-import { Component, createComponentClass, Entity } from 'ecsy';
+import { Component, Entity } from 'ecsy';
 
-export interface ParentComponent extends Component {
-  value: Entity | null;
+export default class Parent extends Component {
+  value: Entity | null = null;
+
+  reset(): void {
+    this.value = null;
+  }
 }
 
-export default createComponentClass<ParentComponent>(
-  {
-    value: { default: null },
-  },
-  'Parent'
-);
+Object.defineProperty(Parent, 'name', { value: 'Parent' });
