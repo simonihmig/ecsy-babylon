@@ -4,6 +4,7 @@ import Mesh from './mesh';
 import Plane from './plane';
 import Box from './box';
 import Sphere from './sphere';
+import Lines from './lines';
 import Material from './material';
 import StandardMaterial from './standard-material';
 import PBRMaterial from './pbr-material';
@@ -27,6 +28,7 @@ export {
   Plane,
   Box,
   Sphere,
+  Lines,
   Material,
   StandardMaterial,
   PBRMaterial,
@@ -51,6 +53,7 @@ export default [
   Plane,
   Box,
   Sphere,
+  Lines,
   Material,
   StandardMaterial,
   PBRMaterial,
