@@ -18,6 +18,7 @@ describe('mesh system', function () {
     const { scene } = rootEntity.getComponent(BabylonCore);
 
     expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
 
     const mesh = scene.meshes[0];
     expect(mesh).toBeInstanceOf(BabylonMesh);
@@ -64,6 +65,7 @@ describe('mesh system', function () {
     const { scene } = rootEntity.getComponent(BabylonCore);
 
     expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
     expect(scene.meshes[0]).toBeInstanceOf(BabylonMesh);
     expect(scene.meshes[0].name).toMatch(/box1/);
 
@@ -75,6 +77,7 @@ describe('mesh system', function () {
     world.execute(0, 0);
 
     expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
     expect(scene.meshes[0]).toBeInstanceOf(BabylonMesh);
     expect(scene.meshes[0].name).toMatch(/box2/);
   });
@@ -93,10 +96,12 @@ describe('mesh system', function () {
     const { scene } = rootEntity.getComponent(BabylonCore);
 
     expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
 
     entity.remove();
     world.execute(0, 0);
 
     expect(scene.meshes).toHaveLength(0);
+    expect(scene.geometries).toHaveLength(0);
   });
 });
