@@ -87,7 +87,7 @@ export default class PbrMaterial extends Component {
     this.albedoColor.set(1, 1, 1);
     this.reflectivityColor.set(1, 1, 1);
     this.reflectionColor.set(1, 1, 1);
-    this.emissiveColor.set(1, 1, 1);
+    this.emissiveColor.set(0, 0, 0);
     this.microSurface = 1.0;
     this.useLightmapAsShadowmap = false;
     this.useAlphaFromAlbedoTexture = false;
