@@ -110,7 +110,7 @@
     "semantic-release": "^17.0.7",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.10.1",
-    "typedoc": "^0.17.4",
+    "typedoc": "^0.17.7",
     "typescript": "^3.8.2"
   },
   "volta": {
