@@ -26,6 +26,7 @@ describe('primitive system', function () {
       expect(mesh.facetNb).toEqual(12); // 6 sides, two polys each
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, -0.5)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0.5)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can create a custom box', function () {
@@ -47,6 +48,7 @@ describe('primitive system', function () {
       expect(mesh.facetNb).toEqual(12); // 6 sides, two polys each
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-1, -1.5, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(1, 1.5, 2)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can update a box', function () {
@@ -72,6 +74,24 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1, 2)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
+    });
+
+    it('can remove a box', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Box, { name: 'test' });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+      entity.remove();
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(0);
+      expect(scene.geometries).toHaveLength(0);
     });
   });
 
@@ -95,6 +115,7 @@ describe('primitive system', function () {
       expect(mesh.facetNb).toEqual(2);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can create a custom plane', function () {
@@ -116,6 +137,7 @@ describe('primitive system', function () {
       expect(mesh.facetNb).toEqual(2);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-1, -1.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(1, 1.5, 0)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can update a plane', function () {
@@ -140,6 +162,24 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1.5, 0)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
+    });
+
+    it('can remove a plane', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Plane, { name: 'test' });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+      entity.remove();
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(0);
+      expect(scene.geometries).toHaveLength(0);
     });
   });
 
@@ -160,6 +200,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, -0.5)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0.5)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can create a custom sphere', function () {
@@ -178,6 +219,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-1, -1.5, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(1, 1.5, 2)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can update a sphere', function () {
@@ -203,6 +245,24 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1, 2)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
+    });
+
+    it('can remove a sphere', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Sphere, { name: 'test' });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore);
+      entity.remove();
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(0);
+      expect(scene.geometries).toHaveLength(0);
     });
   });
 
@@ -225,6 +285,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(LinesMesh);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0)).toBeTrue();
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can apply color and alpha', function () {
@@ -281,6 +342,7 @@ describe('primitive system', function () {
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1.5, 0)).toBeTrue();
       expect(mesh.color.equalsFloats(0, 1, 0)).toBeTrue();
       expect(mesh.alpha).toEqual(0.5);
+      expect(scene.geometries).toHaveLength(1);
     });
 
     it('can remove a line', function () {
@@ -299,6 +361,7 @@ describe('primitive system', function () {
       world.execute(0, 0);
 
       expect(scene.meshes).toHaveLength(0);
+      expect(scene.geometries).toHaveLength(0);
     });
   });
 });

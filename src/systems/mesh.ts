@@ -30,26 +30,21 @@ export default class MeshSystem extends SystemWithCore {
 
     // We're using a clone here because we cannot reliably undo the internal transformations that happen when
     // parenting/un-parenting a mesh.
+    const mesh = meshComponent.value;
     // TODO: remove cloning?
-    detachFromScene(meshComponent.value);
-    const mesh = meshComponent.value.clone(`${meshComponent.value.name}__clone`, null, true);
+    detachFromScene(mesh);
 
-    if (mesh) {
-      const transformNodeComponent = entity.getComponent(TransformNode);
-      mesh.parent = transformNodeComponent.value;
-      mesh.computeWorldMatrix(true); // @todo still needed?
-      // detachFromScene(mesh);
-
-      meshComponent.value = mesh;
-    }
+    const transformNodeComponent = entity.getComponent(TransformNode);
+    mesh.parent = transformNodeComponent.value;
+    mesh.computeWorldMatrix(true); // @todo still needed?
+    meshComponent.value = mesh;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, _prevValue, ...restArgs } = meshComponent;
-
     Object.assign(value, restArgs);
-    // this.core.scene.addMesh(meshComponent.value);
 
-    meshComponent._prevValue = meshComponent.value;
+    this.core.scene.addMesh(mesh);
+    meshComponent._prevValue = mesh;
   }
 
   update(entity: Entity): void {
