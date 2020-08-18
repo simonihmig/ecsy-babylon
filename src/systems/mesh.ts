@@ -28,10 +28,7 @@ export default class MeshSystem extends SystemWithCore {
     assert('MeshSystem needs BabylonCoreComponent', this.core);
     assert('Failed to add Mesh Component. No valid Mesh found.', !!meshComponent?.value);
 
-    // We're using a clone here because we cannot reliably undo the internal transformations that happen when
-    // parenting/un-parenting a mesh.
     const mesh = meshComponent.value;
-    // TODO: remove cloning?
     detachFromScene(mesh);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
@@ -69,20 +66,25 @@ export default class MeshSystem extends SystemWithCore {
       'No removed Mesh Component found. Make sure this system is registered at the correct time.',
       !!meshComponent?.value
     );
-
+    const mesh = meshComponent.value;
     if (entity.hasComponent(Material) || entity.hasRemovedComponent(Material)) {
       // unset the material so it is not also disposed of here
       meshComponent.value.material = null;
     }
 
-    this.removeMesh(meshComponent.value);
+    const isUsed = this.queries.meshes.results.some((e) => e !== entity && e.getComponent(Mesh).value === mesh);
+
+    if (!isUsed) {
+      this.removeMesh(meshComponent.value);
+    }
     meshComponent.value = null;
   }
 
   private removeMesh(mesh: AbstractMesh): void {
-    this.core?.scene.removeMesh(mesh, false);
+    assert('MeshSystem needs BabylonCoreComponent', this.core);
 
-    // we work with a clone so we must always dispose
+    this.core.scene.removeMesh(mesh, false);
+
     mesh.dispose(true, false);
   }
 
