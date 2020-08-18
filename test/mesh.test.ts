@@ -104,4 +104,40 @@ describe('mesh system', function () {
     expect(scene.meshes).toHaveLength(0);
     expect(scene.geometries).toHaveLength(0);
   });
+
+  it('does not remove mesh used elsewhere', function () {
+    const { world, rootEntity } = setupWorld();
+
+    // wait for scene to be created before creating meshes
+    world.execute(0, 0);
+
+    const mesh = BoxBuilder.CreateBox('test', { size: 1 });
+    const entity1 = world.createEntity();
+    const entity2 = world.createEntity();
+    entity1.addComponent(Parent).addComponent(Mesh, { name: 'test', value: mesh });
+    entity2.addComponent(Parent);
+
+    world.execute(0, 0);
+
+    const { scene } = rootEntity.getComponent(BabylonCore);
+
+    expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
+
+    entity1.removeComponent(Mesh);
+    entity2.addComponent(Mesh, { name: 'test', value: mesh });
+
+    world.execute(0, 0);
+
+    expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
+
+    entity1.remove();
+    entity2.remove();
+
+    world.execute(0, 0);
+
+    expect(scene.meshes).toHaveLength(0);
+    expect(scene.geometries).toHaveLength(0);
+  });
 });
