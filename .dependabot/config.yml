@@ -8,3 +8,5 @@ update_configs:
           dependency_type: "all"
           update_type: "in_range"
     version_requirement_updates: "increase_versions"
+    commit_message:
+      prefix: ""
