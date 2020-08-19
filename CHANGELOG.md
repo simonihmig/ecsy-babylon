@@ -1,3 +1,12 @@
+## v0.1.11 (2020-08-19)
+
+#### :rocket: Enhancement
+* [#215](https://github.com/kaliber5/ecsy-babylon/pull/215) Allow overrides of mesh ([@simonihmig](https://github.com/simonihmig))
+* [#214](https://github.com/kaliber5/ecsy-babylon/pull/214) Allow overrides of material ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.1.10 (2020-08-18)
 
 #### :bug: Bug Fix
