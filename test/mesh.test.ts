@@ -140,4 +140,58 @@ describe('mesh system', function () {
     expect(scene.meshes).toHaveLength(0);
     expect(scene.geometries).toHaveLength(0);
   });
+
+  it('can override mesh properties', function () {
+    const { world, rootEntity } = setupWorld();
+
+    // wait for scene to be created before creating meshes
+    world.execute(0, 0);
+
+    const entity = world.createEntity();
+    entity
+      .addComponent(Parent)
+      .addComponent(Mesh, { value: BoxBuilder.CreateBox('test', { size: 1 }), overrides: { isVisible: false } });
+
+    world.execute(0, 0);
+
+    const { scene } = rootEntity.getComponent(BabylonCore);
+
+    expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
+
+    const mesh = scene.meshes[0];
+    expect(mesh).toBeInstanceOf(BabylonMesh);
+    expect(mesh.name).toMatch(/test/);
+    expect(mesh.isVisible).toBeFalse();
+  });
+
+  it('can update overridden mesh properties', function () {
+    const { world, rootEntity } = setupWorld();
+
+    // wait for scene to be created before creating meshes
+    world.execute(0, 0);
+
+    const entity = world.createEntity();
+    entity
+      .addComponent(Parent)
+      .addComponent(Mesh, { value: BoxBuilder.CreateBox('test', { size: 1 }), overrides: { isVisible: false } });
+
+    world.execute(0, 0);
+
+    const { scene } = rootEntity.getComponent(BabylonCore);
+
+    expect(scene.meshes).toHaveLength(1);
+    expect(scene.geometries).toHaveLength(1);
+
+    const meshComponent = entity.getMutableComponent(Mesh);
+    expect(meshComponent).toBeDefined();
+    meshComponent.overrides.isVisible = true;
+
+    world.execute(0, 0);
+
+    const mesh = scene.meshes[0];
+    expect(mesh).toBeInstanceOf(BabylonMesh);
+    expect(mesh.name).toMatch(/test/);
+    expect(mesh.isVisible).toBeTrue();
+  });
 });

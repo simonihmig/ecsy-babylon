@@ -36,9 +36,8 @@ export default class MeshSystem extends SystemWithCore {
     mesh.computeWorldMatrix(true); // @todo still needed?
     meshComponent.value = mesh;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { value, _prevValue, ...restArgs } = meshComponent;
-    Object.assign(value, restArgs);
+    const { value, overrides } = meshComponent;
+    Object.assign(value, overrides);
 
     this.core.scene.addMesh(mesh);
     meshComponent._prevValue = mesh;
