@@ -70,9 +70,9 @@ export default class MaterialSystem extends SystemWithCore {
     const materialComponent = entity.getComponent(Material);
 
     if (materialComponent.value) {
-      const { value, ...restArgs } = materialComponent;
+      const { value, overrides } = materialComponent;
 
-      Object.assign(value, restArgs);
+      Object.assign(value, overrides);
       mesh.material = value;
     } else {
       console.warn(`No material was applied to mesh "${mesh.name}".`);
