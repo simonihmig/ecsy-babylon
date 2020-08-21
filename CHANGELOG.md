@@ -1,3 +1,17 @@
+## v0.2.0 (2020-08-21)
+
+#### :boom: Breaking Change
+* [#217](https://github.com/kaliber5/ecsy-babylon/pull/217) Update to ECSY 0.4 ([@simonihmig](https://github.com/simonihmig))
+* [#216](https://github.com/kaliber5/ecsy-babylon/pull/216) Update to ECSY 0.3 ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#217](https://github.com/kaliber5/ecsy-babylon/pull/217) Update to ECSY 0.4 ([@simonihmig](https://github.com/simonihmig))
+* [#216](https://github.com/kaliber5/ecsy-babylon/pull/216) Update to ECSY 0.3 ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
+
 ## v0.1.11 (2020-08-19)
 
 #### :rocket: Enhancement
