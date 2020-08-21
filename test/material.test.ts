@@ -16,7 +16,7 @@ describe('material system', function () {
       world.execute(0, 0);
 
       const { scene } = rootEntity.getComponent(BabylonCore);
-      const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
+      const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
       expect(scene.meshes[0].material).toEqual(material);
@@ -41,7 +41,7 @@ describe('material system', function () {
       world.execute(0, 0);
 
       const { scene } = rootEntity.getComponent(BabylonCore);
-      const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
+      const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
       expect(scene.meshes[0].material).toEqual(material);
@@ -72,7 +72,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
+      const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
       expect(scene.meshes[0].material).toEqual(material);
@@ -100,7 +100,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const material = scene.getMaterialByName('test') as BabylonPBRMaterial;
+      const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
       expect(scene.meshes[0].material).toEqual(material);
@@ -120,7 +120,7 @@ describe('material system', function () {
       entity.remove();
       world.execute(0, 0);
 
-      const material = scene.getMaterialByName('test');
+      const material = scene.getMaterialByName('PbrMaterial');
 
       expect(material).toBeNull();
     });
@@ -135,7 +135,7 @@ describe('material system', function () {
       const entity = world.createEntity();
       const { scene } = rootEntity.getComponent(BabylonCore);
 
-      const material = new StandardMaterial('test', scene);
+      const material = new StandardMaterial('PbrMaterial', scene);
       entity.addComponent(Parent).addComponent(Box).addComponent(Material, { value: material });
 
       world.execute(0, 0);
@@ -151,7 +151,7 @@ describe('material system', function () {
       const entity = world.createEntity();
       const { scene } = rootEntity.getComponent(BabylonCore);
 
-      const material = new StandardMaterial('test', scene);
+      const material = new StandardMaterial('PbrMaterial', scene);
       entity
         .addComponent(Parent)
         .addComponent(Box)
@@ -171,7 +171,7 @@ describe('material system', function () {
       const entity = world.createEntity();
       const { scene } = rootEntity.getComponent(BabylonCore);
 
-      const material = new StandardMaterial('test', scene);
+      const material = new StandardMaterial('PbrMaterial', scene);
       entity
         .addComponent(Parent)
         .addComponent(Box)

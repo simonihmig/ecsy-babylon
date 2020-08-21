@@ -1,10 +1,11 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { BabylonTypes } from '../ecsy-types';
 
 export default class Scale extends Component<Scale> {
-  value: Vector3 = new Vector3(1, 1, 1);
+  value!: Vector3;
 
-  reset(): void {
-    this.value.set(1, 1, 1);
-  }
+  static schema: ComponentSchema = {
+    value: { type: BabylonTypes.Vector3 },
+  };
 }

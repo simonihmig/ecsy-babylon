@@ -1,9 +1,9 @@
-import { Component, Entity } from 'ecsy';
+import { Component, ComponentSchema, Entity, Types } from 'ecsy';
 
 export default class Parent extends Component<Parent> {
-  value: Entity | null = null;
+  value?: Entity;
 
-  reset(): void {
-    this.value = null;
-  }
+  static schema: ComponentSchema = {
+    value: { type: Types.Ref },
+  };
 }

@@ -68,4 +68,5 @@ export default [
   Rotation,
   Scale,
   Action,
+  Parent,
 ];

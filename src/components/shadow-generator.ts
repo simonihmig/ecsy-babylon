@@ -1,7 +1,8 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { ShadowGenerator as BabylonShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
 export default class ShadowGenerator extends Component<ShadowGenerator> {
+  value?: BabylonShadowGenerator;
   size = 512;
   forceBackFacesOnly?: boolean;
   useBlurCloseExponentialShadowMap?: boolean;
@@ -10,17 +11,16 @@ export default class ShadowGenerator extends Component<ShadowGenerator> {
   bias?: number;
   normalBias?: number;
   frustrumEdgeFallof?: number;
-  value?: BabylonShadowGenerator;
 
-  reset(): void {
-    this.size = 512;
-    this.forceBackFacesOnly = undefined;
-    this.useBlurCloseExponentialShadowMap = undefined;
-    this.useKernelBlur = undefined;
-    this.blurKernel = undefined;
-    this.bias = undefined;
-    this.normalBias = undefined;
-    this.frustrumEdgeFallof = undefined;
-    this.value = undefined;
-  }
+  static schema: ComponentSchema = {
+    value: { type: Types.Ref },
+    size: { type: Types.Number, default: 512 },
+    forceBackFacesOnly: { type: Types.Boolean, default: undefined },
+    useBlurCloseExponentialShadowMap: { type: Types.Boolean, default: undefined },
+    useKernelBlur: { type: Types.Boolean, default: undefined },
+    blurKernel: { type: Types.Number, default: undefined },
+    bias: { type: Types.Number, default: undefined },
+    normalBias: { type: Types.Number, default: undefined },
+    frustrumEdgeFallof: { type: Types.Number, default: undefined },
+  };
 }

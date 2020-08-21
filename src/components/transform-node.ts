@@ -1,12 +1,12 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 
 export default class TransformNode extends Component<TransformNode> {
-  value: BabylonTransformNode | null = null;
-  cloneNode = false;
+  value!: BabylonTransformNode | null;
+  cloneNode!: boolean;
 
-  reset(): void {
-    this.value = null;
-    this.cloneNode = false;
-  }
+  static schema: ComponentSchema = {
+    value: { type: Types.Ref, default: null },
+    cloneNode: { type: Types.Boolean },
+  };
 }
