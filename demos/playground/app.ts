@@ -90,7 +90,7 @@ world
 
 world.execute(0, 0);
 
-const scene = entity.getComponent(BabylonCore).scene;
+const scene = entity.getComponent(BabylonCore)!.scene;
 // @todo can we pass this directly to the component?
 scene.clearColor = new Color4(1, 1, 1);
 scene.ambientColor = new Color3(0.1, 0.1, 0.1);

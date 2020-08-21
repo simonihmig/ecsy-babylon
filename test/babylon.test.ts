@@ -7,7 +7,7 @@ describe('babylon system', function () {
     const { world, rootEntity } = setupWorld();
 
     world.execute(0, 0);
-    const babylonComponent = rootEntity.getComponent(BabylonCore);
+    const babylonComponent = rootEntity.getComponent(BabylonCore)!;
 
     expect(babylonComponent.engine).toBeDefined();
     expect(babylonComponent.scene).toBeDefined();

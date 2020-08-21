@@ -5,6 +5,7 @@ import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/di
 import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
 import { Scene } from '@babylonjs/core/scene';
 import Light from '../components/light';
+import assert from '../utils/assert';
 
 export default class LightSystem extends System {
   execute(): void {
@@ -22,7 +23,7 @@ export default class LightSystem extends System {
   }
 
   setupHemisphericLight(entity: Entity, Component: ComponentConstructor<HemisphericLight>): void {
-    const component = entity.getMutableComponent(Component);
+    const component = entity.getMutableComponent(Component)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, direction, ...options } = component;
 
@@ -35,11 +36,13 @@ export default class LightSystem extends System {
     Object.assign(component.light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
+    assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
+
     component.light.parent = transformNodeComponent.value;
   }
 
   setupPointLight(entity: Entity, Component: ComponentConstructor<PointLight>): void {
-    const component = entity.getMutableComponent(Component);
+    const component = entity.getMutableComponent(Component)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, position, ...options } = component;
 
@@ -52,11 +55,13 @@ export default class LightSystem extends System {
     Object.assign(component.light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
+    assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
+
     component.light.parent = transformNodeComponent.value;
   }
 
   setupDirectionalLight(entity: Entity, Component: ComponentConstructor<DirectionalLight>): void {
-    const component = entity.getMutableComponent(Component);
+    const component = entity.getMutableComponent(Component)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { light, direction, ...options } = component;
 
@@ -69,11 +74,13 @@ export default class LightSystem extends System {
     Object.assign(component.light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
+    assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
+
     component.light.parent = transformNodeComponent.value;
   }
 
   update<L extends Light<L>>(entity: Entity, Component: ComponentConstructor<L>): void {
-    const component = entity.getComponent(Component);
+    const component = entity.getComponent(Component)!;
     const { light, ...rest } = component;
 
     if (light) {
@@ -82,7 +89,7 @@ export default class LightSystem extends System {
   }
 
   remove<L extends Light<L>>(entity: Entity, Component: ComponentConstructor<L>): void {
-    const component = entity.getRemovedComponent(Component);
+    const component = entity.getRemovedComponent(Component)!;
     if (component.light) {
       component.light.dispose();
     }

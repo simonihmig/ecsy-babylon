@@ -12,9 +12,6 @@ import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
 
-// this is needed due to wrong typings for ecsy (fixed in 0.4.0)
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 export default class MaterialSystem extends SystemWithCore {
   execute(): void {
     super.execute();
@@ -70,7 +67,7 @@ export default class MaterialSystem extends SystemWithCore {
 
   setup(entity: Entity): void {
     const mesh = this.getMesh(entity);
-    const materialComponent = entity.getComponent(Material);
+    const materialComponent = entity.getComponent(Material)!;
 
     if (materialComponent.value) {
       const { value, overrides } = materialComponent;
@@ -90,13 +87,6 @@ export default class MaterialSystem extends SystemWithCore {
       if (mesh.material) {
         mesh.material = null;
       }
-    }
-
-    const material = entity.getRemovedComponent(Material);
-
-    if (material.value) {
-      // we should not dispose here, a Material instance is always passed, never created here
-      material.value = null;
     }
   }
 
@@ -126,7 +116,7 @@ export default class MaterialSystem extends SystemWithCore {
   }
 
   removeMaterial(entity: Entity): void {
-    const component = entity.getComponent(Material) || entity.getRemovedComponent(Material);
+    const component = entity.getComponent(Material, true)!;
 
     if (component.value) {
       component.value.dispose();

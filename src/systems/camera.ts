@@ -19,7 +19,7 @@ export default class CameraSystem extends SystemWithCore {
     assert('CameraSystem needs BabylonCoreComponent', this.core);
 
     const { scene, canvas } = this.core;
-    const cameraComponent = entity.getComponent(ArcRotateCamera);
+    const cameraComponent = entity.getMutableComponent(ArcRotateCamera)!;
     const { value, ...args } = cameraComponent;
     const { alpha, beta, radius, target } = args;
     const instance =
@@ -32,11 +32,12 @@ export default class CameraSystem extends SystemWithCore {
     scene.activeCamera.attachControl(canvas, false);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
+    assert('TransformNode needed for cameras, add Parent component to fix', transformNodeComponent);
     instance.parent = transformNodeComponent.value;
   }
 
   update(entity: Entity, component: ComponentConstructor<ArcRotateCamera>): void {
-    const cameraComponent = entity.getComponent(component);
+    const cameraComponent = entity.getComponent(component)!;
 
     const { value, ...args } = cameraComponent;
 
@@ -47,7 +48,7 @@ export default class CameraSystem extends SystemWithCore {
     assert('CameraSystem needs BabylonCoreComponent', this.core);
 
     const { scene, canvas, defaultCamera } = this.core;
-    const cameraComponent = entity.getRemovedComponent(component);
+    const cameraComponent = entity.getRemovedComponent(component)!;
 
     // TODO: We might need something smarter here in the future, what if there's multiple camera entities?
     // set defaultCamera as current active camera if it exists

@@ -40,14 +40,12 @@ export default class ActionSystem extends SystemWithCore {
 
   setup(entity: Entity): void {
     assert('ActionSystem needs BabylonCoreComponent', this.core);
-    const actionComponent = entity.getMutableComponent(Action);
+    const actionComponent = entity.getMutableComponent(Action)!;
 
     let actionManager = this.getActionManager(entity);
     if (actionManager === null) {
       const meshComponent = entity.getComponent(Mesh);
-      if (!meshComponent?.value) {
-        throw new Error('Action component can only be applied to Entities with a mesh');
-      }
+      assert('Action component can only be applied to Entities with a mesh', meshComponent?.value);
 
       actionManager = new ActionManager(this.core.scene);
       const mesh = meshComponent.value;

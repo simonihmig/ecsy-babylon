@@ -14,7 +14,7 @@ export default class BabylonSystem extends System {
   }
 
   setup(entity: Entity): void {
-    const core = entity.getMutableComponent(BabylonCore);
+    const core = entity.getMutableComponent(BabylonCore)!;
 
     core.engine = core.engine || new Engine(core.canvas, true, {}, false);
     core.scene = new Scene(core.engine);
@@ -58,7 +58,7 @@ export default class BabylonSystem extends System {
       window.removeEventListener('resize', this.listener);
     }
 
-    const core = entity.getRemovedComponent(BabylonCore);
+    const core = entity.getRemovedComponent(BabylonCore)!;
 
     core.engine.stopRenderLoop();
     core.scene.dispose();

@@ -9,7 +9,7 @@ describe('camera system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.activeCamera).toBeInstanceOf(Camera);
     expect(scene.cameras).toHaveLength(1);
@@ -23,7 +23,7 @@ describe('camera system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
     expect(scene.cameras).toHaveLength(2);
@@ -58,7 +58,7 @@ describe('camera system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
 
@@ -82,7 +82,7 @@ describe('camera system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
 
@@ -122,7 +122,7 @@ describe('camera system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
     const camera = scene.activeCamera;
 
     expect(camera).toBeInstanceOf(BabylonArcRotateCamera);

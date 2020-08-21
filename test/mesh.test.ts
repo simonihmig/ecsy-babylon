@@ -15,7 +15,7 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
@@ -36,7 +36,7 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.transformNodes).toHaveLength(1);
@@ -62,14 +62,14 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
     expect(scene.meshes[0]).toBeInstanceOf(BabylonMesh);
     expect(scene.meshes[0].name).toMatch(/box1/);
 
-    const meshComponent = entity.getMutableComponent(Mesh);
+    const meshComponent = entity.getMutableComponent(Mesh)!;
     expect(meshComponent).toBeDefined();
 
     meshComponent.value = BoxBuilder.CreateBox('box2', { size: 1 });
@@ -93,7 +93,7 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
@@ -119,7 +119,7 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
@@ -154,7 +154,7 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
@@ -178,12 +178,12 @@ describe('mesh system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore);
+    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.geometries).toHaveLength(1);
 
-    const meshComponent = entity.getMutableComponent(Mesh);
+    const meshComponent = entity.getMutableComponent(Mesh)!;
     expect(meshComponent).toBeDefined();
     meshComponent.overrides.isVisible = true;
 

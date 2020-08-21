@@ -15,7 +15,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
@@ -40,7 +40,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const material = scene.getMaterialByName('PbrMaterial') as BabylonPBRMaterial;
 
       expect(material).toBeInstanceOf(BabylonPBRMaterial);
@@ -60,7 +60,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(PBRMaterial);
       Object.assign(component, {
         albedoColor: new Color3(1, 0, 0),
@@ -94,8 +94,8 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
-      const component = entity.getMutableComponent(Box);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = entity.getMutableComponent(Box)!;
       component.size = 2;
 
       world.execute(0, 0);
@@ -115,7 +115,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       entity.remove();
       world.execute(0, 0);
@@ -133,7 +133,7 @@ describe('material system', function () {
       world.execute(0, 0);
 
       const entity = world.createEntity();
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const material = new StandardMaterial('PbrMaterial', scene);
       entity.addComponent(Parent).addComponent(Box).addComponent(Material, { value: material });
@@ -149,7 +149,7 @@ describe('material system', function () {
       world.execute(0, 0);
 
       const entity = world.createEntity();
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const material = new StandardMaterial('PbrMaterial', scene);
       entity
@@ -169,7 +169,7 @@ describe('material system', function () {
       world.execute(0, 0);
 
       const entity = world.createEntity();
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const material = new StandardMaterial('PbrMaterial', scene);
       entity
@@ -179,7 +179,7 @@ describe('material system', function () {
 
       world.execute(0, 0);
 
-      const materialComponent = entity.getMutableComponent(Material);
+      const materialComponent = entity.getMutableComponent(Material)!;
       materialComponent.overrides.useParallax = false;
 
       world.execute(0, 0);

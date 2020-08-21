@@ -33,7 +33,7 @@ function random(): number {
 
 function beforeRender(_delta: number, _time: number): void {
   boxes.forEach((box) => {
-    const rotation = box.getMutableComponent(Rotation);
+    const rotation = box.getMutableComponent(Rotation)!;
     rotation.value.addInPlaceFromFloats(0.5, 0.5, 0.5);
   });
 }
@@ -68,7 +68,7 @@ world
 
 world.execute(0, 0);
 
-const scene = entity.getComponent(BabylonCore).scene;
+const scene = entity.getComponent(BabylonCore)!.scene;
 // @todo can we pass this directly to the component?
 scene.clearColor = new Color4(1, 1, 1);
 

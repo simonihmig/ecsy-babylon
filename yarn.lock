@@ -2878,10 +2878,10 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-ecsy@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.3.2.tgz#662d6ccafe5248fdf093edab1d827e92f9327b61"
-  integrity sha512-Va57TfAkVulhMQ0QDVU2PNBAaUsZR/o5GTFWeKrRIiUS7zDAl4QMU778Qvb/0xkIARkJQWV6Zv7Ms1pOQlZtkw==
+ecsy@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ecsy/-/ecsy-0.4.1.tgz#3fc2fd53027e98112b045aacea89931d506e1634"
+  integrity sha512-KxRumB2cgj5wq7hEOuSrWSaILcfJBWgFbRseTzfWgbhRP+NDDNLoFBgl9V8bUMviYEjLbSuAUE3sZAV91WPCVA==
 
 electron-to-chromium@^1.3.413:
   version "1.3.441"

@@ -19,12 +19,13 @@ export interface SetupWorldOptions {
 export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld {
   const canvas = document.createElement('canvas');
   const world = new World();
-  for (const system of options.systems ?? systems) {
-    world.registerSystem(system);
-  }
 
   for (const Component of options.components ?? components) {
     world.registerComponent(Component);
+  }
+
+  for (const system of options.systems ?? systems) {
+    world.registerSystem(system);
   }
 
   const rootEntity = world.createEntity();

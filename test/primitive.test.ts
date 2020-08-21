@@ -15,7 +15,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -37,7 +37,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -59,7 +59,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Box);
       Object.assign(component, {
         width: 4,
@@ -85,7 +85,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -104,7 +104,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -126,7 +126,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -148,7 +148,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Plane);
       Object.assign(component, {
         width: 4,
@@ -173,7 +173,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -192,7 +192,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -211,7 +211,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -230,7 +230,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Sphere);
       Object.assign(component, {
         diameterX: 4,
@@ -256,7 +256,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -277,7 +277,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -300,7 +300,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -322,7 +322,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Lines);
       Object.assign(component, {
         points: [new Vector3(-2, -1.5, 0), new Vector3(2, 1.5, 0)],
@@ -353,7 +353,7 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);

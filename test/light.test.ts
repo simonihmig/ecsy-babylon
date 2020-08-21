@@ -15,7 +15,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -32,7 +32,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -49,8 +49,8 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
-      const component = lightEntity.getMutableComponent(PointLight);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = lightEntity.getMutableComponent(PointLight)!;
       component.intensity = 2;
 
       world.execute(0, 0);
@@ -70,7 +70,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
@@ -87,7 +87,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -107,7 +107,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -125,8 +125,8 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
-      const component = lightEntity.getMutableComponent(DirectionalLight);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = lightEntity.getMutableComponent(DirectionalLight)!;
       component.intensity = 2;
       component.direction = new Vector3(1, 0, 0);
 
@@ -148,7 +148,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
@@ -165,7 +165,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -185,7 +185,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -203,8 +203,8 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
-      const component = lightEntity.getMutableComponent(HemisphericLight);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = lightEntity.getMutableComponent(HemisphericLight)!;
       component.intensity = 2;
       component.direction = new Vector3(1, 0, 0);
 
@@ -226,7 +226,7 @@ describe('light system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
