@@ -1,17 +1,17 @@
-import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { PointLight as BabylonPointLight } from '@babylonjs/core/Lights/pointLight';
+import Light from './light';
+import { ComponentSchema, Types } from 'ecsy';
+import { BabylonTypes } from '../ecsy-types';
 
-export default class PointLight extends Component {
-  position: Vector3 = new Vector3(0, 1, 0);
-  intensity = 1;
+export default class PointLight extends Light<PointLight> {
+  position!: Vector3;
+  intensity!: number;
   light?: BabylonPointLight;
 
-  reset(): void {
-    this.position.set(0, 1, 0);
-    this.intensity = 1;
-    this.light = undefined;
-  }
+  static schema: ComponentSchema = {
+    position: { type: BabylonTypes.Vector3, default: new Vector3(0, 1, 0) },
+    intensity: { type: Types.Number, default: 1 },
+    light: { type: Types.Ref },
+  };
 }
-
-Object.defineProperty(PointLight, 'name', { value: 'PointLight' });

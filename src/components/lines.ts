@@ -1,21 +1,22 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
+import { BabylonTypes } from '../ecsy-types';
 
-export default class LinesComponent extends Component {
-  points: Vector3[] = [];
+export default class LinesComponent extends Component<LinesComponent> {
+  points!: Vector3[];
   colors?: Color4[];
-  color: Color3 | null = null;
-  alpha = 1;
-  useVertexAlpha = true;
-  updatable = false;
+  color!: Color3 | null;
+  alpha!: number;
+  useVertexAlpha!: boolean;
+  updatable!: boolean;
 
-  reset(): void {
-    this.points = [];
-    this.colors = undefined;
-    this.useVertexAlpha = true;
-    this.updatable = false;
-  }
+  static schema: ComponentSchema = {
+    points: { type: Types.Ref, default: [] },
+    colors: { type: Types.Ref, default: undefined },
+    color: { type: BabylonTypes.Color3, default: null },
+    alpha: { type: Types.Number, default: 1 },
+    useVertexAlpha: { type: Types.Boolean, default: true },
+    updatable: { type: Types.Boolean },
+  };
 }
-
-Object.defineProperty(LinesComponent, 'name', { value: 'Lines' });

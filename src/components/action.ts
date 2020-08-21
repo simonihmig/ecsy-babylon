@@ -1,10 +1,10 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { ActionEvent } from '@babylonjs/core/Actions/actionEvent';
 import { IAction } from '@babylonjs/core/Actions/action';
 
 type ActionCallback = (evt: ActionEvent) => void;
 
-export default class Action extends Component {
+export default class Action extends Component<Action> {
   pick?: ActionCallback;
   doublePick?: ActionCallback;
   centerPick?: ActionCallback;
@@ -26,24 +26,57 @@ export default class Action extends Component {
     [key: string]: IAction;
   } = {};
 
-  reset(): void {
-    this.pick = undefined;
-    this.doublePick = undefined;
-    this.centerPick = undefined;
-    this.everyFrame = undefined;
-    this.intersectionEnter = undefined;
-    this.intersectionExit = undefined;
-    this.keyDown = undefined;
-    this.keyUp = undefined;
-    this.leftPick = undefined;
-    this.longPress = undefined;
-    this.pickDown = undefined;
-    this.pickOut = undefined;
-    this.pickUp = undefined;
-    this.pointerOut = undefined;
-    this.pointerOver = undefined;
-    this.rightPick = undefined;
-  }
+  static schema: ComponentSchema = {
+    pick: {
+      type: Types.Ref,
+    },
+    doublePick: {
+      type: Types.Ref,
+    },
+    centerPick: {
+      type: Types.Ref,
+    },
+    everyFrame: {
+      type: Types.Ref,
+    },
+    intersectionEnter: {
+      type: Types.Ref,
+    },
+    intersectionExit: {
+      type: Types.Ref,
+    },
+    keyDown: {
+      type: Types.Ref,
+    },
+    keyUp: {
+      type: Types.Ref,
+    },
+    leftPick: {
+      type: Types.Ref,
+    },
+    longPress: {
+      type: Types.Ref,
+    },
+    pickDown: {
+      type: Types.Ref,
+    },
+    pickOut: {
+      type: Types.Ref,
+    },
+    pickUp: {
+      type: Types.Ref,
+    },
+    pointerOut: {
+      type: Types.Ref,
+    },
+    pointerOver: {
+      type: Types.Ref,
+    },
+    rightPick: {
+      type: Types.Ref,
+    },
+    _actions: {
+      type: Types.Ref,
+    },
+  };
 }
-
-Object.defineProperty(Action, 'name', { value: 'Action' });

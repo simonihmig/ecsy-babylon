@@ -11,7 +11,7 @@ describe('mesh system', function () {
     world.execute(0, 0);
 
     const entity = world.createEntity();
-    entity.addComponent(Parent).addComponent(Mesh, { name: 'test', value: BoxBuilder.CreateBox('test', { size: 1 }) });
+    entity.addComponent(Parent).addComponent(Mesh, { value: BoxBuilder.CreateBox('test', { size: 1 }) });
 
     world.execute(0, 0);
 
@@ -32,7 +32,7 @@ describe('mesh system', function () {
     world.execute(0, 0);
 
     const entity = world.createEntity();
-    entity.addComponent(Parent).addComponent(Mesh, { name: 'test', value: BoxBuilder.CreateBox('test', { size: 1 }) });
+    entity.addComponent(Parent).addComponent(Mesh, { value: BoxBuilder.CreateBox('test', { size: 1 }) });
 
     world.execute(0, 0);
 
@@ -89,7 +89,7 @@ describe('mesh system', function () {
     world.execute(0, 0);
 
     const entity = world.createEntity();
-    entity.addComponent(Parent).addComponent(Mesh, { name: 'test', value: BoxBuilder.CreateBox('test', { size: 1 }) });
+    entity.addComponent(Parent).addComponent(Mesh, { value: BoxBuilder.CreateBox('test', { size: 1 }) });
 
     world.execute(0, 0);
 
@@ -114,7 +114,7 @@ describe('mesh system', function () {
     const mesh = BoxBuilder.CreateBox('test', { size: 1 });
     const entity1 = world.createEntity();
     const entity2 = world.createEntity();
-    entity1.addComponent(Parent).addComponent(Mesh, { name: 'test', value: mesh });
+    entity1.addComponent(Parent).addComponent(Mesh, { value: mesh });
     entity2.addComponent(Parent);
 
     world.execute(0, 0);
@@ -125,7 +125,7 @@ describe('mesh system', function () {
     expect(scene.geometries).toHaveLength(1);
 
     entity1.removeComponent(Mesh);
-    entity2.addComponent(Mesh, { name: 'test', value: mesh });
+    entity2.addComponent(Mesh, { value: mesh });
 
     world.execute(0, 0);
 

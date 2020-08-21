@@ -1,12 +1,11 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { BabylonTypes } from '../ecsy-types';
 
-export default class Position extends Component {
-  value: Vector3 = new Vector3(0, 0, 0);
+export default class Position extends Component<Position> {
+  value!: Vector3;
 
-  reset(): void {
-    this.value.set(0, 0, 0);
-  }
+  static schema: ComponentSchema = {
+    value: { type: BabylonTypes.Vector3 },
+  };
 }
-
-Object.defineProperty(Position, 'name', { value: 'Position' });

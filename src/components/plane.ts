@@ -1,20 +1,18 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 
-export default class PlaneComponent extends Component {
-  size = 1;
+export default class PlaneComponent extends Component<PlaneComponent> {
+  size!: number;
   width?: number;
   height?: number;
-  updatable = false;
-  sideOrientation: number = Mesh.DEFAULTSIDE;
+  updatable!: boolean;
+  sideOrientation!: number;
 
-  reset(): void {
-    this.size = 1;
-    this.width = undefined;
-    this.height = undefined;
-    this.updatable = false;
-    this.sideOrientation = Mesh.DEFAULTSIDE;
-  }
+  static schema: ComponentSchema = {
+    size: { type: Types.Number, default: 1 },
+    width: { type: Types.Number, default: undefined },
+    height: { type: Types.Number, default: undefined },
+    updatable: { type: Types.Boolean },
+    sideOrientation: { type: Types.Number, default: Mesh.DEFAULTSIDE },
+  };
 }
-
-Object.defineProperty(PlaneComponent, 'name', { value: 'Plane' });

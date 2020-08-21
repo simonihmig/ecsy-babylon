@@ -1,13 +1,13 @@
-import { World, Entity, System, SystemConstructor } from 'ecsy';
-import {
+import { Entity, World } from 'ecsy';
+import components, {
   ArcRotateCamera,
   BabylonCore,
   Box,
+  DirectionalLight,
+  Material,
+  Parent,
   Position,
   Rotation,
-  Parent,
-  Material,
-  DirectionalLight,
 } from '../../src/components';
 import systems from '../../src/systems';
 import { NormalMaterial } from '@babylonjs/materials/normal/normalMaterial';
@@ -47,7 +47,8 @@ function afterRender(delta: number, _time: number): void {
 }
 
 const world = new World();
-systems.forEach((system) => world.registerSystem(system as SystemConstructor<System>)); // TS messes something up here, narrows registerSystem argument down to SystemConstructor<PrimitiveSystem> without the type cast, idk why...
+systems.forEach((system) => world.registerSystem(system));
+components.forEach((component) => world.registerComponent(component));
 
 const entity = world.createEntity();
 

@@ -1,39 +1,40 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
+import { BabylonTypes } from '../ecsy-types';
 
-export default class PbrMaterial extends Component {
-  directIntensity = 1;
-  emissiveIntensity = 1;
-  environmentIntensity = 1;
-  specularIntensity = 1;
-  albedoTexture: BaseTexture | null = null;
-  ambientTexture: BaseTexture | null = null;
-  ambientTextureStrength = 1;
-  ambientTextureImpactOnAnalyticalLights: number = BabylonPBRMaterial.DEFAULT_AO_ON_ANALYTICAL_LIGHTS;
-  opacityTexture: BaseTexture | null = null;
-  reflectionTexture: BaseTexture | null = null;
-  emissiveTexture: BaseTexture | null = null;
-  reflectivityTexture: BaseTexture | null = null;
-  metallicTexture: BaseTexture | null = null;
-  roughness: number | null = null;
-  metallic: number | null = null;
-  metallicF0Factor = 0.5;
+export default class PbrMaterial extends Component<PbrMaterial> {
+  directIntensity!: number;
+  emissiveIntensity!: number;
+  environmentIntensity!: number;
+  specularIntensity!: number;
+  albedoTexture!: BaseTexture | null;
+  ambientTexture!: BaseTexture | null;
+  ambientTextureStrength!: number;
+  ambientTextureImpactOnAnalyticalLights!: number;
+  opacityTexture!: BaseTexture | null;
+  reflectionTexture!: BaseTexture | null;
+  emissiveTexture!: BaseTexture | null;
+  reflectivityTexture!: BaseTexture | null;
+  metallicTexture!: BaseTexture | null;
+  roughness!: number | null;
+  metallic!: number | null;
+  metallicF0Factor!: number;
   useMetallicF0FactorFromMetallicTexture = false;
-  microSurfaceTexture: BaseTexture | null = null;
-  bumpTexture: BaseTexture | null = null;
-  lightmapTexture: BaseTexture | null = null;
-  ambientColor = new Color3(0, 0, 0);
-  albedoColor = new Color3(1, 1, 1);
-  reflectivityColor = new Color3(1, 1, 1);
-  reflectionColor = new Color3(1, 1, 1);
-  emissiveColor = new Color3(0, 0, 0);
-  microSurface = 1.0;
+  microSurfaceTexture!: BaseTexture | null;
+  bumpTexture!: BaseTexture | null;
+  lightmapTexture!: BaseTexture | null;
+  ambientColor!: Color3;
+  albedoColor!: Color3;
+  reflectivityColor!: Color3;
+  reflectionColor!: Color3;
+  emissiveColor!: Color3;
+  microSurface!: number;
   useLightmapAsShadowmap = false;
   useAlphaFromAlbedoTexture = false;
   forceAlphaTest = false;
-  alphaCutOff = 0.4;
+  alphaCutOff!: number;
   useSpecularOverAlpha = true;
   useMicroSurfaceFromReflectivityMapAlpha = false;
   useRoughnessFromMetallicTextureAlpha = true;
@@ -46,81 +47,82 @@ export default class PbrMaterial extends Component {
   useObjectSpaceNormalMap = false;
   useParallax = false;
   useParallaxOcclusion = false;
-  parallaxScaleBias = 0.05;
+  parallaxScaleBias!: number;
   disableLighting = false;
   forceIrradianceInFragment = false;
-  maxSimultaneousLights = 4;
+  maxSimultaneousLights!: number;
   invertNormalMapX = false;
   invertNormalMapY = false;
   twoSidedLighting = false;
   useAlphaFresnel = false;
   useLinearAlphaFresnel = false;
-  environmentBRDFTexture: BaseTexture | null = null;
+  environmentBRDFTexture!: BaseTexture | null;
   forceNormalForward = false;
   enableSpecularAntiAliasing = false;
   useHorizonOcclusion = true;
   useRadianceOcclusion = true;
   unlit = false;
 
-  reset(): void {
-    this.directIntensity = 1;
-    this.emissiveIntensity = 1;
-    this.environmentIntensity = 1;
-    this.specularIntensity = 1;
-    this.albedoTexture = null;
-    this.ambientTexture = null;
-    this.ambientTextureStrength = 1;
-    this.ambientTextureImpactOnAnalyticalLights = BabylonPBRMaterial.DEFAULT_AO_ON_ANALYTICAL_LIGHTS;
-    this.opacityTexture = null;
-    this.reflectionTexture = null;
-    this.emissiveTexture = null;
-    this.reflectivityTexture = null;
-    this.metallicTexture = null;
-    this.roughness = null;
-    this.metallic = null;
-    this.metallicF0Factor = 0.5;
-    this.useMetallicF0FactorFromMetallicTexture = false;
-    this.microSurfaceTexture = null;
-    this.bumpTexture = null;
-    this.lightmapTexture = null;
-    this.ambientColor.set(0, 0, 0);
-    this.albedoColor.set(1, 1, 1);
-    this.reflectivityColor.set(1, 1, 1);
-    this.reflectionColor.set(1, 1, 1);
-    this.emissiveColor.set(0, 0, 0);
-    this.microSurface = 1.0;
-    this.useLightmapAsShadowmap = false;
-    this.useAlphaFromAlbedoTexture = false;
-    this.forceAlphaTest = false;
-    this.alphaCutOff = 0.4;
-    this.useSpecularOverAlpha = true;
-    this.useMicroSurfaceFromReflectivityMapAlpha = false;
-    this.useRoughnessFromMetallicTextureAlpha = true;
-    this.useRoughnessFromMetallicTextureGreen = false;
-    this.useMetallnessFromMetallicTextureBlue = false;
-    this.useAmbientOcclusionFromMetallicTextureRed = false;
-    this.useAmbientInGrayScale = false;
-    this.useAutoMicroSurfaceFromReflectivityMap = false;
-    this.useRadianceOverAlpha = true;
-    this.useObjectSpaceNormalMap = false;
-    this.useParallax = false;
-    this.useParallaxOcclusion = false;
-    this.parallaxScaleBias = 0.05;
-    this.disableLighting = false;
-    this.forceIrradianceInFragment = false;
-    this.maxSimultaneousLights = 4;
-    this.invertNormalMapX = false;
-    this.invertNormalMapY = false;
-    this.twoSidedLighting = false;
-    this.useAlphaFresnel = false;
-    this.useLinearAlphaFresnel = false;
-    this.environmentBRDFTexture = null;
-    this.forceNormalForward = false;
-    this.enableSpecularAntiAliasing = false;
-    this.useHorizonOcclusion = true;
-    this.useRadianceOcclusion = true;
-    this.unlit = false;
-  }
+  static schema: ComponentSchema = {
+    directIntensity: { type: Types.Number, default: 1 },
+    emissiveIntensity: { type: Types.Number, default: 1 },
+    environmentIntensity: { type: Types.Number, default: 1 },
+    specularIntensity: { type: Types.Number, default: 1 },
+    albedoTexture: { type: Types.Ref, default: null },
+    ambientTexture: { type: Types.Ref, default: null },
+    ambientTextureStrength: { type: Types.Number, default: 1 },
+    ambientTextureImpactOnAnalyticalLights: {
+      type: Types.Number,
+      default: BabylonPBRMaterial.DEFAULT_AO_ON_ANALYTICAL_LIGHTS,
+    },
+    opacityTexture: { type: Types.Ref, default: null },
+    reflectionTexture: { type: Types.Ref, default: null },
+    emissiveTexture: { type: Types.Ref, default: null },
+    reflectivityTexture: { type: Types.Ref, default: null },
+    metallicTexture: { type: Types.Ref, default: null },
+    roughness: { type: Types.Number, default: null },
+    metallic: { type: Types.Number, default: null },
+    metallicF0Factor: { type: Types.Number, default: 0.5 },
+    useMetallicF0FactorFromMetallicTexture: { type: Types.Boolean },
+    microSurfaceTexture: { type: Types.Ref, default: null },
+    bumpTexture: { type: Types.Ref, default: null },
+    lightmapTexture: { type: Types.Ref, default: null },
+    ambientColor: { type: BabylonTypes.Color3, default: Color3.Black() },
+    albedoColor: { type: BabylonTypes.Color3, default: Color3.White() },
+    reflectivityColor: { type: BabylonTypes.Color3, default: Color3.White() },
+    reflectionColor: { type: BabylonTypes.Color3, default: Color3.White() },
+    emissiveColor: { type: BabylonTypes.Color3, default: Color3.Black() },
+    microSurface: { type: Types.Number, default: 1 },
+    useLightmapAsShadowmap: { type: Types.Boolean },
+    useAlphaFromAlbedoTexture: { type: Types.Boolean },
+    forceAlphaTest: { type: Types.Boolean },
+    alphaCutOff: { type: Types.Number, default: 0.4 },
+    useSpecularOverAlpha: { type: Types.Boolean, default: true },
+    useMicroSurfaceFromReflectivityMapAlpha: { type: Types.Boolean },
+    useRoughnessFromMetallicTextureAlpha: { type: Types.Boolean, default: true },
+    useRoughnessFromMetallicTextureGreen: { type: Types.Boolean },
+    useMetallnessFromMetallicTextureBlue: { type: Types.Boolean },
+    useAmbientOcclusionFromMetallicTextureRed: { type: Types.Boolean },
+    useAmbientInGrayScale: { type: Types.Boolean },
+    useAutoMicroSurfaceFromReflectivityMap: { type: Types.Boolean },
+    useRadianceOverAlpha: { type: Types.Boolean, default: true },
+    useObjectSpaceNormalMap: { type: Types.Boolean },
+    useParallax: { type: Types.Boolean },
+    useParallaxOcclusion: { type: Types.Boolean },
+    parallaxScaleBias: { type: Types.Number, default: 0.05 },
+    disableLighting: { type: Types.Boolean },
+    forceIrradianceInFragment: { type: Types.Boolean },
+    maxSimultaneousLights: { type: Types.Number, default: 4 },
+    invertNormalMapX: { type: Types.Boolean },
+    invertNormalMapY: { type: Types.Boolean },
+    twoSidedLighting: { type: Types.Boolean },
+    useAlphaFresnel: { type: Types.Boolean },
+    useLinearAlphaFresnel: { type: Types.Boolean },
+    environmentBRDFTexture: { type: Types.Ref, default: null },
+    forceNormalForward: { type: Types.Boolean },
+    enableSpecularAntiAliasing: { type: Types.Boolean },
+    useHorizonOcclusion: { type: Types.Boolean, default: true },
+    useRadianceOcclusion: { type: Types.Boolean, default: true },
+    unlit: { type: Types.Boolean },
+  };
 }
-
-Object.defineProperty(PbrMaterial, 'name', { value: 'PbrMaterial' });

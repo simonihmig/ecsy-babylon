@@ -11,7 +11,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Box);
 
       world.execute(0, 0);
 
@@ -33,7 +33,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box, { name: 'test', width: 2, height: 3, depth: 4 });
+      entity.addComponent(Parent).addComponent(Box, { width: 2, height: 3, depth: 4 });
 
       world.execute(0, 0);
 
@@ -55,7 +55,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box, { name: 'test', width: 2, height: 3, depth: 4 });
+      entity.addComponent(Parent).addComponent(Box, { width: 2, height: 3, depth: 4 });
 
       world.execute(0, 0);
 
@@ -81,7 +81,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Box);
 
       world.execute(0, 0);
 
@@ -100,7 +100,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Plane, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Plane);
 
       world.execute(0, 0);
 
@@ -122,7 +122,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Plane, { name: 'test', width: 2, height: 3 });
+      entity.addComponent(Parent).addComponent(Plane, { width: 2, height: 3 });
 
       world.execute(0, 0);
 
@@ -144,7 +144,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Plane, { name: 'test', width: 2, height: 3 });
+      entity.addComponent(Parent).addComponent(Plane, { width: 2, height: 3 });
 
       world.execute(0, 0);
 
@@ -169,7 +169,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Plane, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Plane);
 
       world.execute(0, 0);
 
@@ -188,7 +188,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Sphere, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Sphere);
 
       world.execute(0, 0);
 
@@ -207,7 +207,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Sphere, { name: 'test', diameterX: 2, diameterY: 3, diameterZ: 4 });
+      entity.addComponent(Parent).addComponent(Sphere, { diameterX: 2, diameterY: 3, diameterZ: 4 });
 
       world.execute(0, 0);
 
@@ -226,7 +226,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Sphere, { name: 'test', diameterX: 2, diameterY: 3, diameterZ: 4 });
+      entity.addComponent(Parent).addComponent(Sphere, { diameterX: 2, diameterY: 3, diameterZ: 4 });
 
       world.execute(0, 0);
 
@@ -252,7 +252,7 @@ describe('primitive system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Sphere, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Sphere);
 
       world.execute(0, 0);
 
@@ -273,7 +273,7 @@ describe('primitive system', function () {
       const entity = world.createEntity();
       entity
         .addComponent(Parent)
-        .addComponent(Lines, { name: 'test', points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
+        .addComponent(Lines, { points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
 
       world.execute(0, 0);
 
@@ -293,7 +293,6 @@ describe('primitive system', function () {
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Lines, {
-        name: 'test',
         points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)],
         color: new Color3(1, 0, 0),
         alpha: 0.5,
@@ -316,7 +315,6 @@ describe('primitive system', function () {
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Lines, {
-        name: 'test',
         points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)],
         color: new Color3(1, 0, 0),
         alpha: 1,
@@ -351,7 +349,7 @@ describe('primitive system', function () {
       const entity = world.createEntity();
       entity
         .addComponent(Parent)
-        .addComponent(Lines, { name: 'test', points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
+        .addComponent(Lines, { points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
 
       world.execute(0, 0);
 

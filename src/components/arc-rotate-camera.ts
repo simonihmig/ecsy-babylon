@@ -1,35 +1,34 @@
-import { Component } from 'ecsy';
+import { Component, ComponentSchema, Types } from 'ecsy';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { BabylonTypes } from '../ecsy-types';
 
-export default class ArcRotateCamera extends Component {
-  value: BabylonArcRotateCamera | null = null;
-  alpha = 0;
-  beta = 0;
-  radius = 10;
-  target: Vector3 = new Vector3(0, 0, 0);
+export default class ArcRotateCamera extends Component<ArcRotateCamera> {
+  value?: BabylonArcRotateCamera;
+  alpha!: number;
+  beta!: number;
+  radius!: number;
+  target!: Vector3;
 
-  lowerAlphaLimit: number | null = null;
-  lowerBetaLimit: number | null = null;
-  lowerRadiusLimit: number | null = null;
+  lowerAlphaLimit!: number | null;
+  lowerBetaLimit!: number | null;
+  lowerRadiusLimit!: number | null;
 
-  upperAlphaLimit: number | null = null;
-  upperBetaLimit: number | null = null;
-  upperRadiusLimit: number | null = null;
+  upperAlphaLimit!: number | null;
+  upperBetaLimit!: number | null;
+  upperRadiusLimit!: number | null;
 
-  reset(): void {
-    this.value = null;
-    this.alpha = 0;
-    this.beta = 0;
-    this.radius = 10;
-    this.target.set(0, 0, 0);
-    this.lowerAlphaLimit = null;
-    this.lowerBetaLimit = null;
-    this.lowerRadiusLimit = null;
-    this.upperAlphaLimit = null;
-    this.upperBetaLimit = null;
-    this.upperRadiusLimit = null;
-  }
+  static schema: ComponentSchema = {
+    value: { type: Types.Ref },
+    alpha: { type: Types.Number },
+    beta: { type: Types.Number },
+    radius: { type: Types.Number, default: 10 },
+    target: { type: BabylonTypes.Vector3 },
+    lowerAlphaLimit: { type: Types.Number, default: null },
+    lowerBetaLimit: { type: Types.Number, default: null },
+    lowerRadiusLimit: { type: Types.Number, default: null },
+    upperAlphaLimit: { type: Types.Number, default: null },
+    upperBetaLimit: { type: Types.Number, default: null },
+    upperRadiusLimit: { type: Types.Number, default: null },
+  };
 }
-
-Object.defineProperty(ArcRotateCamera, 'name', { value: 'ArcRotateCamera' });

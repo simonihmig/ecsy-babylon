@@ -1,7 +1,8 @@
-import { Entity, System, SystemConstructor, World } from 'ecsy';
+import { ComponentConstructor, Entity, System, SystemConstructor, World } from 'ecsy';
 import systems from '../../src/systems';
-import { BabylonCore } from '../../src/components';
+import components, { BabylonCore } from '../../src/components';
 import { NullEngine } from '@babylonjs/core/Engines/nullEngine';
+import { Component } from 'ecsy/src/Component';
 
 export interface SetupWorld {
   world: World;
@@ -10,6 +11,8 @@ export interface SetupWorld {
 
 export interface SetupWorldOptions {
   systems?: SystemConstructor<System>[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  components?: ComponentConstructor<Component<any>>[];
   rootEntityValues?: Partial<BabylonCore>;
 }
 
@@ -18,6 +21,10 @@ export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld 
   const world = new World();
   for (const system of options.systems ?? systems) {
     world.registerSystem(system);
+  }
+
+  for (const Component of options.components ?? components) {
+    world.registerComponent(Component);
   }
 
   const rootEntity = world.createEntity();
