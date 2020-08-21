@@ -20,6 +20,7 @@ import Rotation from './rotation';
 import Scale from './scale';
 import Action from './action';
 import Parent from './parent';
+import { ComponentConstructor } from 'ecsy';
 
 export {
   BabylonCore,
@@ -69,4 +70,5 @@ export default [
   Scale,
   Action,
   Parent,
-];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+] as ComponentConstructor<any>[];

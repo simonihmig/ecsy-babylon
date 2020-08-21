@@ -24,9 +24,6 @@ export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld 
   }
 
   for (const Component of options.components ?? components) {
-    // somehow TS freaks out on this
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     world.registerComponent(Component);
   }
 

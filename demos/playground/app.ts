@@ -1,5 +1,5 @@
-import { System, SystemConstructor, World } from 'ecsy';
-import {
+import { World } from 'ecsy';
+import components, {
   ArcRotateCamera,
   BabylonCore,
   Box,
@@ -32,7 +32,8 @@ function afterRender(delta: number, _time: number): void {
 }
 
 const world = new World();
-systems.forEach((system) => world.registerSystem(system as SystemConstructor<System>)); // TS messes something up here, narrows registerSystem argument down to SystemConstructor<PrimitiveSystem> without the type cast, idk why...
+systems.forEach((system) => world.registerSystem(system));
+components.forEach((component) => world.registerComponent(component));
 
 const entity = world.createEntity();
 
