@@ -12,6 +12,9 @@ import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
 
+// this is needed due to wrong typings for ecsy (fixed in 0.4.0)
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 export default class MaterialSystem extends SystemWithCore {
   execute(): void {
     super.execute();
