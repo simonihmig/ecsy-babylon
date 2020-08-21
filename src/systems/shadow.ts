@@ -12,7 +12,7 @@ export default class ShadowSystem extends SystemWithCore {
     this.queries.shadowGenerator.added?.forEach((e: Entity) => this.setup(e));
 
     this.queries.mesh.added?.forEach((e: Entity) => this.addMesh(e));
-    this.queries.mesh.removed?.forEach((e: Entity) => this.removeMesh(e));
+    // this.queries.mesh.removed?.forEach((e: Entity) => this.removeMesh(e));
 
     this.queries.shadowGenerator.removed?.forEach((e: Entity) => this.remove(e));
 
@@ -35,7 +35,7 @@ export default class ShadowSystem extends SystemWithCore {
 
     const light = lightComponent.light;
 
-    const component = entity.getMutableComponent(ShadowGenerator);
+    const component = entity.getMutableComponent(ShadowGenerator)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, ...options } = component;
 
@@ -72,26 +72,26 @@ export default class ShadowSystem extends SystemWithCore {
 
   // TODO: currently this method does nothing, it runs when a Mesh is removed
   //  but a removed Mesh is always disposed right now.
-  removeMesh(entity: Entity): void {
-    const meshComponent = entity.getRemovedComponent(Mesh);
-
-    // we only need to remove the shadowCaster if the Mesh still exists
-    if (meshComponent?.value) {
-      const component = entity.getMutableComponent(ShadowGenerator);
-      // eslint-disable-next-line no-unused-expressions
-      component.value?.removeShadowCaster(meshComponent.value, false);
-    }
-  }
+  // removeMesh(entity: Entity): void {
+  //   const meshComponent = entity.getRemovedComponent(Mesh);
+  //
+  //   // we only need to remove the shadowCaster if the Mesh still exists
+  //   if (meshComponent?.value) {
+  //     const component = entity.getMutableComponent(ShadowGenerator);
+  //     // eslint-disable-next-line no-unused-expressions
+  //     component.value?.removeShadowCaster(meshComponent.value, false);
+  //   }
+  // }
 
   remove(entity: Entity): void {
     assert('ShadowSystem needs BabylonCoreComponent', this.core);
 
-    const component = entity.getRemovedComponent(ShadowGenerator);
+    const component = entity.getRemovedComponent(ShadowGenerator)!;
 
     if (component.value) {
       this.core.shadowGenerators.delete(component.value);
       component.value.dispose();
-      component.value = undefined;
+      // component.value = undefined;
     }
   }
 

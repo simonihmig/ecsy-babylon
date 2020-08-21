@@ -8,6 +8,7 @@ import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 import { LinesBuilder } from '@babylonjs/core/Meshes/Builders/linesBuilder';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { Scene } from '@babylonjs/core/scene';
+import assert from '../utils/assert';
 
 export default class PrimitiveSystem extends System {
   execute(): void {
@@ -34,13 +35,14 @@ export default class PrimitiveSystem extends System {
     createPrimitive: (name: string, options: any, scene?: Scene | null) => BabylonMesh
   ): void {
     const component = entity.getComponent(Component);
-    const mesh = createPrimitive(Component.name ?? 'Primitive', component);
+    // Babylon's Builder unfortunately mutate the passed options, so we need to spread to clone them
+    const mesh = createPrimitive(Component.name ?? 'Primitive', { ...component });
 
     entity.addComponent(Mesh, { value: mesh });
   }
 
   setupLines(entity: Entity): void {
-    const component = entity.getComponent(Lines);
+    const component = entity.getComponent(Lines)!;
     const { color, alpha, ...rest } = component;
 
     const linesMesh = LinesBuilder.CreateLines(Lines.name, rest);
@@ -58,15 +60,16 @@ export default class PrimitiveSystem extends System {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createPrimitive: (name: string, options: any, scene?: Scene | null) => BabylonMesh
   ): void {
-    const component = entity.getComponent(Component);
-    const mesh = createPrimitive(Component.name ?? 'Primitive', component);
+    const component = entity.getComponent(Component)!;
+    const mesh = createPrimitive(Component.name ?? 'Primitive', { ...component });
 
     const meshComponent = entity.getMutableComponent(Mesh);
+    assert('Mesh component not found', meshComponent);
     meshComponent.value = mesh;
   }
 
   updateLines(entity: Entity): void {
-    const component = entity.getComponent(Lines);
+    const component = entity.getComponent(Lines)!;
     const { color, alpha, ...rest } = component;
 
     const linesMesh = LinesBuilder.CreateLines(Lines.name, rest);
@@ -76,6 +79,7 @@ export default class PrimitiveSystem extends System {
     linesMesh.alpha = alpha;
 
     const meshComponent = entity.getMutableComponent(Mesh);
+    assert('Mesh component not found', meshComponent);
     meshComponent.value = linesMesh;
   }
 

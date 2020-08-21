@@ -40,6 +40,7 @@ rules:
   # this fix is needed for optional chaining. can hopefully be removed, when @typescript-eslint default configs get updated
   "no-unused-expressions": "off"
   "@typescript-eslint/no-unused-expressions": "error"
+  "@typescript-eslint/no-non-null-assertion": off
   no-restricted-imports:
     - error
     - name: "@babylonjs/core"

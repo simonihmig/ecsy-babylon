@@ -56,7 +56,9 @@ export default class TransformSystem extends System {
 
   setupTransformNode(entity: Entity): void {
     const parentComponent = entity.getComponent(Parent);
-    const transformNodeComponent = entity.getComponent(TransformNode);
+    assert('No Parent component found', parentComponent);
+
+    const transformNodeComponent = entity.getMutableComponent(TransformNode)!;
     const parentEntity = parentComponent.value;
 
     const node = transformNodeComponent.value;
@@ -77,22 +79,17 @@ export default class TransformSystem extends System {
   }
 
   removeTransformNode(entity: Entity): void {
-    // the TransformNode component might already be removed if the Entity was removed
-    const transformNodeComponent = entity.getRemovedComponent(TransformNode);
-
-    if (!transformNodeComponent || !transformNodeComponent.value) {
-      throw new Error('TransformNode Component does not have a valid TransformNode instance.');
-    }
+    const transformNodeComponent = entity.getRemovedComponent(TransformNode)!;
+    assert('TransformNode Component does not have a valid TransformNode instance.', transformNodeComponent.value);
 
     // we do not recursively dispose of all children of this transform node, they will clean up themselves
     transformNodeComponent.value.getChildren().forEach((c) => (c.parent = null));
     transformNodeComponent.value.dispose();
-    transformNodeComponent.value = null;
   }
 
   position(entity: Entity): void {
     const tn = this.getTransformNode(entity);
-    const positionComponent = entity.getComponent(Position);
+    const positionComponent = entity.getComponent(Position)!;
     tn.position = positionComponent.value;
   }
 
@@ -103,7 +100,7 @@ export default class TransformSystem extends System {
 
   rotation(entity: Entity): void {
     const tn = this.getTransformNode(entity);
-    const rotationComponent = entity.getComponent(Rotation);
+    const rotationComponent = entity.getComponent(Rotation)!;
 
     let { x, y, z } = rotationComponent.value;
 
@@ -121,7 +118,7 @@ export default class TransformSystem extends System {
 
   scale(entity: Entity): void {
     const tn = this.getTransformNode(entity);
-    const scaleComponent = entity.getComponent(Scale);
+    const scaleComponent = entity.getComponent(Scale)!;
     tn.scaling = scaleComponent.value;
   }
 
