@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
-export default class MeshComponent extends Component {
+export default class MeshComponent extends Component<MeshComponent> {
   value: AbstractMesh | null = null;
   overrides: Record<string, unknown> = {};
   _prevValue: AbstractMesh | null = null;
@@ -12,5 +12,3 @@ export default class MeshComponent extends Component {
     this.overrides = {};
   }
 }
-
-Object.defineProperty(MeshComponent, 'name', { value: 'Mesh' });

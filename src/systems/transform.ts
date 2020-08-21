@@ -61,7 +61,7 @@ export default class TransformSystem extends System {
 
     const node = transformNodeComponent.value;
     if (node) {
-      if (transformNodeComponent.clone) {
+      if (transformNodeComponent.cloneNode) {
         transformNodeComponent.value = node.clone(`${guidFor(entity)}__TransformNode__cloned`, null, true);
       }
 

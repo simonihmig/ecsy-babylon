@@ -11,7 +11,7 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
 
       world.execute(0, 0);
 
@@ -31,7 +31,6 @@ describe('material system', function () {
         .addComponent(Parent)
         .addComponent(Box)
         .addComponent(PBRMaterial, {
-          name: 'test',
           albedoColor: new Color3(1, 0, 0),
           ambientColor: new Color3(0, 1, 0),
           emissiveColor: new Color3(0, 0, 1),
@@ -57,7 +56,7 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
 
       world.execute(0, 0);
 
@@ -91,7 +90,7 @@ describe('material system', function () {
       entity
         .addComponent(Parent)
         .addComponent(Box)
-        .addComponent(PBRMaterial, { name: 'test', albedoColor: new Color3(1, 0, 0) });
+        .addComponent(PBRMaterial, { albedoColor: new Color3(1, 0, 0) });
 
       world.execute(0, 0);
 
@@ -112,7 +111,7 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial, { name: 'test' });
+      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
 
       world.execute(0, 0);
 

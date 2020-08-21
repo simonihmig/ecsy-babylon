@@ -4,7 +4,7 @@ import { IAction } from '@babylonjs/core/Actions/action';
 
 type ActionCallback = (evt: ActionEvent) => void;
 
-export default class Action extends Component {
+export default class Action extends Component<Action> {
   pick?: ActionCallback;
   doublePick?: ActionCallback;
   centerPick?: ActionCallback;
@@ -45,5 +45,3 @@ export default class Action extends Component {
     this.rightPick = undefined;
   }
 }
-
-Object.defineProperty(Action, 'name', { value: 'Action' });

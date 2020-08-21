@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 
-export default class StandardMaterial extends Component {
+export default class StandardMaterial extends Component<StandardMaterial> {
   ambientColor: Color3 = Color3.Black();
   diffuseColor: Color3 = Color3.White();
   emissiveColor: Color3 = Color3.Black();
@@ -16,5 +16,3 @@ export default class StandardMaterial extends Component {
     this.alpha = 1;
   }
 }
-
-Object.defineProperty(StandardMaterial, 'name', { value: 'StandardMaterial' });

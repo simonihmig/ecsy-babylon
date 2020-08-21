@@ -1,11 +1,9 @@
 import { Component, Entity } from 'ecsy';
 
-export default class Parent extends Component {
+export default class Parent extends Component<Parent> {
   value: Entity | null = null;
 
   reset(): void {
     this.value = null;
   }
 }
-
-Object.defineProperty(Parent, 'name', { value: 'Parent' });

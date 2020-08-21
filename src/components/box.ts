@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 
-export default class BoxComponent extends Component {
+export default class BoxComponent extends Component<BoxComponent> {
   size = 1;
   width?: number;
   height?: number;
@@ -18,5 +18,3 @@ export default class BoxComponent extends Component {
     this.sideOrientation = Mesh.DEFAULTSIDE;
   }
 }
-
-Object.defineProperty(BoxComponent, 'name', { value: 'Box' });

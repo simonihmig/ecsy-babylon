@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 
-export default class PlaneComponent extends Component {
+export default class PlaneComponent extends Component<PlaneComponent> {
   size = 1;
   width?: number;
   height?: number;
@@ -16,5 +16,3 @@ export default class PlaneComponent extends Component {
     this.sideOrientation = Mesh.DEFAULTSIDE;
   }
 }
-
-Object.defineProperty(PlaneComponent, 'name', { value: 'Plane' });

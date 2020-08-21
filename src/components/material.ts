@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material';
 
-export default class Material extends Component {
+export default class Material extends Component<Material> {
   value: BabylonMaterial | null = null;
   overrides: Record<string, unknown> = {};
 
@@ -10,5 +10,3 @@ export default class Material extends Component {
     this.overrides = {};
   }
 }
-
-Object.defineProperty(Material, 'name', { value: 'Material' });

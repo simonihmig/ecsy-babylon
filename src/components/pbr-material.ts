@@ -3,7 +3,7 @@ import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR
 import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 
-export default class PbrMaterial extends Component {
+export default class PbrMaterial extends Component<PbrMaterial> {
   directIntensity = 1;
   emissiveIntensity = 1;
   environmentIntensity = 1;
@@ -122,5 +122,3 @@ export default class PbrMaterial extends Component {
     this.unlit = false;
   }
 }
-
-Object.defineProperty(PbrMaterial, 'name', { value: 'PbrMaterial' });

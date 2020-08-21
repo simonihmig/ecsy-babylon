@@ -104,11 +104,9 @@ export default class MaterialSystem extends SystemWithCore {
   ): void {
     assert('MaterialSystem needs BabylonCoreComponent', this.core);
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    const { name, ...props } = entity.getComponent(Component);
+    const props = entity.getComponent(Component);
 
-    const material = new MaterialClass(name, this.core.scene);
+    const material = new MaterialClass(Component.name, this.core.scene);
     Object.assign(material, props);
 
     entity.addComponent(Material, { value: material });

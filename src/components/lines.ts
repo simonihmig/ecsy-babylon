@@ -2,7 +2,7 @@ import { Component } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 
-export default class LinesComponent extends Component {
+export default class LinesComponent extends Component<LinesComponent> {
   points: Vector3[] = [];
   colors?: Color4[];
   color: Color3 | null = null;
@@ -17,5 +17,3 @@ export default class LinesComponent extends Component {
     this.updatable = false;
   }
 }
-
-Object.defineProperty(LinesComponent, 'name', { value: 'Lines' });

@@ -2,7 +2,7 @@ import { Component } from 'ecsy';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
-export default class ArcRotateCamera extends Component {
+export default class ArcRotateCamera extends Component<ArcRotateCamera> {
   value: BabylonArcRotateCamera | null = null;
   alpha = 0;
   beta = 0;
@@ -31,5 +31,3 @@ export default class ArcRotateCamera extends Component {
     this.upperRadiusLimit = null;
   }
 }
-
-Object.defineProperty(ArcRotateCamera, 'name', { value: 'ArcRotateCamera' });

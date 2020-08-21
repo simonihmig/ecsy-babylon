@@ -4,6 +4,7 @@ import { HemisphericLight as _HemisphericLight } from '@babylonjs/core/Lights/he
 import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
 import { Scene } from '@babylonjs/core/scene';
+import Light from '../components/light';
 
 export default class LightSystem extends System {
   execute(): void {
@@ -71,7 +72,7 @@ export default class LightSystem extends System {
     component.light.parent = transformNodeComponent.value;
   }
 
-  update(entity: Entity, Component: ComponentConstructor<HemisphericLight | PointLight | DirectionalLight>): void {
+  update<L extends Light<L>>(entity: Entity, Component: ComponentConstructor<L>): void {
     const component = entity.getComponent(Component);
     const { light, ...rest } = component;
 
@@ -80,7 +81,7 @@ export default class LightSystem extends System {
     }
   }
 
-  remove(entity: Entity, Component: ComponentConstructor<HemisphericLight | PointLight | DirectionalLight>): void {
+  remove<L extends Light<L>>(entity: Entity, Component: ComponentConstructor<L>): void {
     const component = entity.getRemovedComponent(Component);
     if (component.light) {
       component.light.dispose();

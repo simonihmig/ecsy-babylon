@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { ShadowGenerator as BabylonShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 
-export default class ShadowGenerator extends Component {
+export default class ShadowGenerator extends Component<ShadowGenerator> {
   size = 512;
   forceBackFacesOnly?: boolean;
   useBlurCloseExponentialShadowMap?: boolean;
@@ -24,5 +24,3 @@ export default class ShadowGenerator extends Component {
     this.value = undefined;
   }
 }
-
-Object.defineProperty(ShadowGenerator, 'name', { value: 'ShadowGenerator' });

@@ -1,7 +1,7 @@
 import { Component } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 
-export default class SphereComponent extends Component {
+export default class SphereComponent extends Component<SphereComponent> {
   segments = 32;
   diameter = 1;
   diameterX?: number;
@@ -24,5 +24,3 @@ export default class SphereComponent extends Component {
     this.sideOrientation = Mesh.DEFAULTSIDE;
   }
 }
-
-Object.defineProperty(SphereComponent, 'name', { value: 'Sphere' });

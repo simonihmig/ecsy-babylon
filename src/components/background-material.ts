@@ -3,7 +3,7 @@ import { Texture } from '@babylonjs/core/Materials/Textures/texture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Constants } from '@babylonjs/core/Engines/constants';
 
-export default class BackgroundMaterial extends Component {
+export default class BackgroundMaterial extends Component<BackgroundMaterial> {
   diffuseTexture: Texture | null = null;
   reflectionTexture: Texture | null = null;
   alpha = 1;
@@ -24,5 +24,3 @@ export default class BackgroundMaterial extends Component {
     this.enableNoise = false;
   }
 }
-
-Object.defineProperty(BackgroundMaterial, 'name', { value: 'BackgroundMaterial' });
