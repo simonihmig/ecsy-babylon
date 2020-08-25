@@ -2,7 +2,7 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { HemisphericLight as BabylonHemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 import Light from './light';
 import { ComponentSchema, Types } from 'ecsy';
-import { BabylonTypes } from '../ecsy-types';
+import { BabylonTypes } from '../-private/ecsy-types';
 
 export default class HemisphericLight extends Light<HemisphericLight> {
   direction!: Vector3;

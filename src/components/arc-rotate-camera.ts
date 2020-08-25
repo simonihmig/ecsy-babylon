@@ -1,7 +1,7 @@
 import { Component, ComponentSchema, Types } from 'ecsy';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import { BabylonTypes } from '../ecsy-types';
+import { BabylonTypes } from '../-private/ecsy-types';
 
 export default class ArcRotateCamera extends Component<ArcRotateCamera> {
   value?: BabylonArcRotateCamera;

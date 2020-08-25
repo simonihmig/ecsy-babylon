@@ -20,7 +20,6 @@ import Rotation from './rotation';
 import Scale from './scale';
 import Action from './action';
 import Parent from './parent';
-import { ComponentConstructor } from 'ecsy';
 
 export {
   BabylonCore,
@@ -46,29 +45,3 @@ export {
   Action,
   Parent,
 };
-
-export default [
-  BabylonCore,
-  ArcRotateCamera,
-  Mesh,
-  Plane,
-  Box,
-  Sphere,
-  Lines,
-  Material,
-  StandardMaterial,
-  PBRMaterial,
-  BackgroundMaterial,
-  ShadowOnlyMaterial,
-  HemisphericLight,
-  DirectionalLight,
-  PointLight,
-  ShadowGenerator,
-  TransformNode,
-  Position,
-  Rotation,
-  Scale,
-  Action,
-  Parent,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-] as ComponentConstructor<any>[];

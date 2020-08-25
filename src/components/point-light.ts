@@ -2,7 +2,7 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { PointLight as BabylonPointLight } from '@babylonjs/core/Lights/pointLight';
 import Light from './light';
 import { ComponentSchema, Types } from 'ecsy';
-import { BabylonTypes } from '../ecsy-types';
+import { BabylonTypes } from '../-private/ecsy-types';
 
 export default class PointLight extends Light<PointLight> {
   position!: Vector3;

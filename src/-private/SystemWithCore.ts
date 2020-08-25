@@ -1,5 +1,5 @@
 import { System } from 'ecsy';
-import { BabylonCore } from './components';
+import { BabylonCore } from '../components';
 
 export default class SystemWithCore extends System {
   core?: BabylonCore;

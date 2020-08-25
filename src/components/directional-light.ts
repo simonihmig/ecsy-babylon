@@ -2,7 +2,7 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import Light from './light';
 import { ComponentSchema, Types } from 'ecsy';
-import { BabylonTypes } from '../ecsy-types';
+import { BabylonTypes } from '../-private/ecsy-types';
 
 export default class DirectionalLight extends Light<DirectionalLight> {
   direction!: Vector3;
