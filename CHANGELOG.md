@@ -1,3 +1,17 @@
+## v0.3.0-2 (2020-08-25)
+
+#### :rocket: Enhancement
+* [#231](https://github.com/kaliber5/ecsy-babylon/pull/231) Fix shadow system, add update support, add tests ([@simonihmig](https://github.com/simonihmig))
+* [#230](https://github.com/kaliber5/ecsy-babylon/pull/230) Add missing shadowmap generator component properties ([@simonihmig](https://github.com/simonihmig))
+* [#229](https://github.com/kaliber5/ecsy-babylon/pull/229) Add missing light component properties ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#232](https://github.com/kaliber5/ecsy-babylon/pull/232) Use custom assign helper to ignore undefined values ([@simonihmig](https://github.com/simonihmig))
+* [#231](https://github.com/kaliber5/ecsy-babylon/pull/231) Fix shadow system, add update support, add tests ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.3.0-1 (2020-08-25)
 
 #### :boom: Breaking Change
