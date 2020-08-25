@@ -6,7 +6,7 @@ export default class ShadowGenerator extends Component<ShadowGenerator> {
   size = 512;
   enableSoftTransparentShadow?: boolean;
   forceBackFacesOnly?: boolean;
-  frustumEdgeFalloff?: boolean;
+  frustumEdgeFalloff?: number;
   useBlurCloseExponentialShadowMap?: boolean;
   useBlurExponentialShadowMap?: boolean;
   useCloseExponentialShadowMap?: boolean;

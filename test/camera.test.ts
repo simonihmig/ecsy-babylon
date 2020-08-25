@@ -33,10 +33,10 @@ describe('camera system', function () {
     expect(camera.beta).toEqual(0);
     expect(camera.radius).toEqual(10);
     expect(camera.lowerAlphaLimit).toBeNull();
-    expect(camera.lowerBetaLimit).toBeNull();
+    expect(camera.lowerBetaLimit).toBeGreaterThan(0); // has a default value!
     expect(camera.lowerRadiusLimit).toBeNull();
     expect(camera.upperAlphaLimit).toBeNull();
-    expect(camera.upperBetaLimit).toBeNull();
+    expect(camera.upperBetaLimit).toBeGreaterThan(0); // has a default value!
     expect(camera.upperRadiusLimit).toBeNull();
   });
 

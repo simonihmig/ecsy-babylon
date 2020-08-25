@@ -3,6 +3,7 @@ import { ArcRotateCamera, TransformNode } from '../components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import SystemWithCore, { queries } from '../-private/SystemWithCore';
 import assert from '../-private/utils/assert';
+import assign from '../-private/utils/assign';
 
 export default class CameraSystem extends SystemWithCore {
   execute(): void {
@@ -25,7 +26,7 @@ export default class CameraSystem extends SystemWithCore {
     const instance =
       value || new BabylonArcRotateCamera(ArcRotateCamera.name, alpha, beta, radius, target, scene, false);
 
-    Object.assign(instance, args);
+    assign(instance, args);
     cameraComponent.value = instance;
 
     scene.activeCamera = instance;
@@ -38,10 +39,10 @@ export default class CameraSystem extends SystemWithCore {
 
   update(entity: Entity, component: ComponentConstructor<ArcRotateCamera>): void {
     const cameraComponent = entity.getComponent(component)!;
-
     const { value, ...args } = cameraComponent;
+    assert('No camera instance found', value);
 
-    Object.assign(value, args);
+    assign(value, args);
   }
 
   remove(entity: Entity, component: ComponentConstructor<ArcRotateCamera>): void {

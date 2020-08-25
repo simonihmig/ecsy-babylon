@@ -24,6 +24,8 @@ describe('shadow system', function () {
     const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
     expect(shadowGenerator).toBeDefined();
     expect(shadowGenerator.size).toEqual(512);
+    expect(shadowGenerator.forceBackFacesOnly).toBeFalse();
+    expect(shadowGenerator.darkness).toEqual(0); // make sure default values are preserved
   });
 
   it('can add shadow generator with custom arguments', function () {
@@ -50,6 +52,7 @@ describe('shadow system', function () {
     const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
     expect(shadowGenerator.size).toEqual(1024);
     expect(shadowGenerator.forceBackFacesOnly).toBeTrue();
+    expect(shadowGenerator.darkness).toEqual(0); // make sure default values are preserved
   });
 
   it('can update shadow generator', function () {
@@ -76,6 +79,7 @@ describe('shadow system', function () {
     const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
     expect(shadowGenerator.size).toEqual(1024);
     expect(shadowGenerator.forceBackFacesOnly).toBeTrue();
+    expect(shadowGenerator.darkness).toEqual(0); // make sure default values are preserved
   });
 
   it('can remove shadow generator', function () {
