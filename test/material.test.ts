@@ -1,4 +1,4 @@
-import { BabylonCore, Box, Parent, PBRMaterial } from '../src/components';
+import { BabylonCore, Box, Parent, PbrMaterial } from '../src/components';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import setupWorld from './helpers/setup-world';
@@ -11,7 +11,7 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
+      entity.addComponent(Parent).addComponent(Box).addComponent(PbrMaterial);
 
       world.execute(0, 0);
 
@@ -30,7 +30,7 @@ describe('material system', function () {
       entity
         .addComponent(Parent)
         .addComponent(Box)
-        .addComponent(PBRMaterial, {
+        .addComponent(PbrMaterial, {
           albedoColor: new Color3(1, 0, 0),
           ambientColor: new Color3(0, 1, 0),
           emissiveColor: new Color3(0, 0, 1),
@@ -56,12 +56,12 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
+      entity.addComponent(Parent).addComponent(Box).addComponent(PbrMaterial);
 
       world.execute(0, 0);
 
       const { scene } = rootEntity.getComponent(BabylonCore)!;
-      const component = entity.getMutableComponent(PBRMaterial);
+      const component = entity.getMutableComponent(PbrMaterial);
       Object.assign(component, {
         albedoColor: new Color3(1, 0, 0),
         ambientColor: new Color3(0, 1, 0),
@@ -90,7 +90,7 @@ describe('material system', function () {
       entity
         .addComponent(Parent)
         .addComponent(Box)
-        .addComponent(PBRMaterial, { albedoColor: new Color3(1, 0, 0) });
+        .addComponent(PbrMaterial, { albedoColor: new Color3(1, 0, 0) });
 
       world.execute(0, 0);
 
@@ -111,7 +111,7 @@ describe('material system', function () {
       const { world, rootEntity } = setupWorld();
 
       const entity = world.createEntity();
-      entity.addComponent(Parent).addComponent(Box).addComponent(PBRMaterial);
+      entity.addComponent(Parent).addComponent(Box).addComponent(PbrMaterial);
 
       world.execute(0, 0);
 

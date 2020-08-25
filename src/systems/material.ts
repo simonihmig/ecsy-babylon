@@ -1,5 +1,5 @@
 import { ComponentConstructor, Entity } from 'ecsy';
-import { Mesh, PBRMaterial, Material, ShadowOnlyMaterial, BackgroundMaterial, StandardMaterial } from '../components';
+import { Mesh, PbrMaterial, Material, ShadowOnlyMaterial, BackgroundMaterial, StandardMaterial } from '../components';
 import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material';
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core/Materials/Background/backgroundMaterial';
@@ -34,8 +34,8 @@ export default class MaterialSystem extends SystemWithCore {
     this.queries.BackgroundMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, BackgroundMaterial));
     this.queries.BackgroundMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
-    this.queries.PBRMaterial.added?.forEach((e: Entity) => this.setupMaterial(e, PBRMaterial, BabylonPBRMaterial));
-    this.queries.PBRMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, PBRMaterial));
+    this.queries.PBRMaterial.added?.forEach((e: Entity) => this.setupMaterial(e, PbrMaterial, BabylonPBRMaterial));
+    this.queries.PBRMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, PbrMaterial));
     this.queries.PBRMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
 
     this.queries.Material.removed?.forEach((e: Entity) => this.remove(e));
@@ -92,7 +92,7 @@ export default class MaterialSystem extends SystemWithCore {
 
   setupMaterial(
     entity: Entity,
-    Component: ComponentConstructor<PBRMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>,
+    Component: ComponentConstructor<PbrMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>,
     MaterialClass: MaterialConstructor<BabylonMaterial>
   ): void {
     assert('MaterialSystem needs BabylonCoreComponent', this.core);
@@ -107,7 +107,7 @@ export default class MaterialSystem extends SystemWithCore {
 
   updateMaterial(
     entity: Entity,
-    Component: ComponentConstructor<PBRMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>
+    Component: ComponentConstructor<PbrMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>
   ): void {
     const mesh = this.getMesh(entity);
     const materialComponent = entity.getComponent(Component);
@@ -152,10 +152,10 @@ export default class MaterialSystem extends SystemWithCore {
       },
     },
     PBRMaterial: {
-      components: [Mesh, PBRMaterial],
+      components: [Mesh, PbrMaterial],
       listen: {
         added: true,
-        changed: [PBRMaterial],
+        changed: [PbrMaterial],
         removed: true,
       },
     },
