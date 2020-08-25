@@ -7,7 +7,7 @@ import Sphere from './sphere';
 import Lines from './lines';
 import Material from './material';
 import StandardMaterial from './standard-material';
-import PBRMaterial from './pbr-material';
+import PbrMaterial from './pbr-material';
 import BackgroundMaterial from './background-material';
 import ShadowOnlyMaterial from './shadow-only-material';
 import HemisphericLight from './hemispheric-light';
@@ -31,7 +31,7 @@ export {
   Lines,
   Material,
   StandardMaterial,
-  PBRMaterial,
+  PbrMaterial,
   BackgroundMaterial,
   ShadowOnlyMaterial,
   HemisphericLight,
