@@ -1,3 +1,12 @@
+## v0.3.0-0 (2020-08-25)
+
+#### :boom: Breaking Change
+* [#226](https://github.com/kaliber5/ecsy-babylon/pull/226) Restructure module exports ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.2.0 (2020-08-21)
 
 #### :boom: Breaking Change
