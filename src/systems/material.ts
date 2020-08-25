@@ -7,6 +7,7 @@ import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Mat
 import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../-private/utils/assert';
+import assign from '../-private/utils/assign';
 import SystemWithCore, { queries } from '../-private/SystemWithCore';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
@@ -72,7 +73,7 @@ export default class MaterialSystem extends SystemWithCore {
     if (materialComponent.value) {
       const { value, overrides } = materialComponent;
 
-      Object.assign(value, overrides);
+      assign(value, overrides);
       mesh.material = value;
     } else {
       console.warn(`No material was applied to mesh "${mesh.name}".`);
@@ -100,7 +101,8 @@ export default class MaterialSystem extends SystemWithCore {
     const props = entity.getComponent(Component);
 
     const material = new MaterialClass(Component.name, this.core.scene);
-    Object.assign(material, props);
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    assign(material, props!);
 
     entity.addComponent(Material, { value: material });
   }
@@ -112,7 +114,10 @@ export default class MaterialSystem extends SystemWithCore {
     const mesh = this.getMesh(entity);
     const materialComponent = entity.getComponent(Component);
 
-    Object.assign(mesh.material, materialComponent);
+    if (mesh.material) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+      assign(mesh.material, materialComponent!);
+    }
   }
 
   removeMaterial(entity: Entity): void {

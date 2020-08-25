@@ -5,6 +5,7 @@ import assert from '../-private/utils/assert';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
+import assign from '../-private/utils/assign';
 
 export default class ShadowSystem extends SystemWithCore {
   execute(): void {
@@ -42,7 +43,7 @@ export default class ShadowSystem extends SystemWithCore {
     const { value, ...options } = component;
 
     const shadowGenerator = new _ShadowGenerator(options.size, light);
-    Object.assign(shadowGenerator, options);
+    assign(shadowGenerator, options);
 
     // disable continuous shadow calculation
     // light.autoUpdateExtends = false;
@@ -69,7 +70,7 @@ export default class ShadowSystem extends SystemWithCore {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, ...options } = shadowComponent;
 
-    Object.assign(shadowComponent.value, options);
+    assign(shadowComponent.value, options);
   }
 
   addMesh(entity: Entity): void {

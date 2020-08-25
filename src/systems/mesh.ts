@@ -2,6 +2,7 @@ import { Entity } from 'ecsy';
 import { Mesh, TransformNode, Material } from '../components';
 import SystemWithCore, { queries } from '../-private/SystemWithCore';
 import assert from '../-private/utils/assert';
+import assign from '../-private/utils/assign';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 function detachFromScene(mesh: AbstractMesh): void {
@@ -39,7 +40,7 @@ export default class MeshSystem extends SystemWithCore {
     meshComponent.value = mesh;
 
     const { value, overrides } = meshComponent;
-    Object.assign(value, overrides);
+    assign(value, overrides);
 
     this.core.scene.addMesh(mesh);
     meshComponent._prevValue = mesh;

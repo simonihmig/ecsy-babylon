@@ -7,6 +7,7 @@ import { Light as _Light } from '@babylonjs/core/Lights/light';
 import { Scene } from '@babylonjs/core/scene';
 import Light from '../components/_light';
 import assert from '../-private/utils/assert';
+import assign from '../-private/utils/assign';
 
 export default class LightSystem extends System {
   execute(): void {
@@ -34,7 +35,7 @@ export default class LightSystem extends System {
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
 
-    Object.assign(component._light, options);
+    assign(component._light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
     assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
@@ -53,7 +54,7 @@ export default class LightSystem extends System {
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
 
-    Object.assign(component._light, options);
+    assign(component._light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
     assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
@@ -72,7 +73,7 @@ export default class LightSystem extends System {
       (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
     );
 
-    Object.assign(component._light, options);
+    assign(component._light, options);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
     assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
@@ -83,10 +84,10 @@ export default class LightSystem extends System {
   update<L extends Light<L, _Light>>(entity: Entity, Component: ComponentConstructor<L>): void {
     const component = entity.getComponent(Component)!;
     const { _light, ...rest } = component;
+    assert('No light instance found', _light);
 
-    if (_light) {
-      Object.assign(_light, rest);
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    assign(_light as _Light, rest);
   }
 
   remove<L extends Light<L, _Light>>(entity: Entity, Component: ComponentConstructor<L>): void {
