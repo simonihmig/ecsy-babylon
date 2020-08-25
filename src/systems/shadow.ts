@@ -31,9 +31,9 @@ export default class ShadowSystem extends SystemWithCore {
     assert('ShadowSystem needs BabylonCoreComponent', this.core);
 
     const lightComponent = this.getLightComponent(entity);
-    assert('No light instance was found on this light component.', lightComponent.light);
+    assert('No light instance was found on this light component.', lightComponent._light);
 
-    const light = lightComponent.light;
+    const light = lightComponent._light;
 
     const component = entity.getMutableComponent(ShadowGenerator)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

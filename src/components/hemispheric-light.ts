@@ -1,17 +1,15 @@
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { schema as baseSchema } from './_shadow-light';
 import { HemisphericLight as BabylonHemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
-import Light from './light';
-import { ComponentSchema, Types } from 'ecsy';
+import { ComponentSchema } from 'ecsy';
 import { BabylonTypes } from '../-private/ecsy-types';
+import Light from './_light';
 
-export default class HemisphericLight extends Light<HemisphericLight> {
+export default class HemisphericLight extends Light<HemisphericLight, BabylonHemisphericLight> {
   direction!: Vector3;
-  intensity!: number;
-  light?: BabylonHemisphericLight;
 
   static schema: ComponentSchema = {
+    ...baseSchema,
     direction: { type: BabylonTypes.Vector3, default: new Vector3(0, -1, 0) },
-    intensity: { type: Types.Number, default: 1 },
-    light: { type: Types.Ref },
   };
 }
