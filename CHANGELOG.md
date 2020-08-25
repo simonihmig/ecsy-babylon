@@ -1,3 +1,15 @@
+## v0.3.0-1 (2020-08-25)
+
+#### :boom: Breaking Change
+* [#227](https://github.com/kaliber5/ecsy-babylon/pull/227) Fix exported name of PbrMaterial ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#228](https://github.com/kaliber5/ecsy-babylon/pull/228) Export array of systems explicitly ([@simonihmig](https://github.com/simonihmig))
+* [#227](https://github.com/kaliber5/ecsy-babylon/pull/227) Fix exported name of PbrMaterial ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.3.0-0 (2020-08-25)
 
 #### :boom: Breaking Change
