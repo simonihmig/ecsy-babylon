@@ -1,12 +1,43 @@
 import { Component, ComponentConstructor, System, SystemConstructor } from 'ecsy';
 
 import * as _components from './components';
-import * as _systems from './systems';
-
-export * from './components';
-export * from './systems';
+import {
+  ActionSystem,
+  BabylonSystem,
+  CameraSystem,
+  MeshSystem,
+  PrimitiveSystem,
+  TransformSystem,
+  MaterialSystem,
+  LightSystem,
+  ShadowSystem,
+} from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
-const systems = Object.values(_systems) as SystemConstructor<System>[];
+// export array of systems explicitly, as the order is relevant for proper system execution!
+const systems = [
+  BabylonSystem,
+  TransformSystem,
+  CameraSystem,
+  PrimitiveSystem,
+  MeshSystem,
+  MaterialSystem,
+  LightSystem,
+  ShadowSystem,
+  ActionSystem,
+] as SystemConstructor<System>[];
 
-export { components, systems };
+export {
+  components,
+  systems,
+  ActionSystem,
+  BabylonSystem,
+  CameraSystem,
+  MeshSystem,
+  PrimitiveSystem,
+  TransformSystem,
+  MaterialSystem,
+  LightSystem,
+  ShadowSystem,
+};
+export * from './components';
