@@ -5,7 +5,7 @@ import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/di
 import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
 import { Scene } from '@babylonjs/core/scene';
 import Light from '../components/light';
-import assert from '../utils/assert';
+import assert from '../-private/utils/assert';
 
 export default class LightSystem extends System {
   execute(): void {

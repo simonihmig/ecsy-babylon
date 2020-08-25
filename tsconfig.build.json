@@ -2,11 +2,12 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist/src"
+    "declarationDir": ".",
+    "outDir": "."
   },
   "include": [
     "src",
     "types/**/*"
-  ]
+  ],
+  "exclude": []
 }

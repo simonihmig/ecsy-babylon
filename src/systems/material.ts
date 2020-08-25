@@ -6,8 +6,8 @@ import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core
 import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
-import assert from '../utils/assert';
-import SystemWithCore, { queries } from '../SystemWithCore';
+import assert from '../-private/utils/assert';
+import SystemWithCore, { queries } from '../-private/SystemWithCore';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };

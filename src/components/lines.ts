@@ -1,7 +1,7 @@
 import { Component, ComponentSchema, Types } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
-import { BabylonTypes } from '../ecsy-types';
+import { BabylonTypes } from '../-private/ecsy-types';
 
 export default class LinesComponent extends Component<LinesComponent> {
   points!: Vector3[];

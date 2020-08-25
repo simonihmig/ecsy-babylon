@@ -8,7 +8,7 @@ import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 import { LinesBuilder } from '@babylonjs/core/Meshes/Builders/linesBuilder';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { Scene } from '@babylonjs/core/scene';
-import assert from '../utils/assert';
+import assert from '../-private/utils/assert';
 
 export default class PrimitiveSystem extends System {
   execute(): void {

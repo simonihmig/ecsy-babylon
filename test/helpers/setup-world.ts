@@ -1,6 +1,6 @@
 import { ComponentConstructor, Entity, System, SystemConstructor, World } from 'ecsy';
-import systems from '../../src/systems';
-import components, { BabylonCore } from '../../src/components';
+import { BabylonCore } from '../../src/components';
+import { components, systems } from '../../src';
 import { NullEngine } from '@babylonjs/core/Engines/nullEngine';
 import { Component } from 'ecsy/src/Component';
 

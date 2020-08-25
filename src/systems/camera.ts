@@ -1,8 +1,8 @@
 import { ComponentConstructor, Entity } from 'ecsy';
 import { ArcRotateCamera, TransformNode } from '../components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
-import SystemWithCore, { queries } from '../SystemWithCore';
-import assert from '../utils/assert';
+import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import assert from '../-private/utils/assert';
 
 export default class CameraSystem extends SystemWithCore {
   execute(): void {

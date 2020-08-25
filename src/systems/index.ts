@@ -7,7 +7,6 @@ import MaterialSystem from './material';
 import LightSystem from './light';
 import ShadowSystem from './shadow';
 import ActionSystem from './action';
-import { System, SystemConstructor } from 'ecsy';
 
 export {
   BabylonSystem,
@@ -20,15 +19,3 @@ export {
   ShadowSystem,
   ActionSystem,
 };
-
-export default [
-  BabylonSystem,
-  TransformSystem,
-  CameraSystem,
-  PrimitiveSystem,
-  MeshSystem,
-  MaterialSystem,
-  LightSystem,
-  ShadowSystem,
-  ActionSystem,
-] as SystemConstructor<System>[];

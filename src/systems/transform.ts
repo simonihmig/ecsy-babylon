@@ -1,7 +1,7 @@
 import { Entity, System } from 'ecsy';
 import { Position, Rotation, Scale, TransformNode, Parent } from '../components';
-import guidFor from '../utils/guid';
-import assert from '../utils/assert';
+import guidFor from '../-private/utils/guid';
+import assert from '../-private/utils/assert';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 

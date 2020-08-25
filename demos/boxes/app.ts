@@ -1,5 +1,5 @@
 import { Entity, World } from 'ecsy';
-import components, {
+import {
   ArcRotateCamera,
   BabylonCore,
   Box,
@@ -9,7 +9,7 @@ import components, {
   Position,
   Rotation,
 } from '../../src/components';
-import systems from '../../src/systems';
+import { components, systems } from '../../src';
 import { NormalMaterial } from '@babylonjs/materials/normal/normalMaterial';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color4 } from '@babylonjs/core/Maths/math.color';
