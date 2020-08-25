@@ -4,12 +4,14 @@ import SystemWithCore, { queries } from '../-private/SystemWithCore';
 import assert from '../-private/utils/assert';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
+import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
 
 export default class ShadowSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
     this.queries.shadowGenerator.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.shadowGenerator.changed?.forEach((e: Entity) => this.update(e));
 
     this.queries.mesh.added?.forEach((e: Entity) => this.addMesh(e));
     // this.queries.mesh.removed?.forEach((e: Entity) => this.removeMesh(e));
@@ -58,6 +60,18 @@ export default class ShadowSystem extends SystemWithCore {
     this.core.shadowGenerators.add(shadowGenerator);
   }
 
+  update(entity: Entity): void {
+    assert('ShadowSystem needs BabylonCoreComponent', this.core);
+
+    const shadowComponent = entity.getComponent(ShadowGenerator);
+    assert('No shadow generator instance was found.', shadowComponent?.value);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { value, ...options } = shadowComponent;
+
+    Object.assign(shadowComponent.value, options);
+  }
+
   addMesh(entity: Entity): void {
     assert('ShadowSystem needs BabylonCoreComponent', this.core);
 
@@ -101,6 +115,7 @@ export default class ShadowSystem extends SystemWithCore {
       components: [ShadowGenerator],
       listen: {
         added: true,
+        changed: true,
         removed: true,
       },
     },
