@@ -21,11 +21,9 @@ export default class PostProcessSystem extends SystemWithCore {
 
     assert('Failed to add PostProcess Component. No valid PostProcess found.', !!ppComponent?.value);
 
-    const pp = ppComponent.value;
+    const pps = ppComponent.value;
     const camera = this.getCamera(entity);
-    this.addPostProcess(camera, pp);
-
-    ppComponent._prevValue = pp;
+    pps.forEach((pp) => this.addPostProcess(camera, pp));
   }
 
   private getCamera(entity: Entity): BabylonCamera {
@@ -57,17 +55,24 @@ export default class PostProcessSystem extends SystemWithCore {
     const ppComponent = entity.getMutableComponent(PostProcess);
     assert('Failed to add PostProcess Component. No valid PostProcess found.', !!ppComponent?.value);
 
-    if (ppComponent.value === ppComponent._prevValue) {
-      return;
+    const pps = ppComponent.value;
+    const prevPps = ppComponent.previousValue;
+
+    let added: BabylonPostProcess[];
+    let removed: BabylonPostProcess[] | undefined;
+
+    if (prevPps) {
+      added = pps.filter((pp) => !prevPps.includes(pp));
+      removed = prevPps.filter((pp) => !pps.includes(pp));
+    } else {
+      added = pps;
     }
 
     const camera = this.getCamera(entity);
-    if (ppComponent?._prevValue) {
-      this.removePostProcess(camera, ppComponent._prevValue);
+    if (removed) {
+      removed.forEach((pp) => this.removePostProcess(camera, pp));
     }
-
-    this.addPostProcess(camera, ppComponent.value);
-    ppComponent._prevValue = ppComponent.value;
+    added.forEach((pp) => this.addPostProcess(camera, pp));
   }
 
   remove(entity: Entity): void {
@@ -75,7 +80,7 @@ export default class PostProcessSystem extends SystemWithCore {
     assert('Failed to remove PostProcess Component. No valid PostProcess found.', !!ppComponent?.value);
 
     const camera = this.getCamera(entity);
-    this.removePostProcess(camera, ppComponent.value);
+    ppComponent.value.forEach((pp) => this.removePostProcess(camera, pp));
   }
 
   static queries = {

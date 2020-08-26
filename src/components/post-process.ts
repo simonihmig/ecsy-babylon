@@ -1,12 +1,9 @@
-import { Component, ComponentSchema, Types } from 'ecsy';
+import { ComponentSchema, Types } from 'ecsy';
 import { PostProcess as BabylonPostProcess } from '@babylonjs/core/PostProcesses/postProcess';
+import InstanceComponent from './_instance';
 
-export default class PostProcess extends Component<PostProcess> {
-  value?: BabylonPostProcess;
-  _prevValue?: BabylonPostProcess;
-
+export default class PostProcess extends InstanceComponent<PostProcess, BabylonPostProcess[]> {
   static schema: ComponentSchema = {
-    value: { type: Types.Ref },
-    _prevValue: { type: Types.Ref },
+    value: { type: Types.Array },
   };
 }
