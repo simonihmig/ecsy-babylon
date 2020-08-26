@@ -24,7 +24,7 @@ export default class MeshSystem extends SystemWithCore {
   }
 
   setup(entity: Entity): void {
-    const meshComponent = entity.getMutableComponent(Mesh);
+    const meshComponent = entity.getComponent(Mesh);
 
     assert('MeshSystem needs BabylonCoreComponent', this.core);
     assert('Failed to add Mesh Component. No valid Mesh found.', !!meshComponent?.value);
@@ -37,26 +37,25 @@ export default class MeshSystem extends SystemWithCore {
 
     mesh.parent = transformNodeComponent.value;
     mesh.computeWorldMatrix(true); // @todo still needed?
-    meshComponent.value = mesh;
 
     const { value, overrides } = meshComponent;
     assign(value, overrides);
 
     this.core.scene.addMesh(mesh);
-    meshComponent._prevValue = mesh;
   }
 
   update(entity: Entity): void {
     const meshComponent = entity.getComponent(Mesh)!;
-    const previousMesh = meshComponent._prevValue;
+    const mesh = meshComponent.value;
+    const previousMesh = meshComponent.previousValue;
 
-    if (previousMesh && meshComponent.value !== previousMesh) {
+    if (previousMesh && mesh !== previousMesh) {
       this.removeMesh(previousMesh);
     }
 
     this.setup(entity);
-    if (previousMesh && meshComponent.value) {
-      meshComponent.value.material = previousMesh.material;
+    if (previousMesh && mesh) {
+      mesh.material = previousMesh.material;
     }
   }
 
