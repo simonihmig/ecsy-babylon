@@ -7,13 +7,16 @@ import {
   Lines,
   Parent,
   Position,
+  PostProcess,
   Rotation,
   Sphere,
 } from '../../src/components';
 import { components, systems } from '../../src';
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { Vector2, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import PbrMaterial from '../../src/components/pbr-material';
+import { Engine } from '@babylonjs/core/Engines/engine';
+import { BlurPostProcess } from '@babylonjs/core/PostProcesses/blurPostProcess';
 
 const canvas = document.querySelector('canvas');
 const fpsEl = document.querySelector('#fps');
@@ -32,6 +35,7 @@ function afterRender(delta: number, _time: number): void {
 }
 
 const world = new World();
+const engine = new Engine(canvas, true, {}, false);
 components.forEach((component) => world.registerComponent(component));
 systems.forEach((system) => world.registerSystem(system));
 
@@ -40,13 +44,17 @@ const entity = world.createEntity();
 entity.addComponent(BabylonCore, {
   world,
   canvas,
+  engine,
   afterRender,
 });
 
 world
   .createEntity()
   .addComponent(Parent)
-  .addComponent(ArcRotateCamera, { alpha: Math.PI * 1.5, beta: 1.3 });
+  .addComponent(ArcRotateCamera, { alpha: Math.PI * 1.5, beta: 1.3 })
+  .addComponent(PostProcess, {
+    value: [new BlurPostProcess('Horizontal blur', new Vector2(1.0, 0), 32, 1, null, undefined, engine)],
+  });
 
 world
   .createEntity()
