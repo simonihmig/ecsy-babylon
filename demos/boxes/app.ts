@@ -47,8 +47,8 @@ function afterRender(delta: number, _time: number): void {
 }
 
 const world = new World();
-systems.forEach((system) => world.registerSystem(system));
 components.forEach((component) => world.registerComponent(component));
+systems.forEach((system) => world.registerSystem(system));
 
 const entity = world.createEntity();
 
