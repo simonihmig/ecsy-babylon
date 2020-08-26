@@ -7,6 +7,7 @@ import MaterialSystem from './material';
 import LightSystem from './light';
 import ShadowSystem from './shadow';
 import ActionSystem from './action';
+import PostProcessSystem from './post-process';
 
 export {
   BabylonSystem,
@@ -18,4 +19,5 @@ export {
   LightSystem,
   ShadowSystem,
   ActionSystem,
+  PostProcessSystem,
 };

@@ -21,6 +21,7 @@ import Rotation from './rotation';
 import Scale from './scale';
 import Action from './action';
 import Parent from './parent';
+import PostProcess from './post-process';
 
 export {
   BabylonCore,
@@ -46,4 +47,5 @@ export {
   Scale,
   Action,
   Parent,
+  PostProcess,
 };
