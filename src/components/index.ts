@@ -3,6 +3,7 @@ import ArcRotateCamera from './arc-rotate-camera';
 import Mesh from './mesh';
 import Plane from './plane';
 import Box from './box';
+import Camera from './camera';
 import Sphere from './sphere';
 import Lines from './lines';
 import Material from './material';
@@ -27,6 +28,7 @@ export {
   Mesh,
   Plane,
   Box,
+  Camera,
   Sphere,
   Lines,
   Material,
