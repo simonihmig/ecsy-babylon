@@ -14,6 +14,10 @@ import BlurPostProcessSystem from './post-process/blur';
 import BlackAndWhitePostProcessSystem from './post-process/black-and-white';
 import HemisphericLightSystem from './light/hemispheric';
 import PointLightSystem from './light/point';
+import PbrMaterialSystem from './material/pbr';
+import StandardMaterialSystem from './material/standard';
+import BackgroundMaterialSystem from './material/background';
+import ShadowOnlyMaterialSystem from './material/shadow-only';
 
 export {
   BabylonSystem,
@@ -22,6 +26,10 @@ export {
   CameraSystem,
   PrimitiveSystem,
   MeshSystem,
+  PbrMaterialSystem,
+  StandardMaterialSystem,
+  BackgroundMaterialSystem,
+  ShadowOnlyMaterialSystem,
   MaterialSystem,
   DirectionalLightSystem,
   HemisphericLightSystem,

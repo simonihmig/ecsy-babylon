@@ -5,6 +5,7 @@ import assign from '../../-private/utils/assign';
 import InstanceArrayComponent from '../../components/_instance-array';
 import { World } from 'ecsy/src/World';
 import { Attributes } from 'ecsy/src/System';
+import { IDisposable } from '@babylonjs/core/scene';
 
 interface Constructor<C> {
   new (): C;
@@ -13,7 +14,7 @@ interface Constructor<C> {
 export default abstract class FactoryArraySystem<
   C extends Component<unknown>,
   D extends InstanceArrayComponent<D, I>,
-  I
+  I extends IDisposable
 > extends SystemWithCore {
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
@@ -85,8 +86,9 @@ export default abstract class FactoryArraySystem<
 
     const ic = instanceComponent as InstanceArrayComponent<unknown, I>;
     assert('Existing instance array component has invalid value', ic.value);
-    const instances = ic.value.filter((i) => !(i instanceof this.instanceConstructor));
-    assert('No instance found to remove', ic.value.length > instances.length);
+    const removedInstance = ic.value.find((i) => i instanceof this.instanceConstructor);
+    assert('No instance found to remove', removedInstance);
+    const instances = ic.value.filter((i) => i !== removedInstance);
 
     if (instances.length > 0) {
       const _instanceComponent = entity.getMutableComponent(
@@ -96,5 +98,6 @@ export default abstract class FactoryArraySystem<
     } else {
       entity.removeComponent(this.instanceComponentConstructor);
     }
+    removedInstance.dispose();
   }
 }

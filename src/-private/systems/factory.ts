@@ -5,11 +5,12 @@ import assign from '../../-private/utils/assign';
 import InstanceComponent from '../../components/_instance';
 import { World } from 'ecsy/src/World';
 import { Attributes } from 'ecsy/src/System';
+import { IDisposable } from '@babylonjs/core/scene';
 
 export default abstract class FactorySystem<
   C extends Component<unknown>,
   D extends InstanceComponent<unknown, I>,
-  I
+  I extends IDisposable
 > extends SystemWithCore {
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
@@ -73,5 +74,6 @@ export default abstract class FactorySystem<
     assert('No instance component found', instanceComponent?.value);
 
     entity.removeComponent(this.instanceComponentConstructor);
+    instanceComponent.value.dispose();
   }
 }

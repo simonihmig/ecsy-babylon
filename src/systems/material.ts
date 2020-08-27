@@ -1,11 +1,6 @@
-import { ComponentConstructor, Entity } from 'ecsy';
-import { Mesh, PbrMaterial, Material, ShadowOnlyMaterial, BackgroundMaterial, StandardMaterial } from '../components';
-import { Material as BabylonMaterial } from '@babylonjs/core/Materials/material';
-import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
-import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core/Materials/Background/backgroundMaterial';
-import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
+import { Entity } from 'ecsy';
+import { Material, Mesh } from '../components';
 import { Scene } from '@babylonjs/core/scene';
-import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../-private/utils/assert';
 import assign from '../-private/utils/assign';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
@@ -17,28 +12,6 @@ export default class MaterialSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
-    this.queries.StandardMaterial.added?.forEach((e: Entity) =>
-      this.setupMaterial(e, StandardMaterial, BabylonStandardMaterial)
-    );
-    this.queries.StandardMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, StandardMaterial));
-    this.queries.StandardMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
-
-    this.queries.ShadowOnlyMaterial.added?.forEach((e: Entity) =>
-      this.setupMaterial(e, ShadowOnlyMaterial, BabylonShadowOnlyMaterial)
-    );
-    this.queries.ShadowOnlyMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, ShadowOnlyMaterial));
-    this.queries.ShadowOnlyMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
-
-    this.queries.BackgroundMaterial.added?.forEach((e: Entity) =>
-      this.setupMaterial(e, BackgroundMaterial, BabylonBackgroundMaterial)
-    );
-    this.queries.BackgroundMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, BackgroundMaterial));
-    this.queries.BackgroundMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
-
-    this.queries.PBRMaterial.added?.forEach((e: Entity) => this.setupMaterial(e, PbrMaterial, BabylonPBRMaterial));
-    this.queries.PBRMaterial.changed?.forEach((e: Entity) => this.updateMaterial(e, PbrMaterial));
-    this.queries.PBRMaterial.removed?.forEach((e: Entity) => this.removeMaterial(e));
-
     this.queries.Material.removed?.forEach((e: Entity) => this.remove(e));
     this.queries.Material.added?.forEach((e: Entity) => this.setup(e));
     this.queries.Material.changed?.forEach((e: Entity) => this.setup(e));
@@ -47,9 +20,7 @@ export default class MaterialSystem extends SystemWithCore {
   }
 
   hasMesh(entity: Entity, removed = false): boolean {
-    const component = removed
-      ? entity.getComponent(Mesh) || entity.getRemovedComponent(Mesh)
-      : entity.getComponent(Mesh);
+    const component = entity.getComponent(Mesh, removed);
 
     return !!component?.value;
   }
@@ -91,45 +62,6 @@ export default class MaterialSystem extends SystemWithCore {
     }
   }
 
-  setupMaterial(
-    entity: Entity,
-    Component: ComponentConstructor<PbrMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>,
-    MaterialClass: MaterialConstructor<BabylonMaterial>
-  ): void {
-    assert('MaterialSystem needs BabylonCoreComponent', this.core);
-
-    const props = entity.getComponent(Component);
-
-    const material = new MaterialClass(Component.name, this.core.scene);
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    assign(material, props!);
-
-    entity.addComponent(Material, { value: material });
-  }
-
-  updateMaterial(
-    entity: Entity,
-    Component: ComponentConstructor<PbrMaterial | ShadowOnlyMaterial | BackgroundMaterial | StandardMaterial>
-  ): void {
-    const mesh = this.getMesh(entity);
-    const materialComponent = entity.getComponent(Component);
-
-    if (mesh.material) {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      assign(mesh.material, materialComponent!);
-    }
-  }
-
-  removeMaterial(entity: Entity): void {
-    const component = entity.getComponent(Material, true)!;
-
-    if (component.value) {
-      component.value.dispose();
-    }
-
-    entity.removeComponent(Material);
-  }
-
   static queries = {
     ...queries,
     Material: {
@@ -137,38 +69,6 @@ export default class MaterialSystem extends SystemWithCore {
       listen: {
         added: true,
         changed: [Material],
-        removed: true,
-      },
-    },
-    StandardMaterial: {
-      components: [Mesh, StandardMaterial],
-      listen: {
-        added: true,
-        changed: [StandardMaterial],
-        removed: true,
-      },
-    },
-    BackgroundMaterial: {
-      components: [Mesh, BackgroundMaterial],
-      listen: {
-        added: true,
-        changed: [BackgroundMaterial],
-        removed: true,
-      },
-    },
-    PBRMaterial: {
-      components: [Mesh, PbrMaterial],
-      listen: {
-        added: true,
-        changed: [PbrMaterial],
-        removed: true,
-      },
-    },
-    ShadowOnlyMaterial: {
-      components: [Mesh, ShadowOnlyMaterial],
-      listen: {
-        added: true,
-        changed: [ShadowOnlyMaterial],
         removed: true,
       },
     },

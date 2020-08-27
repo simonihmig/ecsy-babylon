@@ -1,6 +1,6 @@
 import { Component, ComponentSchema, Types } from 'ecsy';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
-import { BabylonTypes } from '../-private/ecsy-types';
+import { BabylonTypes } from '../../-private/ecsy-types';
 
 export default class StandardMaterial extends Component<StandardMaterial> {
   ambientColor!: Color3;

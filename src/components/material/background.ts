@@ -2,7 +2,7 @@ import { Component, ComponentSchema, Types } from 'ecsy';
 import { Texture } from '@babylonjs/core/Materials/Textures/texture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Constants } from '@babylonjs/core/Engines/constants';
-import { BabylonTypes } from '../-private/ecsy-types';
+import { BabylonTypes } from '../../-private/ecsy-types';
 
 export default class BackgroundMaterial extends Component<BackgroundMaterial> {
   diffuseTexture!: Texture | null;
