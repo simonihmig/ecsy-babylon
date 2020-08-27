@@ -4,7 +4,7 @@ import { queries } from '../../-private/systems/with-core';
 import { Camera } from '@babylonjs/core/Cameras/camera';
 import FactoryArraySystem from '../../-private/systems/factory-array';
 
-export default class BlurPostProcessSystem extends FactoryArraySystem<
+export default class BlackAndWhitePostProcessSystem extends FactoryArraySystem<
   BlackAndWhitePostProcess,
   PostProcess<BlackAndWhitePostProcess, BabylonBlackAndWhitePostProcess>,
   BabylonBlackAndWhitePostProcess

@@ -13,7 +13,8 @@ import {
   ShadowSystem,
   PostProcessSystem,
   BlurPostProcessSystem,
-  BlackAndWhitePostProcess,
+  BlackAndWhitePostProcessSystem,
+  ArcRotateCameraSystem,
 } from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
@@ -21,6 +22,7 @@ const components = Object.values(_components) as ComponentConstructor<Component<
 const systems = [
   BabylonSystem,
   TransformSystem,
+  ArcRotateCameraSystem,
   CameraSystem,
   PrimitiveSystem,
   MeshSystem,
@@ -29,21 +31,10 @@ const systems = [
   ShadowSystem,
   ActionSystem,
   BlurPostProcessSystem,
-  BlackAndWhitePostProcess,
+  BlackAndWhitePostProcessSystem,
   PostProcessSystem,
 ] as SystemConstructor<System>[];
 
-export {
-  components,
-  systems,
-  ActionSystem,
-  BabylonSystem,
-  CameraSystem,
-  MeshSystem,
-  PrimitiveSystem,
-  TransformSystem,
-  MaterialSystem,
-  LightSystem,
-  ShadowSystem,
-};
+export { components, systems };
+export * from './systems';
 export * from './components';

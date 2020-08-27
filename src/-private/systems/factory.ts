@@ -14,7 +14,6 @@ export default abstract class FactorySystem<
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
-  protected abstract instanceConstructor: Function;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);
@@ -70,7 +69,7 @@ export default abstract class FactorySystem<
   }
 
   private removeInstance(entity: Entity): void {
-    const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
+    const instanceComponent = entity.getComponent(this.instanceComponentConstructor, true);
     assert('No instance component found', instanceComponent?.value);
 
     entity.removeComponent(this.instanceComponentConstructor);

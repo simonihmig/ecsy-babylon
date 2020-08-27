@@ -8,12 +8,14 @@ import LightSystem from './light';
 import ShadowSystem from './shadow';
 import ActionSystem from './action';
 import PostProcessSystem from './post-process';
+import ArcRotateCameraSystem from './camera/arc-rotate';
 import BlurPostProcessSystem from './post-process/blur';
-import BlackAndWhitePostProcess from './post-process/black-and-white';
+import BlackAndWhitePostProcessSystem from './post-process/black-and-white';
 
 export {
   BabylonSystem,
   TransformSystem,
+  ArcRotateCameraSystem,
   CameraSystem,
   PrimitiveSystem,
   MeshSystem,
@@ -23,5 +25,5 @@ export {
   ActionSystem,
   PostProcessSystem,
   BlurPostProcessSystem,
-  BlackAndWhitePostProcess,
+  BlackAndWhitePostProcessSystem,
 };

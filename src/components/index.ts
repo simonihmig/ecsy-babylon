@@ -1,5 +1,5 @@
 import BabylonCore from './babylon-core';
-import ArcRotateCamera from './arc-rotate-camera';
+import ArcRotateCamera from './camera/arc-rotate';
 import Mesh from './mesh';
 import Plane from './plane';
 import Box from './box';
