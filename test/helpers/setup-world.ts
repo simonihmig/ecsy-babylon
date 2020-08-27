@@ -3,10 +3,12 @@ import { BabylonCore } from '../../src/components';
 import { components, systems } from '../../src';
 import { NullEngine } from '@babylonjs/core/Engines/nullEngine';
 import { Component } from 'ecsy/src/Component';
+import { Engine } from '@babylonjs/core/Engines/engine';
 
 export interface SetupWorld {
   world: World;
   rootEntity: Entity;
+  engine: Engine;
 }
 
 export interface SetupWorldOptions {
@@ -29,16 +31,18 @@ export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld 
   }
 
   const rootEntity = world.createEntity();
+  const engine = new NullEngine();
 
   rootEntity.addComponent(BabylonCore, {
     world,
     canvas,
-    engine: new NullEngine(),
+    engine,
     ...(options.rootEntityValues ?? {}),
   });
 
   return {
     world,
     rootEntity,
+    engine,
   };
 }
