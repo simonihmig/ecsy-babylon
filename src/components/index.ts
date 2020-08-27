@@ -1,19 +1,20 @@
 import BabylonCore from './babylon-core';
-import ArcRotateCamera from './arc-rotate-camera';
+import ArcRotateCamera from './camera/arc-rotate';
 import Mesh from './mesh';
-import Plane from './plane';
-import Box from './box';
+import Plane from './primitive/plane';
+import Box from './primitive/box';
 import Camera from './camera';
-import Sphere from './sphere';
-import Lines from './lines';
+import Sphere from './primitive/sphere';
+import Lines from './primitive/lines';
 import Material from './material';
-import StandardMaterial from './standard-material';
-import PbrMaterial from './pbr-material';
-import BackgroundMaterial from './background-material';
-import ShadowOnlyMaterial from './shadow-only-material';
-import HemisphericLight from './hemispheric-light';
-import DirectionalLight from './directional-light';
-import PointLight from './point-light';
+import StandardMaterial from './material/standard';
+import PbrMaterial from './material/pbr';
+import BackgroundMaterial from './material/background';
+import ShadowOnlyMaterial from './material/shadow-only';
+import Light from './light';
+import HemisphericLight from './light/hemispheric';
+import DirectionalLight from './light/directional';
+import PointLight from './light/point';
 import ShadowGenerator from './shadow-generator';
 import TransformNode from './transform-node';
 import Position from './position';
@@ -39,6 +40,7 @@ export {
   PbrMaterial,
   BackgroundMaterial,
   ShadowOnlyMaterial,
+  Light,
   HemisphericLight,
   DirectionalLight,
   PointLight,

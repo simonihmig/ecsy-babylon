@@ -2,7 +2,7 @@ import { Component, ComponentSchema, Types } from 'ecsy';
 import { PBRMaterial as BabylonPBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { BaseTexture } from '@babylonjs/core/Materials/Textures/baseTexture';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
-import { BabylonTypes } from '../-private/ecsy-types';
+import { BabylonTypes } from '../../-private/ecsy-types';
 
 export default class PbrMaterial extends Component<PbrMaterial> {
   directIntensity!: number;

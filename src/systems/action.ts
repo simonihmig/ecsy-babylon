@@ -2,7 +2,7 @@
 
 import { Entity } from 'ecsy';
 import { Action, Mesh } from '../components';
-import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 import assert from '../-private/utils/assert';
 import { ActionManager } from '@babylonjs/core/Actions/actionManager';
 import { ExecuteCodeAction } from '@babylonjs/core/Actions/directActions';

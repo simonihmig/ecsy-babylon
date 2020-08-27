@@ -2,7 +2,7 @@ import { Entity } from 'ecsy';
 import { Camera, PostProcess } from '../components';
 import { Camera as BabylonCamera } from '@babylonjs/core/Cameras/camera';
 import { PostProcess as BabylonPostProcess } from '@babylonjs/core/PostProcesses/postProcess';
-import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 import assert from '../-private/utils/assert';
 
 export default class PostProcessSystem extends SystemWithCore {

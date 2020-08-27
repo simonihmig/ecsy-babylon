@@ -7,6 +7,7 @@ import {
   Lines,
   Parent,
   Position,
+  PbrMaterial,
   BlurPostProcess,
   Rotation,
   Sphere,
@@ -15,7 +16,6 @@ import {
 import { components, systems } from '../../src';
 import { Vector2, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
-import PbrMaterial from '../../src/components/pbr-material';
 import { Engine } from '@babylonjs/core/Engines/engine';
 
 const canvas = document.querySelector('canvas');

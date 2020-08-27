@@ -1,11 +1,12 @@
 import { Entity } from 'ecsy';
-import { ShadowGenerator, DirectionalLight, PointLight, Mesh } from '../components';
-import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import { Light, Mesh, ShadowGenerator } from '../components';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 import assert from '../-private/utils/assert';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
 import assign from '../-private/utils/assign';
+import { ShadowLight } from '@babylonjs/core/Lights/shadowLight';
 
 export default class ShadowSystem extends SystemWithCore {
   execute(): void {
@@ -22,26 +23,19 @@ export default class ShadowSystem extends SystemWithCore {
     super.afterExecute();
   }
 
-  getLightComponent(entity: Entity): DirectionalLight | PointLight {
-    const component = entity.getMutableComponent(DirectionalLight) || entity.getComponent(PointLight);
-
-    assert('No light component was found on this entity.', component);
-
-    return component;
-  }
-
   setup(entity: Entity): void {
     assert('ShadowSystem needs BabylonCoreComponent', this.core);
 
-    const lightComponent = this.getLightComponent(entity);
-    assert('No light instance was found on this light component.', lightComponent._light);
+    const lightComponent = entity.getComponent(Light);
+    assert('No light instance was found on this light component.', lightComponent?.value);
 
-    const light = lightComponent._light;
+    const light = lightComponent.value;
 
     const component = entity.getMutableComponent(ShadowGenerator)!;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { value, ...options } = component;
 
+    assert('ShadowLight instance required for shadows', light instanceof ShadowLight);
     const shadowGenerator = new _ShadowGenerator(options.size, light);
     assign(shadowGenerator, options);
 
