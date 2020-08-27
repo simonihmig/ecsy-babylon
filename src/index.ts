@@ -12,6 +12,7 @@ import {
   LightSystem,
   ShadowSystem,
   PostProcessSystem,
+  BlurPostProcessSystem,
 } from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
@@ -26,6 +27,7 @@ const systems = [
   LightSystem,
   ShadowSystem,
   ActionSystem,
+  BlurPostProcessSystem,
   PostProcessSystem,
 ] as SystemConstructor<System>[];
 
