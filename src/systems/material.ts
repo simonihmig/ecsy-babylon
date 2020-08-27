@@ -8,7 +8,7 @@ import { Scene } from '@babylonjs/core/scene';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import assert from '../-private/utils/assert';
 import assign from '../-private/utils/assign';
-import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };

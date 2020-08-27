@@ -1,79 +1,30 @@
-import { Entity } from 'ecsy';
 import { BlackAndWhitePostProcess, PostProcess } from '../../components';
-import { PostProcess as BabylonPostProcess } from '@babylonjs/core/PostProcesses/postProcess';
 import { BlackAndWhitePostProcess as BabylonBlackAndWhitePostProcess } from '@babylonjs/core/PostProcesses/blackAndWhitePostProcess';
-import SystemWithCore, { queries } from '../../-private/SystemWithCore';
-import assert from '../../-private/utils/assert';
-import assign from '../../-private/utils/assign';
+import { queries } from '../../-private/systems/with-core';
 import { Camera } from '@babylonjs/core/Cameras/camera';
+import FactoryArraySystem from '../../-private/systems/factory-array';
 
-export default class BlurPostProcessSystem extends SystemWithCore {
-  execute(): void {
-    super.execute();
+export default class BlurPostProcessSystem extends FactoryArraySystem<
+  BlackAndWhitePostProcess,
+  PostProcess<BlackAndWhitePostProcess, BabylonBlackAndWhitePostProcess>,
+  BabylonBlackAndWhitePostProcess
+> {
+  protected instanceComponentConstructor = PostProcess;
+  protected instanceConstructor = BabylonBlackAndWhitePostProcess;
 
-    this.queries.postprocess.added?.forEach((e: Entity) => this.setup(e));
-    this.queries.postprocess.changed?.forEach((e: Entity) => this.update(e));
-    this.queries.postprocess.removed?.forEach((e: Entity) => this.remove(e));
-
-    super.afterExecute();
-  }
-
-  setup(entity: Entity): void {
-    const c = entity.getMutableComponent(BlackAndWhitePostProcess)!;
-
-    const blur = new BabylonBlackAndWhitePostProcess(
+  protected create(c: BlackAndWhitePostProcess): BabylonBlackAndWhitePostProcess {
+    return new BabylonBlackAndWhitePostProcess(
       c.name,
       c.options,
       (null as unknown) as Camera, // class constructor is wrongly typed in Babylon
       c.samplingMode,
       this.core?.engine
     );
-
-    this.addPostProcess(entity, blur);
-  }
-
-  update(entity: Entity): void {
-    const c = entity.getComponent(BlackAndWhitePostProcess)!;
-    const ppComponent = entity.getComponent(PostProcess);
-    assert('No post-process component found', ppComponent?.value);
-    const pp = ppComponent.value.find((_pp) => _pp instanceof BabylonBlackAndWhitePostProcess);
-    assert('No post-process instance found', pp);
-
-    assign(pp, c);
-  }
-
-  remove(entity: Entity): void {
-    this.removePostProcess(entity, BabylonBlackAndWhitePostProcess);
-  }
-
-  private addPostProcess(entity: Entity, pp: BabylonPostProcess): void {
-    const ppComponent = entity.getMutableComponent(PostProcess);
-    if (ppComponent) {
-      assert('Existing post-process component has invalid value', ppComponent.value);
-      ppComponent.value = [...ppComponent.value, pp];
-    } else {
-      entity.addComponent(PostProcess, { value: [pp] });
-    }
-  }
-
-  private removePostProcess(entity: Entity, ppConstructor: Function): void {
-    const ppComponent = entity.getComponent(PostProcess);
-    assert('No post-process component found', ppComponent?.value);
-
-    const pps = ppComponent.value.filter((pp) => !(pp instanceof ppConstructor));
-    assert('No post-process instance found to remove', ppComponent.value.length > pps.length);
-
-    if (pps.length > 0) {
-      const _ppComponent = entity.getMutableComponent(PostProcess)!;
-      _ppComponent.value = [...pps];
-    } else {
-      entity.removeComponent(PostProcess);
-    }
   }
 
   static queries = {
     ...queries,
-    postprocess: {
+    factory: {
       components: [BlackAndWhitePostProcess],
       listen: {
         added: true,

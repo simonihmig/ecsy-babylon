@@ -1,6 +1,6 @@
 import { Entity } from 'ecsy';
 import { ShadowGenerator, DirectionalLight, PointLight, Mesh } from '../components';
-import SystemWithCore, { queries } from '../-private/SystemWithCore';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 import assert from '../-private/utils/assert';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
