@@ -1,12 +1,13 @@
 import { Entity } from 'ecsy';
-import { BlurPostProcess, PostProcess } from '../../components';
+import { BlackAndWhitePostProcess, PostProcess } from '../../components';
 import { PostProcess as BabylonPostProcess } from '@babylonjs/core/PostProcesses/postProcess';
-import { BlurPostProcess as BabylonBlurPostProcess } from '@babylonjs/core/PostProcesses/blurPostProcess';
+import { BlackAndWhitePostProcess as BabylonBlackAndWhitePostProcess } from '@babylonjs/core/PostProcesses/blackAndWhitePostProcess';
 import SystemWithCore, { queries } from '../../-private/SystemWithCore';
 import assert from '../../-private/utils/assert';
 import assign from '../../-private/utils/assign';
+import { Camera } from '@babylonjs/core/Cameras/camera';
 
-export default class BlackAndWhitePostProcessSystem extends SystemWithCore {
+export default class BlurPostProcessSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
@@ -18,14 +19,12 @@ export default class BlackAndWhitePostProcessSystem extends SystemWithCore {
   }
 
   setup(entity: Entity): void {
-    const c = entity.getMutableComponent(BlurPostProcess)!;
+    const c = entity.getMutableComponent(BlackAndWhitePostProcess)!;
 
-    const blur = new BabylonBlurPostProcess(
+    const blur = new BabylonBlackAndWhitePostProcess(
       c.name,
-      c.direction,
-      c.kernel,
       c.options,
-      null,
+      (null as unknown) as Camera, // class constructor is wrongly typed in Babylon
       c.samplingMode,
       this.core?.engine
     );
@@ -34,17 +33,17 @@ export default class BlackAndWhitePostProcessSystem extends SystemWithCore {
   }
 
   update(entity: Entity): void {
-    const c = entity.getComponent(BlurPostProcess)!;
+    const c = entity.getComponent(BlackAndWhitePostProcess)!;
     const ppComponent = entity.getComponent(PostProcess);
     assert('No post-process component found', ppComponent?.value);
-    const pp = ppComponent.value.find((_pp) => _pp instanceof BabylonBlurPostProcess);
+    const pp = ppComponent.value.find((_pp) => _pp instanceof BabylonBlackAndWhitePostProcess);
     assert('No post-process instance found', pp);
 
     assign(pp, c);
   }
 
   remove(entity: Entity): void {
-    this.removePostProcess(entity, BabylonBlurPostProcess);
+    this.removePostProcess(entity, BabylonBlackAndWhitePostProcess);
   }
 
   private addPostProcess(entity: Entity, pp: BabylonPostProcess): void {
@@ -75,7 +74,7 @@ export default class BlackAndWhitePostProcessSystem extends SystemWithCore {
   static queries = {
     ...queries,
     postprocess: {
-      components: [BlurPostProcess],
+      components: [BlackAndWhitePostProcess],
       listen: {
         added: true,
         changed: true,
