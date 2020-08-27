@@ -9,6 +9,7 @@ import ShadowSystem from './shadow';
 import ActionSystem from './action';
 import PostProcessSystem from './post-process';
 import BlurPostProcessSystem from './post-process/blur';
+import BlackAndWhitePostProcess from './post-process/black-and-white';
 
 export {
   BabylonSystem,
@@ -22,4 +23,5 @@ export {
   ActionSystem,
   PostProcessSystem,
   BlurPostProcessSystem,
+  BlackAndWhitePostProcess,
 };

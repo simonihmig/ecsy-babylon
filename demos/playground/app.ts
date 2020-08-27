@@ -10,6 +10,7 @@ import {
   BlurPostProcess,
   Rotation,
   Sphere,
+  BlackAndWhitePostProcess,
 } from '../../src/components';
 import { components, systems } from '../../src';
 import { Vector2, Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -55,7 +56,8 @@ world
     name: 'Horizontal blur',
     direction: new Vector2(1.0, 0),
     kernel: 32,
-  });
+  })
+  .addComponent(BlackAndWhitePostProcess);
 
 world
   .createEntity()
