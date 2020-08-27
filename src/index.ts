@@ -15,6 +15,9 @@ import {
   BlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
   ArcRotateCameraSystem,
+  DirectionalLightSystem,
+  HemisphericLightSystem,
+  PointLightSystem,
 } from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
@@ -27,6 +30,9 @@ const systems = [
   PrimitiveSystem,
   MeshSystem,
   MaterialSystem,
+  DirectionalLightSystem,
+  HemisphericLightSystem,
+  PointLightSystem,
   LightSystem,
   ShadowSystem,
   ActionSystem,

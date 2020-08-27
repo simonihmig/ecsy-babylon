@@ -11,9 +11,10 @@ import StandardMaterial from './standard-material';
 import PbrMaterial from './pbr-material';
 import BackgroundMaterial from './background-material';
 import ShadowOnlyMaterial from './shadow-only-material';
-import HemisphericLight from './hemispheric-light';
-import DirectionalLight from './directional-light';
-import PointLight from './point-light';
+import Light from './light';
+import HemisphericLight from './light/hemispheric';
+import DirectionalLight from './light/directional';
+import PointLight from './light/point';
 import ShadowGenerator from './shadow-generator';
 import TransformNode from './transform-node';
 import Position from './position';
@@ -39,6 +40,7 @@ export {
   PbrMaterial,
   BackgroundMaterial,
   ShadowOnlyMaterial,
+  Light,
   HemisphericLight,
   DirectionalLight,
   PointLight,

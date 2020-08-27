@@ -1,10 +1,9 @@
 import { ComponentSchema, Types } from 'ecsy';
 import { ShadowLight as BabylonShadowLight } from '@babylonjs/core/Lights/shadowLight';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
-import { BabylonTypes } from '../-private/ecsy-types';
+import { BabylonTypes } from '../../-private/ecsy-types';
 import Light, { schema as baseSchema } from './_light';
 
-// eslint-disable-next-line no-undef
 export default abstract class ShadowLight<C, L extends BabylonShadowLight> extends Light<C, L> {
   position!: Vector3;
   shadowMinZ?: number;

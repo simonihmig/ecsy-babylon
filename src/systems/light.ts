@@ -1,121 +1,42 @@
-import { ComponentConstructor, Entity, System } from 'ecsy';
-import { DirectionalLight, HemisphericLight, PointLight, TransformNode } from '../components';
-import { HemisphericLight as _HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
-import { DirectionalLight as _DirectionalLight } from '@babylonjs/core/Lights/directionalLight';
-import { PointLight as _PointLight } from '@babylonjs/core/Lights/pointLight';
-import { Light as _Light } from '@babylonjs/core/Lights/light';
-import { Scene } from '@babylonjs/core/scene';
-import Light from '../components/_light';
+import { Entity, System } from 'ecsy';
+import { Light, TransformNode } from '../components';
 import assert from '../-private/utils/assert';
-import assign from '../-private/utils/assign';
 
 export default class LightSystem extends System {
   execute(): void {
-    this.queries.hemisphericLight.added?.forEach((e: Entity) => this.setupHemisphericLight(e, HemisphericLight));
-    this.queries.directionalLight.added?.forEach((e: Entity) => this.setupDirectionalLight(e, DirectionalLight));
-    this.queries.pointLight.added?.forEach((e: Entity) => this.setupPointLight(e, PointLight));
-
-    this.queries.hemisphericLight.changed?.forEach((e: Entity) => this.update(e, HemisphericLight));
-    this.queries.directionalLight.changed?.forEach((e: Entity) => this.update(e, DirectionalLight));
-    this.queries.pointLight.changed?.forEach((e: Entity) => this.update(e, PointLight));
-
-    this.queries.hemisphericLight.removed?.forEach((e: Entity) => this.remove(e, HemisphericLight));
-    this.queries.directionalLight.removed?.forEach((e: Entity) => this.remove(e, DirectionalLight));
-    this.queries.pointLight.removed?.forEach((e: Entity) => this.remove(e, PointLight));
+    this.queries.light.added?.forEach((e: Entity) => this.setup(e));
+    this.queries.light.changed?.forEach((e: Entity) => this.update(e));
+    this.queries.light.removed?.forEach((e: Entity) => this.remove(e));
   }
 
-  setupHemisphericLight(entity: Entity, Component: ComponentConstructor<HemisphericLight>): void {
-    const component = entity.getMutableComponent(Component)!;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { _light, direction, ...options } = component;
-
-    component._light = new _HemisphericLight(
-      HemisphericLight.name,
-      direction,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
-    );
-
-    assign(component._light, options);
+  setup(entity: Entity): void {
+    const component = entity.getComponent(Light)!;
+    assert('No light instance found', component.value);
 
     const transformNodeComponent = entity.getComponent(TransformNode);
     assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
 
-    component._light.parent = transformNodeComponent.value;
+    component.value.parent = transformNodeComponent.value;
   }
 
-  setupPointLight(entity: Entity, Component: ComponentConstructor<PointLight>): void {
-    const component = entity.getMutableComponent(Component)!;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { _light, position, ...options } = component;
+  update(entity: Entity): void {
+    const { previousValue: prevInstance } = entity.getComponent(Light)!;
 
-    component._light = new _PointLight(
-      PointLight.name,
-      position,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
-    );
+    this.setup(entity);
 
-    assign(component._light, options);
-
-    const transformNodeComponent = entity.getComponent(TransformNode);
-    assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
-
-    component._light.parent = transformNodeComponent.value;
-  }
-
-  setupDirectionalLight(entity: Entity, Component: ComponentConstructor<DirectionalLight>): void {
-    const component = entity.getMutableComponent(Component)!;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { _light, direction, ...options } = component;
-
-    component._light = new _DirectionalLight(
-      DirectionalLight.name,
-      direction,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
-    );
-
-    assign(component._light, options);
-
-    const transformNodeComponent = entity.getComponent(TransformNode);
-    assert('TransformNode needed for lights, add Parent component to fix', transformNodeComponent);
-
-    component._light.parent = transformNodeComponent.value;
-  }
-
-  update<L extends Light<L, _Light>>(entity: Entity, Component: ComponentConstructor<L>): void {
-    const component = entity.getComponent(Component)!;
-    const { _light, ...rest } = component;
-    assert('No light instance found', _light);
-
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    assign(_light as _Light, rest);
-  }
-
-  remove<L extends Light<L, _Light>>(entity: Entity, Component: ComponentConstructor<L>): void {
-    const component = entity.getRemovedComponent(Component)!;
-    if (component._light) {
-      component._light.dispose();
+    if (prevInstance) {
+      prevInstance.dispose();
     }
   }
 
+  remove(entity: Entity): void {
+    const component = entity.getComponent(Light, true)!;
+    component.value?.dispose();
+  }
+
   static queries = {
-    hemisphericLight: {
-      components: [HemisphericLight],
-      listen: {
-        added: true,
-        changed: true,
-        removed: true,
-      },
-    },
-    directionalLight: {
-      components: [DirectionalLight],
-      listen: {
-        added: true,
-        changed: true,
-        removed: true,
-      },
-    },
-    pointLight: {
-      components: [PointLight],
+    light: {
+      components: [Light],
       listen: {
         added: true,
         changed: true,
