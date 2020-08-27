@@ -17,7 +17,7 @@ export default class PostProcessSystem extends SystemWithCore {
   }
 
   setup(entity: Entity): void {
-    const ppComponent = entity.getMutableComponent(PostProcess);
+    const ppComponent = entity.getComponent(PostProcess);
 
     assert('Failed to add PostProcess Component. No valid PostProcess found.', !!ppComponent?.value);
 
