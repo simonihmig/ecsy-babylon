@@ -15,6 +15,7 @@ export default abstract class FactorySystem<
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
+  protected recreateInstanceOnUpdate = false;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);
@@ -47,11 +48,20 @@ export default abstract class FactorySystem<
 
   update(entity: Entity): void {
     const c = entity.getComponent(this.factoryComponentConstructor)!;
-    const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
-    assert('No instance component found', instanceComponent);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    assign(instanceComponent.value, c);
+
+    if (this.recreateInstanceOnUpdate) {
+      const instanceComponent = entity.getMutableComponent(this.instanceComponentConstructor);
+      assert('No instance component found', instanceComponent);
+
+      const instance = this.create(c);
+      instanceComponent.value = instance;
+    } else {
+      const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
+      assert('No instance component found', instanceComponent);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      assign(instanceComponent.value, c);
+    }
   }
 
   remove(entity: Entity): void {

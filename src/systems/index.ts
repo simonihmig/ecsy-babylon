@@ -1,7 +1,6 @@
 import BabylonSystem from './babylon';
 import CameraSystem from './camera';
 import TransformSystem from './transform';
-import PrimitiveSystem from './primitive';
 import MeshSystem from './mesh';
 import MaterialSystem from './material';
 import LightSystem from './light';
@@ -18,13 +17,20 @@ import PbrMaterialSystem from './material/pbr';
 import StandardMaterialSystem from './material/standard';
 import BackgroundMaterialSystem from './material/background';
 import ShadowOnlyMaterialSystem from './material/shadow-only';
+import BoxPrimitiveSystem from './primitive/box';
+import LinesPrimitiveSystem from './primitive/lines';
+import PlanePrimitiveSystem from './primitive/plane';
+import SpherePrimitiveSystem from './primitive/sphere';
 
 export {
   BabylonSystem,
   TransformSystem,
   ArcRotateCameraSystem,
   CameraSystem,
-  PrimitiveSystem,
+  BoxPrimitiveSystem,
+  LinesPrimitiveSystem,
+  PlanePrimitiveSystem,
+  SpherePrimitiveSystem,
   MeshSystem,
   PbrMaterialSystem,
   StandardMaterialSystem,

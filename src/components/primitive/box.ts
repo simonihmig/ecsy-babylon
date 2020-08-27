@@ -1,7 +1,7 @@
 import { Component, ComponentSchema, Types } from 'ecsy';
 import { Mesh } from '@babylonjs/core/Meshes/mesh';
 
-export default class BoxComponent extends Component<BoxComponent> {
+export default class Box extends Component<Box> {
   size!: number;
   width?: number;
   height?: number;
