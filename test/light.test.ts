@@ -1,6 +1,7 @@
-import { BabylonCore, Parent, PointLight, DirectionalLight, HemisphericLight } from '../src/components';
+import { BabylonCore, Parent, PointLight, DirectionalLight, HemisphericLight, SpotLight } from '../src/components';
 import { PointLight as BabylonPointLight } from '@babylonjs/core/Lights/pointLight';
 import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { SpotLight as BabylonSpotLight } from '@babylonjs/core/Lights/spotLight';
 import { HemisphericLight as BabylonHemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
@@ -156,6 +157,90 @@ describe('light system', function () {
       expect(scene.lights).toHaveLength(0);
     });
   });
+  describe('spot-light', function () {
+    it('can add spot-light', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const lightEntity = world.createEntity();
+      lightEntity.addComponent(Parent).addComponent(SpotLight);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      expect(scene.lights).toHaveLength(1);
+
+      const light = scene.lights[0] as BabylonSpotLight;
+      expect(light).toBeInstanceOf(BabylonSpotLight);
+      expect(light.intensity).toEqual(1);
+      expect(light.direction.equalsToFloats(0, -1, 0)).toBeTrue();
+      expect(light.angle).toBeCloseTo(Math.PI / 3);
+      expect(light.exponent).toEqual(2);
+    });
+
+    it('can add spot-light with custom arguments', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const lightEntity = world.createEntity();
+      lightEntity
+        .addComponent(Parent)
+        .addComponent(SpotLight, { intensity: 2, direction: new Vector3(1, 0, 0), angle: Math.PI, exponent: 1 });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      expect(scene.lights).toHaveLength(1);
+
+      const light = scene.lights[0] as BabylonSpotLight;
+      expect(light).toBeInstanceOf(BabylonSpotLight);
+      expect(light.intensity).toEqual(2);
+      expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
+      expect(light.angle).toBeCloseTo(Math.PI);
+      expect(light.exponent).toEqual(1);
+    });
+
+    it('can update spot-light', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const lightEntity = world.createEntity();
+      lightEntity.addComponent(Parent).addComponent(SpotLight);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = lightEntity.getMutableComponent(SpotLight)!;
+      Object.assign(component, { intensity: 2, direction: new Vector3(1, 0, 0), angle: Math.PI, exponent: 1 });
+
+      world.execute(0, 0);
+
+      expect(scene.lights).toHaveLength(1);
+
+      const light = scene.lights[0] as BabylonSpotLight;
+      expect(light).toBeInstanceOf(BabylonSpotLight);
+      expect(light.intensity).toEqual(2);
+      expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
+      expect(light.angle).toBeCloseTo(Math.PI);
+      expect(light.exponent).toEqual(1);
+    });
+
+    it('can remove spot-light', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const lightEntity = world.createEntity();
+      lightEntity.addComponent(Parent).addComponent(SpotLight);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      lightEntity.remove();
+      world.execute(0, 0);
+
+      expect(scene.lights).toHaveLength(0);
+    });
+  });
+
   describe('hemispheric-light', function () {
     it('can add hemispheric-light', function () {
       const { world, rootEntity } = setupWorld();
