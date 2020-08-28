@@ -13,6 +13,7 @@ import BackgroundMaterial from './material/background';
 import ShadowOnlyMaterial from './material/shadow-only';
 import Light from './light';
 import HemisphericLight from './light/hemispheric';
+import SpotLight from './light/spot';
 import DirectionalLight from './light/directional';
 import PointLight from './light/point';
 import ShadowGenerator from './shadow-generator';
@@ -43,6 +44,7 @@ export {
   Light,
   HemisphericLight,
   DirectionalLight,
+  SpotLight,
   PointLight,
   ShadowGenerator,
   TransformNode,

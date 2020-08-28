@@ -9,6 +9,7 @@ import ActionSystem from './action';
 import PostProcessSystem from './post-process';
 import ArcRotateCameraSystem from './camera/arc-rotate';
 import DirectionalLightSystem from './light/directional';
+import SpotLightSystem from './light/spot';
 import BlurPostProcessSystem from './post-process/blur';
 import BlackAndWhitePostProcessSystem from './post-process/black-and-white';
 import HemisphericLightSystem from './light/hemispheric';
@@ -38,6 +39,7 @@ export {
   ShadowOnlyMaterialSystem,
   MaterialSystem,
   DirectionalLightSystem,
+  SpotLightSystem,
   HemisphericLightSystem,
   PointLightSystem,
   LightSystem,

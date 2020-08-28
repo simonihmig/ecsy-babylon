@@ -23,6 +23,7 @@ import {
   BlackAndWhitePostProcessSystem,
   ArcRotateCameraSystem,
   DirectionalLightSystem,
+  SpotLightSystem,
   HemisphericLightSystem,
   PointLightSystem,
 } from './systems';
@@ -45,6 +46,7 @@ const systems = [
   ShadowOnlyMaterialSystem,
   MaterialSystem,
   DirectionalLightSystem,
+  SpotLightSystem,
   HemisphericLightSystem,
   PointLightSystem,
   LightSystem,
