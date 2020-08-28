@@ -5,10 +5,12 @@ import {
   PostProcess,
   BlurPostProcess,
   BlackAndWhitePostProcess,
+  MotionBlurPostProcess,
 } from '../src/components';
 import setupWorld from './helpers/setup-world';
 import { PassPostProcess } from '@babylonjs/core/PostProcesses/passPostProcess';
 import { BlurPostProcess as BabylonBlurPostProcess } from '@babylonjs/core/PostProcesses/blurPostProcess';
+import { MotionBlurPostProcess as BabylonMotionBlurPostProcess } from '@babylonjs/core/PostProcesses/motionBlurPostProcess';
 import { BlackAndWhitePostProcess as BabylonBlackAndWhitePostProcess } from '@babylonjs/core/PostProcesses/blackAndWhitePostProcess';
 import { Vector2 } from '@babylonjs/core/Maths/math.vector';
 
@@ -298,6 +300,101 @@ describe('post-processing system', function () {
 
         const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(BlackAndWhitePostProcess);
+
+        world.execute(0, 0);
+
+        expect(scene.postProcesses).toHaveLength(0);
+
+        const cameraPPs = scene.activeCamera!._postProcesses.filter(Boolean);
+        expect(cameraPPs).toHaveLength(0);
+      });
+    });
+    describe('motion-blur', function () {
+      it('can add post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+        expect(scene.postProcesses).toHaveLength(1);
+        const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
+        expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
+        expect(pp.name).toEqual('motion-blur');
+        expect(pp.motionStrength).toEqual(1);
+        expect(pp.motionBlurSamples).toEqual(32);
+
+        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+      });
+
+      it('can add post-process with custom properties', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess, {
+          name: 'test',
+          motionBlurSamples: 16,
+          motionStrength: 2,
+        });
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+        expect(scene.postProcesses).toHaveLength(1);
+        const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
+        expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
+        expect(pp.name).toEqual('test');
+        expect(pp.motionStrength).toEqual(2);
+        expect(pp.motionBlurSamples).toEqual(16);
+
+        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+      });
+
+      it('can update post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+        const c = cameraEntity.getMutableComponent(MotionBlurPostProcess);
+        Object.assign(c, {
+          name: 'test',
+          motionBlurSamples: 16,
+          motionStrength: 2,
+        });
+
+        world.execute(0, 0);
+
+        expect(scene.postProcesses).toHaveLength(1);
+        const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
+        expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
+        expect(pp.name).toEqual('test');
+        expect(pp.motionStrength).toEqual(2);
+        expect(pp.motionBlurSamples).toEqual(16);
+
+        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+      });
+
+      it('can remove post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+        cameraEntity.removeComponent(MotionBlurPostProcess);
 
         world.execute(0, 0);
 

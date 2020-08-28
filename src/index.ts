@@ -20,6 +20,7 @@ import {
   ShadowSystem,
   PostProcessSystem,
   BlurPostProcessSystem,
+  MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
   ArcRotateCameraSystem,
   DirectionalLightSystem,
@@ -51,6 +52,7 @@ const systems = [
   ShadowSystem,
   ActionSystem,
   BlurPostProcessSystem,
+  MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
   PostProcessSystem,
 ] as SystemConstructor<System>[];

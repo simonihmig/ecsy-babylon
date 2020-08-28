@@ -23,8 +23,9 @@ import Scale from './scale';
 import Action from './action';
 import Parent from './parent';
 import PostProcess from './post-process';
-import BlurPostProcess from './post-process/blur';
 import BlackAndWhitePostProcess from './post-process/black-and-white';
+import BlurPostProcess from './post-process/blur';
+import MotionBlurPostProcess from './post-process/motion-blur';
 
 export {
   BabylonCore,
@@ -52,6 +53,7 @@ export {
   Action,
   Parent,
   PostProcess,
-  BlurPostProcess,
   BlackAndWhitePostProcess,
+  BlurPostProcess,
+  MotionBlurPostProcess,
 };
