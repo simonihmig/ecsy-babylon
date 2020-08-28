@@ -11,6 +11,7 @@ import ArcRotateCameraSystem from './camera/arc-rotate';
 import DirectionalLightSystem from './light/directional';
 import SpotLightSystem from './light/spot';
 import BlurPostProcessSystem from './post-process/blur';
+import MotionBlurPostProcessSystem from './post-process/motion-blur';
 import BlackAndWhitePostProcessSystem from './post-process/black-and-white';
 import HemisphericLightSystem from './light/hemispheric';
 import PointLightSystem from './light/point';
@@ -47,5 +48,6 @@ export {
   ActionSystem,
   PostProcessSystem,
   BlurPostProcessSystem,
+  MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
 };

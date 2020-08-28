@@ -3,7 +3,7 @@ import { BlurPostProcess as BabylonBlurPostProcess } from '@babylonjs/core/PostP
 import { queries } from '../../-private/systems/with-core';
 import FactoryArraySystem from '../../-private/systems/factory-array';
 
-export default class BlackAndWhitePostProcessSystem extends FactoryArraySystem<
+export default class BlurPostProcessSystem extends FactoryArraySystem<
   BlurPostProcess,
   PostProcess<BlurPostProcess, BabylonBlurPostProcess>,
   BabylonBlurPostProcess
