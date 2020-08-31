@@ -5,7 +5,13 @@
  */
 import { Component } from 'ecsy';
 
-export default function assign<T extends object>(target: T, source: Partial<T> | Component<Partial<T>>): void {
+export default function assign<T extends object>(
+  target: T,
+  source: Partial<T> | Component<Partial<T>> | undefined | null
+): void {
+  if (!source) {
+    return;
+  }
   for (const [key, value] of Object.entries(source)) {
     if (value !== undefined) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

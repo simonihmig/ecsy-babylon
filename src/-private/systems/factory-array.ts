@@ -58,13 +58,17 @@ export default abstract class FactoryArraySystem<
     assert('Existing instance array component has invalid value', ic.value);
     const instance = ic.value.find((i) => i instanceof this.instanceConstructor);
     assert('No instance found', instance);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    assign(instance, c);
+    this.updateInstance(instance, c);
   }
 
   remove(entity: Entity): void {
     this.removeInstance(entity);
+  }
+
+  protected updateInstance(instance: I, c: C): void {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    assign(instance, c);
   }
 
   private addInstance(entity: Entity, instance: I): void {
