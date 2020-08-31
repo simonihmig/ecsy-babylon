@@ -1,10 +1,19 @@
-import { ArcRotateCamera, BabylonCore, BlurPostProcess, Parent, PostProcessRenderPipeline } from '../src/components';
+import {
+  ArcRotateCamera,
+  BabylonCore,
+  DefaultRenderingPipeline,
+  Parent,
+  PostProcessRenderPipeline,
+  SsaoRenderingPipeline,
+} from '../src/components';
 import setupWorld from './helpers/setup-world';
 import { BlurPostProcess as BabylonBlurPostProcess } from '@babylonjs/core/PostProcesses/blurPostProcess';
 import { BlackAndWhitePostProcess as BabylonBlackAndWhitePostProcess } from '@babylonjs/core/PostProcesses/blackAndWhitePostProcess';
 import { Vector2 } from '@babylonjs/core/Maths/math.vector';
 import { PostProcessRenderPipeline as BabylonPostProcessRenderPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/postProcessRenderPipeline';
 import { PostProcessRenderEffect as BabylonPostProcessRenderEffect } from '@babylonjs/core/PostProcesses/RenderPipeline/postProcessRenderEffect';
+import { SSAORenderingPipeline as BabylonSSAORenderingPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/Pipelines/ssaoRenderingPipeline';
+import { DefaultRenderingPipeline as BabylonDefaultRenderingPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/Pipelines/defaultRenderingPipeline';
 import { Camera } from '@babylonjs/core/Cameras/camera';
 import { Engine } from '@babylonjs/core/Engines/engine';
 
@@ -138,26 +147,30 @@ describe('post-process-render-pipeline system', function () {
     });
   });
 
-  describe.skip('builders', function () {
-    describe('blur', function () {
+  describe('builders', function () {
+    describe('default', function () {
       it('can add post-process', function () {
         const { world, rootEntity } = setupWorld();
 
         const cameraEntity = world.createEntity();
-        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
         const { scene } = rootEntity.getComponent(BabylonCore)!;
 
-        expect(scene.postProcesses).toHaveLength(1);
-        const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
-        expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('blur');
-        expect(pp.kernel).toEqual(1);
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
+        expect(pp.name).toEqual('defaultPipeline');
+        expect(pp.sharpenEnabled).toBeFalse();
+        expect(pp.bloomEnabled).toBeFalse();
+        expect(pp.bloomKernel).toEqual(64);
+        expect(pp.imageProcessingEnabled).toBeTrue();
+        expect(pp.imageProcessing.contrast).toEqual(1);
+        expect(pp.imageProcessing.colorGradingEnabled).toBeFalse();
 
-        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
-        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
       });
 
       it('can add post-process with custom properties', function () {
@@ -167,68 +180,176 @@ describe('post-process-render-pipeline system', function () {
         cameraEntity
           .addComponent(Parent)
           .addComponent(ArcRotateCamera)
-          .addComponent(BlurPostProcess, {
+          .addComponent(DefaultRenderingPipeline, {
             name: 'test',
-            kernel: 3,
-            direction: new Vector2(2, 0),
+            sharpenEnabled: true,
+            bloomEnabled: true,
+            bloomKernel: 32,
+            imageProcessing: {
+              contrast: 0.5,
+              colorGradingEnabled: true,
+            },
           });
 
         world.execute(0, 0);
 
         const { scene } = rootEntity.getComponent(BabylonCore)!;
 
-        expect(scene.postProcesses).toHaveLength(1);
-        const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
-        expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
         expect(pp.name).toEqual('test');
-        expect(pp.kernel).toEqual(3);
-        expect(pp.direction.x).toEqual(2);
-        expect(pp.direction.y).toEqual(0);
+        expect(pp.sharpenEnabled).toBeTrue();
+        expect(pp.bloomEnabled).toBeTrue();
+        expect(pp.bloomKernel).toEqual(32);
+        expect(pp.imageProcessingEnabled).toBeTrue();
+        expect(pp.imageProcessing.contrast).toEqual(0.5);
+        expect(pp.imageProcessing.colorGradingEnabled).toBeTrue();
 
-        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
-        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
       });
 
       it('can update post-process', function () {
         const { world, rootEntity } = setupWorld();
 
         const cameraEntity = world.createEntity();
-        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
         const { scene } = rootEntity.getComponent(BabylonCore)!;
-        const c = cameraEntity.getMutableComponent(BlurPostProcess);
+        const c = cameraEntity.getMutableComponent(DefaultRenderingPipeline);
         Object.assign(c, {
-          name: 'test',
-          kernel: 3,
-          direction: new Vector2(2, 0),
+          sharpenEnabled: true,
+          bloomEnabled: true,
+          bloomKernel: 32,
+          imageProcessing: {
+            contrast: 0.5,
+            colorGradingEnabled: true,
+          },
         });
 
         world.execute(0, 0);
 
-        expect(scene.postProcesses).toHaveLength(1);
-        const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
-        expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.kernel).toEqual(3);
-        expect(pp.direction.x).toEqual(2);
-        expect(pp.direction.y).toEqual(0);
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
+        expect(pp.sharpenEnabled).toBeTrue();
+        expect(pp.bloomEnabled).toBeTrue();
+        expect(pp.bloomKernel).toEqual(32);
+        expect(pp.imageProcessingEnabled).toBeTrue();
+        expect(pp.imageProcessing.contrast).toEqual(0.5);
+        expect(pp.imageProcessing.colorGradingEnabled).toBeTrue();
 
-        expect(scene.activeCamera?._postProcesses).toHaveLength(1);
-        expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
       });
 
       it('can remove post-process', function () {
         const { world, rootEntity } = setupWorld();
 
         const cameraEntity = world.createEntity();
-        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
         const { scene } = rootEntity.getComponent(BabylonCore)!;
-        cameraEntity.removeComponent(BlurPostProcess);
+        cameraEntity.removeComponent(DefaultRenderingPipeline);
+
+        world.execute(0, 0);
+
+        expect(scene.postProcesses).toHaveLength(0);
+
+        const cameraPPs = scene.activeCamera!._postProcesses.filter(Boolean);
+        expect(cameraPPs).toHaveLength(0);
+      });
+    });
+
+    // we cannot test this, as this requires canvas support in node. Could install `canvas` package, for now skipping tests...
+    describe.skip('ssao', function () {
+      it('can add post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonSSAORenderingPipeline);
+        expect(pp.name).toEqual('ssao');
+
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+      });
+
+      it('can add post-process with custom properties', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline, {
+          name: 'test',
+          radius: 0.01,
+          area: 0.02,
+        });
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonSSAORenderingPipeline);
+        expect(pp.name).toEqual('test');
+        expect(pp.radius).toEqual(0.01);
+        expect(pp.area).toEqual(0.02);
+
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+      });
+
+      it('can update post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+        const c = cameraEntity.getMutableComponent(SsaoRenderingPipeline);
+        Object.assign(c, {
+          name: 'test',
+          radius: 0.01,
+          area: 0.02,
+        });
+
+        world.execute(0, 0);
+
+        expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
+        const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
+        expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
+        expect(pp.name).toEqual('test');
+        expect(pp.radius).toEqual(0.01);
+        expect(pp.area).toEqual(0.02);
+
+        // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
+        // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
+      });
+
+      it('can remove post-process', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+        cameraEntity.removeComponent(SsaoRenderingPipeline);
 
         world.execute(0, 0);
 

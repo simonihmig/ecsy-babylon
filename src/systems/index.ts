@@ -24,6 +24,8 @@ import LinesPrimitiveSystem from './primitive/lines';
 import PlanePrimitiveSystem from './primitive/plane';
 import SpherePrimitiveSystem from './primitive/sphere';
 import PostProcessRenderPipelineSystem from './post-process-render-pipeline';
+import SsaoRenderPipelineSystem from './post-process-render-pipeline/ssao';
+import DefaultRenderPipelineSystem from './post-process-render-pipeline/default';
 
 export {
   BabylonSystem,
@@ -52,4 +54,6 @@ export {
   MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
   PostProcessRenderPipelineSystem,
+  SsaoRenderPipelineSystem,
+  DefaultRenderPipelineSystem,
 };

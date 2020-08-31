@@ -3,18 +3,17 @@ import {
   ArcRotateCamera,
   BabylonCore,
   Box,
+  DefaultRenderingPipeline,
   DirectionalLight,
   Lines,
   Parent,
-  Position,
   PbrMaterial,
-  BlurPostProcess,
+  Position,
   Rotation,
   Sphere,
-  BlackAndWhitePostProcess,
 } from '../../src/components';
 import { components, systems } from '../../src';
-import { Vector2, Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { Engine } from '@babylonjs/core/Engines/engine';
 
@@ -52,12 +51,10 @@ world
   .createEntity()
   .addComponent(Parent)
   .addComponent(ArcRotateCamera, { alpha: Math.PI * 1.5, beta: 1.3 })
-  .addComponent(BlurPostProcess, {
-    name: 'Horizontal blur',
-    direction: new Vector2(1.0, 0),
-    kernel: 32,
-  })
-  .addComponent(BlackAndWhitePostProcess);
+  .addComponent(DefaultRenderingPipeline, {
+    sharpenEnabled: true,
+    bloomEnabled: true,
+  });
 
 world
   .createEntity()

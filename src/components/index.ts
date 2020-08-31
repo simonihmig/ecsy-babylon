@@ -28,6 +28,8 @@ import BlackAndWhitePostProcess from './post-process/black-and-white';
 import BlurPostProcess from './post-process/blur';
 import MotionBlurPostProcess from './post-process/motion-blur';
 import PostProcessRenderPipeline from './post-process-render-pipeline';
+import SsaoRenderingPipeline from './post-process-render-pipeline/ssao';
+import DefaultRenderingPipeline from './post-process-render-pipeline/default';
 
 export {
   BabylonCore,
@@ -60,4 +62,6 @@ export {
   BlurPostProcess,
   MotionBlurPostProcess,
   PostProcessRenderPipeline,
+  SsaoRenderingPipeline,
+  DefaultRenderingPipeline,
 };

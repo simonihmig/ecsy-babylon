@@ -36,8 +36,10 @@ export default class PostProcessRenderPipelineSystem extends SystemWithCore {
   private addPostProcess(camera: BabylonCamera, pp: BabylonPostProcessRenderPipeline): void {
     const { postProcessRenderPipelineManager } = camera.getScene();
 
-    postProcessRenderPipelineManager.addPipeline(pp);
-    postProcessRenderPipelineManager.attachCamerasToRenderPipeline(pp.name, camera);
+    if (!postProcessRenderPipelineManager.supportedPipelines.includes(pp)) {
+      postProcessRenderPipelineManager.addPipeline(pp);
+      postProcessRenderPipelineManager.attachCamerasToRenderPipeline(pp.name, camera);
+    }
   }
 
   private removePostProcess(camera: BabylonCamera, pp: BabylonPostProcessRenderPipeline): void {
