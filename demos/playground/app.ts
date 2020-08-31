@@ -52,8 +52,12 @@ world
   .addComponent(Parent)
   .addComponent(ArcRotateCamera, { alpha: Math.PI * 1.5, beta: 1.3 })
   .addComponent(DefaultRenderingPipeline, {
-    sharpenEnabled: true,
-    bloomEnabled: true,
+    depthOfFieldEnabled: true,
+    fxaaEnabled: true,
+    depthOfField: {
+      focusDistance: 5000,
+      focalLength: 150,
+    },
   });
 
 world
