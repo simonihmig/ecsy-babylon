@@ -23,6 +23,7 @@ import BoxPrimitiveSystem from './primitive/box';
 import LinesPrimitiveSystem from './primitive/lines';
 import PlanePrimitiveSystem from './primitive/plane';
 import SpherePrimitiveSystem from './primitive/sphere';
+import PostProcessRenderPipelineSystem from './post-process-render-pipeline';
 
 export {
   BabylonSystem,
@@ -50,4 +51,5 @@ export {
   BlurPostProcessSystem,
   MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
+  PostProcessRenderPipelineSystem,
 };

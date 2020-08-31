@@ -27,6 +27,7 @@ import {
   SpotLightSystem,
   HemisphericLightSystem,
   PointLightSystem,
+  PostProcessRenderPipelineSystem,
 } from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
@@ -57,6 +58,7 @@ const systems = [
   MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
   PostProcessSystem,
+  PostProcessRenderPipelineSystem,
 ] as SystemConstructor<System>[];
 
 export { components, systems };
