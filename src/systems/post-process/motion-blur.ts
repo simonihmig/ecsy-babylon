@@ -6,7 +6,7 @@ import assign from '../../-private/utils/assign';
 
 export default class MotionMotionBlurPostProcessSystem extends FactoryArraySystem<
   MotionBlurPostProcess,
-  PostProcess<MotionBlurPostProcess, BabylonMotionBlurPostProcess>,
+  PostProcess<BabylonMotionBlurPostProcess>,
   BabylonMotionBlurPostProcess
 > {
   protected instanceComponentConstructor = PostProcess;

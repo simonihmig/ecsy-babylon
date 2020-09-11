@@ -9,7 +9,7 @@ import { Entity } from 'ecsy';
 
 export default class TargetCameraSystem extends FactorySystem<
   TargetCamera,
-  Camera<TargetCamera, BabylonTargetCamera>,
+  Camera<BabylonTargetCamera>,
   BabylonTargetCamera
 > {
   protected instanceComponentConstructor = Camera;
@@ -28,10 +28,7 @@ export default class TargetCameraSystem extends FactorySystem<
   update(entity: Entity): void {
     const { target, ...rest } = entity.getComponent(this.factoryComponentConstructor)!;
 
-    const instanceComponent = entity.getComponent(this.instanceComponentConstructor) as Camera<
-      unknown,
-      BabylonTargetCamera
-    >;
+    const instanceComponent = entity.getComponent(this.instanceComponentConstructor) as Camera<BabylonTargetCamera>;
     assert('No instance component found', instanceComponent?.value);
     const camera = instanceComponent.value;
 

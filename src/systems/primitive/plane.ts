@@ -5,7 +5,7 @@ import FactorySystem from '../../-private/systems/factory';
 import assert from '../../-private/utils/assert';
 import { PlaneBuilder } from '@babylonjs/core/Meshes/Builders/planeBuilder';
 
-export default class PlanePrimitiveSystem extends FactorySystem<Plane, Mesh<Plane, BabylonMesh>, BabylonMesh> {
+export default class PlanePrimitiveSystem extends FactorySystem<Plane, Mesh<BabylonMesh>, BabylonMesh> {
   protected instanceComponentConstructor = Mesh;
   protected recreateInstanceOnUpdate = true;
 

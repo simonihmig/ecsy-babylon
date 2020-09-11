@@ -7,7 +7,7 @@ import assert from '../../-private/utils/assert';
 
 export default class PbrMaterialSystem extends FactorySystem<
   PbrMaterial,
-  Material<PbrMaterial, BabylonPBRMaterial>,
+  Material<BabylonPBRMaterial>,
   BabylonPBRMaterial
 > {
   protected instanceComponentConstructor = Material;

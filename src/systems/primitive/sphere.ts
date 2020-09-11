@@ -5,7 +5,7 @@ import FactorySystem from '../../-private/systems/factory';
 import assert from '../../-private/utils/assert';
 import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 
-export default class SpherePrimitiveSystem extends FactorySystem<Sphere, Mesh<Sphere, BabylonMesh>, BabylonMesh> {
+export default class SpherePrimitiveSystem extends FactorySystem<Sphere, Mesh<BabylonMesh>, BabylonMesh> {
   protected instanceComponentConstructor = Mesh;
   protected recreateInstanceOnUpdate = true;
 

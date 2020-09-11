@@ -9,7 +9,7 @@ import { Scene } from '@babylonjs/core/scene';
 
 export default class DirectionalLightSystem extends FactorySystem<
   DirectionalLight,
-  Light<DirectionalLight, BabylonDirectionalLight>,
+  Light<BabylonDirectionalLight>,
   BabylonDirectionalLight
 > {
   protected instanceComponentConstructor = Light;

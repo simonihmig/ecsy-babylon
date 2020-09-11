@@ -5,7 +5,7 @@ import FactoryArraySystem from '../../-private/systems/factory-array';
 
 export default class BlurPostProcessSystem extends FactoryArraySystem<
   BlurPostProcess,
-  PostProcess<BlurPostProcess, BabylonBlurPostProcess>,
+  PostProcess<BabylonBlurPostProcess>,
   BabylonBlurPostProcess
 > {
   protected instanceComponentConstructor = PostProcess;

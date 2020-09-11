@@ -6,7 +6,7 @@ import FactoryArraySystem from '../../-private/systems/factory-array';
 
 export default class BlackAndWhitePostProcessSystem extends FactoryArraySystem<
   BlackAndWhitePostProcess,
-  PostProcess<BlackAndWhitePostProcess, BabylonBlackAndWhitePostProcess>,
+  PostProcess<BabylonBlackAndWhitePostProcess>,
   BabylonBlackAndWhitePostProcess
 > {
   protected instanceComponentConstructor = PostProcess;

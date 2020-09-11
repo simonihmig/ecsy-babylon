@@ -8,7 +8,7 @@ import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 
 export default class SsaoRenderPipelineSystem extends FactoryArraySystem<
   SsaoRenderingPipeline,
-  PostProcessRenderPipeline<SsaoRenderingPipeline, BabylonSSAORenderingPipeline>,
+  PostProcessRenderPipeline<BabylonSSAORenderingPipeline>,
   BabylonSSAORenderingPipeline
 > {
   protected instanceComponentConstructor = PostProcessRenderPipeline;

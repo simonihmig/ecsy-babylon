@@ -7,7 +7,7 @@ import assert from '../../-private/utils/assert';
 
 export default class ArcRotateCameraSystem extends FactorySystem<
   ArcRotateCamera,
-  Camera<ArcRotateCamera, BabylonArcRotateCamera>,
+  Camera<BabylonArcRotateCamera>,
   BabylonArcRotateCamera
 > {
   protected instanceComponentConstructor = Camera;
