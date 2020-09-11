@@ -1,8 +1,9 @@
-import { Component, ComponentSchema, Types } from 'ecsy';
+import { ComponentSchema, Types } from 'ecsy';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { BabylonTypes } from '../../-private/ecsy-types';
+import { AbstractTargetCamera, schema as baseSchema } from './target';
 
-export default class ArcRotateCamera extends Component<ArcRotateCamera> {
+export default class ArcRotateCamera extends AbstractTargetCamera<ArcRotateCamera> {
   alpha!: number;
   beta!: number;
   radius!: number;
@@ -17,6 +18,7 @@ export default class ArcRotateCamera extends Component<ArcRotateCamera> {
   upperRadiusLimit!: number | null;
 
   static schema: ComponentSchema = {
+    ...baseSchema,
     alpha: { type: Types.Number },
     beta: { type: Types.Number },
     radius: { type: Types.Number, default: 10 },

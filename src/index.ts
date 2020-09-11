@@ -22,6 +22,7 @@ import {
   BlurPostProcessSystem,
   MotionBlurPostProcessSystem,
   BlackAndWhitePostProcessSystem,
+  TargetCameraSystem,
   ArcRotateCameraSystem,
   DirectionalLightSystem,
   SpotLightSystem,
@@ -37,6 +38,7 @@ const components = Object.values(_components) as ComponentConstructor<Component<
 const systems = [
   BabylonSystem,
   TransformSystem,
+  TargetCameraSystem,
   ArcRotateCameraSystem,
   CameraSystem,
   BoxPrimitiveSystem,

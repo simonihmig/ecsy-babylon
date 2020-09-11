@@ -1,4 +1,5 @@
 import BabylonCore from './babylon-core';
+import TargetCamera from './camera/target';
 import ArcRotateCamera from './camera/arc-rotate';
 import Mesh from './mesh';
 import Plane from './primitive/plane';
@@ -33,6 +34,7 @@ import DefaultRenderingPipeline from './post-process-render-pipeline/default';
 
 export {
   BabylonCore,
+  TargetCamera,
   ArcRotateCamera,
   Mesh,
   Plane,
