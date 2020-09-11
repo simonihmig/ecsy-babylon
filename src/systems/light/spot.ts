@@ -7,11 +7,7 @@ import assert from '../../-private/utils/assert';
 import Light from '../../components/light';
 import { Scene } from '@babylonjs/core/scene';
 
-export default class SpotLightSystem extends FactorySystem<
-  SpotLight,
-  Light<SpotLight, BabylonSpotLight>,
-  BabylonSpotLight
-> {
+export default class SpotLightSystem extends FactorySystem<SpotLight, Light<BabylonSpotLight>, BabylonSpotLight> {
   protected instanceComponentConstructor = Light;
 
   protected create(c: SpotLight): BabylonSpotLight {

@@ -9,7 +9,7 @@ import { Scene } from '@babylonjs/core/scene';
 
 export default class HemisphericLightSystem extends FactorySystem<
   HemisphericLight,
-  Light<HemisphericLight, BabylonHemisphericLight>,
+  Light<BabylonHemisphericLight>,
   BabylonHemisphericLight
 > {
   protected instanceComponentConstructor = Light;

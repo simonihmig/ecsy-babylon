@@ -8,7 +8,7 @@ import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 
 export default class DefaultRenderPipelineSystem extends FactoryArraySystem<
   DefaultRenderingPipeline,
-  PostProcessRenderPipeline<DefaultRenderingPipeline, BabylonDefaultRenderingPipeline>,
+  PostProcessRenderPipeline<BabylonDefaultRenderingPipeline>,
   BabylonDefaultRenderingPipeline
 > {
   protected instanceComponentConstructor = PostProcessRenderPipeline;
@@ -23,7 +23,7 @@ export default class DefaultRenderPipelineSystem extends FactoryArraySystem<
     return instance;
   }
 
-  protected updateInstance(instance: BabylonDefaultRenderingPipeline, c: DefaultRenderingPipeline) {
+  protected updateInstance(instance: BabylonDefaultRenderingPipeline, c: DefaultRenderingPipeline): void {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { name, imageProcessing, chromaticAberration, depthOfField, fxaa, glowLayer, grain, sharpen, ...args } = c;
     assign(instance, args);

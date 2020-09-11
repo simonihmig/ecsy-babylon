@@ -7,7 +7,7 @@ import assert from '../../-private/utils/assert';
 
 export default class ShadowOnlyMaterialSystem extends FactorySystem<
   ShadowOnlyMaterial,
-  Material<ShadowOnlyMaterial, BabylonShadowOnlyMaterial>,
+  Material<BabylonShadowOnlyMaterial>,
   BabylonShadowOnlyMaterial
 > {
   protected instanceComponentConstructor = Material;

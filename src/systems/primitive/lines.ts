@@ -5,7 +5,7 @@ import FactorySystem from '../../-private/systems/factory';
 import assert from '../../-private/utils/assert';
 import { LinesBuilder } from '@babylonjs/core/Meshes/Builders/linesBuilder';
 
-export default class LinesPrimitiveSystem extends FactorySystem<Lines, Mesh<Lines, BabylonMesh>, BabylonMesh> {
+export default class LinesPrimitiveSystem extends FactorySystem<Lines, Mesh<BabylonMesh>, BabylonMesh> {
   protected instanceComponentConstructor = Mesh;
   protected recreateInstanceOnUpdate = true;
 

@@ -5,7 +5,7 @@ import FactorySystem from '../../-private/systems/factory';
 import assert from '../../-private/utils/assert';
 import { BoxBuilder } from '@babylonjs/core/Meshes/Builders/boxBuilder';
 
-export default class BoxPrimitiveSystem extends FactorySystem<Box, Mesh<Box, BabylonMesh>, BabylonMesh> {
+export default class BoxPrimitiveSystem extends FactorySystem<Box, Mesh<BabylonMesh>, BabylonMesh> {
   protected instanceComponentConstructor = Mesh;
   protected recreateInstanceOnUpdate = true;
 
