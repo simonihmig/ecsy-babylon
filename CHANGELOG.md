@@ -1,3 +1,29 @@
+## v0.4.0 (2020-09-11)
+
+#### :boom: Breaking Change
+* [#264](https://github.com/kaliber5/ecsy-babylon/pull/264) Fix types of instance components ([@simonihmig](https://github.com/simonihmig))
+* [#239](https://github.com/kaliber5/ecsy-babylon/pull/239) Refactor to use new FactorySystems ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#263](https://github.com/kaliber5/ecsy-babylon/pull/263) Add basic TargetCamera ([@simonihmig](https://github.com/simonihmig))
+* [#242](https://github.com/kaliber5/ecsy-babylon/pull/242) Add PostProcess pipelines support, including Default and SSAO pipelines ([@simonihmig](https://github.com/simonihmig))
+* [#241](https://github.com/kaliber5/ecsy-babylon/pull/241) Add motion-blur post process ([@simonihmig](https://github.com/simonihmig))
+* [#240](https://github.com/kaliber5/ecsy-babylon/pull/240) Add spot lights ([@simonihmig](https://github.com/simonihmig))
+* [#239](https://github.com/kaliber5/ecsy-babylon/pull/239) Refactor to use new FactorySystems ([@simonihmig](https://github.com/simonihmig))
+* [#238](https://github.com/kaliber5/ecsy-babylon/pull/238) Add black-and-white post-process ([@simonihmig](https://github.com/simonihmig))
+* [#237](https://github.com/kaliber5/ecsy-babylon/pull/237) Add blur post-process ([@simonihmig](https://github.com/simonihmig))
+* [#236](https://github.com/kaliber5/ecsy-babylon/pull/236) Add initial Postprocesses support ([@simonihmig](https://github.com/simonihmig))
+* [#235](https://github.com/kaliber5/ecsy-babylon/pull/235) Refactor camera system to use camera instance component ([@simonihmig](https://github.com/simonihmig))
+* [#234](https://github.com/kaliber5/ecsy-babylon/pull/234) Introduce InstanceComponent ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#264](https://github.com/kaliber5/ecsy-babylon/pull/264) Fix types of instance components ([@simonihmig](https://github.com/simonihmig))
+* [#233](https://github.com/kaliber5/ecsy-babylon/pull/233) Fix demos ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.3.0 (2020-08-25)
 
 ## v0.3.0-2 (2020-08-25)
