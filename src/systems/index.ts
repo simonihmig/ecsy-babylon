@@ -26,10 +26,12 @@ import SpherePrimitiveSystem from './primitive/sphere';
 import PostProcessRenderPipelineSystem from './post-process-render-pipeline';
 import SsaoRenderPipelineSystem from './post-process-render-pipeline/ssao';
 import DefaultRenderPipelineSystem from './post-process-render-pipeline/default';
+import TargetCameraSystem from './camera/target';
 
 export {
   BabylonSystem,
   TransformSystem,
+  TargetCameraSystem,
   ArcRotateCameraSystem,
   CameraSystem,
   BoxPrimitiveSystem,
