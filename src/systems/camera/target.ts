@@ -17,12 +17,15 @@ export default class TargetCameraSystem extends FactorySystem<
   protected create(c: TargetCamera): BabylonTargetCamera {
     assert('CameraSystem needs BabylonCoreComponent', this.core);
 
-    const { position, ...rest } = c;
+    const { position, target, ...rest } = c;
     const { scene } = this.core;
-    const instance = new BabylonTargetCamera(TargetCamera.name, position ?? Vector3.Zero(), scene, false);
-    assign(instance, rest);
+    const camera = new BabylonTargetCamera(TargetCamera.name, position ?? Vector3.Zero(), scene, false);
+    assign(camera, rest);
+    if (target) {
+      camera.setTarget(target);
+    }
 
-    return instance;
+    return camera;
   }
 
   update(entity: Entity): void {
