@@ -78,6 +78,8 @@ export default class DefaultRenderingPipeline extends Component<DefaultRendering
   depthOfFieldBlurLevel?: number;
   depthOfField: Partial<DepthOfFieldOptions> | null | undefined;
 
+  samples?: number;
+
   fxaaEnabled?: boolean;
   fxaa: Partial<FxaaOptions> | null | undefined;
 
@@ -105,8 +107,10 @@ export default class DefaultRenderingPipeline extends Component<DefaultRendering
     depthOfFieldEnabled: { type: Types.Boolean, default: undefined },
     depthOfFieldBlurLevel: { type: Types.Number, default: undefined },
     depthOfField: { type: Types.JSON },
-
     fxaaEnabled: { type: Types.Boolean, default: undefined },
+
+    samples: { type: Types.Number, default: undefined },
+
     fxaa: { type: Types.JSON },
     glowLayerEnabled: { type: Types.Boolean, default: undefined },
     glowLayer: { type: Types.JSON },
