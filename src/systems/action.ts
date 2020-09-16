@@ -7,6 +7,7 @@ import assert from '../-private/utils/assert';
 import { ActionManager } from '@babylonjs/core/Actions/actionManager';
 import { ExecuteCodeAction } from '@babylonjs/core/Actions/directActions';
 import { AbstractActionManager } from '@babylonjs/core/Actions/abstractActionManager';
+import '@babylonjs/core/Culling/ray'; // this has a side effect of making the scene support picks/rays, see https://doc.babylonjs.com/features/es6_support#side-effects
 
 const TRIGGER = {
   pick: ActionManager.OnPickTrigger,
