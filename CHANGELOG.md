@@ -1,3 +1,11 @@
+## v0.4.2 (2020-09-16)
+
+#### :bug: Bug Fix
+* [#274](https://github.com/kaliber5/ecsy-babylon/pull/274) Fix missing samples property in DefaultRenderingPipeline ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.4.1 (2020-09-16)
 
 #### :rocket: Enhancement
