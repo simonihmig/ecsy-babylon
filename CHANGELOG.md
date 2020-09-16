@@ -1,3 +1,15 @@
+## v0.4.1 (2020-09-16)
+
+#### :rocket: Enhancement
+* [#273](https://github.com/kaliber5/ecsy-babylon/pull/273) Extend StandardMaterial properties ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#265](https://github.com/kaliber5/ecsy-babylon/pull/265) Fix setting initial target for TargetCamera ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.4.0 (2020-09-11)
 
 #### :boom: Breaking Change
