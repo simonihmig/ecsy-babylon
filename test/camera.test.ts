@@ -1,22 +1,10 @@
 import { ArcRotateCamera, TargetCamera, BabylonCore, Parent } from '../src/components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { TargetCamera as BabylonTargetCamera } from '@babylonjs/core/Cameras/targetCamera';
-import { Camera } from '@babylonjs/core/Cameras/camera';
 import setupWorld from './helpers/setup-world';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
 describe('camera system', function () {
-  it('works with default camera', function () {
-    const { world, rootEntity } = setupWorld();
-
-    world.execute(0, 0);
-
-    const { scene } = rootEntity.getComponent(BabylonCore)!;
-
-    expect(scene.activeCamera).toBeInstanceOf(Camera);
-    expect(scene.cameras).toHaveLength(1);
-  });
-
   describe('arc-rotate camera', function () {
     it('can add arc-rotate camera', function () {
       const { world, rootEntity } = setupWorld();
@@ -133,9 +121,8 @@ describe('camera system', function () {
       cameraEntity.remove();
       world.execute(0, 0);
 
-      expect(scene.activeCamera).toBeInstanceOf(Camera);
-      expect(scene.activeCamera).not.toEqual(camera);
-      expect(scene.cameras).toHaveLength(1);
+      expect(scene.activeCamera).toBeNull();
+      expect(scene.cameras).toHaveLength(0);
     });
 
     it('throws without parent component', function () {
@@ -236,9 +223,8 @@ describe('camera system', function () {
       cameraEntity.remove();
       world.execute(0, 0);
 
-      expect(scene.activeCamera).toBeInstanceOf(Camera);
-      expect(scene.activeCamera).not.toEqual(camera);
-      expect(scene.cameras).toHaveLength(1);
+      expect(scene.activeCamera).toBeNull();
+      expect(scene.cameras).toHaveLength(0);
     });
   });
 });
