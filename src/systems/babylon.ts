@@ -1,9 +1,7 @@
 import { Entity, System } from 'ecsy';
 import { BabylonCore } from '../components';
 import { Scene } from '@babylonjs/core/scene';
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Engine } from '@babylonjs/core/Engines/engine';
-import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 
 export default class BabylonSystem extends System {
   listener?: EventListener;
@@ -19,13 +17,13 @@ export default class BabylonSystem extends System {
     core.engine = core.engine || new Engine(core.canvas, true, {}, false);
     core.scene = new Scene(core.engine);
 
-    core.defaultCamera = new FreeCamera('defaultCamera', new Vector3(0, 0, -10), core.scene);
-    core.defaultCamera.attachControl(core.canvas, false);
-
     this.listener = function (this: { engine: Engine }): void {
       this.engine.resize();
     }.bind({ engine: core.engine });
 
+    // @todo do we really want to do this here? Or should we delegate the responsibility ot the consumer?
+    // For example the canvas might need to even react to resizing the canvas *element*, not just the
+    // while window, i.e. we would have to use a ResizeObserver
     window.addEventListener('resize', this.listener);
 
     const startTime = window.performance.now();

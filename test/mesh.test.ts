@@ -40,7 +40,7 @@ describe('mesh system', function () {
 
     expect(scene.meshes).toHaveLength(1);
     expect(scene.transformNodes).toHaveLength(1);
-    expect(scene.rootNodes).toHaveLength(2); // TN + default camera
+    expect(scene.rootNodes).toHaveLength(1);
 
     const mesh = scene.meshes[0];
     const tn = scene.transformNodes[0];

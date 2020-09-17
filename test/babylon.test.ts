@@ -30,10 +30,10 @@ describe('babylon system', function () {
 
     expect(beforeRender).toHaveBeenCalled();
     expect(beforeRender.mock.calls[0][0]).toBe(0);
-    expect(beforeRender.mock.calls[0][1]).toBeGreaterThan(10); // an animation frame
+    expect(beforeRender.mock.calls[0][1]).toBeGreaterThan(1); // an animation frame
 
     expect(afterRender).toHaveBeenCalled();
     expect(afterRender.mock.calls[0][0]).toBe(0);
-    expect(afterRender.mock.calls[0][1]).toBeGreaterThan(10); // an animation frame
+    expect(afterRender.mock.calls[0][1]).toBeGreaterThan(1); // an animation frame
   });
 });
