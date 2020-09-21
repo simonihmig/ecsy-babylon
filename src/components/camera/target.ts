@@ -10,6 +10,7 @@ export const schema: ComponentSchema = {
   maxZ: { type: Types.Number, default: undefined },
   inertia: { type: Types.Number, default: undefined },
   fov: { type: Types.Number, default: undefined },
+  fovMode: { type: Types.Number, default: undefined },
 };
 
 export abstract class AbstractTargetCamera<C> extends Component<C> {
@@ -20,6 +21,7 @@ export abstract class AbstractTargetCamera<C> extends Component<C> {
   maxZ?: number;
   inertia?: number;
   fov?: number;
+  fovMode?: number;
 
   static schema: ComponentSchema = schema;
 }
