@@ -1,3 +1,17 @@
+## v0.5.0 (2020-09-21)
+
+#### :boom: Breaking Change
+* [#276](https://github.com/kaliber5/ecsy-babylon/pull/276) Don't add default camera to scene ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#276](https://github.com/kaliber5/ecsy-babylon/pull/276) Don't add default camera to scene ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#275](https://github.com/kaliber5/ecsy-babylon/pull/275) Fix actions not working when ray support has not been enabled due to tree-shaking ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.4.2 (2020-09-16)
 
 #### :bug: Bug Fix
