@@ -2,8 +2,8 @@ import { SpotLight } from '../../components';
 import { SpotLight as BabylonSpotLight } from '@babylonjs/core/Lights/spotLight';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assign from '../../-private/utils/assign';
-import assert from '../../-private/utils/assert';
+import { assign } from '../../-private/utils/assign';
+import { assert } from '../../-private/utils/debug';
 import Light from '../../components/light';
 import { Scene } from '@babylonjs/core/scene';
 

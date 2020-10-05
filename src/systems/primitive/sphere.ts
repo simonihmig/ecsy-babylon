@@ -2,7 +2,7 @@ import { Sphere, Mesh } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assert from '../../-private/utils/assert';
+import { assert } from '../../-private/utils/debug';
 import { SphereBuilder } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
 
 export default class SpherePrimitiveSystem extends FactorySystem<Sphere, Mesh<BabylonMesh>, BabylonMesh> {

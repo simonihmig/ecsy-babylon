@@ -2,7 +2,7 @@ import { MotionBlurPostProcess, PostProcess } from '../../components';
 import { MotionBlurPostProcess as BabylonMotionBlurPostProcess } from '@babylonjs/core/PostProcesses/motionBlurPostProcess';
 import { queries } from '../../-private/systems/with-core';
 import FactoryArraySystem from '../../-private/systems/factory-array';
-import assign from '../../-private/utils/assign';
+import { assign } from '../../-private/utils/assign';
 
 export default class MotionMotionBlurPostProcessSystem extends FactoryArraySystem<
   MotionBlurPostProcess,

@@ -2,7 +2,7 @@ import { Box, Mesh } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assert from '../../-private/utils/assert';
+import { assert } from '../../-private/utils/debug';
 import { BoxBuilder } from '@babylonjs/core/Meshes/Builders/boxBuilder';
 
 export default class BoxPrimitiveSystem extends FactorySystem<Box, Mesh<BabylonMesh>, BabylonMesh> {

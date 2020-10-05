@@ -1,8 +1,8 @@
 import { Entity } from 'ecsy';
 import { Mesh, TransformNode, Material } from '../components';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
-import assert from '../-private/utils/assert';
-import assign from '../-private/utils/assign';
+import { assert } from '../-private/utils/debug';
+import { assign } from '../-private/utils/assign';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 
 function detachFromScene(mesh: AbstractMesh): void {

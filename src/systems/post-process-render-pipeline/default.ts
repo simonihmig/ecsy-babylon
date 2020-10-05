@@ -1,8 +1,8 @@
 import { DefaultRenderingPipeline, PostProcessRenderPipeline } from '../../components';
 import { queries } from '../../-private/systems/with-core';
-import assert from '../../-private/utils/assert';
+import { assert } from '../../-private/utils/debug';
 import { DefaultRenderingPipeline as BabylonDefaultRenderingPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/Pipelines/defaultRenderingPipeline';
-import assign from '../../-private/utils/assign';
+import { assign } from '../../-private/utils/assign';
 import FactoryArraySystem from '../../-private/systems/factory-array';
 import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 

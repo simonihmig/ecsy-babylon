@@ -3,7 +3,7 @@ import { Camera, PostProcessRenderPipeline } from '../components';
 import { Camera as BabylonCamera } from '@babylonjs/core/Cameras/camera';
 import { PostProcessRenderPipeline as BabylonPostProcessRenderPipeline } from '@babylonjs/core/PostProcesses/RenderPipeline/postProcessRenderPipeline';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 import '@babylonjs/core/PostProcesses/RenderPipeline/postProcessRenderPipelineManagerSceneComponent';
 
 export default class PostProcessRenderPipelineSystem extends SystemWithCore {

@@ -2,7 +2,7 @@ import { Lines, Mesh } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assert from '../../-private/utils/assert';
+import { assert } from '../../-private/utils/debug';
 import { LinesBuilder } from '@babylonjs/core/Meshes/Builders/linesBuilder';
 
 export default class LinesPrimitiveSystem extends FactorySystem<Lines, Mesh<BabylonMesh>, BabylonMesh> {

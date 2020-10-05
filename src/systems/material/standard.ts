@@ -2,8 +2,8 @@ import { Material, StandardMaterial } from '../../components';
 import { StandardMaterial as BabylonStandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assign from '../../-private/utils/assign';
-import assert from '../../-private/utils/assert';
+import { assign } from '../../-private/utils/assign';
+import { assert } from '../../-private/utils/debug';
 
 export default class StandardMaterialSystem extends FactorySystem<
   StandardMaterial,

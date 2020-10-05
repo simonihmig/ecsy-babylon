@@ -2,8 +2,8 @@ import { TargetCamera, Camera } from '../../components';
 import { TargetCamera as BabylonTargetCamera } from '@babylonjs/core/Cameras/targetCamera';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assign from '../../-private/utils/assign';
-import assert from '../../-private/utils/assert';
+import { assign } from '../../-private/utils/assign';
+import { assert } from '../../-private/utils/debug';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Entity } from 'ecsy';
 

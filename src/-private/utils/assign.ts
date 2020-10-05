@@ -4,8 +4,24 @@
  * @param source
  */
 import { Component } from 'ecsy';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { assert } from './debug';
 
-export default function assign<T extends object>(
+function assignV3(targetValue: Vector3, value: unknown): void {
+  if (value instanceof Vector3) {
+    targetValue.copyFrom(value);
+  } else {
+    assert('Expected a Vector3 or object', typeof value === 'object');
+    const { x, y, z } = value as { x: number; y: number; z: number };
+    assert(
+      'Object needs x, y, z properties to be applied to Vector3',
+      Number.isFinite(x) && Number.isFinite(y) && Number.isFinite(z)
+    );
+    targetValue.set(x, y, z);
+  }
+}
+
+export function assign<T extends object>(
   target: T,
   source: Partial<T> | Component<Partial<T>> | undefined | null
 ): void {
@@ -18,5 +34,15 @@ export default function assign<T extends object>(
       // @ts-ignore
       target[key] = value;
     }
+  }
+}
+
+export function assignProperty<T extends object>(target: T, property: keyof T, value: T[typeof property]): void {
+  const originalValue = target[property];
+
+  if (originalValue instanceof Vector3) {
+    assignV3(originalValue, value);
+  } else {
+    target[property] = value;
   }
 }

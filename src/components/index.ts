@@ -24,6 +24,7 @@ import Rotation from './rotation';
 import Scale from './scale';
 import Action from './action';
 import Parent from './parent';
+import Transitions from './transitions';
 import PostProcess from './post-process';
 import BlackAndWhitePostProcess from './post-process/black-and-white';
 import BlurPostProcess from './post-process/blur';
@@ -66,4 +67,5 @@ export {
   PostProcessRenderPipeline,
   SsaoRenderingPipeline,
   DefaultRenderingPipeline,
+  Transitions,
 };

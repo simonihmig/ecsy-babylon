@@ -1,7 +1,7 @@
 import { Component, ComponentConstructor, Entity } from 'ecsy';
 import SystemWithCore from '../../-private/systems/with-core';
-import assert from '../../-private/utils/assert';
-import assign from '../../-private/utils/assign';
+import { assert } from '../utils/debug';
+import { assign } from '../../-private/utils/assign';
 import InstanceArrayComponent from '../../components/_instance-array';
 import { World } from 'ecsy/src/World';
 import { Attributes } from 'ecsy/src/System';
