@@ -1,8 +1,7 @@
 import { Entity, System } from 'ecsy';
-import { Position, Rotation, Scale, TransformNode, Parent } from '../components';
+import { Parent, Position, Rotation, Scale, TransformNode } from '../components';
 import guidFor from '../-private/utils/guid';
 import assert from '../-private/utils/assert';
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 
 export default class TransformSystem extends System {
@@ -90,12 +89,12 @@ export default class TransformSystem extends System {
   position(entity: Entity): void {
     const tn = this.getTransformNode(entity);
     const positionComponent = entity.getComponent(Position)!;
-    tn.position = positionComponent.value;
+    tn.position.copyFrom(positionComponent.value);
   }
 
   removePosition(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
-    tn.position = new Vector3(0, 0, 0);
+    tn.position.setAll(0);
   }
 
   rotation(entity: Entity): void {
@@ -113,18 +112,18 @@ export default class TransformSystem extends System {
 
   removeRotation(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
-    Object.assign(tn.rotation, { x: 0, y: 0, z: 0 });
+    tn.rotation.setAll(0);
   }
 
   scale(entity: Entity): void {
     const tn = this.getTransformNode(entity);
     const scaleComponent = entity.getComponent(Scale)!;
-    tn.scaling = scaleComponent.value;
+    tn.scaling.copyFrom(scaleComponent.value);
   }
 
   removeScale(entity: Entity): void {
     const tn = this.getTransformNode(entity, true);
-    Object.assign(tn.scaling, { x: 1, y: 1, z: 1 });
+    tn.scaling.setAll(1);
   }
 
   static queries = {
