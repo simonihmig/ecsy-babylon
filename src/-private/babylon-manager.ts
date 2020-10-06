@@ -3,8 +3,10 @@ import { TransitionConfig } from '../components/transitions';
 import { Entity } from 'ecsy';
 import { TransformNode } from '../components';
 import { assert } from './utils/debug';
-import { Engine } from '@babylonjs/core/Engines/engine';
 import { Animation } from '@babylonjs/core/Animations/animation';
+import { IAnimatable } from '@babylonjs/core/Animations/animatable.interface';
+import { Scene } from '@babylonjs/core/scene';
+import { TransformNode as BabelTransformNode } from '@babylonjs/core/Meshes/transformNode';
 
 export default class BabylonManager {
   private transitionRegistry = new WeakMap<Entity, Map<string, TransitionConfig>>();
@@ -26,7 +28,7 @@ export default class BabylonManager {
     assert(`No target found for transition of ${property}`, target);
     const transition = this.getTransition(entity, property);
 
-    if (this.hasAnimationSupport && transition) {
+    if (this.hasAnimationSupport && transition && transition.duration > 0) {
       this.transitionProperty(target, transition, value);
     } else {
       assignProperty(target as never, property, value as never);
@@ -42,9 +44,13 @@ export default class BabylonManager {
     transitionSet.set(config.property, config);
   }
 
-  private transitionProperty(target: object, transitionConfig: TransitionConfig, value: unknown): void {
+  private transitionProperty(
+    target: IAnimatable & { getScene: () => Scene },
+    transitionConfig: TransitionConfig,
+    value: unknown
+  ): void {
     // @todo where to get the Scene from properly?
-    const scene = Engine.LastCreatedScene!;
+    const scene = target.getScene();
     const { property, frameRate, duration } = transitionConfig;
     const { Animation } = this;
 
@@ -58,7 +64,22 @@ export default class BabylonManager {
       Animation.ANIMATIONLOOPMODE_CONSTANT
     );
 
-    this.Animation!.TransitionTo(property, value, target, scene, frameRate, transition, duration);
+    // code mostly taken from Animation.TransitionTo, which we cannot use as it stops existing animations
+    const endFrame: number = frameRate * (duration / 1000);
+
+    transition.setKeys([
+      {
+        frame: 0,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        value: (target as any)[property].clone ? (target as any)[property].clone() : (target as any)[property],
+      },
+      {
+        frame: endFrame,
+        value,
+      },
+    ]);
+
+    scene.beginDirectAnimation(target, [transition], 0, endFrame, false);
   }
 
   private getTransition(entity: Entity, property: string): TransitionConfig | undefined {
@@ -70,7 +91,7 @@ export default class BabylonManager {
     return propertyMap.get(property);
   }
 
-  private getTargetForTransition(entity: Entity, property: string): object | undefined {
+  private getTargetForTransition(entity: Entity, property: string): BabelTransformNode | undefined {
     // @todo support paths
 
     if (property === 'position' || property === 'rotation' || property === 'scaling') {
