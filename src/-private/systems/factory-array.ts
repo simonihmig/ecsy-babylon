@@ -1,7 +1,6 @@
 import { Component, ComponentConstructor, Entity } from 'ecsy';
 import SystemWithCore from '../../-private/systems/with-core';
 import { assert } from '../utils/debug';
-import { assign } from '../../-private/utils/assign';
 import InstanceArrayComponent from '../../components/_instance-array';
 import World from '../../world';
 import { Attributes } from 'ecsy/src/System';
@@ -58,17 +57,15 @@ export default abstract class FactoryArraySystem<
     assert('Existing instance array component has invalid value', ic.value);
     const instance = ic.value.find((i) => i instanceof this.instanceConstructor);
     assert('No instance found', instance);
-    this.updateInstance(instance, c);
+    this.updateInstance(entity, instance, c);
   }
 
   remove(entity: Entity): void {
     this.removeInstance(entity);
   }
 
-  protected updateInstance(instance: I, c: C): void {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    assign(instance, c);
+  protected updateInstance(entity: Entity, instance: I, c: C): void {
+    this.world.babylonManager.updateProperties(entity, instance, c as never);
   }
 
   private addInstance(entity: Entity, instance: I): void {

@@ -1,4 +1,4 @@
-import { assignProperty } from './utils/assign';
+import { assign, assignProperty } from './utils/assign';
 import { TransitionConfig } from '../components/transitions';
 import { Entity } from 'ecsy';
 import { assert } from './utils/debug';
@@ -18,11 +18,10 @@ export default class BabylonManager {
   }
 
   setProperties(entity: Entity, target: object, props: Record<string, unknown>): void {
-    Object.entries(props).forEach(([property, value]) => this.setProperty(entity, target, property, value));
+    assign(target, props);
   }
 
   setProperty(entity: Entity, target: object, property: string, value: unknown): void {
-    assert(`No target found for property ${property}`, target);
     assignProperty(target as never, property, value as never);
   }
 
@@ -31,7 +30,6 @@ export default class BabylonManager {
   }
 
   updateProperty(entity: Entity, target: object, property: string, value: unknown): void {
-    assert(`No target found for transition of ${property}`, target);
     const transition = this.getTransition(entity, property);
 
     if (this.hasAnimationSupport && transition && transition.duration > 0) {
