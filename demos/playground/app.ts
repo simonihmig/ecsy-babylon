@@ -16,6 +16,7 @@ import { components, systems, World } from '../../src';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { Engine } from '@babylonjs/core/Engines/engine';
+import { BounceEase, EasingFunction } from '@babylonjs/core/Animations/easing';
 
 const canvas = document.querySelector('canvas');
 const fpsEl = document.querySelector('#fps');
@@ -80,6 +81,9 @@ world
   .addComponent(Position, { value: new Vector3(-2, 0, 0) })
   .addComponent(Rotation, { value: new Vector3(0, 45, 0) });
 
+const easingFunction = new BounceEase();
+easingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
+
 const sphere = world
   .createEntity()
   .addComponent(Parent)
@@ -97,6 +101,7 @@ const sphere = world
         property: 'transform.position',
         frameRate: 30,
         duration: 5000,
+        easingFunction,
       },
     ],
   });

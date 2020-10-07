@@ -69,7 +69,7 @@ export default class BabylonManager {
     value: unknown
   ): void {
     const scene = target.getScene();
-    const { frameRate, duration } = transitionConfig;
+    const { frameRate, duration, easingFunction } = transitionConfig;
     const { Animation } = this;
 
     assert('Cannot transition property without Animation support', Animation);
@@ -83,6 +83,9 @@ export default class BabylonManager {
       this.getAnimationType(value),
       Animation.ANIMATIONLOOPMODE_CONSTANT
     );
+    if (easingFunction) {
+      transition.setEasingFunction(easingFunction);
+    }
 
     // code mostly taken from Animation.TransitionTo, which we cannot use as it stops existing animations
     const endFrame: number = frameRate * (duration / 1000);
