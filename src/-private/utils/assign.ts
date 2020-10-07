@@ -8,10 +8,17 @@ import { Vector2, Vector3, Vector4, Matrix, Quaternion } from '@babylonjs/core/M
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { assert } from './debug';
 
-export function assignProperty<T extends object>(target: T, property: keyof T, value: T[typeof property]): void {
+export function assignProperty<T extends object>(
+  target: T,
+  property: string & keyof T,
+  value: T[typeof property]
+): void {
   const originalValue = target[property];
 
-  if (originalValue instanceof Vector4) {
+  const setter = `set${property[0].toUpperCase() + property.slice(1)}`;
+  if (typeof (target as never)[setter] === 'function') {
+    (target as any)[setter](value); // eslint-disable-line @typescript-eslint/no-explicit-any
+  } else if (originalValue instanceof Vector4) {
     assert('Expected Vector4', value instanceof Vector4);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Vector3) {
@@ -46,7 +53,7 @@ export function assign<T extends object>(
   }
   for (const [key, value] of Object.entries(source)) {
     if (value !== undefined) {
-      assignProperty(target, key as keyof T, value);
+      assignProperty(target, key as string & keyof T, value);
     }
   }
 }
