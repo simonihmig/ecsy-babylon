@@ -9,6 +9,7 @@ import { Scene } from '@babylonjs/core/scene';
 
 export default class PointLightSystem extends FactorySystem<PointLight, Light<BabylonPointLight>, BabylonPointLight> {
   protected instanceComponentConstructor = Light;
+  protected transitionTarget = 'light';
 
   protected create(c: PointLight): BabylonPointLight {
     assert('PointLightSystem needs BabylonCoreComponent', this.core);

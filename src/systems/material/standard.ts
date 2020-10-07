@@ -11,6 +11,7 @@ export default class StandardMaterialSystem extends FactorySystem<
   BabylonStandardMaterial
 > {
   protected instanceComponentConstructor = Material;
+  protected transitionTarget = 'material';
 
   protected create(c: StandardMaterial): BabylonStandardMaterial {
     assert('StandardMaterialSystem needs BabylonCoreComponent', this.core);

@@ -25,15 +25,18 @@ export default class BabylonManager {
     assignProperty(target as never, property, value as never);
   }
 
-  updateProperties(entity: Entity, target: object, props: Record<string, unknown>): void {
-    Object.entries(props).forEach(([property, value]) => this.updateProperty(entity, target, property, value));
+  updateProperties(entity: Entity, target: object, transitionTarget: string, props: Record<string, unknown>): void {
+    Object.entries(props).forEach(([property, value]) =>
+      this.updateProperty(entity, target, transitionTarget, property, value)
+    );
   }
 
-  updateProperty(entity: Entity, target: object, property: string, value: unknown): void {
-    const transition = this.getTransition(entity, property);
+  updateProperty(entity: Entity, target: object, transitionTarget: string, property: string, value: unknown): void {
+    const transitionKey = transitionTarget + '.' + property;
+    const transition = this.getTransition(entity, transitionKey);
 
     if (this.hasAnimationSupport && transition && transition.duration > 0) {
-      this.transitionProperty(target as never, transition, value);
+      this.transitionProperty(target as never, transition, property, value);
     } else {
       assignProperty(target as never, property, value as never);
     }
@@ -62,10 +65,11 @@ export default class BabylonManager {
   private transitionProperty(
     target: IAnimatable & { getScene: () => Scene },
     transitionConfig: TransitionConfig,
+    property: string,
     value: unknown
   ): void {
     const scene = target.getScene();
-    const { property, frameRate, duration } = transitionConfig;
+    const { frameRate, duration } = transitionConfig;
     const { Animation } = this;
 
     assert('Cannot transition property without Animation support', Animation);

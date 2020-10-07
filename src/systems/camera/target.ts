@@ -12,6 +12,7 @@ export default class TargetCameraSystem extends FactorySystem<
   BabylonTargetCamera
 > {
   protected instanceComponentConstructor = Camera;
+  protected transitionTarget = 'camera';
 
   protected create(c: TargetCamera): BabylonTargetCamera {
     assert('CameraSystem needs BabylonCoreComponent', this.core);

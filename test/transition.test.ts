@@ -4,6 +4,7 @@ import {
   Box,
   DirectionalLight,
   Parent,
+  PbrMaterial,
   Position,
   Rotation,
   Scale,
@@ -13,6 +14,8 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
 import { wait } from './helpers/wait';
 import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
+import { PBRMaterial as BabylonPbrMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
 
 describe('transform system', function () {
   describe('general', function () {
@@ -28,7 +31,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 200,
             },
@@ -79,7 +82,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 200,
             },
@@ -152,12 +155,12 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 200,
             },
             {
-              property: 'scaling',
+              property: 'transform.scaling',
               frameRate: 30,
               duration: 500,
             },
@@ -229,6 +232,78 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
     });
 
+    it('support transitions on different Babylon instances', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'transform.position',
+              frameRate: 30,
+              duration: 100,
+            },
+            {
+              property: 'material.roughness',
+              frameRate: 30,
+              duration: 100,
+            },
+          ],
+        })
+        .addComponent(Box)
+        .addComponent(PbrMaterial, {
+          roughness: 0,
+        })
+        .addComponent(Position, { value: Vector3.Zero() })
+        .addComponent(Scale, { value: Vector3.One() });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const position = entity.getMutableComponent(Position)!;
+      position.value = new Vector3(1, 2, 3);
+
+      const mat = entity.getMutableComponent(PbrMaterial)!;
+      mat.roughness = 1;
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+      const mesh = scene.meshes[0];
+      const material = mesh.material as BabylonPbrMaterial;
+      mesh.computeWorldMatrix(true);
+      expect(mesh.getWorldMatrix().getTranslation().x).toEqual(0);
+      expect(mesh.getWorldMatrix().getTranslation().y).toEqual(0);
+      expect(mesh.getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(material.roughness).toEqual(0);
+
+      await wait(50);
+      const scale = entity.getMutableComponent(Scale)!;
+      scale.value.x = 2;
+
+      mesh.computeWorldMatrix(true);
+      expect(mesh.getWorldMatrix().getTranslation().x).toBeGreaterThan(0);
+      expect(mesh.getWorldMatrix().getTranslation().x).toBeLessThan(1);
+      expect(mesh.getWorldMatrix().getTranslation().y).toBeGreaterThan(0);
+      expect(mesh.getWorldMatrix().getTranslation().y).toBeLessThan(2);
+      expect(mesh.getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
+      expect(mesh.getWorldMatrix().getTranslation().z).toBeLessThan(3);
+      expect(material.roughness).toBeGreaterThan(0);
+      expect(material.roughness).toBeLessThan(1);
+
+      await wait(100);
+      mesh.computeWorldMatrix(true);
+      expect(mesh.getWorldMatrix().getTranslation().x).toEqual(1);
+      expect(mesh.getWorldMatrix().getTranslation().y).toEqual(2);
+      expect(mesh.getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(material.roughness).toEqual(1);
+    });
+
     it('changes without matching transition are applied immediately', async function () {
       const { world, rootEntity } = setupWorld();
 
@@ -241,7 +316,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 100,
             },
@@ -292,7 +367,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 0,
             },
@@ -328,7 +403,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 50,
             },
@@ -342,7 +417,7 @@ describe('transform system', function () {
       const { scene } = rootEntity.getComponent(BabylonCore)!;
       const transitionComponent = entity.getMutableComponent(Transitions)!;
       transitionComponent.value[0] = {
-        property: 'position',
+        property: 'transform.position',
         frameRate: 30,
         duration: 200,
       };
@@ -386,7 +461,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 50,
             },
@@ -424,12 +499,12 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 200,
             },
             {
-              property: 'scaling',
+              property: 'transform.scaling',
               frameRate: 30,
               duration: 500,
             },
@@ -444,7 +519,7 @@ describe('transform system', function () {
       const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const transitionComponent = entity.getMutableComponent(Transitions)!;
-      transitionComponent.value = transitionComponent.value.filter(({ property }) => property === 'position');
+      transitionComponent.value = transitionComponent.value.slice(0, 1);
 
       const position = entity.getMutableComponent(Position)!;
       position.value = new Vector3(1, 2, 3);
@@ -500,7 +575,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'position',
+              property: 'transform.position',
               frameRate: 30,
               duration: 200,
             },
@@ -542,7 +617,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'rotation',
+              property: 'transform.rotation',
               frameRate: 30,
               duration: 200,
             },
@@ -584,7 +659,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'scaling',
+              property: 'transform.scaling',
               frameRate: 30,
               duration: 200,
             },
@@ -626,7 +701,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'direction',
+              property: 'light.direction',
               duration: 100,
               frameRate: 30,
             },
@@ -667,7 +742,7 @@ describe('transform system', function () {
         .addComponent(Transitions, {
           value: [
             {
-              property: 'intensity',
+              property: 'light.intensity',
               duration: 100,
               frameRate: 30,
             },
@@ -691,6 +766,51 @@ describe('transform system', function () {
 
       await wait(100);
       expect(light.intensity).toEqual(0);
+    });
+  });
+  describe('material', function () {
+    it('can transition color', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'material.albedoColor',
+              duration: 100,
+              frameRate: 30,
+            },
+          ],
+        })
+        .addComponent(Box)
+        .addComponent(PbrMaterial, {
+          albedoColor: new Color3(1, 0, 0),
+        });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = entity.getMutableComponent(PbrMaterial)!;
+      component.albedoColor = new Color3(0, 1, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+      const material = scene.meshes[0].material as BabylonPbrMaterial;
+      expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
+
+      await wait(50);
+      expect(material.albedoColor.r).toBeGreaterThan(0);
+      expect(material.albedoColor.r).toBeLessThan(1);
+      expect(material.albedoColor.g).toBeGreaterThan(0);
+      expect(material.albedoColor.g).toBeLessThan(1);
+      expect(material.albedoColor.b).toEqual(0);
+
+      await wait(100);
+      expect(material.albedoColor.equalsFloats(0, 1, 0)).toBeTrue();
     });
   });
 });

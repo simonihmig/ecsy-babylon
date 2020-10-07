@@ -94,7 +94,7 @@ const sphere = world
   .addComponent(Transitions, {
     value: [
       {
-        property: 'position',
+        property: 'transform.position',
         frameRate: 30,
         duration: 5000,
       },

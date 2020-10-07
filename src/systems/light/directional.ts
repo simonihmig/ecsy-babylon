@@ -13,6 +13,7 @@ export default class DirectionalLightSystem extends FactorySystem<
   BabylonDirectionalLight
 > {
   protected instanceComponentConstructor = Light;
+  protected transitionTarget = 'light';
 
   protected create(c: DirectionalLight): BabylonDirectionalLight {
     assert('DirectionalLightSystem needs BabylonCoreComponent', this.core);

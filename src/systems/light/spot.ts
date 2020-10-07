@@ -9,6 +9,7 @@ import { Scene } from '@babylonjs/core/scene';
 
 export default class SpotLightSystem extends FactorySystem<SpotLight, Light<BabylonSpotLight>, BabylonSpotLight> {
   protected instanceComponentConstructor = Light;
+  protected transitionTarget = 'light';
 
   protected create(c: SpotLight): BabylonSpotLight {
     assert('SpotLightSystem needs BabylonCoreComponent', this.core);

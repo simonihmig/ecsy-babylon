@@ -13,6 +13,7 @@ export default class HemisphericLightSystem extends FactorySystem<
   BabylonHemisphericLight
 > {
   protected instanceComponentConstructor = Light;
+  protected transitionTarget = 'light';
 
   protected create(c: HemisphericLight): BabylonHemisphericLight {
     assert('HemisphericLightSystem needs BabylonCoreComponent', this.core);

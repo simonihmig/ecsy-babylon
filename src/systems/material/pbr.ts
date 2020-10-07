@@ -11,6 +11,7 @@ export default class PbrMaterialSystem extends FactorySystem<
   BabylonPBRMaterial
 > {
   protected instanceComponentConstructor = Material;
+  protected transitionTarget = 'material';
 
   protected create(c: PbrMaterial): BabylonPBRMaterial {
     assert('PbrMaterialSystem needs BabylonCoreComponent', this.core);

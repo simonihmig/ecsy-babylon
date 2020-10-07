@@ -11,6 +11,7 @@ export default class ArcRotateCameraSystem extends FactorySystem<
   BabylonArcRotateCamera
 > {
   protected instanceComponentConstructor = Camera;
+  protected transitionTarget = 'camera';
 
   protected create(c: ArcRotateCamera): BabylonArcRotateCamera {
     assert('CameraSystem needs BabylonCoreComponent', this.core);

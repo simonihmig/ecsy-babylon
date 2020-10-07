@@ -65,7 +65,7 @@ export default abstract class FactoryArraySystem<
   }
 
   protected updateInstance(entity: Entity, instance: I, c: C): void {
-    this.world.babylonManager.updateProperties(entity, instance, c as never);
+    this.world.babylonManager.setProperties(entity, instance, c as never);
   }
 
   private addInstance(entity: Entity, instance: I): void {

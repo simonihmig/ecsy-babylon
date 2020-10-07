@@ -15,6 +15,7 @@ export default abstract class FactorySystem<
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
   protected recreateInstanceOnUpdate = false;
+  protected transitionTarget?: string;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);
@@ -57,7 +58,11 @@ export default abstract class FactorySystem<
     } else {
       const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
       assert('No instance found', instanceComponent?.value);
-      this.world.babylonManager.updateProperties(entity, instanceComponent.value!, c);
+      if (this.transitionTarget) {
+        this.world.babylonManager.updateProperties(entity, instanceComponent.value!, this.transitionTarget, c);
+      } else {
+        this.world.babylonManager.setProperties(entity, instanceComponent.value!, c);
+      }
     }
   }
 

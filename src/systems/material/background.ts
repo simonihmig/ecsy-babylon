@@ -11,6 +11,7 @@ export default class BackgroundMaterialSystem extends FactorySystem<
   BabylonBackgroundMaterial
 > {
   protected instanceComponentConstructor = Material;
+  protected transitionTarget = 'material';
 
   protected create(c: BackgroundMaterial): BabylonBackgroundMaterial {
     assert('PbrMaterialSystem needs BabylonCoreComponent', this.core);

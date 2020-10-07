@@ -101,6 +101,7 @@ export default class TransformSystem extends System<Entity, World> {
     this.world.babylonManager.updateProperty(
       entity,
       this.getTransformNode(entity),
+      'transform',
       'position',
       entity.getComponent(Position)!.value
     );
@@ -132,7 +133,13 @@ export default class TransformSystem extends System<Entity, World> {
     y = (y * Math.PI) / 180;
     z = (z * Math.PI) / 180;
 
-    this.world.babylonManager.updateProperty(entity, this.getTransformNode(entity), 'rotation', new Vector3(x, y, z));
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'transform',
+      'rotation',
+      new Vector3(x, y, z)
+    );
   }
 
   removeRotation(entity: Entity): void {
@@ -153,6 +160,7 @@ export default class TransformSystem extends System<Entity, World> {
     this.world.babylonManager.updateProperty(
       entity,
       this.getTransformNode(entity),
+      'transform',
       'scaling',
       entity.getComponent(Scale)!.value
     );

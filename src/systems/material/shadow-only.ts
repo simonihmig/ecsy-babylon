@@ -11,6 +11,7 @@ export default class ShadowOnlyMaterialSystem extends FactorySystem<
   BabylonShadowOnlyMaterial
 > {
   protected instanceComponentConstructor = Material;
+  protected transitionTarget = 'material';
 
   protected create(c: ShadowOnlyMaterial): BabylonShadowOnlyMaterial {
     assert('PbrMaterialSystem needs BabylonCoreComponent', this.core);
