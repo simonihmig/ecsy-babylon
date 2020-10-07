@@ -122,7 +122,7 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
 
-      await wait(120);
+      await wait(130);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(-1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
@@ -303,6 +303,176 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+    });
+
+    it('can update transition setting', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'position',
+              frameRate: 30,
+              duration: 50,
+            },
+          ],
+        })
+        .addComponent(Box)
+        .addComponent(Position, { value: Vector3.Zero() });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const transitionComponent = entity.getMutableComponent(Transitions)!;
+      transitionComponent.value[0] = {
+        property: 'position',
+        frameRate: 30,
+        duration: 200,
+      };
+
+      const component = entity.getMutableComponent(Position)!;
+      component.value = new Vector3(1, 2, 3);
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+
+      await wait(100);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBeLessThan(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeLessThan(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
+
+      await wait(120);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+    });
+
+    it('can remove all transitions', function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'position',
+              frameRate: 30,
+              duration: 50,
+            },
+          ],
+        })
+        .addComponent(Box)
+        .addComponent(Position, { value: Vector3.Zero() });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = entity.getMutableComponent(Position)!;
+      component.value = new Vector3(1, 2, 3);
+
+      entity.removeComponent(Transitions);
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+    });
+
+    it('can remove single transition', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'position',
+              frameRate: 30,
+              duration: 200,
+            },
+            {
+              property: 'scaling',
+              frameRate: 30,
+              duration: 500,
+            },
+          ],
+        })
+        .addComponent(Box)
+        .addComponent(Position, { value: Vector3.Zero() })
+        .addComponent(Scale, { value: Vector3.One() });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      const transitionComponent = entity.getMutableComponent(Transitions)!;
+      transitionComponent.value = transitionComponent.value.filter(({ property }) => property === 'position');
+
+      const position = entity.getMutableComponent(Position)!;
+      position.value = new Vector3(1, 2, 3);
+
+      const scale = entity.getMutableComponent(Scale)!;
+      scale.value.x = 2;
+
+      world.execute(0, 0);
+
+      expect(scene.meshes).toHaveLength(1);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+
+      await wait(100);
+
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBeLessThan(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeLessThan(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+
+      await wait(120);
+      scene.meshes[0].computeWorldMatrix(true);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
     });
   });
 

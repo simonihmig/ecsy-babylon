@@ -44,6 +44,17 @@ export default class BabylonManager {
     transitionSet.set(config.property, config);
   }
 
+  unregisterTransition(entity: Entity, config?: TransitionConfig): void {
+    if (config) {
+      const transitions = this.transitionRegistry.get(entity);
+      if (transitions) {
+        transitions.delete(config.property);
+      }
+    } else {
+      this.transitionRegistry.delete(entity);
+    }
+  }
+
   private transitionProperty(
     target: IAnimatable & { getScene: () => Scene },
     transitionConfig: TransitionConfig,

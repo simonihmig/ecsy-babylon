@@ -25,12 +25,19 @@ export default class TransitionSystem extends System<Entity, World> {
     });
   }
 
-  update(_entity: Entity): void {
-    // @todo
+  update(entity: Entity): void {
+    const { value, previousValue } = entity.getComponent(Transitions)!;
+
+    value.forEach((transition) => this.world.babylonManager.registerTransition(entity, transition));
+    if (previousValue) {
+      previousValue
+        .filter((transition) => !value.includes(transition))
+        .forEach((transition) => this.world.babylonManager.unregisterTransition(entity, transition));
+    }
   }
 
-  remove(_entity: Entity): void {
-    // @todo
+  remove(entity: Entity): void {
+    this.world.babylonManager.unregisterTransition(entity);
   }
 
   static queries = {
