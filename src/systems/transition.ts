@@ -4,7 +4,9 @@ import { World } from '../index';
 import BabylonWorld from '../world';
 import { Animation } from '@babylonjs/core/Animations/animation';
 
-export default class TransitionSystem extends System<Entity, World> {
+export default class TransitionSystem extends System<Entity> {
+  world!: World;
+
   constructor(world: BabylonWorld, attributes: Attributes) {
     super(world, attributes);
 

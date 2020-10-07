@@ -6,7 +6,9 @@ import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/tr
 import { World } from '../index';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
-export default class TransformSystem extends System<Entity, World> {
+export default class TransformSystem extends System<Entity> {
+  world!: World;
+
   execute(): void {
     this.queries.parent.added?.forEach((e: Entity) => this.setup(e));
     this.queries.transformNode.added?.forEach((e: Entity) => this.setupTransformNode(e));
