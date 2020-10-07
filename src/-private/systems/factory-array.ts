@@ -3,7 +3,7 @@ import SystemWithCore from '../../-private/systems/with-core';
 import { assert } from '../utils/debug';
 import { assign } from '../../-private/utils/assign';
 import InstanceArrayComponent from '../../components/_instance-array';
-import { World } from 'ecsy/src/World';
+import World from '../../world';
 import { Attributes } from 'ecsy/src/System';
 import { IDisposable } from '@babylonjs/core/scene';
 

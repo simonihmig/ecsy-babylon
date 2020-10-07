@@ -89,11 +89,21 @@ export default class TransformSystem extends System<Entity, World> {
   }
 
   setPosition(entity: Entity): void {
-    this.world.babylonManager.setProperty(entity, 'position', entity.getComponent(Position)!.value);
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'position',
+      entity.getComponent(Position)!.value
+    );
   }
 
   updatePosition(entity: Entity): void {
-    this.world.babylonManager.updateProperty(entity, 'position', entity.getComponent(Position)!.value);
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'position',
+      entity.getComponent(Position)!.value
+    );
   }
 
   removePosition(entity: Entity): void {
@@ -110,7 +120,7 @@ export default class TransformSystem extends System<Entity, World> {
     y = (y * Math.PI) / 180;
     z = (z * Math.PI) / 180;
 
-    this.world.babylonManager.setProperty(entity, 'rotation', new Vector3(x, y, z));
+    this.world.babylonManager.setProperty(entity, this.getTransformNode(entity), 'rotation', new Vector3(x, y, z));
   }
 
   updateRotation(entity: Entity): void {
@@ -122,7 +132,7 @@ export default class TransformSystem extends System<Entity, World> {
     y = (y * Math.PI) / 180;
     z = (z * Math.PI) / 180;
 
-    this.world.babylonManager.updateProperty(entity, 'rotation', new Vector3(x, y, z));
+    this.world.babylonManager.updateProperty(entity, this.getTransformNode(entity), 'rotation', new Vector3(x, y, z));
   }
 
   removeRotation(entity: Entity): void {
@@ -131,11 +141,21 @@ export default class TransformSystem extends System<Entity, World> {
   }
 
   setScale(entity: Entity): void {
-    this.world.babylonManager.setProperty(entity, 'scaling', entity.getComponent(Scale)!.value);
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'scaling',
+      entity.getComponent(Scale)!.value
+    );
   }
 
   updateScale(entity: Entity): void {
-    this.world.babylonManager.updateProperty(entity, 'scaling', entity.getComponent(Scale)!.value);
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'scaling',
+      entity.getComponent(Scale)!.value
+    );
   }
 
   removeScale(entity: Entity): void {

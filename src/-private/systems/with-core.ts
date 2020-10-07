@@ -1,7 +1,8 @@
-import { System } from 'ecsy';
+import { Entity, System } from 'ecsy';
 import { BabylonCore } from '../../components';
+import World from '../../world';
 
-export default class SystemWithCore extends System {
+export default class SystemWithCore extends System<Entity, World> {
   core?: BabylonCore;
 
   execute(): void {

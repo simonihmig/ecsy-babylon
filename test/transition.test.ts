@@ -1,7 +1,18 @@
-import { ArcRotateCamera, BabylonCore, Box, Parent, Position, Rotation, Scale, Transitions } from '../src/components';
+import {
+  ArcRotateCamera,
+  BabylonCore,
+  Box,
+  DirectionalLight,
+  Parent,
+  Position,
+  Rotation,
+  Scale,
+  Transitions,
+} from '../src/components';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
 import { wait } from './helpers/wait';
+import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 
 describe('transform system', function () {
   describe('general', function () {
@@ -600,6 +611,86 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
       expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+    });
+  });
+  describe('light', function () {
+    it('can transition direction', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'direction',
+              duration: 100,
+              frameRate: 30,
+            },
+          ],
+        })
+        .addComponent(DirectionalLight);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = entity.getMutableComponent(DirectionalLight)!;
+      component.direction = new Vector3(1, 0, 0);
+
+      expect(scene.lights).toHaveLength(1);
+      const light = scene.lights[0] as BabylonDirectionalLight;
+      expect(light.direction.equalsToFloats(0, -1, 0)).toBeTrue();
+
+      await wait(50);
+      expect(light.direction.x).toBeGreaterThan(0);
+      expect(light.direction.x).toBeLessThan(1);
+      expect(light.direction.y).toBeGreaterThan(-1);
+      expect(light.direction.y).toBeLessThan(1);
+      expect(light.direction.z).toEqual(0);
+
+      await wait(100);
+      expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
+    });
+
+    it('can transition intensity', async function () {
+      const { world, rootEntity } = setupWorld();
+
+      // we need a camera to trigger the render loop needed for animations
+      world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Transitions, {
+          value: [
+            {
+              property: 'intensity',
+              duration: 100,
+              frameRate: 30,
+            },
+          ],
+        })
+        .addComponent(DirectionalLight);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      const component = entity.getMutableComponent(DirectionalLight)!;
+      component.intensity = 0;
+
+      expect(scene.lights).toHaveLength(1);
+      const light = scene.lights[0] as BabylonDirectionalLight;
+      expect(light.intensity).toEqual(1);
+
+      await wait(50);
+      expect(light.intensity).toBeGreaterThan(0);
+      expect(light.intensity).toBeLessThan(1);
+
+      await wait(100);
+      expect(light.intensity).toEqual(0);
     });
   });
 });

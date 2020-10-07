@@ -13,31 +13,35 @@ export function assignProperty<T extends object>(
   property: string & keyof T,
   value: T[typeof property]
 ): void {
+  if (value === undefined) {
+    return;
+  }
+
   const originalValue = target[property];
 
   const setter = `set${property[0].toUpperCase() + property.slice(1)}`;
   if (typeof (target as never)[setter] === 'function') {
     (target as any)[setter](value); // eslint-disable-line @typescript-eslint/no-explicit-any
   } else if (originalValue instanceof Vector4) {
-    assert('Expected Vector4', value instanceof Vector4);
+    assert(`Expected Vector4, got: ${value}`, value instanceof Vector4);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Vector3) {
-    assert('Expected Vector3', value instanceof Vector3);
+    assert(`Expected Vector3, got: ${value}`, value instanceof Vector3);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Vector2) {
-    assert('Expected Vector2', value instanceof Vector2);
+    assert(`Expected Vector2, got: ${value}`, value instanceof Vector2);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Matrix) {
-    assert('Expected Matrix', value instanceof Matrix);
+    assert(`Expected Matrix, got: ${value}`, value instanceof Matrix);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Quaternion) {
-    assert('Expected Quaternion', value instanceof Quaternion);
+    assert(`Expected Quaternion, got: ${value}`, value instanceof Quaternion);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Color3) {
-    assert('Expected Color3', value instanceof Color3);
+    assert(`Expected Color3, got: ${value}`, value instanceof Color3);
     originalValue.copyFrom(value);
   } else if (originalValue instanceof Color4) {
-    assert('Expected Color4', value instanceof Color4);
+    assert(`Expected Color4, got: ${value}`, value instanceof Color4);
     originalValue.copyFrom(value);
   } else {
     target[property] = value;
@@ -52,8 +56,6 @@ export function assign<T extends object>(
     return;
   }
   for (const [key, value] of Object.entries(source)) {
-    if (value !== undefined) {
-      assignProperty(target, key as string & keyof T, value);
-    }
+    assignProperty(target, key as string & keyof T, value);
   }
 }
