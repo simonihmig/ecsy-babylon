@@ -1,3 +1,11 @@
+## v0.6.1 (2020-10-08)
+
+#### :rocket: Enhancement
+* [#298](https://github.com/kaliber5/ecsy-babylon/pull/298) Make frame rate optional for transitions ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.6.0 (2020-10-08)
 
 #### :boom: Breaking Change
