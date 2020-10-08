@@ -630,7 +630,7 @@ describe('transform system', function () {
 
       const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Rotation)!;
-      component.value = new Vector3(0, 180, 0);
+      component.value = new Vector3(0, Math.PI, 0);
 
       world.execute(0, 0);
 
