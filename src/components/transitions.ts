@@ -3,7 +3,7 @@ import { EasingFunction } from '@babylonjs/core/Animations/easing';
 
 export interface TransitionConfig {
   property: string;
-  frameRate: number;
+  frameRate?: number;
   duration: number;
   easingFunction?: EasingFunction;
 }

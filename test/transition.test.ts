@@ -32,7 +32,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 200,
             },
           ],
@@ -83,7 +82,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 200,
             },
           ],
@@ -156,12 +154,10 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 200,
             },
             {
               property: 'transform.scaling',
-              frameRate: 30,
               duration: 500,
             },
           ],
@@ -245,12 +241,10 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 100,
             },
             {
               property: 'material.roughness',
-              frameRate: 30,
               duration: 100,
             },
           ],
@@ -317,7 +311,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 100,
             },
           ],
@@ -368,7 +361,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 0,
             },
           ],
@@ -404,7 +396,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 50,
             },
           ],
@@ -418,7 +409,6 @@ describe('transform system', function () {
       const transitionComponent = entity.getMutableComponent(Transitions)!;
       transitionComponent.value[0] = {
         property: 'transform.position',
-        frameRate: 30,
         duration: 200,
       };
 
@@ -462,7 +452,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 50,
             },
           ],
@@ -500,12 +489,10 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 200,
             },
             {
               property: 'transform.scaling',
-              frameRate: 30,
               duration: 500,
             },
           ],
@@ -576,7 +563,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.position',
-              frameRate: 30,
               duration: 200,
             },
           ],
@@ -618,7 +604,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.rotation',
-              frameRate: 30,
               duration: 200,
             },
           ],
@@ -660,7 +645,6 @@ describe('transform system', function () {
           value: [
             {
               property: 'transform.scaling',
-              frameRate: 30,
               duration: 200,
             },
           ],
@@ -703,7 +687,6 @@ describe('transform system', function () {
             {
               property: 'light.direction',
               duration: 100,
-              frameRate: 30,
             },
           ],
         })
@@ -744,7 +727,6 @@ describe('transform system', function () {
             {
               property: 'light.intensity',
               duration: 100,
-              frameRate: 30,
             },
           ],
         })
@@ -783,7 +765,6 @@ describe('transform system', function () {
             {
               property: 'material.albedoColor',
               duration: 100,
-              frameRate: 30,
             },
           ],
         })

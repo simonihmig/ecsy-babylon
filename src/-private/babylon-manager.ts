@@ -8,6 +8,8 @@ import { Scene } from '@babylonjs/core/scene';
 import { Matrix, Quaternion, Vector2, Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 
+const DEFAULT_FRAMERATE = 60;
+
 export default class BabylonManager {
   private transitionRegistry = new WeakMap<Entity, Map<string, TransitionConfig>>();
 
@@ -69,7 +71,7 @@ export default class BabylonManager {
     value: unknown
   ): void {
     const scene = target.getScene();
-    const { frameRate, duration, easingFunction } = transitionConfig;
+    const { frameRate = DEFAULT_FRAMERATE, duration, easingFunction } = transitionConfig;
     const { Animation } = this;
 
     assert('Cannot transition property without Animation support', Animation);
