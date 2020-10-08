@@ -4,7 +4,6 @@ import guidFor from '../-private/utils/guid';
 import { assert } from '../-private/utils/debug';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { World } from '../index';
-import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
 export default class TransformSystem extends System<Entity> {
   world!: World;
@@ -115,32 +114,21 @@ export default class TransformSystem extends System<Entity> {
   }
 
   setRotation(entity: Entity): void {
-    const rotationComponent = entity.getComponent(Rotation)!;
-
-    let { x, y, z } = rotationComponent.value;
-
-    x = (x * Math.PI) / 180;
-    y = (y * Math.PI) / 180;
-    z = (z * Math.PI) / 180;
-
-    this.world.babylonManager.setProperty(entity, this.getTransformNode(entity), 'rotation', new Vector3(x, y, z));
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'rotation',
+      entity.getComponent(Rotation)!.value
+    );
   }
 
   updateRotation(entity: Entity): void {
-    const rotationComponent = entity.getComponent(Rotation)!;
-
-    let { x, y, z } = rotationComponent.value;
-
-    x = (x * Math.PI) / 180;
-    y = (y * Math.PI) / 180;
-    z = (z * Math.PI) / 180;
-
     this.world.babylonManager.updateProperty(
       entity,
       this.getTransformNode(entity),
       'transform',
       'rotation',
-      new Vector3(x, y, z)
+      entity.getComponent(Rotation)!.value
     );
   }
 
