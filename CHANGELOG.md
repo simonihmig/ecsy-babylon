@@ -1,3 +1,20 @@
+## v0.6.0 (2020-10-08)
+
+#### :boom: Breaking Change
+* [#297](https://github.com/kaliber5/ecsy-babylon/pull/297) Revert rotation unit back from degrees to radians ([@simonihmig](https://github.com/simonihmig))
+* [#295](https://github.com/kaliber5/ecsy-babylon/pull/295) Add support for Transitions ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#297](https://github.com/kaliber5/ecsy-babylon/pull/297) Revert rotation unit back from degrees to radians ([@simonihmig](https://github.com/simonihmig))
+* [#295](https://github.com/kaliber5/ecsy-babylon/pull/295) Add support for Transitions ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#289](https://github.com/kaliber5/ecsy-babylon/pull/289) Fix leaking of Vector3 instances in transformNode, causing wrong values after component removal, add tests ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.5.0 (2020-09-21)
 
 #### :boom: Breaking Change
