@@ -14,7 +14,7 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "clean": "rimraf index.js index.cjs.js index.d.ts *.map components systems -private",
+    "clean": "rimraf world.js world.d.ts index.js index.cjs.js index.d.ts *.map components systems -private",
     "prebuild": "yarn clean",
     "build": "rollup -c rollup.config.js && tsc -b tsconfig.build.json",
     "docs": "typedoc --out docs --target es6 --theme minimal --mode file src",
