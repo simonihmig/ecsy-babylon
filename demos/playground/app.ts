@@ -1,4 +1,3 @@
-import { World } from 'ecsy';
 import {
   ArcRotateCamera,
   BabylonCore,
@@ -11,11 +10,13 @@ import {
   Position,
   Rotation,
   Sphere,
+  Transitions,
 } from '../../src/components';
-import { components, systems } from '../../src';
+import { components, systems, World } from '../../src';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Color3, Color4 } from '@babylonjs/core/Maths/math.color';
 import { Engine } from '@babylonjs/core/Engines/engine';
+import { BounceEase, EasingFunction } from '@babylonjs/core/Animations/easing';
 
 const canvas = document.querySelector('canvas');
 const fpsEl = document.querySelector('#fps');
@@ -80,7 +81,10 @@ world
   .addComponent(Position, { value: new Vector3(-2, 0, 0) })
   .addComponent(Rotation, { value: new Vector3(0, 45, 0) });
 
-world
+const easingFunction = new BounceEase();
+easingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEOUT);
+
+const sphere = world
   .createEntity()
   .addComponent(Parent)
   .addComponent(Sphere, { diameter: 1.5 })
@@ -90,7 +94,17 @@ world
     metallic: 0,
     roughness: 0.3,
   })
-  .addComponent(Position, { value: new Vector3(2, 0, 0) });
+  .addComponent(Position, { value: new Vector3(-2, 0, 0) })
+  .addComponent(Transitions, {
+    value: [
+      {
+        property: 'transform.position',
+        frameRate: 30,
+        duration: 5000,
+        easingFunction,
+      },
+    ],
+  });
 
 world
   .createEntity()
@@ -106,3 +120,6 @@ const scene = entity.getComponent(BabylonCore)!.scene;
 // @todo can we pass this directly to the component?
 scene.clearColor = new Color4(1, 1, 1);
 scene.ambientColor = new Color3(0.1, 0.1, 0.1);
+
+const pos = sphere.getMutableComponent(Position)!;
+pos.value = new Vector3(2, 0, 0);

@@ -1,11 +1,11 @@
 import { Entity } from 'ecsy';
 import { Light, Mesh, ShadowGenerator } from '../components';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 import { InstancedMesh } from '@babylonjs/core/Meshes/instancedMesh';
 import { ShadowGenerator as _ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator';
 import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
-import assign from '../-private/utils/assign';
+import { assign } from '../-private/utils/assign';
 import { ShadowLight } from '@babylonjs/core/Lights/shadowLight';
 
 export default class ShadowSystem extends SystemWithCore {

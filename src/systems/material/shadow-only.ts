@@ -2,8 +2,8 @@ import { Material, ShadowOnlyMaterial } from '../../components';
 import { ShadowOnlyMaterial as BabylonShadowOnlyMaterial } from '@babylonjs/materials/shadowOnly/shadowOnlyMaterial';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assign from '../../-private/utils/assign';
-import assert from '../../-private/utils/assert';
+import { assign } from '../../-private/utils/assign';
+import { assert } from '../../-private/utils/debug';
 
 export default class ShadowOnlyMaterialSystem extends FactorySystem<
   ShadowOnlyMaterial,
@@ -11,6 +11,7 @@ export default class ShadowOnlyMaterialSystem extends FactorySystem<
   BabylonShadowOnlyMaterial
 > {
   protected instanceComponentConstructor = Material;
+  protected transitionTarget = 'material';
 
   protected create(c: ShadowOnlyMaterial): BabylonShadowOnlyMaterial {
     assert('PbrMaterialSystem needs BabylonCoreComponent', this.core);

@@ -1,22 +1,26 @@
 import { Entity, System } from 'ecsy';
 import { Parent, Position, Rotation, Scale, TransformNode } from '../components';
 import guidFor from '../-private/utils/guid';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
+import { World } from '../index';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
-export default class TransformSystem extends System {
+export default class TransformSystem extends System<Entity> {
+  world!: World;
+
   execute(): void {
     this.queries.parent.added?.forEach((e: Entity) => this.setup(e));
     this.queries.transformNode.added?.forEach((e: Entity) => this.setupTransformNode(e));
 
-    this.queries.position.added?.forEach((e: Entity) => this.position(e));
-    this.queries.position.changed?.forEach((e: Entity) => this.position(e));
+    this.queries.position.added?.forEach((e: Entity) => this.setPosition(e));
+    this.queries.position.changed?.forEach((e: Entity) => this.updatePosition(e));
     this.queries.position.removed?.forEach((e: Entity) => this.removePosition(e));
-    this.queries.rotation.added?.forEach((e: Entity) => this.rotation(e));
-    this.queries.rotation.changed?.forEach((e: Entity) => this.rotation(e));
+    this.queries.rotation.added?.forEach((e: Entity) => this.setRotation(e));
+    this.queries.rotation.changed?.forEach((e: Entity) => this.updateRotation(e));
     this.queries.rotation.removed?.forEach((e: Entity) => this.removeRotation(e));
-    this.queries.scale.added?.forEach((e: Entity) => this.scale(e));
-    this.queries.scale.changed?.forEach((e: Entity) => this.scale(e));
+    this.queries.scale.added?.forEach((e: Entity) => this.setScale(e));
+    this.queries.scale.changed?.forEach((e: Entity) => this.updateScale(e));
     this.queries.scale.removed?.forEach((e: Entity) => this.removeScale(e));
 
     // entity might remove TransformNode, so it needs to run before
@@ -86,10 +90,23 @@ export default class TransformSystem extends System {
     transformNodeComponent.value.dispose();
   }
 
-  position(entity: Entity): void {
-    const tn = this.getTransformNode(entity);
-    const positionComponent = entity.getComponent(Position)!;
-    tn.position.copyFrom(positionComponent.value);
+  setPosition(entity: Entity): void {
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'position',
+      entity.getComponent(Position)!.value
+    );
+  }
+
+  updatePosition(entity: Entity): void {
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'transform',
+      'position',
+      entity.getComponent(Position)!.value
+    );
   }
 
   removePosition(entity: Entity): void {
@@ -97,8 +114,7 @@ export default class TransformSystem extends System {
     tn.position.setAll(0);
   }
 
-  rotation(entity: Entity): void {
-    const tn = this.getTransformNode(entity);
+  setRotation(entity: Entity): void {
     const rotationComponent = entity.getComponent(Rotation)!;
 
     let { x, y, z } = rotationComponent.value;
@@ -107,7 +123,25 @@ export default class TransformSystem extends System {
     y = (y * Math.PI) / 180;
     z = (z * Math.PI) / 180;
 
-    Object.assign(tn.rotation, { x, y, z });
+    this.world.babylonManager.setProperty(entity, this.getTransformNode(entity), 'rotation', new Vector3(x, y, z));
+  }
+
+  updateRotation(entity: Entity): void {
+    const rotationComponent = entity.getComponent(Rotation)!;
+
+    let { x, y, z } = rotationComponent.value;
+
+    x = (x * Math.PI) / 180;
+    y = (y * Math.PI) / 180;
+    z = (z * Math.PI) / 180;
+
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'transform',
+      'rotation',
+      new Vector3(x, y, z)
+    );
   }
 
   removeRotation(entity: Entity): void {
@@ -115,10 +149,23 @@ export default class TransformSystem extends System {
     tn.rotation.setAll(0);
   }
 
-  scale(entity: Entity): void {
-    const tn = this.getTransformNode(entity);
-    const scaleComponent = entity.getComponent(Scale)!;
-    tn.scaling.copyFrom(scaleComponent.value);
+  setScale(entity: Entity): void {
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'scaling',
+      entity.getComponent(Scale)!.value
+    );
+  }
+
+  updateScale(entity: Entity): void {
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'transform',
+      'scaling',
+      entity.getComponent(Scale)!.value
+    );
   }
 
   removeScale(entity: Entity): void {
@@ -142,7 +189,7 @@ export default class TransformSystem extends System {
       },
     },
     position: {
-      components: [TransformNode, Position],
+      components: [Position],
       listen: {
         added: true,
         changed: true,
@@ -150,7 +197,7 @@ export default class TransformSystem extends System {
       },
     },
     rotation: {
-      components: [TransformNode, Rotation],
+      components: [Rotation],
       listen: {
         added: true,
         changed: true,
@@ -158,7 +205,7 @@ export default class TransformSystem extends System {
       },
     },
     scale: {
-      components: [TransformNode, Scale],
+      components: [Scale],
       listen: {
         added: true,
         changed: true,

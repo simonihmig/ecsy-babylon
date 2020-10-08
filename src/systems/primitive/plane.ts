@@ -2,7 +2,7 @@ import { Plane, Mesh } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assert from '../../-private/utils/assert';
+import { assert } from '../../-private/utils/debug';
 import { PlaneBuilder } from '@babylonjs/core/Meshes/Builders/planeBuilder';
 
 export default class PlanePrimitiveSystem extends FactorySystem<Plane, Mesh<BabylonMesh>, BabylonMesh> {

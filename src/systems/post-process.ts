@@ -3,7 +3,7 @@ import { Camera, PostProcess } from '../components';
 import { Camera as BabylonCamera } from '@babylonjs/core/Cameras/camera';
 import { PostProcess as BabylonPostProcess } from '@babylonjs/core/PostProcesses/postProcess';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 
 export default class PostProcessSystem extends SystemWithCore {
   execute(): void {

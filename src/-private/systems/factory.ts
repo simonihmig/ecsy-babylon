@@ -1,9 +1,8 @@
 import { Component, ComponentConstructor, Entity } from 'ecsy';
 import SystemWithCore from '../../-private/systems/with-core';
-import assert from '../../-private/utils/assert';
-import assign from '../../-private/utils/assign';
+import { assert } from '../utils/debug';
 import InstanceComponent from '../../components/_instance';
-import { World } from 'ecsy/src/World';
+import World from '../../world';
 import { Attributes } from 'ecsy/src/System';
 import { IDisposable } from '@babylonjs/core/scene';
 
@@ -16,6 +15,7 @@ export default abstract class FactorySystem<
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
   protected recreateInstanceOnUpdate = false;
+  protected transitionTarget?: string;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);
@@ -57,10 +57,12 @@ export default abstract class FactorySystem<
       instanceComponent.value = instance;
     } else {
       const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
-      assert('No instance component found', instanceComponent);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      assign(instanceComponent.value, c);
+      assert('No instance found', instanceComponent?.value);
+      if (this.transitionTarget) {
+        this.world.babylonManager.updateProperties(entity, instanceComponent.value!, this.transitionTarget, c);
+      } else {
+        this.world.babylonManager.setProperties(entity, instanceComponent.value!, c);
+      }
     }
   }
 

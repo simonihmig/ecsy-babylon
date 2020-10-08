@@ -1,6 +1,6 @@
 import { Entity, System } from 'ecsy';
 import { Light, TransformNode } from '../components';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 
 export default class LightSystem extends System {
   execute(): void {

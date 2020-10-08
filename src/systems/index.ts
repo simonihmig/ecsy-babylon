@@ -27,6 +27,7 @@ import PostProcessRenderPipelineSystem from './post-process-render-pipeline';
 import SsaoRenderPipelineSystem from './post-process-render-pipeline/ssao';
 import DefaultRenderPipelineSystem from './post-process-render-pipeline/default';
 import TargetCameraSystem from './camera/target';
+import TransitionSystem from './transition';
 
 export {
   BabylonSystem,
@@ -58,4 +59,5 @@ export {
   PostProcessRenderPipelineSystem,
   SsaoRenderPipelineSystem,
   DefaultRenderPipelineSystem,
+  TransitionSystem,
 };

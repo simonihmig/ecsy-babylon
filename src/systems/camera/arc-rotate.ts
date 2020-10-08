@@ -2,8 +2,8 @@ import { ArcRotateCamera, Camera } from '../../components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
-import assign from '../../-private/utils/assign';
-import assert from '../../-private/utils/assert';
+import { assign } from '../../-private/utils/assign';
+import { assert } from '../../-private/utils/debug';
 
 export default class ArcRotateCameraSystem extends FactorySystem<
   ArcRotateCamera,
@@ -11,6 +11,7 @@ export default class ArcRotateCameraSystem extends FactorySystem<
   BabylonArcRotateCamera
 > {
   protected instanceComponentConstructor = Camera;
+  protected transitionTarget = 'camera';
 
   protected create(c: ArcRotateCamera): BabylonArcRotateCamera {
     assert('CameraSystem needs BabylonCoreComponent', this.core);

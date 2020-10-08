@@ -1,7 +1,7 @@
 import { Entity } from 'ecsy';
 import { Camera, TransformNode } from '../components';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
-import assert from '../-private/utils/assert';
+import { assert } from '../-private/utils/debug';
 
 export default class CameraSystem extends SystemWithCore {
   execute(): void {
