@@ -48,8 +48,8 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@babylonjs/core": "^4.1.0",
-    "@babylonjs/materials": "^4.1.0",
+    "@babylonjs/core": "^4.2.0",
+    "@babylonjs/materials": "^4.2.0",
     "ecsy": "^0.4.2"
   },
   "devDependencies": {
