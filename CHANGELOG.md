@@ -1,3 +1,15 @@
+## v0.6.2 (2020-11-27)
+
+#### :rocket: Enhancement
+* [#348](https://github.com/kaliber5/ecsy-babylon/pull/348) Update Babylon.js to 4.2 ([@simonihmig](https://github.com/simonihmig))
+
+#### :bug: Bug Fix
+* [#299](https://github.com/kaliber5/ecsy-babylon/pull/299) Fix animation support when tree shaking ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.6.1 (2020-10-08)
 
 #### :rocket: Enhancement
