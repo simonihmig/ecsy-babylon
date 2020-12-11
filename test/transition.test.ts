@@ -17,7 +17,7 @@ import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lig
 import { PBRMaterial as BabylonPbrMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 
-describe('transform system', function () {
+describe('transition system', function () {
   describe('general', function () {
     it('interpolates values over time', async function () {
       const { world, rootEntity } = setupWorld();
@@ -62,7 +62,7 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
