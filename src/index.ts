@@ -31,6 +31,7 @@ import {
   SsaoRenderPipelineSystem,
   DefaultRenderPipelineSystem,
   TransitionSystem,
+  WebXrDefaultExperienceSystem,
 } from './systems';
 
 const components = Object.values(_components) as ComponentConstructor<Component<unknown>>[];
@@ -66,6 +67,7 @@ const systems = [
   DefaultRenderPipelineSystem,
   SsaoRenderPipelineSystem,
   PostProcessRenderPipelineSystem,
+  WebXrDefaultExperienceSystem,
 ] as SystemConstructor<System>[];
 
 export { components, systems };
