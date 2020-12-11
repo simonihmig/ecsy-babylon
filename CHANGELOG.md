@@ -1,3 +1,12 @@
+## v0.6.3 (2020-12-11)
+
+#### :rocket: Enhancement
+* [#364](https://github.com/kaliber5/ecsy-babylon/pull/364) Add basic WebXR support using Babylon's WebXRDefaultExperience ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.6.2 (2020-11-27)
 
 #### :rocket: Enhancement
