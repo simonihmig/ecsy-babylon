@@ -11,6 +11,7 @@ import {
   Rotation,
   Sphere,
   Transitions,
+  WebXrDefaultExperience,
 } from '../../src/components';
 import { components, systems, World } from '../../src';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -47,6 +48,8 @@ entity.addComponent(BabylonCore, {
   engine,
   afterRender,
 });
+
+world.createEntity().addComponent(WebXrDefaultExperience);
 
 world
   .createEntity()

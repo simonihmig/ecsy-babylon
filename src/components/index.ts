@@ -32,6 +32,7 @@ import MotionBlurPostProcess from './post-process/motion-blur';
 import PostProcessRenderPipeline from './post-process-render-pipeline';
 import SsaoRenderingPipeline from './post-process-render-pipeline/ssao';
 import DefaultRenderingPipeline from './post-process-render-pipeline/default';
+import WebXrDefaultExperience from './xr/default';
 
 export {
   BabylonCore,
@@ -68,4 +69,5 @@ export {
   SsaoRenderingPipeline,
   DefaultRenderingPipeline,
   Transitions,
+  WebXrDefaultExperience,
 };
