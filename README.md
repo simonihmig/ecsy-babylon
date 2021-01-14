@@ -51,16 +51,16 @@ For more information please check out the [ECSY architecture docs](https://ecsy.
 In keeping with rule 1, lets use ecsy-babylon to convert our existing objects to components on entities.
 
 ```ts
-import * as ecsyBaby from "ecsy-babylon";
+import * as EcsyBabylon from "ecsy-babylon";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { BoxMoveComponent } from "./BoxMoveComponent";
 import { BoxMoveSystem } from "./BoxMoveSystem";
 
 export function ECSExample() {
 
-	const world = new ecsyBaby.World()
-	ecsyBaby.components.forEach(component => world.registerComponent(component))
-	ecsyBaby.systems.forEach(system => world.registerSystem(system))
+	const world = new EcsyBabylon.World()
+	EcsyBabylon.components.forEach(component => world.registerComponent(component))
+	EcsyBabylon.systems.forEach(system => world.registerSystem(system))
 
 	world
 		.registerComponent(BoxMoveComponent)
@@ -68,15 +68,15 @@ export function ECSExample() {
 
 	world
 		.createEntity("singleton")
-		.addComponent(ecsyBaby.BabylonCore, {
+		.addComponent(EcsyBabylon.BabylonCore, {
 			world,
 			canvas: document.getElementsByTagName("canvas")[0],
 		})
 
 	world
 		.createEntity("camera")
-		.addComponent(ecsyBaby.Parent)
-		.addComponent(ecsyBaby.ArcRotateCamera, {
+		.addComponent(EcsyBabylon.Parent)
+		.addComponent(EcsyBabylon.ArcRotateCamera, {
 			alpha: -Math.PI / 2,
 			beta: Math.PI / 2.5,
 			radius: 3,
@@ -85,16 +85,16 @@ export function ECSExample() {
 
 	world
 		.createEntity("light")
-		.addComponent(ecsyBaby.Parent)
-		.addComponent(ecsyBaby.HemisphericLight, {
+		.addComponent(EcsyBabylon.Parent)
+		.addComponent(EcsyBabylon.HemisphericLight, {
 			direction: new Vector3(0, 1, 0)
 		})
 
 	world
 		.createEntity("box")
-		.addComponent(ecsyBaby.Parent)
-		.addComponent(ecsyBaby.Position)
-		.addComponent(ecsyBaby.Box)
+		.addComponent(EcsyBabylon.Parent)
+		.addComponent(EcsyBabylon.Position)
+		.addComponent(EcsyBabylon.Box)
 		.addComponent(BoxMoveComponent, {
 			freq: Math.PI,//0.5 Hz 
 			amp: 0.1
