@@ -55,7 +55,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.13",
-    "@rollup/plugin-node-resolve": "^11.1.1",
+    "@rollup/plugin-node-resolve": "^11.2.0",
     "@rollup/plugin-replace": "^2.3.4",
     "@rollup/plugin-typescript": "^8.2.0",
     "@types/jest": "^26.0.20",
