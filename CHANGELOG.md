@@ -1,3 +1,16 @@
+## v0.6.4 (2021-03-22)
+
+#### :bug: Bug Fix
+* [#454](https://github.com/kaliber5/ecsy-babylon/pull/454) Add missing `alpha` property to PbrMaterial component ([@simonihmig](https://github.com/simonihmig))
+
+#### :memo: Documentation
+* [#390](https://github.com/kaliber5/ecsy-babylon/pull/390) Added Readme and example implementation. ([@mrchantey](https://github.com/mrchantey))
+
+#### Committers: 3
+- Peter Hayman ([@mrchantey](https://github.com/mrchantey))
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.6.3 (2020-12-11)
 
 #### :rocket: Enhancement
