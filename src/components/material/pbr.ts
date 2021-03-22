@@ -5,6 +5,7 @@ import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { BabylonTypes } from '../../-private/ecsy-types';
 
 export default class PbrMaterial extends Component<PbrMaterial> {
+  alpha!: number;
   directIntensity!: number;
   emissiveIntensity!: number;
   environmentIntensity!: number;
@@ -64,6 +65,7 @@ export default class PbrMaterial extends Component<PbrMaterial> {
   unlit = false;
 
   static schema: ComponentSchema = {
+    alpha: { type: Types.Number, default: 1 },
     directIntensity: { type: Types.Number, default: 1 },
     emissiveIntensity: { type: Types.Number, default: 1 },
     environmentIntensity: { type: Types.Number, default: 1 },
