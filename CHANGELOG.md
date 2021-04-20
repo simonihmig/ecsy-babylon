@@ -1,3 +1,12 @@
+## v0.6.5 (2021-04-20)
+
+#### :rocket: Enhancement
+* [#479](https://github.com/kaliber5/ecsy-babylon/pull/479) Add `pivot-point` component ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.6.4 (2021-03-22)
 
 #### :bug: Bug Fix
