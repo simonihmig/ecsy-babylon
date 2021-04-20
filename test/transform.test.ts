@@ -1,6 +1,8 @@
 import { BabylonCore, Box, Parent, Position, Rotation, Scale } from '../src/components';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
+import { PivotPoint } from '../src';
+import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 
 describe('transform system', function () {
   describe('position', function () {
@@ -190,6 +192,65 @@ describe('transform system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeCloseTo(1);
       expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBeCloseTo(0);
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBeCloseTo(0);
+    });
+  });
+  describe('pivot point', function () {
+    it('can add pivot point', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Box)
+        .addComponent(PivotPoint, { value: new Vector3(1, 0, 0) });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      expect(scene.meshes).toHaveLength(1);
+      expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(1, 0, 0)).toBeTrue();
+    });
+
+    it('can update pivot point', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Box).addComponent(PivotPoint, { value: Vector3.Zero() });
+
+      world.execute(0, 0);
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      expect(scene.meshes).toHaveLength(1);
+      expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(0, 0, 0)).toBeTrue();
+
+      const component = entity.getMutableComponent(PivotPoint)!;
+      component.value = new Vector3(1, 0, 0);
+
+      world.execute(0, 0);
+
+      expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(1, 0, 0)).toBeTrue();
+    });
+
+    it('can remove pivot point', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity
+        .addComponent(Parent)
+        .addComponent(Box)
+        .addComponent(PivotPoint, { value: new Vector3(1, 0, 0) });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+      expect(scene.meshes).toHaveLength(1);
+      expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(1, 0, 0)).toBeTrue();
+
+      entity.removeComponent(PivotPoint);
+      world.execute(0, 0);
+
+      expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(0, 0, 0)).toBeTrue();
     });
   });
 });

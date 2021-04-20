@@ -1,9 +1,10 @@
 import { Entity, System } from 'ecsy';
-import { Parent, Position, Rotation, Scale, TransformNode } from '../components';
+import { Parent, PivotPoint, Position, Rotation, Scale, TransformNode } from '../components';
 import guidFor from '../-private/utils/guid';
 import { assert } from '../-private/utils/debug';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { World } from '../index';
+import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 
 export default class TransformSystem extends System<Entity> {
   world!: World;
@@ -21,6 +22,9 @@ export default class TransformSystem extends System<Entity> {
     this.queries.scale.added?.forEach((e: Entity) => this.setScale(e));
     this.queries.scale.changed?.forEach((e: Entity) => this.updateScale(e));
     this.queries.scale.removed?.forEach((e: Entity) => this.removeScale(e));
+    this.queries.pivot.added?.forEach((e: Entity) => this.setPivot(e));
+    this.queries.pivot.changed?.forEach((e: Entity) => this.updatePivot(e));
+    this.queries.pivot.removed?.forEach((e: Entity) => this.removePivot(e));
 
     // entity might remove TransformNode, so it needs to run before
     this.queries.parent.removed?.forEach((e: Entity) => this.remove(e));
@@ -161,6 +165,30 @@ export default class TransformSystem extends System<Entity> {
     tn.scaling.setAll(1);
   }
 
+  setPivot(entity: Entity): void {
+    this.world.babylonManager.setProperty(
+      entity,
+      this.getTransformNode(entity),
+      'pivotPoint',
+      entity.getComponent(PivotPoint)!.value
+    );
+  }
+
+  updatePivot(entity: Entity): void {
+    this.world.babylonManager.updateProperty(
+      entity,
+      this.getTransformNode(entity),
+      'transform',
+      'pivotPoint',
+      entity.getComponent(PivotPoint)!.value
+    );
+  }
+
+  removePivot(entity: Entity): void {
+    const tn = this.getTransformNode(entity, true);
+    tn.setPivotPoint(Vector3.Zero());
+  }
+
   static queries = {
     parent: {
       components: [Parent],
@@ -194,6 +222,14 @@ export default class TransformSystem extends System<Entity> {
     },
     scale: {
       components: [Scale],
+      listen: {
+        added: true,
+        changed: true,
+        removed: true,
+      },
+    },
+    pivot: {
+      components: [PivotPoint],
       listen: {
         added: true,
         changed: true,
