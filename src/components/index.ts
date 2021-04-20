@@ -22,6 +22,7 @@ import TransformNode from './transform-node';
 import Position from './position';
 import Rotation from './rotation';
 import Scale from './scale';
+import PivotPoint from './pivot-point';
 import Action from './action';
 import Parent from './parent';
 import Transitions from './transitions';
@@ -59,6 +60,7 @@ export {
   Position,
   Rotation,
   Scale,
+  PivotPoint,
   Action,
   Parent,
   PostProcess,
