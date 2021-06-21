@@ -25,7 +25,7 @@ function createPipeline(engine: Engine, name = 'test'): BabylonPostProcessRender
   const blackAndWhite = new BabylonBlackAndWhitePostProcess(
     'bw',
     1.0,
-    (null as unknown) as Camera,
+    null as unknown as Camera,
     undefined,
     engine,
     false

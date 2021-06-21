@@ -22,7 +22,7 @@ export default class DirectionalLightSystem extends FactorySystem<
     const instance = new BabylonDirectionalLight(
       DirectionalLight.name,
       direction,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
+      null as unknown as Scene // passing null is actually possible, but the typings require a Scene
     );
     assign(instance, options);
 

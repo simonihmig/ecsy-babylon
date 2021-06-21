@@ -16,7 +16,7 @@ export default class BlackAndWhitePostProcessSystem extends FactoryArraySystem<
     return new BabylonBlackAndWhitePostProcess(
       c.name,
       c.options,
-      (null as unknown) as Camera, // class constructor is wrongly typed in Babylon
+      null as unknown as Camera, // class constructor is wrongly typed in Babylon
       c.samplingMode,
       this.core?.engine
     );

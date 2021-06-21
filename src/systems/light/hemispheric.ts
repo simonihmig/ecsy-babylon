@@ -22,7 +22,7 @@ export default class HemisphericLightSystem extends FactorySystem<
     const instance = new BabylonHemisphericLight(
       HemisphericLight.name,
       direction,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
+      null as unknown as Scene // passing null is actually possible, but the typings require a Scene
     );
     assign(instance, options);
 
