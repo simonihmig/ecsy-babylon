@@ -18,7 +18,7 @@ export default class PointLightSystem extends FactorySystem<PointLight, Light<Ba
     const instance = new BabylonPointLight(
       PointLight.name,
       position,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
+      null as unknown as Scene // passing null is actually possible, but the typings require a Scene
     );
     assign(instance, options);
 

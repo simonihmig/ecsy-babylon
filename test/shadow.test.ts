@@ -21,7 +21,7 @@ describe('shadow system', function () {
     const light = scene.lights[0] as BabylonDirectionalLight;
     expect(light).toBeInstanceOf(BabylonDirectionalLight);
 
-    const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
+    const shadowGenerator = light.getShadowGenerator() as unknown as ShadowGenerator;
     expect(shadowGenerator).toBeDefined();
     expect(shadowGenerator.size).toEqual(512);
     expect(shadowGenerator.forceBackFacesOnly).toBeFalse();
@@ -49,7 +49,7 @@ describe('shadow system', function () {
     const light = scene.lights[0] as BabylonDirectionalLight;
     expect(light).toBeInstanceOf(BabylonDirectionalLight);
 
-    const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
+    const shadowGenerator = light.getShadowGenerator() as unknown as ShadowGenerator;
     expect(shadowGenerator.size).toEqual(1024);
     expect(shadowGenerator.forceBackFacesOnly).toBeTrue();
     expect(shadowGenerator.darkness).toEqual(0); // make sure default values are preserved
@@ -76,7 +76,7 @@ describe('shadow system', function () {
     expect(scene.lights).toHaveLength(1);
 
     const light = scene.lights[0] as BabylonDirectionalLight;
-    const shadowGenerator = (light.getShadowGenerator() as unknown) as ShadowGenerator;
+    const shadowGenerator = light.getShadowGenerator() as unknown as ShadowGenerator;
     expect(shadowGenerator.size).toEqual(1024);
     expect(shadowGenerator.forceBackFacesOnly).toBeTrue();
     expect(shadowGenerator.darkness).toEqual(0); // make sure default values are preserved

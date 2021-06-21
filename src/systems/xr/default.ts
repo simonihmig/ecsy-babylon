@@ -11,7 +11,7 @@ export default class WebXrDefaultExperienceSystem extends SystemWithCore {
   execute(): void {
     super.execute();
 
-    this.queries.xp.added?.forEach((e: Entity) => (this.setup(e) as unknown) as void);
+    this.queries.xp.added?.forEach((e: Entity) => this.setup(e) as unknown as void);
     this.queries.xp.removed?.forEach(() => this.remove());
 
     super.afterExecute();

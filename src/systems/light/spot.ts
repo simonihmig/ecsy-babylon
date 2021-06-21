@@ -21,7 +21,7 @@ export default class SpotLightSystem extends FactorySystem<SpotLight, Light<Baby
       direction,
       angle,
       exponent,
-      (null as unknown) as Scene // passing null is actually possible, but the typings require a Scene
+      null as unknown as Scene // passing null is actually possible, but the typings require a Scene
     );
     assign(instance, options);
 
