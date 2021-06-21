@@ -1680,13 +1680,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rollup-plugin-sourcemaps@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-sourcemaps/-/rollup-plugin-sourcemaps-0.4.2.tgz#ce3752116834aeb8b798da77a180612fb6ff617a"
-  integrity sha512-dqF1rMFy4O8yNlQYwYPos5Cfav0f6M7PLH8B33gsslQ0zA9MX1jMGokwNuJ3Z3EXAzsKF/xAWNHpFmELcgYJww==
+"@types/rollup-plugin-sourcemaps@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-sourcemaps/-/rollup-plugin-sourcemaps-0.5.0.tgz#016469d5866849a54faec45bc777aa3846e232e3"
+  integrity sha512-3FP7u5/ljvEamdp45agnWrui/6Zw9GpxlsKqTqu+94jsOrjIQEpb4NVC8jIF4O1QBH46gvpCTmnh4L5QrH90zw==
   dependencies:
-    "@types/node" "*"
-    rollup "^0.63.4"
+    rollup-plugin-sourcemaps "*"
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -7523,7 +7522,7 @@ rollup-plugin-commonjs@^10.1.0:
     resolve "^1.11.0"
     rollup-pluginutils "^2.8.1"
 
-rollup-plugin-sourcemaps@^0.6.3:
+rollup-plugin-sourcemaps@*, rollup-plugin-sourcemaps@^0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/rollup-plugin-sourcemaps/-/rollup-plugin-sourcemaps-0.6.3.tgz#bf93913ffe056e414419607f1d02780d7ece84ed"
   integrity sha512-paFu+nT1xvuO1tPFYXGe+XnQvg4Hjqv/eIhG8i5EspfYYPBKL57X7iVbfv55aNVASg3dzWvES9dmWsL2KhfByw==
@@ -7537,14 +7536,6 @@ rollup-pluginutils@^2.8.1:
   integrity sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
   dependencies:
     estree-walker "^0.6.1"
-
-rollup@^0.63.4:
-  version "0.63.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.63.5.tgz#5543eecac9a1b83b7e1be598b5be84c9c0a089db"
-  integrity sha512-dFf8LpUNzIj3oE0vCvobX6rqOzHzLBoblyFp+3znPbjiSmSvOoK2kMKx+Fv9jYduG1rvcCfCveSgEaQHjWRF6g==
-  dependencies:
-    "@types/estree" "0.0.39"
-    "@types/node" "*"
 
 rollup@^2.52.2:
   version "2.52.2"
