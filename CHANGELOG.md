@@ -1,3 +1,16 @@
+## v0.7.0 (2021-06-21)
+
+#### :boom: Breaking Change
+* [#530](https://github.com/kaliber5/ecsy-babylon/pull/530) Drop node 10 support ([@simonihmig](https://github.com/simonihmig))
+* [#529](https://github.com/kaliber5/ecsy-babylon/pull/529) Drop own resize handling ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#529](https://github.com/kaliber5/ecsy-babylon/pull/529) Drop own resize handling ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 2
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.6.5 (2021-04-20)
 
 #### :rocket: Enhancement
