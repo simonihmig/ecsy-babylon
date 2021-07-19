@@ -82,7 +82,7 @@
     "jest": "^24.9.0",
     "jest-config": "^26.6.3",
     "jest-extended": "^0.11.5",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "release-it": "^14.10.0",
     "release-it-lerna-changelog": "^3.1.0",
