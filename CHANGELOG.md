@@ -1,3 +1,16 @@
+
+## v0.7.1 (2021-11-26)
+
+#### :bug: Bug Fix
+* [#595](https://github.com/kaliber5/ecsy-babylon/pull/595) Fix `No instance component found` when entity w/ post-processing is removed ([@simonihmig](https://github.com/simonihmig))
+
+#### :house: Internal
+* [#597](https://github.com/kaliber5/ecsy-babylon/pull/597) Update ESLint & Co ([@simonihmig](https://github.com/simonihmig))
+* [#596](https://github.com/kaliber5/ecsy-babylon/pull/596) Fix flaky transition test ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.7.0 (2021-06-21)
 
 #### :boom: Breaking Change
