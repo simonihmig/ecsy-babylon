@@ -20,9 +20,9 @@ describe('camera system', function () {
       expect(scene.cameras).toHaveLength(2);
 
       const camera = scene.activeCamera as BabylonArcRotateCamera;
-      expect(camera.alpha).toEqual(0);
-      expect(camera.beta).toEqual(0);
-      expect(camera.radius).toEqual(10);
+      expect(camera.alpha).toBe(0);
+      expect(camera.beta).toBe(0);
+      expect(camera.radius).toBe(10);
       expect(camera.lowerAlphaLimit).toBeNull();
       expect(camera.lowerBetaLimit).toBeGreaterThan(0); // has a default value!
       expect(camera.lowerRadiusLimit).toBeNull();
@@ -54,15 +54,15 @@ describe('camera system', function () {
       expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
 
       const camera = scene.activeCamera as BabylonArcRotateCamera;
-      expect(camera.alpha).toEqual(0.5);
-      expect(camera.beta).toEqual(0);
-      expect(camera.radius).toEqual(12);
+      expect(camera.alpha).toBe(0.5);
+      expect(camera.beta).toBe(0);
+      expect(camera.radius).toBe(12);
       expect(camera.lowerAlphaLimit).toEqual(-1);
       expect(camera.lowerBetaLimit).toEqual(-0.1);
-      expect(camera.lowerRadiusLimit).toEqual(5);
-      expect(camera.upperAlphaLimit).toEqual(1);
-      expect(camera.upperBetaLimit).toEqual(0.1);
-      expect(camera.upperRadiusLimit).toEqual(15);
+      expect(camera.lowerRadiusLimit).toBe(5);
+      expect(camera.upperAlphaLimit).toBe(1);
+      expect(camera.upperBetaLimit).toBe(0.1);
+      expect(camera.upperRadiusLimit).toBe(15);
     });
 
     it('can update arc-rotate camera', function () {
@@ -94,15 +94,15 @@ describe('camera system', function () {
 
       world.execute(0, 0);
 
-      expect(camera.alpha).toEqual(0.5);
-      expect(camera.beta).toEqual(0);
-      expect(camera.radius).toEqual(12);
+      expect(camera.alpha).toBe(0.5);
+      expect(camera.beta).toBe(0);
+      expect(camera.radius).toBe(12);
       expect(camera.lowerAlphaLimit).toEqual(-1);
       expect(camera.lowerBetaLimit).toEqual(-0.1);
-      expect(camera.lowerRadiusLimit).toEqual(5);
-      expect(camera.upperAlphaLimit).toEqual(1);
-      expect(camera.upperBetaLimit).toEqual(0.1);
-      expect(camera.upperRadiusLimit).toEqual(15);
+      expect(camera.lowerRadiusLimit).toBe(5);
+      expect(camera.upperAlphaLimit).toBe(1);
+      expect(camera.upperBetaLimit).toBe(0.1);
+      expect(camera.upperRadiusLimit).toBe(15);
     });
 
     it('can remove arc-rotate camera', function () {
@@ -152,7 +152,7 @@ describe('camera system', function () {
       const camera = scene.activeCamera as BabylonTargetCamera;
       expect(camera.position.equalsToFloats(0, 0, 0)).toBeTrue();
       expect(camera.getTarget().equalsToFloats(0, 0, 0)).toBeTrue();
-      expect(camera.fov).toEqual(0.8);
+      expect(camera.fov).toBe(0.8);
     });
 
     it('can add target camera with custom arguments', function () {
@@ -175,7 +175,7 @@ describe('camera system', function () {
       expect(camera.position.equalsToFloats(0, 0, -10)).toBeTrue();
       // camera.getTarget() does not return target for TargetCamera, weird...
       // expect(camera.getTarget().equalsToFloats(0, 1, 0)).toBeTrue();
-      expect(camera.fov).toEqual(0.5);
+      expect(camera.fov).toBe(0.5);
     });
 
     it('can update target camera', function () {
@@ -204,7 +204,7 @@ describe('camera system', function () {
       expect(camera.position.equalsToFloats(0, 0, -10)).toBeTrue();
       // camera.getTarget() does not return target for TargetCamera, weird...
       // expect(camera.getTarget().equalsToFloats(0, 1, 0)).toBeTrue();
-      expect(camera.fov).toEqual(0.5);
+      expect(camera.fov).toBe(0.5);
     });
 
     it('can remove target camera', function () {

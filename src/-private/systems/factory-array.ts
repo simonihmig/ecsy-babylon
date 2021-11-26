@@ -18,7 +18,7 @@ export default abstract class FactoryArraySystem<
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
-  protected abstract instanceConstructor: Function;
+  protected abstract instanceConstructor: Constructor<unknown>;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);

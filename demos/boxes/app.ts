@@ -25,7 +25,7 @@ const boxOptions = {
   size: 2,
 };
 const boxes: Entity[] = [];
-const frames = Array(30).fill(0);
+const frames = Array<number>(30).fill(0);
 
 function random(): number {
   return Math.random() * 360;
@@ -42,7 +42,7 @@ function afterRender(delta: number, _time: number): void {
   frames.shift();
   frames[frames.length] = 1000 / delta;
 
-  const fps = frames.reduce((total, frame) => total + frame) / frames.length;
+  const fps = frames.reduce((total, frame) => total + frame, 0) / frames.length;
   fpsEl!.innerHTML = `${Math.round(fps)}`;
 }
 

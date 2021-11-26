@@ -48,8 +48,8 @@ describe('material system', function () {
       expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
       expect(material.ambientColor.equalsFloats(0, 1, 0)).toBeTrue();
       expect(material.emissiveColor.equalsFloats(0, 0, 1)).toBeTrue();
-      expect(material.roughness).toEqual(0.5);
-      expect(material.metallic).toEqual(0.1);
+      expect(material.roughness).toBe(0.5);
+      expect(material.metallic).toBe(0.1);
     });
 
     it('can update material', function () {
@@ -79,8 +79,8 @@ describe('material system', function () {
       expect(material.albedoColor.equalsFloats(1, 0, 0)).toBeTrue();
       expect(material.ambientColor.equalsFloats(0, 1, 0)).toBeTrue();
       expect(material.emissiveColor.equalsFloats(0, 0, 1)).toBeTrue();
-      expect(material.roughness).toEqual(0.5);
-      expect(material.metallic).toEqual(0.1);
+      expect(material.roughness).toBe(0.5);
+      expect(material.metallic).toBe(0.1);
     });
 
     it('can apply material to updated mesh', function () {

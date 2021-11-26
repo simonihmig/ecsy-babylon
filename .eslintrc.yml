@@ -35,10 +35,9 @@ rules:
   # explicit any will silently disable a lot of type checking, try to abstain as much as possible!
   "@typescript-eslint/no-explicit-any": error
   "@typescript-eslint/no-unused-vars":        [error, {argsIgnorePattern: "^_"}]
-  # this fix is needed for optional chaining. can hopefully be removed, when @typescript-eslint default configs get updated
-  "no-unused-expressions": "off"
   "@typescript-eslint/no-unused-expressions": "error"
   "@typescript-eslint/no-non-null-assertion": off
+  no-use-before-define: off
   no-restricted-imports:
     - error
     - name: "@babylonjs/core"

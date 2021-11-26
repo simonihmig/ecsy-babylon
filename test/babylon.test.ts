@@ -14,8 +14,8 @@ describe('babylon system', function () {
   });
 
   it('calls render beforeRender and afterRender', async function () {
-    const beforeRender = jest.fn();
-    const afterRender = jest.fn();
+    const beforeRender = jest.fn<void, [number, number]>();
+    const afterRender = jest.fn<void, [number, number]>();
 
     const { world } = setupWorld({
       rootEntityValues: {

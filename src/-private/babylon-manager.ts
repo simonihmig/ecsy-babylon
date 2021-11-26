@@ -76,8 +76,12 @@ export default class BabylonManager {
 
     assert('Cannot transition property without Animation support', Animation);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const initial = (target as any)[property].clone ? (target as any)[property].clone() : (target as any)[property];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+    const initial: unknown = (target as any)[property].clone
+      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+        (target as any)[property].clone()
+      : // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+        (target as any)[property];
     const transition = new Animation(
       `${property}Transition`,
       property,
@@ -131,7 +135,7 @@ export default class BabylonManager {
       return Animation!.ANIMATIONTYPE_FLOAT;
     }
 
-    throw new Error(`Could not determine animation type for value ${value}`);
+    throw new Error(`Could not determine animation type for value ${String(value)}`);
   }
 
   private getTransition(entity: Entity, property: string): TransitionConfig | undefined {

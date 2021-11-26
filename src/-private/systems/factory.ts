@@ -59,9 +59,9 @@ export default abstract class FactorySystem<
       const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
       assert('No instance found', instanceComponent?.value);
       if (this.transitionTarget) {
-        this.world.babylonManager.updateProperties(entity, instanceComponent.value!, this.transitionTarget, c);
+        this.world.babylonManager.updateProperties(entity, instanceComponent.value, this.transitionTarget, c);
       } else {
-        this.world.babylonManager.setProperties(entity, instanceComponent.value!, c);
+        this.world.babylonManager.setProperties(entity, instanceComponent.value, c);
       }
     }
   }

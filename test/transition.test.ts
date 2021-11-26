@@ -49,9 +49,9 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
 
       await wait(100);
       scene.meshes[0].computeWorldMatrix(true);
@@ -64,9 +64,9 @@ describe('transition system', function () {
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
     });
 
     it('uses transition multiple times', async function () {
@@ -99,9 +99,9 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
 
       await wait(100);
       scene.meshes[0].computeWorldMatrix(true);
@@ -114,16 +114,16 @@ describe('transition system', function () {
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
 
       component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(-1, 0, 1);
 
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
 
       await wait(100);
       scene.meshes[0].computeWorldMatrix(true);
@@ -137,8 +137,8 @@ describe('transition system', function () {
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(-1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(1);
     });
 
     it('support multiple independent transitions', async function () {
@@ -176,12 +176,12 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(100);
       const scale = entity.getMutableComponent(Scale)!;
@@ -194,38 +194,38 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeLessThan(2);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeGreaterThan(1);
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeLessThan(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(300);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeGreaterThan(1);
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeLessThan(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(400);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
     });
 
     it('support transitions on different Babylon instances', async function () {
@@ -271,10 +271,10 @@ describe('transition system', function () {
       const mesh = scene.meshes[0];
       const material = mesh.material as BabylonPbrMaterial;
       mesh.computeWorldMatrix(true);
-      expect(mesh.getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(mesh.getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(mesh.getWorldMatrix().getTranslation().z).toEqual(0);
-      expect(material.roughness).toEqual(0);
+      expect(mesh.getWorldMatrix().getTranslation().x).toBe(0);
+      expect(mesh.getWorldMatrix().getTranslation().y).toBe(0);
+      expect(mesh.getWorldMatrix().getTranslation().z).toBe(0);
+      expect(material.roughness).toBe(0);
 
       await wait(50);
       const scale = entity.getMutableComponent(Scale)!;
@@ -292,10 +292,10 @@ describe('transition system', function () {
 
       await wait(100);
       mesh.computeWorldMatrix(true);
-      expect(mesh.getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(mesh.getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(mesh.getWorldMatrix().getTranslation().z).toEqual(3);
-      expect(material.roughness).toEqual(1);
+      expect(mesh.getWorldMatrix().getTranslation().x).toBe(1);
+      expect(mesh.getWorldMatrix().getTranslation().y).toBe(2);
+      expect(mesh.getWorldMatrix().getTranslation().z).toBe(3);
+      expect(material.roughness).toBe(1);
     });
 
     it('changes without matching transition are applied immediately', async function () {
@@ -331,21 +331,21 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
     });
 
     it('duration of zero applies value immediately', function () {
@@ -378,9 +378,9 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
     });
 
     it('can update transition setting', async function () {
@@ -419,9 +419,9 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
 
       await wait(100);
       scene.meshes[0].computeWorldMatrix(true);
@@ -434,9 +434,9 @@ describe('transition system', function () {
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
     });
 
     it('can remove all transitions', function () {
@@ -471,9 +471,9 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
     });
 
     it('can remove single transition', async function () {
@@ -518,12 +518,12 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(100);
 
@@ -534,18 +534,18 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBeLessThan(2);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
     });
   });
 
@@ -580,15 +580,15 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(0);
 
       await wait(250);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toEqual(3);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBe(3);
     });
 
     it('can transition rotation', async function () {
@@ -662,14 +662,14 @@ describe('transition system', function () {
 
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(1);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(1);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
 
       await wait(250);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toEqual(2);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
-      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBe(2);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toBe(0);
+      expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toBe(0);
     });
   });
   describe('light', function () {
@@ -707,7 +707,7 @@ describe('transition system', function () {
       expect(light.direction.x).toBeLessThan(1);
       expect(light.direction.y).toBeGreaterThan(-1);
       expect(light.direction.y).toBeLessThan(1);
-      expect(light.direction.z).toEqual(0);
+      expect(light.direction.z).toBe(0);
 
       await wait(100);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
@@ -740,14 +740,14 @@ describe('transition system', function () {
 
       expect(scene.lights).toHaveLength(1);
       const light = scene.lights[0] as BabylonDirectionalLight;
-      expect(light.intensity).toEqual(1);
+      expect(light.intensity).toBe(1);
 
       await wait(50);
       expect(light.intensity).toBeGreaterThan(0);
       expect(light.intensity).toBeLessThan(1);
 
       await wait(100);
-      expect(light.intensity).toEqual(0);
+      expect(light.intensity).toBe(0);
     });
   });
   describe('material', function () {
@@ -788,7 +788,7 @@ describe('transition system', function () {
       expect(material.albedoColor.r).toBeLessThan(1);
       expect(material.albedoColor.g).toBeGreaterThan(0);
       expect(material.albedoColor.g).toBeLessThan(1);
-      expect(material.albedoColor.b).toEqual(0);
+      expect(material.albedoColor.b).toBe(0);
 
       await wait(100);
       expect(material.albedoColor.equalsFloats(0, 1, 0)).toBeTrue();

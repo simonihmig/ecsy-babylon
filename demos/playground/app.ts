@@ -25,13 +25,13 @@ if (canvas === null || fpsEl === null) {
   throw new Error('Required DOM elements not found');
 }
 
-const frames = Array(30).fill(0);
+const frames = Array<number>(30).fill(0);
 
 function afterRender(delta: number, _time: number): void {
   frames.shift();
   frames[frames.length] = 1000 / delta;
 
-  const fps = frames.reduce((total, frame) => total + frame) / frames.length;
+  const fps = frames.reduce((total, frame) => total + frame, 0) / frames.length;
   fpsEl!.innerHTML = `${Math.round(fps)}`;
 }
 

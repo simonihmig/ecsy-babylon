@@ -22,7 +22,7 @@ describe('light system', function () {
 
       const light = scene.lights[0];
       expect(light).toBeInstanceOf(BabylonPointLight);
-      expect(light.intensity).toEqual(1);
+      expect(light.intensity).toBe(1);
     });
 
     it('can add point-light with custom arguments', function () {
@@ -39,7 +39,7 @@ describe('light system', function () {
 
       const light = scene.lights[0];
       expect(light).toBeInstanceOf(BabylonPointLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
     });
 
     it('can update point-light', function () {
@@ -60,7 +60,7 @@ describe('light system', function () {
 
       const light = scene.lights[0];
       expect(light).toBeInstanceOf(BabylonPointLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
     });
 
     it('can remove point-light', function () {
@@ -94,7 +94,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonDirectionalLight;
       expect(light).toBeInstanceOf(BabylonDirectionalLight);
-      expect(light.intensity).toEqual(1);
+      expect(light.intensity).toBe(1);
       expect(light.direction.equalsToFloats(0, -1, 0)).toBeTrue();
     });
 
@@ -114,7 +114,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonDirectionalLight;
       expect(light).toBeInstanceOf(BabylonDirectionalLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
@@ -137,7 +137,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonDirectionalLight;
       expect(light).toBeInstanceOf(BabylonDirectionalLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
@@ -172,10 +172,10 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonSpotLight;
       expect(light).toBeInstanceOf(BabylonSpotLight);
-      expect(light.intensity).toEqual(1);
+      expect(light.intensity).toBe(1);
       expect(light.direction.equalsToFloats(0, -1, 0)).toBeTrue();
       expect(light.angle).toBeCloseTo(Math.PI / 3);
-      expect(light.exponent).toEqual(2);
+      expect(light.exponent).toBe(2);
     });
 
     it('can add spot-light with custom arguments', function () {
@@ -194,10 +194,10 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonSpotLight;
       expect(light).toBeInstanceOf(BabylonSpotLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
       expect(light.angle).toBeCloseTo(Math.PI);
-      expect(light.exponent).toEqual(1);
+      expect(light.exponent).toBe(1);
     });
 
     it('can update spot-light', function () {
@@ -218,10 +218,10 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonSpotLight;
       expect(light).toBeInstanceOf(BabylonSpotLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
       expect(light.angle).toBeCloseTo(Math.PI);
-      expect(light.exponent).toEqual(1);
+      expect(light.exponent).toBe(1);
     });
 
     it('can remove spot-light', function () {
@@ -256,7 +256,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonHemisphericLight;
       expect(light).toBeInstanceOf(BabylonHemisphericLight);
-      expect(light.intensity).toEqual(1);
+      expect(light.intensity).toBe(1);
       expect(light.direction.equalsToFloats(0, -1, 0)).toBeTrue();
     });
 
@@ -276,7 +276,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonHemisphericLight;
       expect(light).toBeInstanceOf(BabylonHemisphericLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
@@ -299,7 +299,7 @@ describe('light system', function () {
 
       const light = scene.lights[0] as BabylonHemisphericLight;
       expect(light).toBeInstanceOf(BabylonHemisphericLight);
-      expect(light.intensity).toEqual(2);
+      expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
