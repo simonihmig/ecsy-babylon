@@ -5,10 +5,7 @@ import InstanceArrayComponent from '../../components/_instance-array';
 import World from '../../world';
 import { Attributes } from 'ecsy/src/System';
 import { IDisposable } from '@babylonjs/core/scene';
-
-interface Constructor<C> {
-  new (): C;
-}
+import { Constructor } from '../../types';
 
 export default abstract class FactoryArraySystem<
   C extends Component<unknown>,
@@ -18,7 +15,7 @@ export default abstract class FactoryArraySystem<
   protected abstract create(component: C): I;
   protected abstract instanceComponentConstructor: ComponentConstructor<D>;
   protected factoryComponentConstructor: ComponentConstructor<C>;
-  protected abstract instanceConstructor: Constructor<unknown>;
+  protected abstract instanceConstructor: Constructor<I>;
 
   constructor(world: World, attributes?: Attributes) {
     super(world, attributes);
