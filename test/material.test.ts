@@ -125,6 +125,24 @@ describe('material system', function () {
       expect(material).toBeNull();
       expect(scene.meshes[0].material).toBeNull();
     });
+
+    it('can remove whole entity', function () {
+      const { world, rootEntity } = setupWorld();
+
+      const entity = world.createEntity();
+      entity.addComponent(Parent).addComponent(Box).addComponent(PbrMaterial);
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      entity.remove();
+      world.execute(0, 0);
+
+      const material = scene.getMaterialByName('PbrMaterial');
+
+      expect(material).toBeNull();
+    });
   });
 
   describe('standard material', function () {
