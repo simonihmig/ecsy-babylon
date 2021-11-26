@@ -22,8 +22,6 @@ extends:
   - plugin:@typescript-eslint/recommended-requiring-type-checking
   - standard
 
-  - prettier/@typescript-eslint
-  - prettier/standard
   - plugin:jest/recommended
   - plugin:jest/style
 
