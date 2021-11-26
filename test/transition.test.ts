@@ -112,7 +112,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
@@ -134,7 +134,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
 
-      await wait(130);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(-1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(0);
@@ -198,7 +198,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
@@ -338,7 +338,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
@@ -432,7 +432,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeGreaterThan(0);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().z).toBeLessThan(3);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
@@ -538,7 +538,7 @@ describe('transition system', function () {
       expect(scene.meshes[0].getWorldMatrix().asArray()[1]).toEqual(0);
       expect(scene.meshes[0].getWorldMatrix().asArray()[2]).toEqual(0);
 
-      await wait(120);
+      await wait(150);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().x).toEqual(1);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().y).toEqual(2);
