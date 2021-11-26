@@ -85,7 +85,7 @@
     "lint-staged": "11.2.6",
     "prettier": "2.5.0",
     "release-it": "14.11.8",
-    "release-it-lerna-changelog": "3.1.0",
+    "release-it-lerna-changelog": "4.0.1",
     "rimraf": "3.0.2",
     "rollup": "2.60.1",
     "rollup-plugin-commonjs": "10.1.0",
