@@ -1,10 +1,9 @@
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import ShadowLight, { schema as baseSchema } from './_shadow';
-import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { ComponentSchema } from 'ecsy';
 import { BabylonTypes } from '../../-private/ecsy-types';
 
-export default class DirectionalLight extends ShadowLight<DirectionalLight, BabylonDirectionalLight> {
+export default class DirectionalLight extends ShadowLight<DirectionalLight> {
   direction!: Vector3;
 
   static schema: ComponentSchema = {

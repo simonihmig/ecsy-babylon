@@ -1,12 +1,9 @@
 import { Entity } from 'ecsy';
 import { Material, Mesh } from '../components';
-import { Scene } from '@babylonjs/core/scene';
 import { assert } from '../-private/utils/debug';
 import { assign } from '../-private/utils/assign';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
-
-type MaterialConstructor<T> = { new (name: string, scene: Scene, doNotAdd?: boolean): T };
 
 export default class MaterialSystem extends SystemWithCore {
   execute(): void {

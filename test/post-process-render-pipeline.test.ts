@@ -183,12 +183,12 @@ describe('post-process-render-pipeline system', function () {
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
-        expect(pp.name).toEqual('defaultPipeline');
+        expect(pp.name).toBe('defaultPipeline');
         expect(pp.sharpenEnabled).toBeFalse();
         expect(pp.bloomEnabled).toBeFalse();
-        expect(pp.bloomKernel).toEqual(64);
+        expect(pp.bloomKernel).toBe(64);
         expect(pp.imageProcessingEnabled).toBeTrue();
-        expect(pp.imageProcessing.contrast).toEqual(1);
+        expect(pp.imageProcessing.contrast).toBe(1);
         expect(pp.imageProcessing.colorGradingEnabled).toBeFalse();
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
@@ -219,12 +219,12 @@ describe('post-process-render-pipeline system', function () {
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
-        expect(pp.name).toEqual('test');
+        expect(pp.name).toBe('test');
         expect(pp.sharpenEnabled).toBeTrue();
         expect(pp.bloomEnabled).toBeTrue();
-        expect(pp.bloomKernel).toEqual(32);
+        expect(pp.bloomKernel).toBe(32);
         expect(pp.imageProcessingEnabled).toBeTrue();
-        expect(pp.imageProcessing.contrast).toEqual(0.5);
+        expect(pp.imageProcessing.contrast).toBe(0.5);
         expect(pp.imageProcessing.colorGradingEnabled).toBeTrue();
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
@@ -258,9 +258,9 @@ describe('post-process-render-pipeline system', function () {
         expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
         expect(pp.sharpenEnabled).toBeTrue();
         expect(pp.bloomEnabled).toBeTrue();
-        expect(pp.bloomKernel).toEqual(32);
+        expect(pp.bloomKernel).toBe(32);
         expect(pp.imageProcessingEnabled).toBeTrue();
-        expect(pp.imageProcessing.contrast).toEqual(0.5);
+        expect(pp.imageProcessing.contrast).toBe(0.5);
         expect(pp.imageProcessing.colorGradingEnabled).toBeTrue();
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
@@ -320,7 +320,7 @@ describe('post-process-render-pipeline system', function () {
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonSSAORenderingPipeline);
-        expect(pp.name).toEqual('ssao');
+        expect(pp.name).toBe('ssao');
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
       });
@@ -342,9 +342,9 @@ describe('post-process-render-pipeline system', function () {
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonSSAORenderingPipeline);
-        expect(pp.name).toEqual('test');
-        expect(pp.radius).toEqual(0.01);
-        expect(pp.area).toEqual(0.02);
+        expect(pp.name).toBe('test');
+        expect(pp.radius).toBe(0.01);
+        expect(pp.area).toBe(0.02);
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -371,9 +371,9 @@ describe('post-process-render-pipeline system', function () {
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.radius).toEqual(0.01);
-        expect(pp.area).toEqual(0.02);
+        expect(pp.name).toBe('test');
+        expect(pp.radius).toBe(0.01);
+        expect(pp.area).toBe(0.02);
 
         // expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         // expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);

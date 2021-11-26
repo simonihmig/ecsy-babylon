@@ -23,7 +23,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
 
       mesh.updateFacetData();
-      expect(mesh.facetNb).toEqual(12); // 6 sides, two polys each
+      expect(mesh.facetNb).toBe(12); // 6 sides, two polys each
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, -0.5)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0.5)).toBeTrue();
       expect(scene.geometries).toHaveLength(1);
@@ -45,7 +45,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
 
       mesh.updateFacetData();
-      expect(mesh.facetNb).toEqual(12); // 6 sides, two polys each
+      expect(mesh.facetNb).toBe(12); // 6 sides, two polys each
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-1, -1.5, -2)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(1, 1.5, 2)).toBeTrue();
       expect(scene.geometries).toHaveLength(1);
@@ -112,7 +112,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
 
       mesh.updateFacetData();
-      expect(mesh.facetNb).toEqual(2);
+      expect(mesh.facetNb).toBe(2);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-0.5, -0.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(0.5, 0.5, 0)).toBeTrue();
       expect(scene.geometries).toHaveLength(1);
@@ -134,7 +134,7 @@ describe('primitive system', function () {
       expect(mesh).toBeInstanceOf(AbstractMesh);
 
       mesh.updateFacetData();
-      expect(mesh.facetNb).toEqual(2);
+      expect(mesh.facetNb).toBe(2);
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-1, -1.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(1, 1.5, 0)).toBeTrue();
       expect(scene.geometries).toHaveLength(1);
@@ -307,7 +307,7 @@ describe('primitive system', function () {
       const mesh = scene.meshes[0] as LinesMesh;
       expect(mesh).toBeInstanceOf(LinesMesh);
       expect(mesh.color.equalsFloats(1, 0, 0)).toBeTrue();
-      expect(mesh.alpha).toEqual(0.5);
+      expect(mesh.alpha).toBe(0.5);
     });
 
     it('can update a line', function () {
@@ -339,7 +339,7 @@ describe('primitive system', function () {
       expect(mesh.getBoundingInfo().boundingBox.minimum.equalsToFloats(-2, -1.5, 0)).toBeTrue();
       expect(mesh.getBoundingInfo().boundingBox.maximum.equalsToFloats(2, 1.5, 0)).toBeTrue();
       expect(mesh.color.equalsFloats(0, 1, 0)).toBeTrue();
-      expect(mesh.alpha).toEqual(0.5);
+      expect(mesh.alpha).toBe(0.5);
       expect(scene.geometries).toHaveLength(1);
     });
 

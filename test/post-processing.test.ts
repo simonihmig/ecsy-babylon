@@ -162,8 +162,8 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('blur');
-        expect(pp.kernel).toEqual(1);
+        expect(pp.name).toBe('blur');
+        expect(pp.kernel).toBe(1);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -189,10 +189,10 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.kernel).toEqual(3);
-        expect(pp.direction.x).toEqual(2);
-        expect(pp.direction.y).toEqual(0);
+        expect(pp.name).toBe('test');
+        expect(pp.kernel).toBe(3);
+        expect(pp.direction.x).toBe(2);
+        expect(pp.direction.y).toBe(0);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -219,10 +219,10 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.kernel).toEqual(3);
-        expect(pp.direction.x).toEqual(2);
-        expect(pp.direction.y).toEqual(0);
+        expect(pp.name).toBe('test');
+        expect(pp.kernel).toBe(3);
+        expect(pp.direction.x).toBe(2);
+        expect(pp.direction.y).toBe(0);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -279,7 +279,7 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlackAndWhitePostProcess;
         expect(pp).toBeInstanceOf(BabylonBlackAndWhitePostProcess);
-        expect(pp.name).toEqual('black-and-white');
+        expect(pp.name).toBe('black-and-white');
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -300,7 +300,7 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlackAndWhitePostProcess;
         expect(pp).toBeInstanceOf(BabylonBlackAndWhitePostProcess);
-        expect(pp.name).toEqual('test');
+        expect(pp.name).toBe('test');
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -325,7 +325,7 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlackAndWhitePostProcess;
         expect(pp).toBeInstanceOf(BabylonBlackAndWhitePostProcess);
-        expect(pp.name).toEqual('test');
+        expect(pp.name).toBe('test');
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -365,9 +365,9 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
-        expect(pp.name).toEqual('motion-blur');
-        expect(pp.motionStrength).toEqual(1);
-        expect(pp.motionBlurSamples).toEqual(32);
+        expect(pp.name).toBe('motion-blur');
+        expect(pp.motionStrength).toBe(1);
+        expect(pp.motionBlurSamples).toBe(32);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -390,9 +390,9 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.motionStrength).toEqual(2);
-        expect(pp.motionBlurSamples).toEqual(16);
+        expect(pp.name).toBe('test');
+        expect(pp.motionStrength).toBe(2);
+        expect(pp.motionBlurSamples).toBe(16);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);
@@ -419,9 +419,9 @@ describe('post-processing system', function () {
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
         expect(pp).toBeInstanceOf(BabylonMotionBlurPostProcess);
-        expect(pp.name).toEqual('test');
-        expect(pp.motionStrength).toEqual(2);
-        expect(pp.motionBlurSamples).toEqual(16);
+        expect(pp.name).toBe('test');
+        expect(pp.motionStrength).toBe(2);
+        expect(pp.motionBlurSamples).toBe(16);
 
         expect(scene.activeCamera?._postProcesses).toHaveLength(1);
         expect(scene.activeCamera?._postProcesses[0]).toEqual(pp);

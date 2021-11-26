@@ -1,10 +1,9 @@
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import ShadowLight, { schema as baseSchema } from './_shadow';
-import { SpotLight as BabylonSpotLight } from '@babylonjs/core/Lights/spotLight';
 import { ComponentSchema, Types } from 'ecsy';
 import { BabylonTypes } from '../../-private/ecsy-types';
 
-export default class SpotLight extends ShadowLight<SpotLight, BabylonSpotLight> {
+export default class SpotLight extends ShadowLight<SpotLight> {
   direction!: Vector3;
   angle!: number;
   exponent!: number;
