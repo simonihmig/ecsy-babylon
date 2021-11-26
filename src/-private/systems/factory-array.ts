@@ -82,7 +82,7 @@ export default abstract class FactoryArraySystem<
   }
 
   private removeInstance(entity: Entity): void {
-    const instanceComponent = entity.getComponent(this.instanceComponentConstructor);
+    const instanceComponent = entity.getComponent(this.instanceComponentConstructor, true);
     assert('No instance component found', instanceComponent?.value);
 
     const ic = instanceComponent as InstanceArrayComponent<unknown, I>;

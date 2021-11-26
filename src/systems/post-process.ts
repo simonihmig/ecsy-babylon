@@ -27,7 +27,7 @@ export default class PostProcessSystem extends SystemWithCore {
   }
 
   private getCamera(entity: Entity): BabylonCamera {
-    const cameraComponent = entity.getComponent(Camera);
+    const cameraComponent = entity.getComponent(Camera, true);
     assert('No Camera found for post processing', cameraComponent?.value);
     return cameraComponent.value;
   }

@@ -145,6 +145,27 @@ describe('post-process-render-pipeline system', function () {
       const cameraPPs = scene.activeCamera!._postProcesses.filter(Boolean);
       expect(cameraPPs).toHaveLength(0);
     });
+
+    it('can remove the whole entity', function () {
+      const { world, rootEntity, engine } = setupWorld();
+
+      const pp = createPipeline(engine, 'test');
+
+      const cameraEntity = world.createEntity();
+      cameraEntity
+        .addComponent(Parent)
+        .addComponent(ArcRotateCamera)
+        .addComponent(PostProcessRenderPipeline, { value: [pp] });
+
+      world.execute(0, 0);
+
+      const { scene } = rootEntity.getComponent(BabylonCore)!;
+
+      cameraEntity.remove();
+      world.execute(0, 0);
+
+      expect(scene.activeCamera).toBeNull();
+    });
   });
 
   describe('builders', function () {
@@ -263,6 +284,24 @@ describe('post-process-render-pipeline system', function () {
 
         const cameraPPs = scene.activeCamera!._postProcesses.filter(Boolean);
         expect(cameraPPs).toHaveLength(0);
+      });
+
+      it('can remove the whole entity', function () {
+        const { world, rootEntity } = setupWorld();
+
+        const cameraEntity = world.createEntity();
+        cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
+
+        world.execute(0, 0);
+
+        const { scene } = rootEntity.getComponent(BabylonCore)!;
+        cameraEntity.remove();
+
+        world.execute(0, 0);
+
+        expect(scene.postProcesses).toHaveLength(0);
+
+        expect(scene.activeCamera).toBeNull();
       });
     });
 
