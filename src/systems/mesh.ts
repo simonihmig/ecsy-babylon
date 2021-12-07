@@ -41,7 +41,7 @@ export default class MeshSystem extends SystemWithCore {
     const { value, overrides } = meshComponent;
     assign(value, overrides);
 
-    this.core.scene.addMesh(mesh);
+    this.core.scene.addMesh(mesh, true);
   }
 
   update(entity: Entity): void {
