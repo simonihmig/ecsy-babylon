@@ -1,4 +1,13 @@
 
+
+## v0.7.2 (2021-12-07)
+
+#### :bug: Bug Fix
+* [#598](https://github.com/kaliber5/ecsy-babylon/pull/598) Mesh systems adds meshes recursively including children ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.7.1 (2021-11-26)
 
 #### :bug: Bug Fix
