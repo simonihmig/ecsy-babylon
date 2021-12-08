@@ -10,6 +10,7 @@ export interface SetupWorld {
   world: World;
   rootEntity: Entity;
   engine: Engine;
+  scene: Scene;
 }
 
 export interface SetupWorldOptions {
@@ -42,6 +43,7 @@ export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld 
   });
 
   world.execute(0, 0);
+  const { scene } = rootEntity.getComponent(BabylonCore)!;
 
   // This has the side effect that Engine.LastCreatedScene is null, which forces us to always explicitly pass a Scene
   // when created new Babylon instances that require it. Omitting to do that works in general, as Babylon will then use
@@ -54,5 +56,6 @@ export default function setupWorld(options: SetupWorldOptions = {}): SetupWorld 
     world,
     rootEntity,
     engine,
+    scene,
   };
 }

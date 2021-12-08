@@ -4,9 +4,8 @@ import setupWorld from './helpers/setup-world';
 
 describe('babylon system', function () {
   it('sets up babylon scene', function () {
-    const { world, rootEntity } = setupWorld();
+    const { rootEntity } = setupWorld();
 
-    world.execute(0, 0);
     const babylonComponent = rootEntity.getComponent(BabylonCore)!;
 
     expect(babylonComponent.engine).toBeDefined();
@@ -17,14 +16,12 @@ describe('babylon system', function () {
     const beforeRender = jest.fn<void, [number, number]>();
     const afterRender = jest.fn<void, [number, number]>();
 
-    const { world } = setupWorld({
+    setupWorld({
       rootEntityValues: {
         beforeRender,
         afterRender,
       },
     });
-
-    world.execute(0, 0);
 
     await waitForRAF();
 

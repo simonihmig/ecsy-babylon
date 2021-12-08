@@ -1,6 +1,5 @@
 import {
   ArcRotateCamera,
-  BabylonCore,
   Box,
   DirectionalLight,
   Parent,
@@ -20,7 +19,7 @@ import { Color3 } from '@babylonjs/core/Maths/math.color';
 describe('transition system', function () {
   describe('general', function () {
     it('interpolates values over time', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -41,7 +40,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -70,7 +68,7 @@ describe('transition system', function () {
     });
 
     it('uses transition multiple times', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -91,7 +89,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       let component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -142,7 +139,7 @@ describe('transition system', function () {
     });
 
     it('support multiple independent transitions', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -168,7 +165,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const position = entity.getMutableComponent(Position)!;
       position.value = new Vector3(1, 2, 3);
 
@@ -229,7 +225,7 @@ describe('transition system', function () {
     });
 
     it('support transitions on different Babylon instances', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -258,7 +254,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const position = entity.getMutableComponent(Position)!;
       position.value = new Vector3(1, 2, 3);
 
@@ -299,7 +294,7 @@ describe('transition system', function () {
     });
 
     it('changes without matching transition are applied immediately', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -321,7 +316,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const position = entity.getMutableComponent(Position)!;
       position.value = new Vector3(1, 2, 3);
       const scale = entity.getMutableComponent(Scale)!;
@@ -349,7 +343,7 @@ describe('transition system', function () {
     });
 
     it('duration of zero applies value immediately', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -370,7 +364,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -384,7 +377,7 @@ describe('transition system', function () {
     });
 
     it('can update transition setting', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -405,7 +398,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const transitionComponent = entity.getMutableComponent(Transitions)!;
       transitionComponent.value[0] = {
         property: 'transform.position',
@@ -440,7 +432,7 @@ describe('transition system', function () {
     });
 
     it('can remove all transitions', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -461,7 +453,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -477,7 +468,7 @@ describe('transition system', function () {
     });
 
     it('can remove single transition', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -502,8 +493,6 @@ describe('transition system', function () {
         .addComponent(Scale, { value: Vector3.One() });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const transitionComponent = entity.getMutableComponent(Transitions)!;
       transitionComponent.value = transitionComponent.value.slice(0, 1);
@@ -551,7 +540,7 @@ describe('transition system', function () {
 
   describe('transform', function () {
     it('can transition position', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -572,7 +561,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -592,7 +580,7 @@ describe('transition system', function () {
     });
 
     it('can transition rotation', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -613,7 +601,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Rotation)!;
       component.value = new Vector3(0, Math.PI, 0);
 
@@ -633,7 +620,7 @@ describe('transition system', function () {
     });
 
     it('can transition scale', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -654,7 +641,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Scale)!;
       component.value = new Vector3(2, 1, 1);
 
@@ -674,7 +660,7 @@ describe('transition system', function () {
   });
   describe('light', function () {
     it('can transition direction', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -694,7 +680,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(DirectionalLight)!;
       component.direction = new Vector3(1, 0, 0);
 
@@ -714,7 +699,7 @@ describe('transition system', function () {
     });
 
     it('can transition intensity', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -734,7 +719,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(DirectionalLight)!;
       component.intensity = 0;
 
@@ -752,7 +736,7 @@ describe('transition system', function () {
   });
   describe('material', function () {
     it('can transition color', async function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       // we need a camera to trigger the render loop needed for animations
       world.createEntity().addComponent(Parent).addComponent(ArcRotateCamera);
@@ -775,7 +759,6 @@ describe('transition system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(PbrMaterial)!;
       component.albedoColor = new Color3(0, 1, 0);
 

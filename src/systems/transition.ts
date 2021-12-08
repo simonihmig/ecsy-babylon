@@ -5,7 +5,7 @@ import BabylonWorld from '../world';
 import { Animation } from '@babylonjs/core/Animations/animation';
 import '@babylonjs/core/Animations/animatable'; // needed to enable animation support on Scene in a tree-shaken build
 
-export default class TransitionSystem extends System<Entity> {
+export default class TransitionSystem extends System {
   world!: World;
 
   constructor(world: BabylonWorld, attributes: Attributes) {
