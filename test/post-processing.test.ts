@@ -1,11 +1,10 @@
 import {
   ArcRotateCamera,
-  BabylonCore,
+  BlackAndWhitePostProcess,
+  BlurPostProcess,
+  MotionBlurPostProcess,
   Parent,
   PostProcess,
-  BlurPostProcess,
-  BlackAndWhitePostProcess,
-  MotionBlurPostProcess,
 } from '../src/components';
 import setupWorld from './helpers/setup-world';
 import { PassPostProcess } from '@babylonjs/core/PostProcesses/passPostProcess';
@@ -17,7 +16,7 @@ import { Vector2 } from '@babylonjs/core/Maths/math.vector';
 describe('post-processing system', function () {
   describe('post-process', function () {
     it('can add postprocessing instances', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = new PassPostProcess('pass', 1.0, null, undefined, engine);
 
@@ -28,8 +27,6 @@ describe('post-processing system', function () {
         .addComponent(PostProcess, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.postProcesses).toHaveLength(1);
       expect(scene.postProcesses[0]).toEqual(pp);
@@ -39,7 +36,7 @@ describe('post-processing system', function () {
     });
 
     it('can add another postprocessing instance', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = new PassPostProcess('pass', 1.0, null, undefined, engine);
 
@@ -50,8 +47,6 @@ describe('post-processing system', function () {
         .addComponent(PostProcess, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const component = cameraEntity.getMutableComponent(PostProcess)!;
       const pp2 = new PassPostProcess('pass2', 1.0, null, undefined, engine);
@@ -70,7 +65,7 @@ describe('post-processing system', function () {
     });
 
     it('can remove a postprocessing instance', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = new PassPostProcess('pass', 1.0, null, undefined, engine);
       const pp2 = new PassPostProcess('pass2', 1.0, null, undefined, engine);
@@ -82,8 +77,6 @@ describe('post-processing system', function () {
         .addComponent(PostProcess, { value: [pp, pp2] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const component = cameraEntity.getMutableComponent(PostProcess)!;
       component.value = [pp];
@@ -100,7 +93,7 @@ describe('post-processing system', function () {
     });
 
     it('can remove postprocessing instances', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = new PassPostProcess('pass', 1.0, null, undefined, engine);
 
@@ -111,8 +104,6 @@ describe('post-processing system', function () {
         .addComponent(PostProcess, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       cameraEntity.removeComponent(PostProcess);
       world.execute(0, 0);
@@ -124,7 +115,7 @@ describe('post-processing system', function () {
     });
 
     it('can remove the whole entity', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = new PassPostProcess('pass', 1.0, null, undefined, engine);
 
@@ -135,8 +126,6 @@ describe('post-processing system', function () {
         .addComponent(PostProcess, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       cameraEntity.remove();
       world.execute(0, 0);
@@ -150,14 +139,12 @@ describe('post-processing system', function () {
   describe('builders', function () {
     describe('blur', function () {
       it('can add post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
@@ -170,7 +157,7 @@ describe('post-processing system', function () {
       });
 
       it('can add post-process with custom properties', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity
@@ -183,8 +170,6 @@ describe('post-processing system', function () {
           });
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlurPostProcess;
@@ -199,14 +184,13 @@ describe('post-processing system', function () {
       });
 
       it('can update post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         const c = cameraEntity.getMutableComponent(BlurPostProcess);
         Object.assign(c, {
           name: 'test',
@@ -229,14 +213,13 @@ describe('post-processing system', function () {
       });
 
       it('can remove post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(BlurPostProcess);
 
         world.execute(0, 0);
@@ -248,14 +231,13 @@ describe('post-processing system', function () {
       });
 
       it('can remove the whole entity', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlurPostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.remove();
 
         world.execute(0, 0);
@@ -267,14 +249,12 @@ describe('post-processing system', function () {
     });
     describe('black-and-white', function () {
       it('can add post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlackAndWhitePostProcess);
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlackAndWhitePostProcess;
@@ -286,7 +266,7 @@ describe('post-processing system', function () {
       });
 
       it('can add post-process with custom properties', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlackAndWhitePostProcess, {
@@ -294,8 +274,6 @@ describe('post-processing system', function () {
         });
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonBlackAndWhitePostProcess;
@@ -307,14 +285,13 @@ describe('post-processing system', function () {
       });
 
       it('can update post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlackAndWhitePostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         const c = cameraEntity.getMutableComponent(BlackAndWhitePostProcess);
         Object.assign(c, {
           name: 'test',
@@ -332,14 +309,13 @@ describe('post-processing system', function () {
       });
 
       it('can remove post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(BlackAndWhitePostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(BlackAndWhitePostProcess);
 
         world.execute(0, 0);
@@ -353,14 +329,12 @@ describe('post-processing system', function () {
     // Seems starting with babylon.js 4.2 we cannot test this with an NullEngine (having webGLVersion=1)
     describe.skip('motion-blur', function () {
       it('can add post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
@@ -374,7 +348,7 @@ describe('post-processing system', function () {
       });
 
       it('can add post-process with custom properties', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess, {
@@ -384,8 +358,6 @@ describe('post-processing system', function () {
         });
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcesses).toHaveLength(1);
         const pp = scene.postProcesses[0] as BabylonMotionBlurPostProcess;
@@ -399,14 +371,13 @@ describe('post-processing system', function () {
       });
 
       it('can update post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         const c = cameraEntity.getMutableComponent(MotionBlurPostProcess);
         Object.assign(c, {
           name: 'test',
@@ -428,14 +399,13 @@ describe('post-processing system', function () {
       });
 
       it('can remove post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(MotionBlurPostProcess);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(MotionBlurPostProcess);
 
         world.execute(0, 0);

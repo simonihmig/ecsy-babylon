@@ -1,4 +1,4 @@
-import { ArcRotateCamera, TargetCamera, BabylonCore, Parent } from '../src/components';
+import { ArcRotateCamera, Parent, TargetCamera } from '../src/components';
 import { ArcRotateCamera as BabylonArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera';
 import { TargetCamera as BabylonTargetCamera } from '@babylonjs/core/Cameras/targetCamera';
 import setupWorld from './helpers/setup-world';
@@ -7,14 +7,12 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 describe('camera system', function () {
   describe('arc-rotate camera', function () {
     it('can add arc-rotate camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
       expect(scene.cameras).toHaveLength(2);
@@ -32,7 +30,7 @@ describe('camera system', function () {
     });
 
     it('can add arc-rotate camera with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera, {
@@ -49,8 +47,6 @@ describe('camera system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
 
       const camera = scene.activeCamera as BabylonArcRotateCamera;
@@ -66,14 +62,12 @@ describe('camera system', function () {
     });
 
     it('can update arc-rotate camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.activeCamera).toBeInstanceOf(BabylonArcRotateCamera);
 
@@ -106,14 +100,13 @@ describe('camera system', function () {
     });
 
     it('can remove arc-rotate camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const camera = scene.activeCamera;
 
       expect(camera).toBeInstanceOf(BabylonArcRotateCamera);
@@ -137,14 +130,12 @@ describe('camera system', function () {
 
   describe('target camera', function () {
     it('can add target camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(TargetCamera);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.activeCamera).toBeInstanceOf(BabylonTargetCamera);
       expect(scene.cameras).toHaveLength(2);
@@ -156,7 +147,7 @@ describe('camera system', function () {
     });
 
     it('can add target camera with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(TargetCamera, {
@@ -166,8 +157,6 @@ describe('camera system', function () {
       });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.activeCamera).toBeInstanceOf(BabylonTargetCamera);
 
@@ -179,14 +168,12 @@ describe('camera system', function () {
     });
 
     it('can update target camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(TargetCamera);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.activeCamera).toBeInstanceOf(BabylonTargetCamera);
 
@@ -208,14 +195,13 @@ describe('camera system', function () {
     });
 
     it('can remove target camera', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const cameraEntity = world.createEntity();
       cameraEntity.addComponent(Parent).addComponent(TargetCamera);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const camera = scene.activeCamera;
 
       expect(camera).toBeInstanceOf(BabylonTargetCamera);

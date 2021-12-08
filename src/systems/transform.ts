@@ -1,15 +1,18 @@
-import { Entity, System } from 'ecsy';
+import { Entity } from 'ecsy';
 import { Parent, PivotPoint, Position, Rotation, Scale, TransformNode } from '../components';
 import guidFor from '../-private/utils/guid';
 import { assert } from '../-private/utils/debug';
 import { TransformNode as BabylonTransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { World } from '../index';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import SystemWithCore, { queries } from '../-private/systems/with-core';
 
-export default class TransformSystem extends System<Entity> {
+export default class TransformSystem extends SystemWithCore {
   world!: World;
 
   execute(): void {
+    super.execute();
+
     this.queries.parent.added?.forEach((e: Entity) => this.setup(e));
     this.queries.transformNode.added?.forEach((e: Entity) => this.setupTransformNode(e));
 
@@ -29,6 +32,8 @@ export default class TransformSystem extends System<Entity> {
     // entity might remove TransformNode, so it needs to run before
     this.queries.parent.removed?.forEach((e: Entity) => this.remove(e));
     this.queries.transformNode.removed?.forEach((e: Entity) => this.removeTransformNode(e));
+
+    super.afterExecute();
   }
 
   setup(entity: Entity): void {
@@ -36,7 +41,10 @@ export default class TransformSystem extends System<Entity> {
       return;
     }
 
-    const transformNode = new BabylonTransformNode(`${guidFor(entity)}__TransformNode`);
+    assert('TransformSystem needs BabylonCoreComponent', this.core);
+
+    const { scene } = this.core;
+    const transformNode = new BabylonTransformNode(`${guidFor(entity)}__TransformNode`, scene);
 
     entity.addComponent(TransformNode, { value: transformNode });
   }
@@ -190,6 +198,7 @@ export default class TransformSystem extends System<Entity> {
   }
 
   static queries = {
+    ...queries,
     parent: {
       components: [Parent],
       listen: {

@@ -1,4 +1,4 @@
-import { BabylonCore, Box, Parent, Position, Rotation, Scale } from '../src/components';
+import { Box, Parent, Position, Rotation, Scale } from '../src/components';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
 import { PivotPoint } from '../src';
@@ -7,7 +7,7 @@ import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 describe('transform system', function () {
   describe('position', function () {
     it('can add position', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -17,22 +17,19 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getTranslation().equalsToFloats(1, 2, 3)).toBeTrue();
     });
 
     it('can update position', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box).addComponent(Position, { value: Vector3.Zero() });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Position)!;
       component.value = new Vector3(1, 2, 3);
 
@@ -44,7 +41,7 @@ describe('transform system', function () {
     });
 
     it('can remove position', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -53,8 +50,6 @@ describe('transform system', function () {
         .addComponent(Position, { value: new Vector3(1, 0, 1) });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       entity.removeComponent(Position);
       world.execute(0, 0);
@@ -66,7 +61,7 @@ describe('transform system', function () {
   });
   describe('rotation', function () {
     it('can add rotation', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -76,8 +71,6 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().getRotationMatrix().asArray()[0]).toBeCloseTo(-1);
@@ -86,14 +79,13 @@ describe('transform system', function () {
     });
 
     it('can update rotation', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box).addComponent(Rotation, { value: Vector3.Zero() });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Rotation)!;
       component.value = new Vector3(0, Math.PI, 0);
 
@@ -107,7 +99,7 @@ describe('transform system', function () {
     });
 
     it('can remove rotation', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -116,8 +108,6 @@ describe('transform system', function () {
         .addComponent(Rotation, { value: new Vector3(1, 0, 1) });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       entity.removeComponent(Rotation);
       world.execute(0, 0);
@@ -131,7 +121,7 @@ describe('transform system', function () {
   });
   describe('scale', function () {
     it('can add scale', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -141,8 +131,6 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.meshes).toHaveLength(1);
       scene.meshes[0].computeWorldMatrix(true);
       expect(scene.meshes[0].getWorldMatrix().asArray()[0]).toBeCloseTo(2);
@@ -151,14 +139,13 @@ describe('transform system', function () {
     });
 
     it('can update scale', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box).addComponent(Scale, { value: Vector3.One() });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Scale)!;
       component.value = new Vector3(2, 1, 1);
 
@@ -172,7 +159,7 @@ describe('transform system', function () {
     });
 
     it('can remove scale', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -182,7 +169,6 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.removeComponent(Scale);
       world.execute(0, 0);
 
@@ -196,7 +182,7 @@ describe('transform system', function () {
   });
   describe('pivot point', function () {
     it('can add pivot point', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -206,20 +192,17 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.meshes).toHaveLength(1);
       expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(1, 0, 0)).toBeTrue();
     });
 
     it('can update pivot point', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box).addComponent(PivotPoint, { value: Vector3.Zero() });
 
       world.execute(0, 0);
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
       expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(0, 0, 0)).toBeTrue();
@@ -233,7 +216,7 @@ describe('transform system', function () {
     });
 
     it('can remove pivot point', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -243,7 +226,6 @@ describe('transform system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       expect(scene.meshes).toHaveLength(1);
       expect((scene.meshes[0].parent as TransformNode).getAbsolutePivotPoint().equalsToFloats(1, 0, 0)).toBeTrue();
 

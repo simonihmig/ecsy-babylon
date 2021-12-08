@@ -1,4 +1,4 @@
-import { BabylonCore, Parent, PointLight, DirectionalLight, HemisphericLight, SpotLight } from '../src/components';
+import { DirectionalLight, HemisphericLight, Parent, PointLight, SpotLight } from '../src/components';
 import { PointLight as BabylonPointLight } from '@babylonjs/core/Lights/pointLight';
 import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import { SpotLight as BabylonSpotLight } from '@babylonjs/core/Lights/spotLight';
@@ -9,14 +9,12 @@ import setupWorld from './helpers/setup-world';
 describe('light system', function () {
   describe('point-light', function () {
     it('can add point-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(PointLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -26,14 +24,12 @@ describe('light system', function () {
     });
 
     it('can add point-light with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(PointLight, { intensity: 2 });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -43,14 +39,13 @@ describe('light system', function () {
     });
 
     it('can update point-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(PointLight);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = lightEntity.getMutableComponent(PointLight)!;
       component.intensity = 2;
 
@@ -64,14 +59,12 @@ describe('light system', function () {
     });
 
     it('can remove point-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(PointLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
@@ -81,14 +74,12 @@ describe('light system', function () {
   });
   describe('directional-light', function () {
     it('can add directional-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(DirectionalLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -99,7 +90,7 @@ describe('light system', function () {
     });
 
     it('can add directional-light with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity
@@ -107,8 +98,6 @@ describe('light system', function () {
         .addComponent(DirectionalLight, { intensity: 2, direction: new Vector3(1, 0, 0) });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -119,14 +108,13 @@ describe('light system', function () {
     });
 
     it('can update directional-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(DirectionalLight);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = lightEntity.getMutableComponent(DirectionalLight)!;
       component.intensity = 2;
       component.direction = new Vector3(1, 0, 0);
@@ -142,14 +130,12 @@ describe('light system', function () {
     });
 
     it('can remove directional-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(DirectionalLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
@@ -159,14 +145,12 @@ describe('light system', function () {
   });
   describe('spot-light', function () {
     it('can add spot-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(SpotLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -179,7 +163,7 @@ describe('light system', function () {
     });
 
     it('can add spot-light with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity
@@ -187,8 +171,6 @@ describe('light system', function () {
         .addComponent(SpotLight, { intensity: 2, direction: new Vector3(1, 0, 0), angle: Math.PI, exponent: 1 });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -201,14 +183,13 @@ describe('light system', function () {
     });
 
     it('can update spot-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(SpotLight);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = lightEntity.getMutableComponent(SpotLight)!;
       Object.assign(component, { intensity: 2, direction: new Vector3(1, 0, 0), angle: Math.PI, exponent: 1 });
 
@@ -225,14 +206,12 @@ describe('light system', function () {
     });
 
     it('can remove spot-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(SpotLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);
@@ -243,14 +222,12 @@ describe('light system', function () {
 
   describe('hemispheric-light', function () {
     it('can add hemispheric-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(HemisphericLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -261,7 +238,7 @@ describe('light system', function () {
     });
 
     it('can add hemispheric-light with custom arguments', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity
@@ -269,8 +246,6 @@ describe('light system', function () {
         .addComponent(HemisphericLight, { intensity: 2, direction: new Vector3(1, 0, 0) });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.lights).toHaveLength(1);
 
@@ -281,14 +256,13 @@ describe('light system', function () {
     });
 
     it('can update hemispheric-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(HemisphericLight);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = lightEntity.getMutableComponent(HemisphericLight)!;
       component.intensity = 2;
       component.direction = new Vector3(1, 0, 0);
@@ -304,14 +278,12 @@ describe('light system', function () {
     });
 
     it('can remove hemispheric-light', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
       lightEntity.addComponent(Parent).addComponent(HemisphericLight);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       lightEntity.remove();
       world.execute(0, 0);

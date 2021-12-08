@@ -1,10 +1,10 @@
-import { BabylonCore, Box, DirectionalLight, Parent, ShadowGenerator } from '../src/components';
+import { Box, DirectionalLight, Parent, ShadowGenerator } from '../src/components';
 import { DirectionalLight as BabylonDirectionalLight } from '@babylonjs/core/Lights/directionalLight';
 import setupWorld from './helpers/setup-world';
 
 describe('shadow system', function () {
   it('can add shadow generator', function () {
-    const { world, rootEntity } = setupWorld();
+    const { world, scene } = setupWorld();
 
     const lightEntity = world.createEntity();
     lightEntity.addComponent(Parent).addComponent(DirectionalLight).addComponent(ShadowGenerator);
@@ -13,8 +13,6 @@ describe('shadow system', function () {
     meshEntity.addComponent(Parent).addComponent(Box);
 
     world.execute(0, 0);
-
-    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.lights).toHaveLength(1);
 
@@ -29,7 +27,7 @@ describe('shadow system', function () {
   });
 
   it('can add shadow generator with custom arguments', function () {
-    const { world, rootEntity } = setupWorld();
+    const { world, scene } = setupWorld();
 
     const lightEntity = world.createEntity();
     lightEntity.addComponent(Parent).addComponent(DirectionalLight).addComponent(ShadowGenerator, {
@@ -41,8 +39,6 @@ describe('shadow system', function () {
     meshEntity.addComponent(Parent).addComponent(Box);
 
     world.execute(0, 0);
-
-    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     expect(scene.lights).toHaveLength(1);
 
@@ -56,7 +52,7 @@ describe('shadow system', function () {
   });
 
   it('can update shadow generator', function () {
-    const { world, rootEntity } = setupWorld();
+    const { world, scene } = setupWorld();
 
     const lightEntity = world.createEntity();
     lightEntity.addComponent(Parent).addComponent(DirectionalLight).addComponent(ShadowGenerator);
@@ -66,7 +62,6 @@ describe('shadow system', function () {
 
     world.execute(0, 0);
 
-    const { scene } = rootEntity.getComponent(BabylonCore)!;
     const component = lightEntity.getMutableComponent(ShadowGenerator)!;
     component.size = 1024;
     component.forceBackFacesOnly = true;
@@ -83,7 +78,7 @@ describe('shadow system', function () {
   });
 
   it('can remove shadow generator', function () {
-    const { world, rootEntity } = setupWorld();
+    const { world, scene } = setupWorld();
 
     const lightEntity = world.createEntity();
     lightEntity.addComponent(Parent).addComponent(DirectionalLight).addComponent(ShadowGenerator);
@@ -92,8 +87,6 @@ describe('shadow system', function () {
     meshEntity.addComponent(Parent).addComponent(Box);
 
     world.execute(0, 0);
-
-    const { scene } = rootEntity.getComponent(BabylonCore)!;
 
     lightEntity.removeComponent(ShadowGenerator);
     world.execute(0, 0);

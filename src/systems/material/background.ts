@@ -1,4 +1,4 @@
-import { Material, BackgroundMaterial } from '../../components';
+import { BackgroundMaterial, Material } from '../../components';
 import { BackgroundMaterial as BabylonBackgroundMaterial } from '@babylonjs/core/Materials/Background/backgroundMaterial';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';

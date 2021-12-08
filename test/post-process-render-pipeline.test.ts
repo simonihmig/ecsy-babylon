@@ -1,6 +1,5 @@
 import {
   ArcRotateCamera,
-  BabylonCore,
   DefaultRenderingPipeline,
   Parent,
   PostProcessRenderPipeline,
@@ -44,7 +43,7 @@ function createPipeline(engine: Engine, name = 'test'): BabylonPostProcessRender
 describe('post-process-render-pipeline system', function () {
   describe('post-process-render-pipeline', function () {
     it('can add PostProcessRenderPipeline instances', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = createPipeline(engine, 'test');
 
@@ -55,8 +54,6 @@ describe('post-process-render-pipeline system', function () {
         .addComponent(PostProcessRenderPipeline, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
       expect(scene.postProcessRenderPipelineManager.supportedPipelines[0]).toEqual(pp);
@@ -65,7 +62,7 @@ describe('post-process-render-pipeline system', function () {
     });
 
     it('can add another postprocessing instance', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = createPipeline(engine, 'test');
 
@@ -76,8 +73,6 @@ describe('post-process-render-pipeline system', function () {
         .addComponent(PostProcessRenderPipeline, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const component = cameraEntity.getMutableComponent(PostProcessRenderPipeline)!;
       const pp2 = createPipeline(engine, 'test2');
@@ -94,7 +89,7 @@ describe('post-process-render-pipeline system', function () {
     });
 
     it('can remove a postprocessing instance', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = createPipeline(engine, 'test');
       const pp2 = createPipeline(engine, 'test2');
@@ -106,8 +101,6 @@ describe('post-process-render-pipeline system', function () {
         .addComponent(PostProcessRenderPipeline, { value: [pp, pp2] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       const component = cameraEntity.getMutableComponent(PostProcessRenderPipeline)!;
       component.value = [pp];
@@ -123,7 +116,7 @@ describe('post-process-render-pipeline system', function () {
     });
 
     it('can remove postprocessing instances', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = createPipeline(engine, 'test');
 
@@ -134,8 +127,6 @@ describe('post-process-render-pipeline system', function () {
         .addComponent(PostProcessRenderPipeline, { value: [pp] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       cameraEntity.removeComponent(PostProcessRenderPipeline);
       world.execute(0, 0);
@@ -147,7 +138,7 @@ describe('post-process-render-pipeline system', function () {
     });
 
     it('can remove the whole entity', function () {
-      const { world, rootEntity, engine } = setupWorld();
+      const { world, engine, scene } = setupWorld();
 
       const pp = createPipeline(engine, 'test');
 
@@ -159,8 +150,6 @@ describe('post-process-render-pipeline system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       cameraEntity.remove();
       world.execute(0, 0);
 
@@ -171,14 +160,12 @@ describe('post-process-render-pipeline system', function () {
   describe('builders', function () {
     describe('default', function () {
       it('can add post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
@@ -195,7 +182,7 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can add post-process with custom properties', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity
@@ -214,8 +201,6 @@ describe('post-process-render-pipeline system', function () {
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
-
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonDefaultRenderingPipeline;
         expect(pp).toBeInstanceOf(BabylonDefaultRenderingPipeline);
@@ -232,14 +217,13 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can update post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         const c = cameraEntity.getMutableComponent(DefaultRenderingPipeline);
         Object.assign(c, {
           sharpenEnabled: true,
@@ -268,14 +252,13 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can remove post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
@@ -287,14 +270,13 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can remove the whole entity', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(DefaultRenderingPipeline);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.remove();
 
         world.execute(0, 0);
@@ -308,14 +290,12 @@ describe('post-process-render-pipeline system', function () {
     // we cannot test this, as this requires canvas support in node. Could install `canvas` package, for now skipping tests...
     describe.skip('ssao', function () {
       it('can add post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
@@ -326,7 +306,7 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can add post-process with custom properties', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline, {
@@ -336,8 +316,6 @@ describe('post-process-render-pipeline system', function () {
         });
 
         world.execute(0, 0);
-
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
 
         expect(scene.postProcessRenderPipelineManager.supportedPipelines).toHaveLength(1);
         const pp = scene.postProcessRenderPipelineManager.supportedPipelines[0] as BabylonSSAORenderingPipeline;
@@ -351,14 +329,13 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can update post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         const c = cameraEntity.getMutableComponent(SsaoRenderingPipeline);
         Object.assign(c, {
           name: 'test',
@@ -380,14 +357,13 @@ describe('post-process-render-pipeline system', function () {
       });
 
       it('can remove post-process', function () {
-        const { world, rootEntity } = setupWorld();
+        const { world, scene } = setupWorld();
 
         const cameraEntity = world.createEntity();
         cameraEntity.addComponent(Parent).addComponent(ArcRotateCamera).addComponent(SsaoRenderingPipeline);
 
         world.execute(0, 0);
 
-        const { scene } = rootEntity.getComponent(BabylonCore)!;
         cameraEntity.removeComponent(SsaoRenderingPipeline);
 
         world.execute(0, 0);

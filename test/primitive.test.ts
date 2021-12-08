@@ -1,4 +1,4 @@
-import { BabylonCore, Box, Lines, Parent, Plane, Sphere } from '../src/components';
+import { Box, Lines, Parent, Plane, Sphere } from '../src/components';
 import setupWorld from './helpers/setup-world';
 import { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -8,14 +8,12 @@ import { Color3 } from '@babylonjs/core/Maths/math.color';
 describe('primitive system', function () {
   describe('box', function () {
     it('can create a default box', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -30,14 +28,12 @@ describe('primitive system', function () {
     });
 
     it('can create a custom box', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box, { width: 2, height: 3, depth: 4 });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -52,14 +48,13 @@ describe('primitive system', function () {
     });
 
     it('can update a box', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box, { width: 2, height: 3, depth: 4 });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Box);
       Object.assign(component, {
         width: 4,
@@ -78,14 +73,13 @@ describe('primitive system', function () {
     });
 
     it('can remove a box', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Box);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -97,14 +91,12 @@ describe('primitive system', function () {
 
   describe('plane', function () {
     it('can create a default plane', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Plane);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -119,14 +111,12 @@ describe('primitive system', function () {
     });
 
     it('can create a custom plane', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Plane, { width: 2, height: 3 });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -141,14 +131,13 @@ describe('primitive system', function () {
     });
 
     it('can update a plane', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Plane, { width: 2, height: 3 });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Plane);
       Object.assign(component, {
         width: 4,
@@ -166,14 +155,13 @@ describe('primitive system', function () {
     });
 
     it('can remove a plane', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Plane);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -185,14 +173,12 @@ describe('primitive system', function () {
 
   describe('sphere', function () {
     it('can create a default sphere', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Sphere);
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -204,14 +190,12 @@ describe('primitive system', function () {
     });
 
     it('can create a custom sphere', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Sphere, { diameterX: 2, diameterY: 3, diameterZ: 4 });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -223,14 +207,13 @@ describe('primitive system', function () {
     });
 
     it('can update a sphere', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Sphere, { diameterX: 2, diameterY: 3, diameterZ: 4 });
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Sphere);
       Object.assign(component, {
         diameterX: 4,
@@ -249,14 +232,13 @@ describe('primitive system', function () {
     });
 
     it('can remove a sphere', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Sphere);
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);
@@ -268,7 +250,7 @@ describe('primitive system', function () {
 
   describe('lines', function () {
     it('can create a line', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -276,8 +258,6 @@ describe('primitive system', function () {
         .addComponent(Lines, { points: [new Vector3(-0.5, -0.5, 0), new Vector3(0.5, 0.5, 0)] });
 
       world.execute(0, 0);
-
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
 
       expect(scene.meshes).toHaveLength(1);
 
@@ -289,7 +269,7 @@ describe('primitive system', function () {
     });
 
     it('can apply color and alpha', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Lines, {
@@ -300,8 +280,6 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
-
       expect(scene.meshes).toHaveLength(1);
 
       const mesh = scene.meshes[0] as LinesMesh;
@@ -311,7 +289,7 @@ describe('primitive system', function () {
     });
 
     it('can update a line', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity.addComponent(Parent).addComponent(Lines, {
@@ -322,7 +300,6 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       const component = entity.getMutableComponent(Lines);
       Object.assign(component, {
         points: [new Vector3(-2, -1.5, 0), new Vector3(2, 1.5, 0)],
@@ -344,7 +321,7 @@ describe('primitive system', function () {
     });
 
     it('can remove a line', function () {
-      const { world, rootEntity } = setupWorld();
+      const { world, scene } = setupWorld();
 
       const entity = world.createEntity();
       entity
@@ -353,7 +330,6 @@ describe('primitive system', function () {
 
       world.execute(0, 0);
 
-      const { scene } = rootEntity.getComponent(BabylonCore)!;
       entity.remove();
 
       world.execute(0, 0);

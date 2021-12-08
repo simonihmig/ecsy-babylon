@@ -1,4 +1,4 @@
-import { Sphere, Mesh } from '../../components';
+import { Mesh, Sphere } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
@@ -13,7 +13,7 @@ export default class SpherePrimitiveSystem extends FactorySystem<Sphere, Mesh<Ba
     assert('SpherePrimitiveSystem needs BabylonCoreComponent', this.core);
 
     // Babylon's Builder unfortunately mutate the passed options, so we need to spread to clone them
-    return SphereBuilder.CreateSphere(Sphere.name, { ...c });
+    return SphereBuilder.CreateSphere(Sphere.name, { ...c }, this.core.scene);
   }
 
   static queries = {
