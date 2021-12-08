@@ -1,5 +1,14 @@
 
 
+
+## v0.7.3 (2021-12-08)
+
+#### :bug: Bug Fix
+* [#599](https://github.com/kaliber5/ecsy-babylon/pull/599) Ensure we always explicitly pass `Scene` when creating new objects ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.7.2 (2021-12-07)
 
 #### :bug: Bug Fix
