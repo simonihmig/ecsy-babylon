@@ -13,7 +13,7 @@ export default class BoxPrimitiveSystem extends FactorySystem<Box, Mesh<BabylonM
     assert('BoxPrimitiveSystem needs BabylonCoreComponent', this.core);
 
     // Babylon's Builder unfortunately mutate the passed options, so we need to spread to clone them
-    return BoxBuilder.CreateBox(Box.name, { ...c });
+    return BoxBuilder.CreateBox(Box.name, { ...c }, this.core.scene);
   }
 
   static queries = {

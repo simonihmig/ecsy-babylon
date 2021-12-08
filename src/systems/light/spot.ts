@@ -5,7 +5,6 @@ import FactorySystem from '../../-private/systems/factory';
 import { assign } from '../../-private/utils/assign';
 import { assert } from '../../-private/utils/debug';
 import Light from '../../components/light';
-import { Scene } from '@babylonjs/core/scene';
 
 export default class SpotLightSystem extends FactorySystem<SpotLight, Light<BabylonSpotLight>, BabylonSpotLight> {
   protected instanceComponentConstructor = Light;
@@ -15,14 +14,7 @@ export default class SpotLightSystem extends FactorySystem<SpotLight, Light<Baby
     assert('SpotLightSystem needs BabylonCoreComponent', this.core);
 
     const { direction, position, angle, exponent, ...options } = c;
-    const instance = new BabylonSpotLight(
-      SpotLight.name,
-      position,
-      direction,
-      angle,
-      exponent,
-      null as unknown as Scene // passing null is actually possible, but the typings require a Scene
-    );
+    const instance = new BabylonSpotLight(SpotLight.name, position, direction, angle, exponent, this.core.scene);
     assign(instance, options);
 
     return instance;

@@ -1,5 +1,5 @@
 import { Entity } from 'ecsy';
-import { Mesh, TransformNode, Material } from '../components';
+import { Material, Mesh, TransformNode } from '../components';
 import SystemWithCore, { queries } from '../-private/systems/with-core';
 import { assert } from '../-private/utils/debug';
 import { assign } from '../-private/utils/assign';

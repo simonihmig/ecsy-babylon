@@ -14,7 +14,7 @@ export default class LinesPrimitiveSystem extends FactorySystem<Lines, Mesh<Baby
 
     const { color, alpha, ...rest } = c;
 
-    const linesMesh = LinesBuilder.CreateLines(Lines.name, rest);
+    const linesMesh = LinesBuilder.CreateLines(Lines.name, rest, this.core.scene);
     if (color) {
       linesMesh.color = color;
     }

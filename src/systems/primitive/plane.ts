@@ -1,4 +1,4 @@
-import { Plane, Mesh } from '../../components';
+import { Mesh, Plane } from '../../components';
 import { Mesh as BabylonMesh } from '@babylonjs/core/Meshes/mesh';
 import { queries } from '../../-private/systems/with-core';
 import FactorySystem from '../../-private/systems/factory';
@@ -13,7 +13,7 @@ export default class PlanePrimitiveSystem extends FactorySystem<Plane, Mesh<Baby
     assert('PlanePrimitiveSystem needs BabylonCoreComponent', this.core);
 
     // Babylon's Builder unfortunately mutate the passed options, so we need to spread to clone them
-    return PlaneBuilder.CreatePlane(Plane.name, { ...c });
+    return PlaneBuilder.CreatePlane(Plane.name, { ...c }, this.core.scene);
   }
 
   static queries = {
