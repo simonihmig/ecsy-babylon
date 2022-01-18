@@ -1,6 +1,16 @@
 
 
 
+
+## v0.7.4 (2022-01-18)
+
+#### :bug: Bug Fix
+* [#608](https://github.com/kaliber5/ecsy-babylon/pull/608) Add missing `indexOfRefraction` property to `PbrMaterial` ([@simonihmig](https://github.com/simonihmig))
+* [#606](https://github.com/kaliber5/ecsy-babylon/pull/606) Add missing color properties to lights ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.7.3 (2021-12-08)
 
 #### :bug: Bug Fix
