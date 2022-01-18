@@ -5,6 +5,7 @@ import { SpotLight as BabylonSpotLight } from '@babylonjs/core/Lights/spotLight'
 import { HemisphericLight as BabylonHemisphericLight } from '@babylonjs/core/Lights/hemisphericLight';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import setupWorld from './helpers/setup-world';
+import { Color3 } from '@babylonjs/core/Maths/math.color';
 
 describe('light system', function () {
   describe('point-light', function () {
@@ -27,7 +28,9 @@ describe('light system', function () {
       const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
-      lightEntity.addComponent(Parent).addComponent(PointLight, { intensity: 2 });
+      lightEntity
+        .addComponent(Parent)
+        .addComponent(PointLight, { intensity: 2, diffuse: new Color3(1, 0, 0), specular: new Color3(0, 1, 0) });
 
       world.execute(0, 0);
 
@@ -36,6 +39,8 @@ describe('light system', function () {
       const light = scene.lights[0];
       expect(light).toBeInstanceOf(BabylonPointLight);
       expect(light.intensity).toBe(2);
+      expect(light.diffuse.equalsFloats(1, 0, 0)).toBeTrue();
+      expect(light.specular.equalsFloats(0, 1, 0)).toBeTrue();
     });
 
     it('can update point-light', function () {
@@ -241,9 +246,11 @@ describe('light system', function () {
       const { world, scene } = setupWorld();
 
       const lightEntity = world.createEntity();
-      lightEntity
-        .addComponent(Parent)
-        .addComponent(HemisphericLight, { intensity: 2, direction: new Vector3(1, 0, 0) });
+      lightEntity.addComponent(Parent).addComponent(HemisphericLight, {
+        intensity: 2,
+        direction: new Vector3(1, 0, 0),
+        groundColor: new Color3(1, 0, 0),
+      });
 
       world.execute(0, 0);
 
@@ -253,6 +260,7 @@ describe('light system', function () {
       expect(light).toBeInstanceOf(BabylonHemisphericLight);
       expect(light.intensity).toBe(2);
       expect(light.direction.equalsToFloats(1, 0, 0)).toBeTrue();
+      expect(light.groundColor.equalsFloats(1, 0, 0)).toBeTrue();
     });
 
     it('can update hemispheric-light', function () {
