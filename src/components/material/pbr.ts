@@ -63,6 +63,7 @@ export default class PbrMaterial extends Component<PbrMaterial> {
   useHorizonOcclusion = true;
   useRadianceOcclusion = true;
   unlit = false;
+  indexOfRefraction!: number;
 
   static schema: ComponentSchema = {
     alpha: { type: Types.Number, default: 1 },
@@ -126,5 +127,6 @@ export default class PbrMaterial extends Component<PbrMaterial> {
     useHorizonOcclusion: { type: Types.Boolean, default: true },
     useRadianceOcclusion: { type: Types.Boolean, default: true },
     unlit: { type: Types.Boolean },
+    indexOfRefraction: { type: Types.Number, default: 1.5 },
   };
 }
