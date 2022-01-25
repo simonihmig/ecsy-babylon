@@ -80,7 +80,7 @@
     "husky": "4.3.8",
     "jest": "27.4.7",
     "jest-config": "27.4.7",
-    "jest-extended": "0.11.5",
+    "jest-extended": "1.2.0",
     "lint-staged": "11.2.6",
     "prettier": "2.5.1",
     "release-it": "14.12.4",
