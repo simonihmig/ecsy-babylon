@@ -86,7 +86,7 @@
     "release-it": "14.12.4",
     "release-it-lerna-changelog": "4.0.1",
     "rimraf": "3.0.2",
-    "rollup": "2.67.1",
+    "rollup": "2.67.2",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-sourcemaps": "0.6.3",
     "ts-jest": "27.1.3",
