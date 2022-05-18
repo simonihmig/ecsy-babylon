@@ -908,20 +908,20 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@babylonjs/core@4.2.1", "@babylonjs/core@^4.2.0":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-4.2.1.tgz#9dc57dabf41d259a2343da308ec52575b368e588"
-  integrity sha512-Z2ZVNRKPB1UvmMeqQtxCJKrQtQ/hb5FcAZi66YEEE0MKBQlLmf6oZEM9vS1RljPK7NZoV/dZSdwjJgiQlGsuhA==
+"@babylonjs/core@^5.6.1":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@babylonjs/core/-/core-5.6.1.tgz#11cfe77ab654b254d405648172aef92eb2c0f71b"
+  integrity sha512-kWXMK+C8IAlhpOIS+WEpA1FHuizrK+nKHCHxc0bnrSQ7ePCIL2Xfxjx+ZE5C2WGB4og135O6+E3msdtp9cETFA==
   dependencies:
-    tslib ">=1.10.0"
+    tslib "^2.3.1"
 
-"@babylonjs/materials@^4.2.0":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-4.2.1.tgz#a44ef5c8a4c3d99e16dce27895e5ce4f7d178393"
-  integrity sha512-G4mfmixt2BnATaa2/uhf7xfZv4fqD6bGHocbEWT1Iu0KOJcpU7Q0EYjN8bqx78hVFjd94e4g0/7Bey2JaGrakA==
+"@babylonjs/materials@^5.6.1":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@babylonjs/materials/-/materials-5.6.1.tgz#2202e5c2e30341293ebb12e09c1d272ecd529e4c"
+  integrity sha512-Hify+rt3P2gqs2r5oSO1/WYvfFU4XTmP9RaYJeKRRORN6Qlm6jvvSj8OL4Bz1tuDXIzdhZ+ZUkmvcS1dT3iLZA==
   dependencies:
-    "@babylonjs/core" "4.2.1"
-    tslib ">=1.10.0"
+    "@babylonjs/core" "^5.6.1"
+    tslib "^2.3.1"
 
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
@@ -7460,15 +7460,15 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@>=1.10.0, tslib@^2.0.1, tslib@^2.1.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
-  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
-
 tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tslib@^2.0.1, tslib@^2.1.0, tslib@^2.3.1:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.21.0:
   version "3.21.0"
