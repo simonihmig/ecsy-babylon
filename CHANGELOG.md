@@ -2,6 +2,18 @@
 
 
 
+
+## v0.8.0 (2022-05-19)
+
+#### :boom: Breaking Change
+* [#624](https://github.com/kaliber5/ecsy-babylon/pull/624) Update to Babylon.js v5 ([@simonihmig](https://github.com/simonihmig))
+
+#### :rocket: Enhancement
+* [#624](https://github.com/kaliber5/ecsy-babylon/pull/624) Update to Babylon.js v5 ([@simonihmig](https://github.com/simonihmig))
+
+#### Committers: 1
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+
 ## v0.7.4 (2022-01-18)
 
 #### :bug: Bug Fix
