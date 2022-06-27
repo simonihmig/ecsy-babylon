@@ -53,7 +53,7 @@
     "ecsy": "^0.4.2"
   },
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.18.5",
     "@babel/preset-env": "7.18.2",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-replace": "3.1.0",
